@@ -1,0 +1,385 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1020" width="1400" height="1020">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arr-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arr-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#E24B4A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arr-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#A0522D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-color="#00000022"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1400" height="1020" fill="#F7F8FA"/>
+
+  <!-- Title -->
+  <rect x="0" y="0" width="1400" height="44" fill="#1A1F36"/>
+  <text x="700" y="27" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="white" letter-spacing="1">API MARKETPLACE — FULL JOURNEY MAP (CONSUMER + PRODUCER PUBLICATION)</text>
+
+  <!-- ===================== PHASE HEADERS ===================== -->
+  <!-- Phases: Publish(130-310) | Pub Review(310-490) | Pub Outcome(490-620) | Discovery(620-750) | Reg(750-880) | Search(880-1010) | Request(1010-1140) | Approval(1140-1270) | Outcome(1270-1400) -->
+
+  <rect x="130" y="44" width="180" height="34" fill="#7D3C0A"/>
+  <text x="220" y="61" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', Arial, sans-serif" font-size="10" font-weight="700" fill="white">PUBLISH API</text>
+
+  <rect x="310" y="44" width="180" height="34" fill="#2C3E6B"/>
+  <text x="400" y="61" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', Arial, sans-serif" font-size="10" font-weight="700" fill="white">PUBLICATION REVIEW</text>
+
+  <rect x="490" y="44" width="130" height="34" fill="#1D5C6B"/>
+  <text x="555" y="61" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', Arial, sans-serif" font-size="10" font-weight="700" fill="white">PUB OUTCOME</text>
+
+  <rect x="620" y="44" width="130" height="34" fill="#2C3E6B"/>
+  <text x="685" y="61" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', Arial, sans-serif" font-size="10" font-weight="700" fill="white">DISCOVERY</text>
+
+  <rect x="750" y="44" width="130" height="34" fill="#1D5C6B"/>
+  <text x="815" y="61" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', Arial, sans-serif" font-size="10" font-weight="700" fill="white">REGISTRATION</text>
+
+  <rect x="880" y="44" width="130" height="34" fill="#2C3E6B"/>
+  <text x="945" y="61" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', Arial, sans-serif" font-size="10" font-weight="700" fill="white">SEARCH</text>
+
+  <rect x="1010" y="44" width="130" height="34" fill="#1D5C6B"/>
+  <text x="1075" y="61" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', Arial, sans-serif" font-size="10" font-weight="700" fill="white">REQUEST</text>
+
+  <rect x="1140" y="44" width="130" height="34" fill="#2C3E6B"/>
+  <text x="1205" y="61" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', Arial, sans-serif" font-size="10" font-weight="700" fill="white">APPROVAL</text>
+
+  <rect x="1270" y="44" width="130" height="34" fill="#1D5C6B"/>
+  <text x="1335" y="61" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', Arial, sans-serif" font-size="10" font-weight="700" fill="white">OUTCOME</text>
+
+  <!-- Phase dividers -->
+  <line x1="310"  y1="44" x2="310"  y2="1000" stroke="#D0D5E8" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="490"  y1="44" x2="490"  y2="1000" stroke="#D0D5E8" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="620"  y1="44" x2="620"  y2="1000" stroke="#D0D5E8" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="750"  y1="44" x2="750"  y2="1000" stroke="#D0D5E8" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="880"  y1="44" x2="880"  y2="1000" stroke="#D0D5E8" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="1010" y1="44" x2="1010" y2="1000" stroke="#D0D5E8" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="1140" y1="44" x2="1140" y2="1000" stroke="#D0D5E8" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="1270" y1="44" x2="1270" y2="1000" stroke="#D0D5E8" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- ===================== SWIM LANE HEADERS ===================== -->
+  <rect x="0" y="78"  width="130" height="190" fill="#0E7A6E"/>
+  <text transform="translate(65,173) rotate(-90)" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="13" font-weight="700" fill="white">CONSUMER</text>
+
+  <rect x="0" y="268" width="130" height="190" fill="#1A5276"/>
+  <text transform="translate(65,363) rotate(-90)" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="13" font-weight="700" fill="white">AUTOMATION</text>
+
+  <rect x="0" y="458" width="130" height="190" fill="#6B2FAA"/>
+  <text transform="translate(65,553) rotate(-90)" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="13" font-weight="700" fill="white">REVIEWER</text>
+
+  <rect x="0" y="648" width="130" height="352" fill="#A0522D"/>
+  <text transform="translate(65,824) rotate(-90)" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="13" font-weight="700" fill="white">PRODUCER / API OWNER</text>
+
+  <!-- Lane backgrounds -->
+  <rect x="130" y="78"  width="1270" height="190" fill="#E8FAF5" opacity="0.5"/>
+  <rect x="130" y="268" width="1270" height="190" fill="#E8F0FA" opacity="0.5"/>
+  <rect x="130" y="458" width="1270" height="190" fill="#F3E8FA" opacity="0.5"/>
+  <rect x="130" y="648" width="1270" height="352" fill="#FDF0E8" opacity="0.5"/>
+
+  <!-- Lane dividers -->
+  <line x1="0" y1="268" x2="1400" y2="268" stroke="#C0C8D8" stroke-width="1.5"/>
+  <line x1="0" y1="458" x2="1400" y2="458" stroke="#C0C8D8" stroke-width="1.5"/>
+  <line x1="0" y1="648" x2="1400" y2="648" stroke="#C0C8D8" stroke-width="1.5"/>
+  <line x1="0" y1="1000" x2="1400" y2="1000" stroke="#C0C8D8" stroke-width="1.5"/>
+
+  <!-- ===================== CONSUMER LANE ===================== -->
+  <!-- Discovery -->
+  <g filter="url(#shadow)">
+    <rect x="632" y="98" width="116" height="52" rx="7" fill="#0E7A6E" stroke="#085041" stroke-width="1"/>
+    <text x="690" y="117" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">Visits Marketplace</text>
+    <text x="690" y="133" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#B2DFDB">Browses catalogue</text>
+    <text x="690" y="144" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#B2DFDB">without login</text>
+  </g>
+  <line x1="748" y1="124" x2="762" y2="124" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Registration -->
+  <g filter="url(#shadow)">
+    <rect x="762" y="98" width="116" height="52" rx="7" fill="#0E7A6E" stroke="#085041" stroke-width="1"/>
+    <text x="820" y="117" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">Registers / Logs In</text>
+    <text x="820" y="133" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#B2DFDB">Creates account</text>
+    <text x="820" y="144" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#B2DFDB">if new user</text>
+  </g>
+  <line x1="878" y1="124" x2="892" y2="124" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Search -->
+  <g filter="url(#shadow)">
+    <rect x="892" y="98" width="116" height="52" rx="7" fill="#0E7A6E" stroke="#085041" stroke-width="1"/>
+    <text x="950" y="117" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">Searches Catalogue</text>
+    <text x="950" y="133" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#B2DFDB">Keyword, domain</text>
+    <text x="950" y="144" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#B2DFDB">or category</text>
+  </g>
+  <line x1="1008" y1="124" x2="1022" y2="124" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Request -->
+  <g filter="url(#shadow)">
+    <rect x="1022" y="98" width="116" height="52" rx="7" fill="#0E7A6E" stroke="#085041" stroke-width="1"/>
+    <text x="1080" y="117" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">Submits Request</text>
+    <text x="1080" y="133" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#B2DFDB">Use case and</text>
+    <text x="1080" y="144" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#B2DFDB">compliance details</text>
+  </g>
+  <line x1="1138" y1="124" x2="1152" y2="124" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Awaits -->
+  <g filter="url(#shadow)">
+    <rect x="1152" y="98" width="116" height="52" rx="7" fill="#0E7A6E" stroke="#085041" stroke-width="1"/>
+    <text x="1210" y="117" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">Awaits Decision</text>
+    <text x="1210" y="133" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#B2DFDB">Tracks status</text>
+    <text x="1210" y="144" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#B2DFDB">in portal</text>
+  </g>
+
+  <!-- Approved -->
+  <g filter="url(#shadow)">
+    <rect x="1282" y="88" width="106" height="52" rx="7" fill="#1D9E75" stroke="#0E6B4A" stroke-width="1"/>
+    <text x="1335" y="107" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">✓ Access Granted</text>
+    <text x="1335" y="122" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#C8F5E4">Credentials sent</text>
+    <text x="1335" y="133" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#C8F5E4">Integration begins</text>
+  </g>
+  <line x1="1268" y1="114" x2="1282" y2="114" stroke="#1D9E75" stroke-width="1.5" marker-end="url(#arr-green)"/>
+
+  <!-- Rejected -->
+  <g filter="url(#shadow)">
+    <rect x="1282" y="158" width="106" height="52" rx="7" fill="#C0392B" stroke="#922B21" stroke-width="1"/>
+    <text x="1335" y="177" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">✗ Access Denied</text>
+    <text x="1335" y="192" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#FADBD8">Reason provided</text>
+    <text x="1335" y="203" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#FADBD8">Can resubmit</text>
+  </g>
+  <line x1="1268" y1="150" x2="1268" y2="184" stroke="#E24B4A" stroke-width="1.5"/>
+  <line x1="1268" y1="184" x2="1282" y2="184" stroke="#E24B4A" stroke-width="1.5" marker-end="url(#arr-red)"/>
+
+  <!-- ===================== AUTOMATION LANE ===================== -->
+  <!-- Validate API submission -->
+  <g filter="url(#shadow)">
+    <rect x="142" y="288" width="156" height="52" rx="7" fill="#1A5276" stroke="#0D2E4A" stroke-width="1"/>
+    <text x="220" y="305" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">Validates Submission</text>
+    <text x="220" y="321" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#AED6F1">Checks required fields</text>
+    <text x="220" y="332" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#AED6F1">and docs present</text>
+  </g>
+
+  <!-- Queue for review -->
+  <g filter="url(#shadow)">
+    <rect x="322" y="288" width="156" height="52" rx="7" fill="#1A5276" stroke="#0D2E4A" stroke-width="1"/>
+    <text x="400" y="305" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">Queues for Review</text>
+    <text x="400" y="321" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#AED6F1">Assigns to reviewer</text>
+    <text x="400" y="332" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#AED6F1">SLA timer starts</text>
+  </g>
+
+  <!-- Email verification -->
+  <g filter="url(#shadow)">
+    <rect x="762" y="288" width="116" height="52" rx="7" fill="#1A5276" stroke="#0D2E4A" stroke-width="1"/>
+    <text x="820" y="305" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">Email Verification</text>
+    <text x="820" y="321" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#AED6F1">Sends verification</text>
+    <text x="820" y="332" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#AED6F1">email to user</text>
+  </g>
+
+  <!-- Returns search results -->
+  <g filter="url(#shadow)">
+    <rect x="892" y="288" width="116" height="52" rx="7" fill="#1A5276" stroke="#0D2E4A" stroke-width="1"/>
+    <text x="950" y="305" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">Returns Results</text>
+    <text x="950" y="321" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#AED6F1">Matches APIs to</text>
+    <text x="950" y="332" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#AED6F1">search query</text>
+  </g>
+
+  <!-- Validates access request -->
+  <g filter="url(#shadow)">
+    <rect x="1022" y="288" width="116" height="52" rx="7" fill="#1A5276" stroke="#0D2E4A" stroke-width="1"/>
+    <text x="1080" y="305" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">Validates Request</text>
+    <text x="1080" y="321" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#AED6F1">Checks all required</text>
+    <text x="1080" y="332" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#AED6F1">fields complete</text>
+  </g>
+
+  <!-- Routes to owner -->
+  <g filter="url(#shadow)">
+    <rect x="1152" y="288" width="116" height="52" rx="7" fill="#1A5276" stroke="#0D2E4A" stroke-width="1"/>
+    <text x="1210" y="305" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">Routes to Owner</text>
+    <text x="1210" y="321" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#AED6F1">Notification sent</text>
+    <text x="1210" y="332" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#AED6F1">SLA timer starts</text>
+  </g>
+
+  <!-- Sends outcome notification -->
+  <g filter="url(#shadow)">
+    <rect x="1282" y="288" width="106" height="52" rx="7" fill="#1A5276" stroke="#0D2E4A" stroke-width="1"/>
+    <text x="1335" y="305" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">Sends Notification</text>
+    <text x="1335" y="321" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#AED6F1">Email + in-app</text>
+    <text x="1335" y="332" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#AED6F1">alert to consumer</text>
+  </g>
+
+  <!-- ===================== REVIEWER LANE ===================== -->
+  <!-- Reviews API submission -->
+  <g filter="url(#shadow)">
+    <rect x="322" y="478" width="156" height="52" rx="7" fill="#6B2FAA" stroke="#4A1F7A" stroke-width="1"/>
+    <text x="400" y="495" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">Reviews API Listing</text>
+    <text x="400" y="511" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#E8D5FA">Docs, standards</text>
+    <text x="400" y="522" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#E8D5FA">security and policy</text>
+  </g>
+
+  <!-- Approve publication -->
+  <g filter="url(#shadow)">
+    <rect x="502" y="468" width="106" height="52" rx="7" fill="#1D9E75" stroke="#0E6B4A" stroke-width="1"/>
+    <text x="555" y="487" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">✓ Approves</text>
+    <text x="555" y="503" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#C8F5E4">API cleared</text>
+    <text x="555" y="514" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#C8F5E4">for publish</text>
+  </g>
+
+  <!-- Reject publication -->
+  <g filter="url(#shadow)">
+    <rect x="502" y="538" width="106" height="52" rx="7" fill="#C0392B" stroke="#922B21" stroke-width="1"/>
+    <text x="555" y="557" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">✗ Rejects</text>
+    <text x="555" y="573" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#FADBD8">Returns to producer</text>
+    <text x="555" y="584" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#FADBD8">with feedback</text>
+  </g>
+
+  <!-- Reviewer checks access request compliance -->
+  <g filter="url(#shadow)">
+    <rect x="1152" y="478" width="116" height="52" rx="7" fill="#6B2FAA" stroke="#4A1F7A" stroke-width="1"/>
+    <text x="1210" y="495" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">Checks Compliance</text>
+    <text x="1210" y="511" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#E8D5FA">GDPR, data policy</text>
+    <text x="1210" y="522" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#E8D5FA">and security</text>
+  </g>
+
+  <!-- Reviewer flags to owner -->
+  <g filter="url(#shadow)">
+    <rect x="1282" y="478" width="106" height="52" rx="7" fill="#6B2FAA" stroke="#4A1F7A" stroke-width="1"/>
+    <text x="1335" y="495" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">Flags to Owner</text>
+    <text x="1335" y="511" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#E8D5FA">Passes with notes</text>
+    <text x="1335" y="522" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#E8D5FA">or escalates</text>
+  </g>
+
+  <!-- ===================== PRODUCER LANE ===================== -->
+  <!-- Creates listing -->
+  <g filter="url(#shadow)">
+    <rect x="142" y="678" width="156" height="52" rx="7" fill="#A0522D" stroke="#6E3720" stroke-width="1"/>
+    <text x="220" y="695" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">Creates API Listing</text>
+    <text x="220" y="711" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#FAD7A0">Name, docs, version</text>
+    <text x="220" y="722" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#FAD7A0">and access policy</text>
+  </g>
+  <line x1="298" y1="704" x2="312" y2="704" stroke="#A0522D" stroke-width="1.5" marker-end="url(#arr-amber)"/>
+
+  <!-- Submits for approval -->
+  <g filter="url(#shadow)">
+    <rect x="322" y="678" width="156" height="52" rx="7" fill="#A0522D" stroke="#6E3720" stroke-width="1"/>
+    <text x="400" y="695" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">Submits for Approval</text>
+    <text x="400" y="711" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#FAD7A0">Sent to reviewer</text>
+    <text x="400" y="722" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#FAD7A0">for publication check</text>
+  </g>
+
+  <!-- Awaits publication decision -->
+  <g filter="url(#shadow)">
+    <rect x="502" y="678" width="106" height="52" rx="7" fill="#A0522D" stroke="#6E3720" stroke-width="1"/>
+    <text x="555" y="695" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">Awaits Decision</text>
+    <text x="555" y="711" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#FAD7A0">Notified of review</text>
+    <text x="555" y="722" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#FAD7A0">outcome</text>
+  </g>
+
+  <!-- API goes live -->
+  <g filter="url(#shadow)">
+    <rect x="632" y="678" width="116" height="52" rx="7" fill="#1D9E75" stroke="#0E6B4A" stroke-width="1"/>
+    <text x="690" y="695" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">API Published Live</text>
+    <text x="690" y="711" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#C8F5E4">Visible in catalogue</text>
+    <text x="690" y="722" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#C8F5E4">discoverable</text>
+  </g>
+
+  <!-- Rework listing -->
+  <g filter="url(#shadow)">
+    <rect x="502" y="758" width="106" height="52" rx="7" fill="#C0392B" stroke="#922B21" stroke-width="1"/>
+    <text x="555" y="775" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">Reworks Listing</text>
+    <text x="555" y="791" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#FADBD8">Addresses feedback</text>
+    <text x="555" y="802" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#FADBD8">and resubmits</text>
+  </g>
+
+  <!-- Receives access request -->
+  <g filter="url(#shadow)">
+    <rect x="1152" y="678" width="116" height="52" rx="7" fill="#A0522D" stroke="#6E3720" stroke-width="1"/>
+    <text x="1210" y="695" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">Receives Request</text>
+    <text x="1210" y="711" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#FAD7A0">Notified of new</text>
+    <text x="1210" y="722" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#FAD7A0">access request</text>
+  </g>
+
+  <!-- Reviews use case -->
+  <g filter="url(#shadow)">
+    <rect x="1282" y="668" width="106" height="52" rx="7" fill="#A0522D" stroke="#6E3720" stroke-width="1"/>
+    <text x="1335" y="685" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">Reviews Use Case</text>
+    <text x="1335" y="701" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#FAD7A0">Risk, compliance</text>
+    <text x="1335" y="712" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#FAD7A0">and legitimacy</text>
+  </g>
+
+  <!-- Producer approves access -->
+  <g filter="url(#shadow)">
+    <rect x="1282" y="738" width="106" height="52" rx="7" fill="#1D9E75" stroke="#0E6B4A" stroke-width="1"/>
+    <text x="1335" y="755" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">✓ Approves</text>
+    <text x="1335" y="771" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#C8F5E4">Issues credentials</text>
+    <text x="1335" y="782" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#C8F5E4">and sets limits</text>
+  </g>
+
+  <!-- Producer rejects access -->
+  <g filter="url(#shadow)">
+    <rect x="1282" y="808" width="106" height="52" rx="7" fill="#C0392B" stroke="#922B21" stroke-width="1"/>
+    <text x="1335" y="825" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">✗ Rejects</text>
+    <text x="1335" y="841" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#FADBD8">Reason provided</text>
+    <text x="1335" y="852" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#FADBD8">consumer notified</text>
+  </g>
+
+  <!-- Ongoing maintenance -->
+  <g filter="url(#shadow)">
+    <rect x="142" y="878" width="1246" height="44" rx="7" fill="#A0522D" stroke="#6E3720" stroke-width="1"/>
+    <text x="765" y="896" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="white">ONGOING: Maintains API · Updates documentation · Manages versions · Monitors usage · Handles deprecations · Manages consumer access</text>
+    <text x="765" y="912" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#FAD7A0">Producer is accountable for keeping the API live, current and fit for purpose across all consumers</text>
+  </g>
+
+  <!-- ===================== CROSS-LANE CONNECTORS ===================== -->
+  <!-- Producer submits → Automation validates -->
+  <line x1="220" y1="678" x2="220" y2="340" stroke="#555" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arr)"/>
+
+  <!-- Automation queues → Reviewer reviews -->
+  <line x1="400" y1="340" x2="400" y2="478" stroke="#555" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arr)"/>
+
+  <!-- Reviewer approve → Producer API live -->
+  <line x1="555" y1="520" x2="555" y2="678" stroke="#1D9E75" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arr-green)"/>
+
+  <!-- Reviewer reject → Producer rework -->
+  <line x1="540" y1="590" x2="540" y2="758" stroke="#E24B4A" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arr-red)"/>
+
+  <!-- Rework loops back to submit -->
+  <path d="M502 784 L450 784 L450 704 L478 704" fill="none" stroke="#E24B4A" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arr-red)"/>
+
+  <!-- API live → Consumer can discover -->
+  <line x1="690" y1="678" x2="690" y2="150" stroke="#1D9E75" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arr-green)"/>
+
+  <!-- Consumer submits → Automation validates request -->
+  <line x1="1080" y1="150" x2="1080" y2="288" stroke="#555" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arr)"/>
+
+  <!-- Automation routes → Reviewer compliance -->
+  <line x1="1210" y1="340" x2="1210" y2="458" stroke="#555" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arr)"/>
+
+  <!-- Automation routes → Producer receives -->
+  <line x1="1210" y1="340" x2="1210" y2="648" stroke="#555" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arr)"/>
+
+  <!-- Reviewer flags → Producer reviews -->
+  <line x1="1335" y1="530" x2="1335" y2="668" stroke="#555" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arr)"/>
+
+  <!-- Producer approve → Automation notifies -->
+  <line x1="1320" y1="738" x2="1320" y2="340" stroke="#1D9E75" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arr-green)"/>
+
+  <!-- ===================== LEGEND ===================== -->
+  <rect x="130" y="1000" width="1260" height="16" rx="0" fill="#1A1F36"/>
+  <rect x="142" y="1003" width="10" height="10" rx="2" fill="#0E7A6E"/>
+  <text x="158" y="1010" dominant-baseline="central" font-family="'Segoe UI',Arial,sans-serif" font-size="8" fill="white">Consumer</text>
+  <rect x="232" y="1003" width="10" height="10" rx="2" fill="#1A5276"/>
+  <text x="248" y="1010" dominant-baseline="central" font-family="'Segoe UI',Arial,sans-serif" font-size="8" fill="white">Automation</text>
+  <rect x="332" y="1003" width="10" height="10" rx="2" fill="#6B2FAA"/>
+  <text x="348" y="1010" dominant-baseline="central" font-family="'Segoe UI',Arial,sans-serif" font-size="8" fill="white">Reviewer</text>
+  <rect x="422" y="1003" width="10" height="10" rx="2" fill="#A0522D"/>
+  <text x="438" y="1010" dominant-baseline="central" font-family="'Segoe UI',Arial,sans-serif" font-size="8" fill="white">Producer / API Owner</text>
+  <rect x="572" y="1003" width="10" height="10" rx="2" fill="#1D9E75"/>
+  <text x="588" y="1010" dominant-baseline="central" font-family="'Segoe UI',Arial,sans-serif" font-size="8" fill="white">Approved outcome</text>
+  <rect x="702" y="1003" width="10" height="10" rx="2" fill="#C0392B"/>
+  <text x="718" y="1010" dominant-baseline="central" font-family="'Segoe UI',Arial,sans-serif" font-size="8" fill="white">Rejected outcome</text>
+  <line x1="822" y1="1008" x2="854" y2="1008" stroke="#555" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+  <text x="860" y="1010" dominant-baseline="central" font-family="'Segoe UI',Arial,sans-serif" font-size="8" fill="white">Cross-lane handoff</text>
+</svg>

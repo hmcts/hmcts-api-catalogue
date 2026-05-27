@@ -1,28 +1,87 @@
 # HMCTS API Catalogue
 
-> A discovery, publication and access management platform for HMCTS Common Platform APIs.
-
-## What is this?
-
-The HMCTS API Catalogue is an internal marketplace that lets teams discover, document and request access to APIs across the Common Platform Programme. It is built on the GOV.UK Design System and follows GDS design principles.
-
-This repository contains the working prototype and all supporting product documentation — capabilities, requirements, user journeys and gap analyses.
+> **"We don't build APIs — we connect you to them."**
+>
+> *Like a library — we don't write the books, we organise them so you can find and borrow what you need.*
 
 ---
 
-## Quick start
+## What is the HMCTS API Marketplace?
 
-The prototype is a single HTML file. No build step, no dependencies, no server required.
+The HMCTS API Marketplace is a **discovery, publication and access management platform** for APIs across the Common Platform Programme. Think of it as the central directory for all available APIs — one place to browse what exists, understand how it works, and request access.
 
-1. Download `prototype/api-catalogue-v7.html`
-2. Open it in any modern browser
-3. The full application loads instantly
-
-To share it with someone else, upload the file to [Netlify Drop](https://app.netlify.com/drop) for a permanent shareable URL in under a minute.
+It is **not** a development team. The marketplace does not own, build or run any of the APIs it lists. Their respective teams do. The marketplace makes them **discoverable, documented and accessible**.
 
 ---
 
-## Prototype features
+## What the API Marketplace Does and Doesn't Do
+
+| ✅ The API Marketplace does | ❌ The API Marketplace does not |
+|---|---|
+| Catalogue and curate APIs across the programme | Build, own or develop APIs |
+| Provide a single point of discovery | Host data or run backend services |
+| Document what each API does in plain English | Support the API itself — that stays with the owner |
+| Manage access requests and the approval workflow | Make architectural decisions for API teams |
+| Enforce naming conventions and data classification standards | Guarantee uptime or SLAs for listed APIs |
+| Connect API owners with the consumers who need their data | Act as a development team for hire |
+| Capture demand signals when consumers need data that isn't yet available | Replace any team's responsibility for their APIs |
+
+---
+
+## Who It's For
+
+### API Consumers
+Teams and developers who need to use an existing API rather than build one from scratch. Use the marketplace to browse, discover, read documentation, try the mock server, and request access — all in one place.
+
+### API Producers
+Teams that build and own APIs and want them discoverable and usable by others. Use the marketplace to list your API, manage who can access it, and respond to consumer requests.
+
+### Reviewers
+Marketplace team members responsible for governance and standards. Review API submissions before they go live, triage incoming access requests, and manage consumer demand signals.
+
+---
+
+## How It Works
+
+```
+1. Browse     →    2. Discover    →    3. Request Access    →    4. Use
+Search the        Read plain-English       Submit a formal           Integrate with
+catalogue by      summaries and full       request with your         your credentials
+keyword or        technical docs           business justification    via the API
+domain
+```
+
+---
+
+## Key Benefits
+
+**Stops duplication** — Teams can check whether an API already exists before building a new one. The marketplace makes invisible work visible.
+
+**Faster integration** — Consumers get documentation, specs, mock servers and access requests in one place. Integration time reduces from weeks to days.
+
+**Governance and standards** — The approval workflow ensures only APIs that meet documentation and classification standards appear in the catalogue.
+
+**Controlled access** — Access requests with formal justifications mean sensitive data is only shared with authorised teams who have stated their use case.
+
+**Visibility** — Leadership and programme management get a clear, always-current picture of the API landscape — what exists, who owns it, and what consumer demand looks like.
+
+---
+
+## Common Misconceptions
+
+| Misconception | Reality |
+|---|---|
+| "The marketplace team builds the APIs" | We list them. Your team builds and owns the API. |
+| "If it's in the catalogue, the marketplace team supports it" | Support stays with the API owner. |
+| "It's only for developers" | Product managers, architects and delivery managers should use it too. |
+| "Listing my API means giving up ownership" | You remain the owner. Listing makes your API discoverable. |
+| "The marketplace hosts our data" | We host documentation and metadata, not data or services. |
+
+---
+
+## The Prototype
+
+The prototype is a fully working single-file application built on GOV.UK Frontend 5.4.0. It demonstrates all core journeys — browse and discovery, API publication, review and approval, and access request management.
 
 | Feature | Status |
 |---|---|
@@ -37,12 +96,11 @@ To share it with someone else, upload the file to [Netlify Drop](https://app.net
 | Publication review and approval (reviewer role) | ✅ Built |
 | Suggest a new API flow | ✅ Built |
 | Draft save and restore | ✅ Built |
-| Check your answers before submission | ✅ Built |
 | Approved APIs appear live in catalogue | ✅ Built |
 
 ---
 
-## Repository structure
+## Repository Structure
 
 ```
 hmcts-api-catalogue/
@@ -52,43 +110,13 @@ hmcts-api-catalogue/
 │   └── api-catalogue-v7.html          # Working prototype
 │
 └── docs/
-    ├── product-vision.md              # What the marketplace is and isn't
-    ├── capabilities.md                # All 14 capabilities
-    ├── roadmap.md                     # MVP vs Phase 2 phasing
-    ├── requirements/
-    │   ├── CAP-01-discovery.md
-    │   ├── CAP-02-identity.md
-    │   ├── CAP-03-publication.md
-    │   ├── CAP-04-review.md
-    │   ├── CAP-05-access-requests.md
-    │   ├── CAP-06-approval-workflow.md
-    │   ├── CAP-07-notifications.md
-    │   ├── CAP-08-lifecycle.md
-    │   ├── CAP-09-credentials.md
-    │   ├── CAP-10-analytics.md
-    │   ├── CAP-11-ux.md
-    │   ├── CAP-12-governance.md
-    │   ├── CAP-13-search.md
-    │   └── CAP-14-administration.md
-    ├── user-journeys/
-    │   ├── consumer-browse-and-request.md
-    │   ├── consumer-suggest-api.md
-    │   ├── producer-publish-api.md
-    │   └── reviewer-approve-reject.md
-    └── gap-analysis/
-        ├── capability-gap-analysis.md
-        └── requirements-status.md
+    ├── product-vision.md
+    ├── capabilities.md
+    ├── roadmap.md
+    ├── requirements/                  # 14 capability requirement files
+    ├── user-journeys/                 # Journey maps and flow documentation
+    └── gap-analysis/                  # Capability and requirements status
 ```
-
----
-
-## Roles
-
-| Role | Description |
-|---|---|
-| **Consumer** | A team or developer who needs to use an existing API |
-| **Producer** | A team that builds and owns an API and wants it discoverable |
-| **Reviewer** | A marketplace team member who reviews API submissions and governs access |
 
 ---
 
@@ -99,19 +127,6 @@ hmcts-api-catalogue/
 - GDS Transport font via jsDelivr CDN
 - localStorage for prototype data persistence
 - Live API spec fetching from [SwaggerHub](https://app.swaggerhub.com/organizations/HMCTS-DTS)
-
----
-
-## Next steps
-
-The prototype uses localStorage for all data. The next infrastructure decision is connecting [Supabase](https://supabase.com) as a shared backend, which unlocks:
-
-- Real shared user accounts and email verification
-- Producer access requests visible to producers
-- Status notifications to consumers
-- Audit logging
-
-See [`docs/gap-analysis/capability-gap-analysis.md`](docs/gap-analysis/capability-gap-analysis.md) for the full picture of what's built and what's outstanding.
 
 ---
 

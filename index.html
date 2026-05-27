@@ -1,0 +1,1918 @@
+<!DOCTYPE html>
+<html lang="en" class="govuk-template">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HMCTS API Catalogue</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/govuk-frontend@5.4.0/dist/govuk/govuk-frontend.min.css">
+<style>
+/* ── GOV.UK Transport font (self-hosted via CDN) ──────────── */
+@font-face {
+  font-family: "GDS Transport";
+  src: url("https://cdn.jsdelivr.net/npm/govuk-frontend@5.4.0/dist/govuk/assets/fonts/light-94a07e06a1-v2.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/npm/govuk-frontend@5.4.0/dist/govuk/assets/fonts/light-f591sdc9a.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "GDS Transport";
+  src: url("https://cdn.jsdelivr.net/npm/govuk-frontend@5.4.0/dist/govuk/assets/fonts/bold-b542beb274-v2.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/npm/govuk-frontend@5.4.0/dist/govuk/assets/fonts/bold-f8956c2bba-v2.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+/* Apply to the whole page */
+body, input, select, textarea, button {
+  font-family: "GDS Transport", arial, sans-serif !important;
+}
+</style>
+<style>
+.app-page{display:none}.app-page--active{display:block}
+.app-header{background:#0b0c0c;border-bottom:4px solid #1d70b8}
+.app-header__inner{max-width:1200px;margin:0 auto;padding:0 30px;display:flex;align-items:center;justify-content:space-between;min-height:60px}
+.app-header__logo-link{display:flex;align-items:center;gap:10px;text-decoration:none}
+.app-header__logo-link:focus{outline:3px solid #fd0;outline-offset:0}
+.app-header__logo-icon{background:#1d70b8;color:#fff;font-size:18px;width:36px;height:36px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.app-header__logo-text{color:#fff;font-size:16px;font-weight:700;font-family:GDS Transport,arial,sans-serif}
+.app-header__logo-text span{font-weight:400}
+.app-header__nav{display:flex;align-items:center;gap:4px}
+.app-nav-link{color:#fff;text-decoration:none;font-size:15px;padding:18px 12px;display:block;border-bottom:4px solid transparent;margin-bottom:-4px}
+.app-nav-link:hover{border-bottom-color:rgba(255,255,255,.5);text-decoration:none;color:#fff}
+.app-nav-link--active{border-bottom-color:#fff;font-weight:700}
+.app-nav-link:focus{outline:3px solid #fd0;outline-offset:0;background:#fd0;color:#0b0c0c}
+.app-header__right{display:flex;align-items:center;gap:8px}
+.app-user-chip{position:relative;display:flex;align-items:center;gap:8px;background:#1d2f44;border-radius:4px;padding:6px 12px;cursor:pointer;border:2px solid transparent}
+.app-user-chip:hover{border-color:#1d70b8}
+.app-user-chip__avatar{width:28px;height:28px;border-radius:50%;background:#1d70b8;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.app-user-chip__avatar--producer{background:#4c2c92}
+.app-user-chip__name{color:#fff;font-size:14px;font-weight:700;line-height:1.2}
+.app-user-chip__role{color:#b1b4b6;font-size:12px;text-transform:capitalize}
+.app-user-chip__dropdown{position:absolute;top:calc(100% + 4px);right:0;background:#fff;border:1px solid #b1b4b6;min-width:180px;box-shadow:0 4px 12px rgba(0,0,0,.15);display:none;z-index:200}
+.app-user-chip:hover .app-user-chip__dropdown,.app-user-chip:focus-within .app-user-chip__dropdown{display:block}
+.app-user-chip__dd-item{display:block;padding:10px 14px;font-size:14px;color:#0b0c0c;text-decoration:none;border-bottom:1px solid #f3f2f1;cursor:pointer;font-family:GDS Transport,arial,sans-serif}
+.app-user-chip__dd-item:last-child{border-bottom:none}
+.app-user-chip__dd-item:hover{background:#f3f2f1}
+.app-user-chip__dd-item--danger{color:#d4351c}
+.app-hero{background:#1d2f44;padding:40px 0 36px;border-bottom:4px solid #1d70b8}
+.app-hero__inner{max-width:1200px;margin:0 auto;padding:0 30px}
+.app-hero__title{font-size:clamp(28px,4vw,46px);font-weight:700;color:#fff;margin:0 0 10px;line-height:1.1;font-family:GDS Transport,arial,sans-serif}
+.app-hero__lead{font-size:18px;color:#b1b4b6;max-width:580px;margin:0 0 22px;line-height:1.5}
+.app-hero__search-wrap{display:flex;max-width:520px;margin-bottom:28px}
+.app-hero__search-input{flex:1;padding:10px 14px;font-size:16px;border:2px solid #b1b4b6;border-right:none;background:#fff;font-family:GDS Transport,arial,sans-serif}
+.app-hero__search-input:focus{outline:3px solid #fd0;outline-offset:0;border-color:#0b0c0c;z-index:1}
+.app-hero__search-btn{padding:10px 16px;background:#1d70b8;border:2px solid #1d70b8;color:#fff;font-size:16px;font-weight:700;cursor:pointer;font-family:GDS Transport,arial,sans-serif}
+.app-hero__search-btn:hover{background:#003078;border-color:#003078}
+.app-hero__search-btn:focus{outline:3px solid #fd0;outline-offset:0}
+.app-hero__stats{display:flex;gap:32px;flex-wrap:wrap}
+.app-hero__stat-num{font-size:32px;font-weight:700;color:#fff;line-height:1;font-family:GDS Transport,arial,sans-serif}
+.app-hero__stat-label{font-size:14px;color:#b1b4b6;margin-top:3px}
+.app-phase-banner{background:#1d70b8;padding:8px 0}
+.app-phase-banner__inner{max-width:1200px;margin:0 auto;padding:0 30px;display:flex;align-items:center;gap:12px;font-size:14px;color:#fff}
+.app-phase-banner__tag{background:#fff;color:#1d70b8;font-weight:700;padding:2px 8px;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+.app-main{max-width:1200px;margin:0 auto;padding:0 30px 60px}
+.app-filter-bar{padding:16px 0;border-bottom:1px solid #b1b4b6;margin-bottom:24px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.app-filter-bar__label{font-size:14px;color:#505a5f;margin-right:4px;font-weight:700}
+.app-filter-btn{padding:5px 12px;border:2px solid #b1b4b6;background:#fff;color:#0b0c0c;font-size:14px;cursor:pointer;font-family:GDS Transport,arial,sans-serif}
+.app-filter-btn:hover{border-color:#0b0c0c}
+.app-filter-btn:focus{outline:3px solid #fd0;outline-offset:0}
+.app-filter-btn--active{background:#1d70b8;border-color:#1d70b8;color:#fff;font-weight:700}
+.app-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;margin-bottom:40px}
+.app-api-card{border:1px solid #b1b4b6;background:#fff;padding:20px;text-decoration:none;color:#0b0c0c;display:flex;flex-direction:column;cursor:pointer}
+.app-api-card:hover{border-color:#0b0c0c;outline:2px solid #0b0c0c}
+.app-api-card:focus{outline:3px solid #fd0;outline-offset:0}
+.app-api-card__top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.app-api-card__name{font-size:19px;font-weight:700;color:#1d70b8;margin-bottom:6px;line-height:1.25;text-decoration:underline}
+.app-api-card:hover .app-api-card__name{color:#003078}
+.app-api-card__id{font-family:monospace;font-size:12px;color:#505a5f;margin-bottom:8px}
+.app-api-card__desc{font-size:16px;color:#0b0c0c;line-height:1.5;flex:1;margin-bottom:14px}
+.app-api-card__footer{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid #f3f2f1}
+.app-api-card__meta{font-size:14px;color:#505a5f}
+.app-tag{display:inline-block;padding:2px 8px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin:2px}
+.app-tag--blue{background:#dce9f9;color:#003078;border:1px solid #003078}
+.app-tag--green{background:#cce2d8;color:#005a30;border:1px solid #005a30}
+.app-tag--grey{background:#f3f2f1;color:#505a5f;border:1px solid #505a5f}
+.app-tag--purple{background:#ebe4f5;color:#4c2c92;border:1px solid #4c2c92}
+.app-tag--yellow{background:#fff7bf;color:#594d00;border:1px solid #594d00}
+.app-tag--red{background:#f6d7d2;color:#942514;border:1px solid #942514}
+.app-detail-header{background:#f3f2f1;border-bottom:1px solid #b1b4b6;padding:24px 0 0}
+.app-detail-header__inner{max-width:1200px;margin:0 auto;padding:0 30px}
+.app-detail-header__name{font-size:36px;font-weight:700;color:#0b0c0c;margin:0 0 8px;line-height:1.1;font-family:GDS Transport,arial,sans-serif}
+.app-detail-header__id{font-family:monospace;font-size:13px;color:#505a5f;margin-bottom:10px}
+.app-detail-header__desc{font-size:18px;color:#0b0c0c;max-width:620px;line-height:1.5;margin-bottom:16px}
+.app-detail-header__meta{display:flex;gap:20px;flex-wrap:wrap;font-size:14px;color:#505a5f;margin-bottom:16px}
+.app-detail-header__actions{display:flex;gap:10px;flex-wrap:wrap;padding:16px 0}
+.app-tabs{border-bottom:1px solid #b1b4b6;margin-bottom:0}
+.app-tabs__list{list-style:none;margin:0;padding:0;display:flex;gap:0;overflow-x:auto}
+.app-tabs__tab{display:block;padding:14px 18px;font-size:15px;color:#1d70b8;text-decoration:underline;cursor:pointer;border-bottom:4px solid transparent;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none;font-family:GDS Transport,arial,sans-serif;margin-bottom:-1px}
+.app-tabs__tab:hover{background:#f3f2f1;text-decoration:none;color:#0b0c0c}
+.app-tabs__tab--active{border-bottom-color:#1d70b8;font-weight:700;color:#0b0c0c;text-decoration:none;background:#fff;border-top:1px solid #b1b4b6;border-left:1px solid #b1b4b6;border-right:1px solid #b1b4b6}
+.app-tabs__tab:focus{outline:3px solid #fd0;outline-offset:0}
+.app-tab-panel{display:none;padding:24px 0}.app-tab-panel--active{display:block}
+.app-detail-body{display:grid;grid-template-columns:1fr 300px;gap:24px;max-width:1200px;margin:0 auto;padding:24px 30px 60px;align-items:start}
+@media(max-width:900px){.app-detail-body{grid-template-columns:1fr}}
+.app-panel{border-left:6px solid #1d70b8;background:#f3f2f1;padding:18px 20px;margin-bottom:20px}
+.app-panel--plain{border-color:#b1b4b6}
+.app-panel__title{font-size:16px;font-weight:700;margin-bottom:8px;color:#0b0c0c}
+.app-panel__body{font-size:16px;line-height:1.6;color:#0b0c0c;margin:0}
+.app-warning{padding:12px 16px;border-left:6px solid #f47738;background:#fef9f0;margin-bottom:12px;font-size:15px;color:#0b0c0c}
+.app-sync-bar{padding:8px 0;border-bottom:1px solid #b1b4b6}
+.app-sync-bar__inner{max-width:1200px;margin:0 auto;padding:0 30px;display:flex;justify-content:space-between;align-items:center;font-size:14px}
+.app-sync-bar__status{display:flex;align-items:center;gap:8px}
+.app-sync-bar__dot{width:8px;height:8px;border-radius:50%;background:#00703c;flex-shrink:0}
+.app-endpoint{border:1px solid #b1b4b6;margin-bottom:8px;background:#fff}
+.app-endpoint__row{display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;background:none;border:none;width:100%;text-align:left;font-family:GDS Transport,arial,sans-serif}
+.app-endpoint__row:hover{background:#f3f2f1}
+.app-endpoint__row:focus{outline:3px solid #fd0;outline-offset:0}
+.app-method{font-family:monospace;font-size:12px;font-weight:700;padding:3px 8px;border:2px solid;min-width:52px;text-align:center}
+.app-method--get{color:#1d70b8;border-color:#1d70b8;background:#dce9f9}
+.app-method--post{color:#005a30;border-color:#005a30;background:#cce2d8}
+.app-method--put{color:#7d4e00;border-color:#7d4e00;background:#fff7bf}
+.app-method--delete{color:#942514;border-color:#942514;background:#f6d7d2}
+.app-method--patch{color:#4c2c92;border-color:#4c2c92;background:#ebe4f5}
+.app-endpoint__path{font-family:monospace;font-size:14px;color:#0b0c0c;flex:1}
+.app-endpoint__summary{font-size:13px;color:#505a5f}
+.app-endpoint__chevron{color:#505a5f;transition:transform .2s;font-size:10px}
+.app-endpoint--open .app-endpoint__chevron{transform:rotate(90deg)}
+.app-endpoint__detail{display:none;padding:16px;border-top:1px solid #b1b4b6;background:#f3f2f1}
+.app-endpoint--open .app-endpoint__detail{display:block}
+.app-table{width:100%;border-collapse:collapse;font-size:14px;margin-top:12px}
+.app-table th{text-align:left;padding:8px 10px;border-bottom:2px solid #0b0c0c;font-weight:700;font-size:13px}
+.app-table td{padding:8px 10px;border-bottom:1px solid #b1b4b6;vertical-align:top}
+.app-table tr:last-child td{border-bottom:none}
+.app-table tr:hover td{background:#f3f2f1}
+.app-param-name{font-family:monospace;color:#1d70b8;font-size:13px}
+.app-param-type{font-family:monospace;color:#0b0c0c;font-size:12px;background:#f3f2f1;padding:1px 5px}
+.app-required{background:#cce2d8;color:#005a30;font-size:11px;font-weight:700;padding:1px 6px;text-transform:uppercase}
+.app-optional{background:#f3f2f1;color:#505a5f;font-size:11px;padding:1px 6px}
+.app-code{background:#f3f2f1;border:1px solid #b1b4b6;padding:12px 14px;font-family:monospace;font-size:13px;overflow-x:auto;white-space:pre;line-height:1.6;margin-top:8px}
+.app-code-label{font-size:13px;font-weight:700;color:#505a5f;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;display:block;margin-top:12px}
+.app-response{display:flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid #b1b4b6;margin-bottom:6px;background:#fff;font-size:14px}
+.app-response-code{font-family:monospace;font-weight:700;padding:2px 8px;font-size:13px;min-width:40px;text-align:center}
+.app-response-code--2{background:#cce2d8;color:#005a30}
+.app-response-code--4{background:#fff7bf;color:#594d00}
+.app-response-code--5{background:#f6d7d2;color:#942514}
+.app-summary-list{margin:0;padding:0;border-top:1px solid #b1b4b6}
+.app-summary-list__row{display:grid;grid-template-columns:40% 60%;padding:8px 0;border-bottom:1px solid #b1b4b6;font-size:14px;gap:8px}
+.app-summary-list__key{font-weight:700;color:#0b0c0c}
+.app-summary-list__value{color:#0b0c0c;word-break:break-word}
+.app-sidebar-card{border:1px solid #b1b4b6;margin-bottom:16px;background:#fff}
+.app-sidebar-card__header{padding:12px 14px;border-bottom:1px solid #b1b4b6;font-size:15px;font-weight:700;background:#f3f2f1}
+.app-sidebar-card__body{padding:14px}
+.app-auth-overlay{position:fixed;inset:0;z-index:500;background:rgba(11,12,12,.85);display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(2px)}
+.app-auth-card{background:#fff;width:100%;max-width:480px;max-height:90vh;overflow-y:auto}
+.app-auth-header{background:#1d2f44;padding:24px 28px 20px;border-bottom:4px solid #1d70b8}
+.app-auth-header__title{font-size:22px;font-weight:700;color:#fff;margin:0 0 4px;font-family:GDS Transport,arial,sans-serif}
+.app-auth-header__sub{font-size:14px;color:#b1b4b6;margin:0}
+.app-auth-body{padding:24px 28px 28px}
+.app-auth-tabs{display:flex;gap:0;margin-bottom:22px;border-bottom:2px solid #b1b4b6}
+.app-auth-tab{padding:10px 18px;background:none;border:none;font-size:15px;color:#1d70b8;cursor:pointer;border-bottom:4px solid transparent;margin-bottom:-2px;font-family:GDS Transport,arial,sans-serif;text-decoration:underline}
+.app-auth-tab--active{font-weight:700;color:#0b0c0c;border-bottom-color:#0b0c0c;text-decoration:none}
+.app-auth-tab:focus{outline:3px solid #fd0;outline-offset:0}
+.app-auth-error{background:#f6d7d2;border-left:6px solid #d4351c;padding:12px 14px;font-size:14px;color:#0b0c0c;margin-bottom:16px;display:none}
+.app-auth-error--show{display:block}
+.app-role-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px}
+.app-role-card{border:2px solid #b1b4b6;padding:14px;cursor:pointer;text-align:center;background:#fff;position:relative}
+.app-role-card:hover{border-color:#0b0c0c}
+.app-role-card:focus{outline:3px solid #fd0;outline-offset:0}
+.app-role-card--selected{border-color:#1d70b8;background:#dce9f9}
+.app-role-card--selected::after{content:"\2713";position:absolute;top:6px;right:8px;font-size:12px;font-weight:700;color:#1d70b8}
+.app-role-card__icon{font-size:28px;margin-bottom:6px}
+.app-role-card__name{font-size:14px;font-weight:700;color:#0b0c0c;margin-bottom:2px}
+.app-role-card__desc{font-size:12px;color:#505a5f;line-height:1.3}
+.app-dash-layout{display:grid;grid-template-columns:220px 1fr;gap:24px;padding:30px 30px 60px;max-width:1200px;margin:0 auto;align-items:start}
+@media(max-width:768px){.app-dash-layout{grid-template-columns:1fr}}
+.app-dash-sidebar{border:1px solid #b1b4b6;background:#fff;position:sticky;top:80px}
+.app-dash-sidebar__header{background:#f3f2f1;padding:14px 16px;border-bottom:1px solid #b1b4b6;display:flex;align-items:center;gap:10px}
+.app-dash-sidebar__avatar{width:36px;height:36px;border-radius:50%;background:#1d70b8;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.app-dash-sidebar__avatar--producer{background:#4c2c92}
+.app-dash-sidebar__name{font-size:14px;font-weight:700;color:#0b0c0c}
+.app-dash-sidebar__role{font-size:13px;color:#505a5f;text-transform:capitalize}
+.app-dash-nav__item{display:block;padding:10px 16px;font-size:15px;color:#1d70b8;text-decoration:underline;cursor:pointer;border-left:4px solid transparent;border-bottom:1px solid #f3f2f1;background:#fff;font-family:GDS Transport,arial,sans-serif;text-align:left;border-top:none;border-right:none;width:100%}
+.app-dash-nav__item:hover{background:#f3f2f1;text-decoration:none;color:#0b0c0c}
+.app-dash-nav__item--active{border-left-color:#1d70b8;font-weight:700;color:#0b0c0c;text-decoration:none;background:#f3f2f1}
+.app-dash-nav__item--danger{color:#d4351c;border-top:1px solid #b1b4b6}
+.app-dash-nav__item:focus{outline:3px solid #fd0;outline-offset:0}
+.app-dash-panel{display:none}.app-dash-panel--active{display:block}
+.app-stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+.app-stat{border:1px solid #b1b4b6;background:#fff;padding:16px}
+.app-stat__num{font-size:36px;font-weight:700;color:#0b0c0c;line-height:1;font-family:GDS Transport,arial,sans-serif}
+.app-stat__label{font-size:14px;color:#505a5f;margin-top:4px}
+.app-req-card{border:1px solid #b1b4b6;padding:14px 16px;margin-bottom:10px;display:flex;align-items:center;gap:14px;background:#fff}
+.app-req-icon{width:36px;height:36px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.app-req-name{font-size:15px;font-weight:700;color:#0b0c0c;margin-bottom:2px}
+.app-req-meta{font-size:13px;color:#505a5f}
+.app-empty-state{border:1px solid #b1b4b6;padding:36px;text-align:center;background:#f3f2f1}
+.app-empty-state__icon{font-size:2rem;margin-bottom:12px}
+.app-empty-state__title{font-size:16px;font-weight:700;color:#0b0c0c;margin-bottom:6px}
+.app-empty-state__desc{font-size:14px;color:#505a5f}
+.app-form-card{border:1px solid #b1b4b6;padding:22px;margin-bottom:16px;background:#fff}
+.app-producer-api{border:1px solid #b1b4b6;padding:14px 16px;margin-bottom:10px;background:#fff}
+.app-producer-api__header{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.app-producer-api__icon{width:32px;height:32px;background:#f3f2f1;border:1px solid #b1b4b6;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#505a5f;flex-shrink:0}
+.app-producer-api__name{font-size:15px;font-weight:700;color:#0b0c0c}
+.app-producer-api__id{font-family:monospace;font-size:12px;color:#505a5f}
+.app-producer-api__stats{display:flex;gap:16px;font-size:13px;color:#505a5f;padding-top:10px;border-top:1px solid #f3f2f1}
+.app-mp-hero{background:#1d2f44;padding:48px 0 40px;border-bottom:4px solid #4c2c92}
+.app-mp-hero__inner{max-width:1200px;margin:0 auto;padding:0 30px}
+.app-mp-hero__tag{display:inline-block;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:13px;padding:4px 12px;margin-bottom:16px;letter-spacing:.03em}
+.app-mp-hero__title{font-size:clamp(28px,4vw,46px);font-weight:700;color:#fff;margin:0 0 12px;line-height:1.1;font-family:GDS Transport,arial,sans-serif}
+.app-mp-hero__lead{font-size:18px;color:#b1b4b6;max-width:560px;margin:0 0 24px;line-height:1.5}
+.app-mp-section{max-width:1200px;margin:0 auto;padding:36px 30px}
+.app-mp-section__eyebrow{font-size:13px;font-weight:700;color:#4c2c92;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+.app-mp-section__title{font-size:28px;font-weight:700;color:#0b0c0c;margin-bottom:14px;font-family:GDS Transport,arial,sans-serif}
+.app-mp-section__body{font-size:16px;color:#0b0c0c;line-height:1.7;max-width:640px;margin-bottom:22px}
+.app-mp-does{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:640px){.app-mp-does,.app-mp-aud,.app-mp-flow,.app-mp-ben{grid-template-columns:1fr}}
+.app-mp-yes{background:#cce2d8;border-left:6px solid #00703c;padding:20px}
+.app-mp-no{background:#f6d7d2;border-left:6px solid #d4351c;padding:20px}
+.app-mp-panel-title{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+.app-mp-yes .app-mp-panel-title{color:#005a30}
+.app-mp-no .app-mp-panel-title{color:#942514}
+.app-mp-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:10px;font-size:15px;color:#0b0c0c;line-height:1.5}
+.app-mp-aud{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.app-mp-aud-card{border:1px solid #b1b4b6;padding:22px;background:#fff}
+.app-mp-aud-icon{font-size:2rem;margin-bottom:10px}
+.app-mp-aud-title{font-size:18px;font-weight:700;color:#0b0c0c;margin-bottom:6px}
+.app-mp-aud-desc{font-size:15px;color:#0b0c0c;line-height:1.6;margin-bottom:12px}
+.app-mp-aud-list{list-style:none;margin:0;padding:0;font-size:14px;color:#0b0c0c}
+.app-mp-aud-list li{padding:4px 0;display:flex;align-items:flex-start;gap:8px;border-bottom:1px solid #f3f2f1}
+.app-mp-aud-list li::before{content:"→";color:#1d70b8;flex-shrink:0;font-weight:700}
+.app-mp-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:640px){.app-mp-flow{grid-template-columns:1fr 1fr}}
+.app-mp-step{border:1px solid #b1b4b6;padding:18px;background:#fff}
+.app-mp-step__num{width:28px;height:28px;background:#1d70b8;color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.app-mp-step__title{font-size:15px;font-weight:700;color:#0b0c0c;margin-bottom:6px}
+.app-mp-step__desc{font-size:13px;color:#505a5f;line-height:1.5}
+.app-mp-ben{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.app-mp-ben-card{border:1px solid #b1b4b6;padding:18px;background:#fff}
+.app-mp-ben-icon{font-size:1.4rem;margin-bottom:8px}
+.app-mp-ben-title{font-size:15px;font-weight:700;color:#0b0c0c;margin-bottom:5px}
+.app-mp-ben-desc{font-size:13px;color:#505a5f;line-height:1.5}
+.app-mp-myth{border:1px solid #b1b4b6;padding:14px 18px;margin-bottom:8px;display:flex;align-items:flex-start;gap:12px;background:#fff}
+.app-mp-myth__x{color:#d4351c;font-size:16px;flex-shrink:0;font-weight:700;margin-top:1px}
+.app-mp-myth__text{font-size:15px;color:#0b0c0c;line-height:1.5;margin:0}
+.app-mp-cta{background:#f3f2f1;border:1px solid #b1b4b6;border-top:4px solid #1d70b8;padding:28px;text-align:center;margin-top:12px}
+.app-mp-cta__title{font-size:24px;font-weight:700;color:#0b0c0c;margin-bottom:8px;font-family:GDS Transport,arial,sans-serif}
+.app-mp-cta__body{font-size:16px;color:#505a5f;line-height:1.6;max-width:460px;margin:0 auto 20px}
+.app-mp-cta__btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.app-divider{border:none;border-top:1px solid #b1b4b6;margin:0}
+.app-skel{background:linear-gradient(90deg,#f3f2f1 25%,#e8e8e8 50%,#f3f2f1 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:2px}
+@keyframes shimmer{to{background-position:-200% 0}}
+.app-spinner{display:inline-block;width:16px;height:16px;border:3px solid #b1b4b6;border-top-color:#1d70b8;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.app-steps{margin-bottom:24px}
+.app-step{display:flex;gap:14px;margin-bottom:16px;align-items:flex-start}
+.app-step__number{width:28px;height:28px;background:#1d70b8;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.app-step__title{font-size:15px;font-weight:700;color:#0b0c0c;margin-bottom:2px}
+.app-step__desc{font-size:14px;color:#505a5f;line-height:1.5}
+.app-card-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
+@media(max-width:640px){.app-card-grid-3{grid-template-columns:1fr}}
+.app-feature-card{border:1px solid #b1b4b6;padding:20px;background:#fff}
+.app-feature-card__icon{font-size:1.5rem;margin-bottom:10px}
+.app-feature-card__title{font-size:16px;font-weight:700;color:#0b0c0c;margin-bottom:6px}
+.app-feature-card__desc{font-size:14px;color:#505a5f;line-height:1.5}
+.app-footer{border-top:1px solid #b1b4b6;padding:24px 0;background:#f3f2f1}
+.app-footer__inner{max-width:1200px;margin:0 auto;padding:0 30px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:14px;color:#505a5f}
+.app-footer__links{display:flex;gap:16px}
+.app-footer__links a{color:#1d70b8;font-size:14px}
+@media(max-width:640px){.app-detail-body,.app-dash-layout{padding:16px 16px 40px}.app-hero__inner,.app-main,.app-mp-section,.app-mp-hero__inner,.app-header__inner,.app-sync-bar__inner{padding-left:16px;padding-right:16px}.app-header__nav{display:none}.app-stat-grid{grid-template-columns:1fr 1fr}}
+
+/* Skip link */
+.govuk-skip-link{display:block;padding:10px 15px;background:#fd0;color:#0b0c0c;font-weight:700;font-size:19px;text-decoration:none;position:absolute;top:-999px;left:0;z-index:999}
+.govuk-skip-link:focus{position:static;top:auto}
+/* Error states */
+.govuk-error-summary{background:#fff;border:5px solid #d4351c;padding:20px 20px 10px;margin-bottom:30px}
+.govuk-error-summary__title{font-size:19px;font-weight:700;color:#d4351c;margin-bottom:10px}
+.govuk-error-summary__list{list-style:none;padding:0;margin:0}
+.govuk-error-summary__list li{margin-bottom:8px}
+.govuk-error-summary__list a{color:#d4351c;font-weight:700;text-decoration:underline}
+.govuk-form-group--error{border-left:4px solid #d4351c;padding-left:15px;margin-left:-19px}
+.govuk-error-message{color:#d4351c;font-size:16px;font-weight:700;display:block;margin-bottom:6px}
+.govuk-input--error,.govuk-select--error,.govuk-textarea--error{border:2px solid #d4351c}
+/* Task list */
+.govuk-task-list{list-style:none;padding:0;margin:0}
+.govuk-task-list__item{display:flex;justify-content:space-between;align-items:flex-start;padding:14px 0;border-bottom:1px solid #b1b4b6;gap:16px}
+.govuk-task-list__item:first-child{border-top:1px solid #b1b4b6}
+.govuk-task-list__name-and-hint{flex:1}
+.govuk-task-list__link{font-size:16px;color:#1d70b8;text-decoration:underline;font-weight:400;cursor:pointer;background:none;border:none;padding:0;font-family:GDS Transport,arial,sans-serif;text-align:left}
+.govuk-task-list__link:hover{color:#003078}
+.govuk-task-list__link:focus{outline:3px solid #fd0;outline-offset:0;background:#fd0;color:#0b0c0c;text-decoration:none}
+.govuk-task-list__hint{font-size:14px;color:#505a5f;margin-top:3px}
+.govuk-task-list__status{font-size:14px;font-weight:700;white-space:nowrap}
+.govuk-task-list__status--completed .govuk-tag{background:#cce2d8;color:#005a30;border:1px solid #005a30}
+.govuk-task-list__status--in-progress .govuk-tag{background:#dce9f9;color:#003078;border:1px solid #1d70b8}
+.govuk-task-list__status--not-started .govuk-tag{background:#f3f2f1;color:#505a5f;border:1px solid #505a5f}
+.app-task-section{margin-bottom:32px}
+.app-task-progress{font-size:14px;color:#505a5f;margin-bottom:16px}
+.app-step-form{display:none}.app-step-form--active{display:block}
+.app-step-header{margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid #b1b4b6}
+.app-step-header__caption{font-size:16px;color:#505a5f;display:block;margin-bottom:4px}
+.govuk-back-link{display:inline-block;color:#1d70b8;font-size:14px;text-decoration:underline;margin-bottom:16px;background:none;border:none;padding:0;cursor:pointer;font-family:GDS Transport,arial,sans-serif}
+.govuk-back-link::before{content:"\2190 ";font-size:14px}
+.govuk-back-link:hover{color:#003078}
+.govuk-back-link:focus{outline:3px solid #fd0;outline-offset:0;background:#fd0;color:#0b0c0c;text-decoration:none}
+/* Check your answers */
+.govuk-summary-list{margin:0 0 20px;display:table;width:100%;table-layout:fixed}
+.govuk-summary-list__row{display:table-row;border-bottom:1px solid #b1b4b6}
+.govuk-summary-list__key{display:table-cell;padding:10px 20px 10px 0;font-weight:700;font-size:16px;color:#0b0c0c;width:30%;vertical-align:top}
+.govuk-summary-list__value{display:table-cell;padding:10px 20px 10px 0;font-size:16px;color:#0b0c0c;vertical-align:top}
+.govuk-summary-list__actions{display:table-cell;padding:10px 0;font-size:16px;text-align:right;white-space:nowrap;vertical-align:top}
+.govuk-summary-list__actions a{color:#1d70b8;font-size:14px}
+.govuk-summary-card{border:1px solid #b1b4b6;margin-bottom:20px}
+.govuk-summary-card__title-wrapper{padding:12px 16px;background:#f3f2f1;border-bottom:1px solid #b1b4b6;display:flex;justify-content:space-between;align-items:center}
+.govuk-summary-card__title{font-size:16px;font-weight:700;color:#0b0c0c;margin:0}
+.govuk-summary-card__content{padding:0 16px}
+/* GOV.UK Footer */
+.govuk-footer{background:#f3f2f1;border-top:1px solid #b1b4b6;padding:30px 0}
+.govuk-footer__inner{max-width:1200px;margin:0 auto;padding:0 30px}
+.govuk-footer__navigation{display:flex;flex-wrap:wrap;gap:24px;margin-bottom:20px}
+.govuk-footer__section{flex:1;min-width:200px}
+.govuk-footer__heading{font-size:16px;font-weight:700;color:#0b0c0c;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #b1b4b6}
+.govuk-footer__list{list-style:none;padding:0;margin:0}
+.govuk-footer__list-item{margin-bottom:8px}
+.govuk-footer__link{color:#0b0c0c;font-size:14px;text-decoration:underline}
+.govuk-footer__link:hover{text-decoration:none}
+.govuk-footer__link:focus{outline:3px solid #fd0;outline-offset:0;background:#fd0}
+.govuk-footer__meta{border-top:1px solid #b1b4b6;padding-top:16px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px}
+.govuk-footer__meta-item{font-size:14px;color:#505a5f}
+.govuk-footer__copyright-logo{font-size:13px;color:#505a5f;text-align:right}
+/* Declarations */
+.govuk-checkboxes__item{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.govuk-checkboxes__input{width:40px;height:40px;margin:0;cursor:pointer;flex-shrink:0}
+.govuk-checkboxes__label{font-size:16px;color:#0b0c0c;cursor:pointer;padding-top:8px}
+.govuk-inset-text{border-left:10px solid #b1b4b6;padding:15px 20px;margin-bottom:20px;font-size:16px;color:#0b0c0c}
+@media(max-width:640px){.govuk-footer__inner{padding-left:16px;padding-right:16px}}
+
+</style>
+</head>
+<body class="govuk-template__body">
+<a href="#main-content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+<header class="app-header" role="banner">
+  <div class="app-header__inner">
+    <a class="app-header__logo-link" onclick="showHome();return false;" href="#" aria-label="HMCTS API Catalogue home">
+      <div class="app-header__logo-icon" aria-hidden="true">&#9889;</div>
+      <span class="app-header__logo-text">HMCTS <span>API Catalogue</span></span>
+    </a>
+    <nav class="app-header__nav" aria-label="Primary navigation">
+      <a class="app-nav-link app-nav-link--active" id="navBrowse" onclick="showHome();setActiveNav('navBrowse');return false;" href="#">Browse APIs</a>
+      <a class="app-nav-link" id="navMarket" onclick="showMarketplace();setActiveNav('navMarket');return false;" href="#">What is API Marketplace?</a>
+      <a class="app-nav-link" id="navDash" onclick="showDash();setActiveNav('navDash');return false;" href="#">My dashboard</a>
+      <a class="app-nav-link" onclick="document.getElementById('gettingStarted').scrollIntoView({behavior:'smooth'});return false;" href="#">Getting started</a>
+    </nav>
+    <div class="app-header__right" id="navRight"></div>
+  </div>
+</header>
+
+<!-- HOME PAGE -->
+<div id="homePage" class="app-page app-page--active">
+  <div class="app-phase-banner" role="region" aria-label="Service phase">
+    <div class="app-phase-banner__inner">
+      <strong class="app-phase-banner__tag">Beta</strong>
+      <span>This is a new service. <a href="mailto:no-reply@hmcts.com" style="color:#fff">Give us your feedback</a> to help us improve it.</span>
+    </div>
+  </div>
+  <div class="app-hero">
+    <div class="app-hero__inner">
+      <span class="govuk-caption-l" style="color:#b1b4b6;margin-bottom:8px;display:block">Common Platform Programme &middot; HMCTS Digital and Technology Solutions</span>
+      <h1 class="app-hero__title">HMCTS API Catalogue</h1>
+      <p class="app-hero__lead">Discover, explore and integrate with the Common Platform APIs. Documentation is dynamically connected to SwaggerHub.</p>
+      <div class="app-hero__search-wrap" role="search">
+        <label for="searchBox" class="govuk-visually-hidden">Search APIs by name, domain or tag</label>
+        <input class="app-hero__search-input" id="searchBox" type="search" placeholder="Search by name, domain or tag&hellip;" oninput="filterCards(this.value)" autocomplete="off">
+        <button class="app-hero__search-btn" type="button">Search</button>
+      </div>
+      <div class="app-hero__stats" role="list" aria-label="Catalogue statistics">
+        <div role="listitem"><div class="app-hero__stat-num">6</div><div class="app-hero__stat-label">APIs available</div></div>
+        <div role="listitem"><div class="app-hero__stat-num">6</div><div class="app-hero__stat-label">Live in production</div></div>
+        <div role="listitem"><div class="app-hero__stat-num">5</div><div class="app-hero__stat-label">Domains covered</div></div>
+        <div role="listitem"><div class="app-hero__stat-num">25+</div><div class="app-hero__stat-label">Endpoints documented</div></div>
+      </div>
+    </div>
+  </div>
+  <main class="app-main" id="main-content">
+    <div class="app-filter-bar" role="group" aria-label="Filter by domain">
+      <span class="app-filter-bar__label">Filter by domain:</span>
+      <button class="app-filter-btn app-filter-btn--active" onclick="setFilter('all',this)">All</button>
+      <button class="app-filter-btn" onclick="setFilter('Case Administration',this)">Case Administration</button>
+      <button class="app-filter-btn" onclick="setFilter('Reference Data',this)">Reference Data</button>
+      <button class="app-filter-btn" onclick="setFilter('Case Management',this)">Case Management</button>
+      <button class="app-filter-btn" onclick="setFilter('Hearing Results',this)">Hearing Results</button>
+      <button class="app-filter-btn" onclick="setFilter('Scheduling and Listing',this)">Scheduling and Listing</button>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <h2 class="govuk-heading-m" style="margin:0">Available APIs</h2>
+      <span class="govuk-body-s" id="cardCount" aria-live="polite" aria-atomic="true">Showing 6 APIs</span>
+    </div>
+    <div class="app-grid" id="apiGrid" role="list"></div>
+    <section id="gettingStarted" aria-labelledby="gs-heading" style="padding:32px 0 0;border-top:1px solid #b1b4b6;margin-top:8px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+        <div>
+          <h2 class="govuk-heading-l" id="gs-heading">Getting started</h2>
+          <p class="govuk-body">New to the Common Platform APIs? Each API includes a plain-English summary for non-technical readers and full technical documentation for developers.</p>
+          <div class="app-steps" role="list">
+            <div class="app-step" role="listitem"><div class="app-step__number" aria-hidden="true">1</div><div><div class="app-step__title">Browse and discover</div><div class="app-step__desc">Use search and domain filters to find the API you need.</div></div></div>
+            <div class="app-step" role="listitem"><div class="app-step__number" aria-hidden="true">2</div><div><div class="app-step__title">Try the mock server</div><div class="app-step__desc">Every API has a free SwaggerHub mock server &mdash; no credentials required.</div></div></div>
+            <div class="app-step" role="listitem"><div class="app-step__number" aria-hidden="true">3</div><div><div class="app-step__title">Request access</div><div class="app-step__desc">Contact <a href="mailto:no-reply@hmcts.com" class="govuk-link">no-reply@hmcts.com</a> with your system name and use case.</div></div></div>
+          </div>
+        </div>
+        <div>
+          <h2 class="govuk-heading-l">Quick links</h2>
+          <ul class="govuk-list" style="border-top:1px solid #b1b4b6">
+            <li style="padding:12px 0;border-bottom:1px solid #b1b4b6"><a href="https://app.swaggerhub.com/organizations/HMCTS-DTS" target="_blank" rel="noopener" class="govuk-link">SwaggerHub Organisation &mdash; HMCTS-DTS</a></li>
+            <li style="padding:12px 0;border-bottom:1px solid #b1b4b6"><a href="https://github.com/orgs/hmcts/repositories" target="_blank" rel="noopener" class="govuk-link">GitHub Repositories &mdash; hmcts</a></li>
+            <li style="padding:12px 0;border-bottom:1px solid #b1b4b6"><a href="mailto:no-reply@hmcts.com" class="govuk-link">Contact: no-reply@hmcts.com</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section style="padding:32px 0 0;border-top:1px solid #b1b4b6;margin-top:32px">
+      <h2 class="govuk-heading-l">About this catalogue</h2>
+      <div class="app-card-grid-3" role="list">
+        <div class="app-feature-card" role="listitem"><div class="app-feature-card__icon" aria-hidden="true">&#128260;</div><div class="app-feature-card__title">Always up to date</div><div class="app-feature-card__desc">API docs are fetched live from SwaggerHub. Any changes published there are automatically reflected here.</div></div>
+        <div class="app-feature-card" role="listitem"><div class="app-feature-card__icon" aria-hidden="true">&#128101;</div><div class="app-feature-card__title">For everyone</div><div class="app-feature-card__desc">Each API has a plain-English summary for non-technical stakeholders alongside full technical documentation for developers.</div></div>
+        <div class="app-feature-card" role="listitem"><div class="app-feature-card__icon" aria-hidden="true">&#128640;</div><div class="app-feature-card__title">Ready to deploy</div><div class="app-feature-card__desc">This is a single HTML file. Deploy to GitHub Pages, Azure Static Web Apps or any web server instantly.</div></div>
+      </div>
+    </section>
+  </main>
+  <footer class="govuk-footer" role="contentinfo">
+    <div class="govuk-footer__inner">
+      <div class="govuk-footer__navigation">
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">API Catalogue</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a onclick="showHome();return false;" href="#" class="govuk-footer__link">Browse APIs</a></li><li class="govuk-footer__list-item"><a onclick="showMarketplace();return false;" href="#" class="govuk-footer__link">What is API Marketplace?</a></li><li class="govuk-footer__list-item"><a href="https://app.swaggerhub.com/organizations/HMCTS-DTS" target="_blank" rel="noopener" class="govuk-footer__link">SwaggerHub organisation</a></li></ul></div>
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:no-reply@hmcts.com" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a href="mailto:no-reply@hmcts.com" class="govuk-footer__link">Request a new API</a></li></ul></div>
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Policies</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Accessibility statement</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Cookies</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Privacy notice</a></li></ul></div>
+      </div>
+      <div class="govuk-footer__meta"><div class="govuk-footer__meta-item">Built by <a href="https://www.gov.uk/hmcts" class="govuk-footer__link">HMCTS Digital and Technology Solutions</a> &mdash; Common Platform Programme<span id="footSwaggerLink" style="margin-left:12px"></span></div><div class="govuk-footer__copyright-logo">&copy; Crown copyright &mdash; MIT Licence</div></div>
+    </div>
+  </footer>
+</div>
+
+<!-- MARKETPLACE PAGE -->
+<div id="marketplacePage" class="app-page">
+  <div class="app-mp-hero" role="banner">
+    <div class="app-mp-hero__inner">
+      <span class="app-mp-hero__tag">HMCTS Common Platform Programme</span>
+      <h1 class="app-mp-hero__title">What is the API Marketplace?</h1>
+      <p class="app-mp-hero__lead">A plain-English guide for technical and non-technical audiences &mdash; what the API Marketplace is, who it is for, how it works, and what it is not.</p>
+      <blockquote style="border-left:4px solid #fff;padding:10px 16px;margin:0;color:#fff;font-size:18px;font-style:italic">&ldquo;We don&rsquo;t build APIs &mdash; we connect you to them.&rdquo;</blockquote>
+    </div>
+  </div>
+  <main>
+    <section class="app-mp-section"><div class="app-mp-section__eyebrow">The simple answer</div><h2 class="app-mp-section__title">Think of it like an App Store for APIs</h2><p class="app-mp-section__body">Just as an App Store curates and gives you a single place to discover and access apps, the API Marketplace does the same for APIs. We are the catalogue and access layer. The APIs belong to their respective teams; we make them <strong>discoverable, documented, and accessible</strong>.</p></section>
+    <section class="app-mp-section" style="padding-top:0"><div class="app-mp-section__eyebrow">What we do and don&rsquo;t do</div><h2 class="app-mp-section__title">Let&rsquo;s be crystal clear</h2>
+      <div class="app-mp-does">
+        <div class="app-mp-yes"><div class="app-mp-panel-title">What the marketplace does</div><div class="app-mp-item"><span aria-hidden="true">&#10003;</span><span>Discovers, catalogues and curates APIs across the organisation</span></div><div class="app-mp-item"><span aria-hidden="true">&#10003;</span><span>Single place to find, understand and compare APIs</span></div><div class="app-mp-item"><span aria-hidden="true">&#10003;</span><span>Manages access requests so teams can be approved to use APIs</span></div><div class="app-mp-item"><span aria-hidden="true">&#10003;</span><span>Hosts documentation so consumers know how to integrate</span></div><div class="app-mp-item"><span aria-hidden="true">&#10003;</span><span>Connects API providers with the consumers who need them</span></div><div class="app-mp-item"><span aria-hidden="true">&#10003;</span><span>Provides visibility into what APIs exist and who is using them</span></div></div>
+        <div class="app-mp-no"><div class="app-mp-panel-title">What the marketplace does NOT do</div><div class="app-mp-item"><span aria-hidden="true">&#10007;</span><span>Build, own or develop APIs &mdash; that stays with each product team</span></div><div class="app-mp-item"><span aria-hidden="true">&#10007;</span><span>Host your data or run your backend services</span></div><div class="app-mp-item"><span aria-hidden="true">&#10007;</span><span>Support the API itself &mdash; support stays with the API owner</span></div><div class="app-mp-item"><span aria-hidden="true">&#10007;</span><span>Make architectural decisions for your API</span></div><div class="app-mp-item"><span aria-hidden="true">&#10007;</span><span>Guarantee uptime or SLAs for listed APIs</span></div><div class="app-mp-item"><span aria-hidden="true">&#10007;</span><span>Replace your team&rsquo;s responsibility for maintaining their APIs</span></div></div>
+      </div>
+    </section>
+    <hr class="app-divider">
+    <section class="app-mp-section"><div class="app-mp-section__eyebrow">Who it&rsquo;s for</div><h2 class="app-mp-section__title">Two audiences, one marketplace</h2>
+      <div class="app-mp-aud">
+        <div class="app-mp-aud-card"><div class="app-mp-aud-icon" aria-hidden="true">&#128105;&#8205;&#128187;</div><div class="app-mp-aud-title">API Consumers</div><p class="app-mp-aud-desc">Teams and developers who need to use an existing API rather than build one from scratch.</p><ul class="app-mp-aud-list"><li>Browse the catalogue to find APIs that meet your needs</li><li>Read docs to understand how to integrate</li><li>Submit an access request to be approved</li><li>Try the mock server before connecting to production</li></ul></div>
+        <div class="app-mp-aud-card"><div class="app-mp-aud-icon" aria-hidden="true">&#127959;&#65039;</div><div class="app-mp-aud-title">API Producers</div><p class="app-mp-aud-desc">Teams that build and own APIs and want them discoverable and usable by others.</p><ul class="app-mp-aud-list"><li>List your API with a spec and documentation</li><li>Manage who can access your API</li><li>Keep your spec up to date in SwaggerHub</li><li>Support the consumers of your API</li></ul></div>
+      </div>
+    </section>
+    <hr class="app-divider">
+    <section class="app-mp-section"><div class="app-mp-section__eyebrow">How it works</div><h2 class="app-mp-section__title">Four steps from discovery to integration</h2>
+      <div class="app-mp-flow">
+        <div class="app-mp-step"><div class="app-mp-step__num" aria-hidden="true">1</div><div class="app-mp-step__title">Browse</div><p class="app-mp-step__desc">Search or filter the catalogue by domain or keyword.</p></div>
+        <div class="app-mp-step"><div class="app-mp-step__num" aria-hidden="true">2</div><div class="app-mp-step__title">Discover</div><p class="app-mp-step__desc">Read the plain-English summary and full technical docs. Try the mock server.</p></div>
+        <div class="app-mp-step"><div class="app-mp-step__num" aria-hidden="true">3</div><div class="app-mp-step__title">Request access</div><p class="app-mp-step__desc">Submit a request. The API owner reviews and approves or declines.</p></div>
+        <div class="app-mp-step"><div class="app-mp-step__num" aria-hidden="true">4</div><div class="app-mp-step__title">Integrate</div><p class="app-mp-step__desc">Use the documentation and spec to connect your system.</p></div>
+      </div>
+    </section>
+    <hr class="app-divider">
+    <section class="app-mp-section"><div class="app-mp-section__eyebrow">Why it matters</div><h2 class="app-mp-section__title">Key benefits</h2>
+      <div class="app-mp-ben">
+        <div class="app-mp-ben-card"><div class="app-mp-ben-icon" aria-hidden="true">&#128269;</div><div class="app-mp-ben-title">Stops duplication</div><p class="app-mp-ben-desc">Teams can check whether an API already exists before building a new one.</p></div>
+        <div class="app-mp-ben-card"><div class="app-mp-ben-icon" aria-hidden="true">&#9889;</div><div class="app-mp-ben-title">Faster integration</div><p class="app-mp-ben-desc">Consumers get docs, specs, mock servers and access requests in one place.</p></div>
+        <div class="app-mp-ben-card"><div class="app-mp-ben-icon" aria-hidden="true">&#127963;&#65039;</div><div class="app-mp-ben-title">Governance and standards</div><p class="app-mp-ben-desc">Enforces naming conventions and documentation standards across all APIs.</p></div>
+        <div class="app-mp-ben-card"><div class="app-mp-ben-icon" aria-hidden="true">&#127760;</div><div class="app-mp-ben-title">Wider discoverability</div><p class="app-mp-ben-desc">APIs that are hard to find go unused. Listing gets them in front of the right consumers.</p></div>
+        <div class="app-mp-ben-card"><div class="app-mp-ben-icon" aria-hidden="true">&#128274;</div><div class="app-mp-ben-title">Controlled access</div><p class="app-mp-ben-desc">The approval workflow ensures only authorised teams access sensitive APIs.</p></div>
+        <div class="app-mp-ben-card"><div class="app-mp-ben-icon" aria-hidden="true">&#128065;&#65039;</div><div class="app-mp-ben-title">Visibility</div><p class="app-mp-ben-desc">Leadership gets a clear picture of all APIs &mdash; what exists, who owns it, how widely it is used.</p></div>
+      </div>
+    </section>
+    <hr class="app-divider">
+    <section class="app-mp-section"><div class="app-mp-section__eyebrow">Setting the record straight</div><h2 class="app-mp-section__title">Common misconceptions</h2>
+      <div class="app-mp-myth"><span class="app-mp-myth__x" aria-hidden="true">&#10007;</span><p class="app-mp-myth__text"><strong>&ldquo;The marketplace team builds the APIs.&rdquo;</strong> We don&rsquo;t build APIs &mdash; we list them. Your team builds and owns the API; we make it findable.</p></div>
+      <div class="app-mp-myth"><span class="app-mp-myth__x" aria-hidden="true">&#10007;</span><p class="app-mp-myth__text"><strong>&ldquo;If it&rsquo;s in the catalogue, the marketplace team supports it.&rdquo;</strong> Support stays with the API owner. We connect you to them.</p></div>
+      <div class="app-mp-myth"><span class="app-mp-myth__x" aria-hidden="true">&#10007;</span><p class="app-mp-myth__text"><strong>&ldquo;It&rsquo;s only for developers.&rdquo;</strong> Anyone can browse &mdash; product managers, architects and delivery managers should use it too.</p></div>
+      <div class="app-mp-myth"><span class="app-mp-myth__x" aria-hidden="true">&#10007;</span><p class="app-mp-myth__text"><strong>&ldquo;Listing my API means giving up ownership.&rdquo;</strong> You remain the owner. Listing simply makes your API discoverable; you control who gets access.</p></div>
+      <div class="app-mp-myth"><span class="app-mp-myth__x" aria-hidden="true">&#10007;</span><p class="app-mp-myth__text"><strong>&ldquo;The marketplace hosts our data.&rdquo;</strong> We host documentation and metadata about your API &mdash; not your data, not your service.</p></div>
+    </section>
+    <section class="app-mp-section" style="padding-top:0">
+      <div class="app-mp-cta">
+        <h2 class="app-mp-cta__title">Ready to get involved?</h2>
+        <p class="app-mp-cta__body">Whether you have an API to list or are looking for one to integrate with, get in touch with the marketplace team.</p>
+        <div class="app-mp-cta__btns">
+          <button class="govuk-button" onclick="showHome()">Browse the catalogue</button>
+          <a class="govuk-button govuk-button--secondary" href="mailto:no-reply@hmcts.com">Contact the team</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="govuk-footer" role="contentinfo">
+    <div class="govuk-footer__inner">
+      <div class="govuk-footer__navigation">
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">API Catalogue</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a onclick="showHome();return false;" href="#" class="govuk-footer__link">Browse APIs</a></li><li class="govuk-footer__list-item"><a onclick="showMarketplace();return false;" href="#" class="govuk-footer__link">What is API Marketplace?</a></li><li class="govuk-footer__list-item"><a href="https://app.swaggerhub.com/organizations/HMCTS-DTS" target="_blank" rel="noopener" class="govuk-footer__link">SwaggerHub organisation</a></li></ul></div>
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:no-reply@hmcts.com" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a href="mailto:no-reply@hmcts.com" class="govuk-footer__link">Request a new API</a></li></ul></div>
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Policies</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Accessibility statement</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Cookies</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Privacy notice</a></li></ul></div>
+      </div>
+      <div class="govuk-footer__meta"><div class="govuk-footer__meta-item">Built by <a href="https://www.gov.uk/hmcts" class="govuk-footer__link">HMCTS Digital and Technology Solutions</a> &mdash; Common Platform Programme</div><div class="govuk-footer__copyright-logo">&copy; Crown copyright &mdash; MIT Licence</div></div>
+    </div>
+  </footer>
+</div>
+
+<!-- DETAIL PAGE -->
+<div id="detailPage" class="app-page">
+  <div class="app-detail-header">
+    <div class="app-detail-header__inner">
+      <nav aria-label="Breadcrumb">
+        <ol style="list-style:none;padding:0;margin:0 0 16px;display:flex;gap:8px;flex-wrap:wrap;font-size:14px">
+          <li><a onclick="showHome();return false;" href="#" class="govuk-link">API Catalogue</a></li>
+          <li style="color:#505a5f">&rsaquo;</li>
+          <li style="color:#505a5f" aria-current="page" id="breadcrumbApi">API Detail</li>
+        </ol>
+      </nav>
+      <div id="dBadges" style="margin-bottom:12px"></div>
+      <h1 class="app-detail-header__name" id="dName"></h1>
+      <div class="app-detail-header__id" id="dId"></div>
+      <p class="app-detail-header__desc" id="dDesc"></p>
+      <div class="app-detail-header__meta" id="dMeta"></div>
+      <div class="app-detail-header__actions" id="dActions"></div>
+    </div>
+  </div>
+  <div class="app-sync-bar" role="status" aria-live="polite">
+    <div class="app-sync-bar__inner" id="syncBar">
+      <div class="app-sync-bar__status">
+        <div class="app-sync-bar__dot" id="syncDot"></div>
+        <span id="syncMsg">Loading&hellip;</span>
+        <span id="syncTime" style="color:#505a5f;font-size:13px;margin-left:6px"></span>
+      </div>
+      <button class="govuk-link" style="background:none;border:none;cursor:pointer;font-size:14px;padding:0" onclick="refreshCurrentSpec()">&#8635; Refresh</button>
+    </div>
+  </div>
+  <div style="background:#fff;border-bottom:1px solid #b1b4b6">
+    <div style="max-width:1200px;margin:0 auto;padding:0 30px">
+      <nav class="app-tabs" aria-label="API documentation sections">
+        <ul class="app-tabs__list" role="tablist">
+          <li role="presentation"><button class="app-tabs__tab app-tabs__tab--active" role="tab" aria-selected="true"  id="tab-btn-overview"  onclick="switchTab('overview',this)">Overview</button></li>
+          <li role="presentation"><button class="app-tabs__tab" role="tab" aria-selected="false" id="tab-btn-endpoints" onclick="switchTab('endpoints',this)">Endpoints</button></li>
+          <li role="presentation"><button class="app-tabs__tab" role="tab" aria-selected="false" id="tab-btn-schemas"   onclick="switchTab('schemas',this)">Data model</button></li>
+          <li role="presentation"><button class="app-tabs__tab" role="tab" aria-selected="false" id="tab-btn-changelog" onclick="switchTab('changelog',this)">Changelog</button></li>
+          <li role="presentation"><button class="app-tabs__tab" role="tab" aria-selected="false" id="tab-btn-tryit"     onclick="switchTab('tryit',this)">Try it out</button></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="app-detail-body">
+    <div>
+      <div id="tab-overview" class="app-tab-panel app-tab-panel--active" role="tabpanel">
+        <div class="app-panel"><div class="app-panel__title">What does this API do? <span class="govuk-tag govuk-tag--blue" style="font-size:11px;vertical-align:middle;margin-left:8px">Non-technical summary</span></div><p class="app-panel__body" id="dPlain"></p></div>
+        <div class="app-sidebar-card"><div class="app-sidebar-card__header">Endpoints at a glance <span class="app-spinner" id="epSpin" style="display:none" aria-label="Loading"></span></div><div class="app-sidebar-card__body" id="epGlance"><div class="app-skel" style="height:40px;margin-bottom:8px"></div><div class="app-skel" style="height:40px;margin-bottom:8px"></div><div class="app-skel" style="height:40px"></div></div></div>
+        <div id="notesCard" style="display:none"><div class="govuk-warning-text"><span class="govuk-warning-text__icon" aria-hidden="true">!</span><strong class="govuk-warning-text__text"><span class="govuk-visually-hidden">Warning</span>Consumer guidance</strong></div><div id="notesBody"></div></div>
+      </div>
+      <div id="tab-endpoints" class="app-tab-panel" role="tabpanel"><div class="app-sidebar-card"><div class="app-sidebar-card__header">All endpoints <span id="epCount" style="font-size:13px;color:#505a5f;font-weight:400;margin-left:8px"></span></div><div class="app-sidebar-card__body" id="epList"><div class="app-skel" style="height:44px;margin-bottom:8px"></div><div class="app-skel" style="height:44px;margin-bottom:8px"></div><div class="app-skel" style="height:44px"></div></div></div></div>
+      <div id="tab-schemas" class="app-tab-panel" role="tabpanel"><div class="app-sidebar-card"><div class="app-sidebar-card__header">Data model</div><div class="app-sidebar-card__body" id="schemaList"><div class="app-skel" style="height:120px"></div></div></div></div>
+      <div id="tab-changelog" class="app-tab-panel" role="tabpanel"><div class="app-sidebar-card"><div class="app-sidebar-card__header">Changelog</div><div class="app-sidebar-card__body" id="changelogBody"></div></div></div>
+      <div id="tab-tryit" class="app-tab-panel" role="tabpanel"><div class="app-sidebar-card"><div class="app-sidebar-card__header">Try it out &mdash; mock server</div><div class="app-sidebar-card__body" id="tryItBody"><div class="app-skel" style="height:60px"></div></div></div></div>
+    </div>
+    <div>
+      <div class="app-sidebar-card"><div class="app-sidebar-card__header">API information</div><div class="app-sidebar-card__body" id="sInfo"><div class="app-skel" style="height:14px;width:80%;margin-bottom:8px"></div><div class="app-skel" style="height:14px;width:60%"></div></div></div>
+      <div class="app-sidebar-card"><div class="app-sidebar-card__header">Authentication</div><div class="app-sidebar-card__body" id="sAuth"></div></div>
+      <div class="app-sidebar-card"><div class="app-sidebar-card__header">Response codes</div><div class="app-sidebar-card__body" id="sRC"><div class="app-skel" style="height:36px;margin-bottom:6px"></div><div class="app-skel" style="height:36px"></div></div></div>
+      <div class="app-sidebar-card"><div class="app-sidebar-card__header">Links</div><div class="app-sidebar-card__body" style="display:flex;flex-direction:column;gap:8px" id="sLinks"></div></div>
+    </div>
+  </div>
+  <footer class="govuk-footer" role="contentinfo">
+    <div class="govuk-footer__inner">
+      <div class="govuk-footer__navigation">
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">API Catalogue</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a onclick="showHome();return false;" href="#" class="govuk-footer__link">Browse APIs</a></li><li class="govuk-footer__list-item"><a onclick="showMarketplace();return false;" href="#" class="govuk-footer__link">What is API Marketplace?</a></li><li class="govuk-footer__list-item"><a href="https://app.swaggerhub.com/organizations/HMCTS-DTS" target="_blank" rel="noopener" class="govuk-footer__link">SwaggerHub organisation</a></li></ul></div>
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:no-reply@hmcts.com" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a href="mailto:no-reply@hmcts.com" class="govuk-footer__link">Request a new API</a></li></ul></div>
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Policies</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Accessibility statement</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Cookies</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Privacy notice</a></li></ul></div>
+      </div>
+      <div class="govuk-footer__meta"><div class="govuk-footer__meta-item">Built by <a href="https://www.gov.uk/hmcts" class="govuk-footer__link">HMCTS Digital and Technology Solutions</a> &mdash; Common Platform Programme</div><div class="govuk-footer__copyright-logo">&copy; Crown copyright &mdash; MIT Licence</div></div>
+    </div>
+  </footer>
+</div>
+
+<!-- AUTH OVERLAY -->
+<div id="authOverlay" style="display:none" class="app-auth-overlay" role="dialog" aria-modal="true" aria-labelledby="auth-title" onclick="if(event.target===this)hideAuth()">
+  <div class="app-auth-card">
+    <div class="app-auth-header"><h2 class="app-auth-header__title" id="auth-title">HMCTS API Catalogue</h2><p class="app-auth-header__sub">Sign in to request API access and manage your integrations.</p></div>
+    <div class="app-auth-body">
+      <div class="app-auth-tabs" role="tablist">
+        <button class="app-auth-tab app-auth-tab--active" id="atLogin" role="tab" aria-selected="true"  onclick="authTab('login')">Sign in</button>
+        <button class="app-auth-tab"                      id="atReg"   role="tab" aria-selected="false" onclick="authTab('register')">Register</button>
+      </div>
+      <div id="aErr" class="app-auth-error" role="alert"></div>
+      <form id="fLogin" onsubmit="doLogin(event)" novalidate>
+        <div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="lEm">Email address</label><input class="govuk-input" id="lEm" type="email" autocomplete="email" spellcheck="false" required></div>
+        <div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="lPw">Password</label><input class="govuk-input" id="lPw" type="password" autocomplete="current-password" required></div>
+        <button type="submit" class="govuk-button" id="btnL">Sign in</button>
+        <p class="govuk-body-s">No account? <a class="govuk-link" onclick="authTab('register');return false;" href="#">Register here</a></p>
+      </form>
+      <form id="fReg" style="display:none" onsubmit="doRegister(event)" novalidate>
+        <div class="govuk-form-group">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="govuk-form-group" style="margin:0"><label class="govuk-label govuk-label--s" for="rFn">First name</label><input class="govuk-input" id="rFn" type="text" autocomplete="given-name" required></div>
+            <div class="govuk-form-group" style="margin:0"><label class="govuk-label govuk-label--s" for="rLn">Last name</label><input class="govuk-input" id="rLn" type="text" autocomplete="family-name" required></div>
+          </div>
+        </div>
+        <div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="rEm">Email address</label><input class="govuk-input" id="rEm" type="email" autocomplete="email" spellcheck="false" required></div>
+        <div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="rPw">Create a password</label><div class="govuk-hint">Must be at least 8 characters</div><input class="govuk-input" id="rPw" type="password" autocomplete="new-password" minlength="8" required></div>
+        <div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="rOrg">Organisation or team</label><input class="govuk-input" id="rOrg" type="text" placeholder="e.g. Case Admin Team" required></div>
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-label--s">I am registering as&hellip;</label>
+          <div class="app-role-grid">
+            <button type="button" class="app-role-card app-role-card--selected" id="rcC" onclick="pickRole('consumer')" aria-pressed="true"><div class="app-role-card__icon" aria-hidden="true">&#128105;&#8205;&#128187;</div><div class="app-role-card__name">Consumer</div><div class="app-role-card__desc">Find and use existing APIs</div></button>
+            <button type="button" class="app-role-card" id="rcP" onclick="pickRole('producer')" aria-pressed="false"><div class="app-role-card__icon" aria-hidden="true">&#127959;&#65039;</div><div class="app-role-card__name">Producer</div><div class="app-role-card__desc">List and manage my APIs</div></button>
+          </div>
+        </div>
+        <button type="submit" class="govuk-button" id="btnR">Create account</button>
+        <p class="govuk-body-s">Have an account? <a class="govuk-link" onclick="authTab('login');return false;" href="#">Sign in</a></p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- CONSUMER DASHBOARD -->
+<div id="consDash" class="app-page">
+  <main>
+    <div class="app-dash-layout">
+      <div>
+        <nav class="app-dash-sidebar" aria-label="Dashboard navigation">
+          <div class="app-dash-sidebar__header"><div class="app-dash-sidebar__avatar" id="cAv" aria-hidden="true">?</div><div><div class="app-dash-sidebar__name" id="cNm">User</div><div class="app-dash-sidebar__role">Consumer</div></div></div>
+          <button class="app-dash-nav__item app-dash-nav__item--active" onclick="dPanel('c','ov',this)">Overview</button>
+          <button class="app-dash-nav__item" onclick="dPanel('c','browse',this)">Browse APIs</button>
+          <button class="app-dash-nav__item" onclick="dPanel('c','reqs',this)">My requests</button>
+          <button class="app-dash-nav__item" onclick="dPanel('c','access',this)">Request access</button>
+          <button class="app-dash-nav__item" onclick="dPanel('c','prof',this)">My profile</button>
+          <button class="app-dash-nav__item app-dash-nav__item--danger" onclick="doLogout()">Sign out</button>
+        </nav>
+      </div>
+      <div>
+        <div class="app-dash-panel app-dash-panel--active" id="c-ov">
+          <h1 class="govuk-heading-l" id="cGr">Welcome back</h1>
+          <div class="app-stat-grid"><div class="app-stat"><div class="app-stat__num">6</div><div class="app-stat__label">APIs available</div></div><div class="app-stat"><div class="app-stat__num" id="cNR">0</div><div class="app-stat__label">My requests</div></div><div class="app-stat"><div class="app-stat__num" id="cNA">0</div><div class="app-stat__label">Approved</div></div></div>
+          <div class="app-sidebar-card"><div class="app-sidebar-card__header">Getting started</div><div class="app-sidebar-card__body"><div class="app-steps"><div class="app-step"><div class="app-step__number" aria-hidden="true">1</div><div><div class="app-step__title">Browse the catalogue</div><div class="app-step__desc">Find APIs that meet your use case.</div></div></div><div class="app-step"><div class="app-step__number" aria-hidden="true">2</div><div><div class="app-step__title">Submit an access request</div><div class="app-step__desc">Describe your use case. Approved requests give you credentials for the live environment.</div></div></div><div class="app-step"><div class="app-step__number" aria-hidden="true">3</div><div><div class="app-step__title">Integrate</div><div class="app-step__desc">Use the mock server to develop before going live.</div></div></div></div></div></div>
+        </div>
+        <div class="app-dash-panel" id="c-browse"><h1 class="govuk-heading-l">Browse APIs</h1><p class="govuk-body" style="color:#505a5f">Click any card to view full documentation</p><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px" id="cBrowse"></div></div>
+        <div class="app-dash-panel" id="c-reqs"><h1 class="govuk-heading-l">My access requests</h1><p class="govuk-body" style="color:#505a5f">Track the status of your API access requests</p><div id="cRL"><div class="app-empty-state"><div class="app-empty-state__icon" aria-hidden="true">&#128203;</div><div class="app-empty-state__title">No requests yet</div><div class="app-empty-state__desc">Submit your first access request to get started.</div></div></div></div>
+        <div class="app-dash-panel" id="c-access">
+          <div id="req-tasklist" class="app-step-form app-step-form--active">
+            <h1 class="govuk-heading-l">Request API access</h1>
+            <p class="govuk-body">Complete all sections before submitting your request. The API owner will review it within 2 business days.</p>
+            <p class="app-task-progress" id="req-task-progress">0 of 4 sections completed</p>
+            <ul class="govuk-task-list" aria-label="Request access steps">
+              <li class="govuk-task-list__item"><div class="govuk-task-list__name-and-hint"><button class="govuk-task-list__link" onclick="showReqStep('step1')">Which API do you need?</button></div><div class="govuk-task-list__status govuk-task-list__status--not-started" id="req-status-1"><span class="govuk-tag govuk-tag--grey">Not yet started</span></div></li>
+              <li class="govuk-task-list__item"><div class="govuk-task-list__name-and-hint"><button class="govuk-task-list__link" onclick="showReqStep('step2')">Environment and volume</button></div><div class="govuk-task-list__status govuk-task-list__status--not-started" id="req-status-2"><span class="govuk-tag govuk-tag--grey">Not yet started</span></div></li>
+              <li class="govuk-task-list__item"><div class="govuk-task-list__name-and-hint"><button class="govuk-task-list__link" onclick="showReqStep('step3')">Your system details</button></div><div class="govuk-task-list__status govuk-task-list__status--not-started" id="req-status-3"><span class="govuk-tag govuk-tag--grey">Not yet started</span></div></li>
+              <li class="govuk-task-list__item"><div class="govuk-task-list__name-and-hint"><button class="govuk-task-list__link" onclick="showReqStep('step4')">Business justification</button></div><div class="govuk-task-list__status govuk-task-list__status--not-started" id="req-status-4"><span class="govuk-tag govuk-tag--grey">Not yet started</span></div></li>
+            </ul>
+            <div style="margin-top:24px"><button class="govuk-button" id="req-submit-btn" onclick="showReqStep('check')" disabled aria-disabled="true" style="opacity:.5;cursor:not-allowed">Check your answers and submit</button></div>
+          </div>
+          <div id="req-step1" class="app-step-form">
+            <button class="govuk-back-link" onclick="showReqStep('tasklist')">Back</button>
+            <div id="req-err-1" class="govuk-error-summary" style="display:none" role="alert"><h2 class="govuk-error-summary__title">There is a problem</h2><ul class="govuk-error-summary__list" id="req-err-1-list"></ul></div>
+            <div class="app-step-header"><span class="app-step-header__caption">Request API access</span><h1 class="govuk-heading-l">Which API do you need access to?</h1></div>
+            <div class="govuk-form-group" id="fg-rqApi"><label class="govuk-label govuk-label--m" for="rqApi">API name</label><div class="govuk-hint">Select the API your system needs to connect to.</div><select class="govuk-select" id="rqApi" style="width:100%"><option value="">Select an API&hellip;</option></select></div>
+            <button class="govuk-button" onclick="saveReqStep(1)">Save and continue</button>
+          </div>
+          <div id="req-step2" class="app-step-form">
+            <button class="govuk-back-link" onclick="showReqStep('step1')">Back</button>
+            <div id="req-err-2" class="govuk-error-summary" style="display:none" role="alert"><h2 class="govuk-error-summary__title">There is a problem</h2><ul class="govuk-error-summary__list" id="req-err-2-list"></ul></div>
+            <div class="app-step-header"><span class="app-step-header__caption">Request API access</span><h1 class="govuk-heading-l">Environment and volume</h1></div>
+            <div class="govuk-form-group" id="fg-rqEnv"><label class="govuk-label govuk-label--m" for="rqEnv">Which environment do you need access to?</label><select class="govuk-select" id="rqEnv"><option value="">Select&hellip;</option><option>Production</option><option>Staging</option><option>Development</option></select></div>
+            <div class="govuk-form-group" id="fg-rqVol"><label class="govuk-label govuk-label--m" for="rqVol">What is your expected request volume?</label><div class="govuk-hint">This helps the API owner plan capacity.</div><select class="govuk-select" id="rqVol"><option value="">Select&hellip;</option><option>Low &mdash; fewer than 100 requests per day</option><option>Medium &mdash; 100 to 10,000 requests per day</option><option>High &mdash; more than 10,000 requests per day</option></select></div>
+            <button class="govuk-button" onclick="saveReqStep(2)">Save and continue</button>
+          </div>
+          <div id="req-step3" class="app-step-form">
+            <button class="govuk-back-link" onclick="showReqStep('step2')">Back</button>
+            <div id="req-err-3" class="govuk-error-summary" style="display:none" role="alert"><h2 class="govuk-error-summary__title">There is a problem</h2><ul class="govuk-error-summary__list" id="req-err-3-list"></ul></div>
+            <div class="app-step-header"><span class="app-step-header__caption">Request API access</span><h1 class="govuk-heading-l">Your system details</h1></div>
+            <div class="govuk-form-group" id="fg-rqSys"><label class="govuk-label govuk-label--m" for="rqSys">System or application name</label><div class="govuk-hint">The name of the system or application that will call this API.</div><input class="govuk-input" id="rqSys" type="text" autocomplete="off" spellcheck="false"></div>
+            <button class="govuk-button" onclick="saveReqStep(3)">Save and continue</button>
+          </div>
+          <div id="req-step4" class="app-step-form">
+            <button class="govuk-back-link" onclick="showReqStep('step3')">Back</button>
+            <div id="req-err-4" class="govuk-error-summary" style="display:none" role="alert"><h2 class="govuk-error-summary__title">There is a problem</h2><ul class="govuk-error-summary__list" id="req-err-4-list"></ul></div>
+            <div class="app-step-header"><span class="app-step-header__caption">Request API access</span><h1 class="govuk-heading-l">Business justification</h1></div>
+            <div class="govuk-form-group" id="fg-rqJust"><label class="govuk-label govuk-label--m" for="rqJust">Why does your system need access to this API?</label><div class="govuk-hint">Describe your use case. The API owner uses this to decide whether to approve your request.</div><textarea class="govuk-textarea" id="rqJust" rows="6" spellcheck="true"></textarea></div>
+            <button class="govuk-button" onclick="saveReqStep(4)">Save and continue</button>
+          </div>
+          <div id="req-check" class="app-step-form">
+            <button class="govuk-back-link" onclick="showReqStep('tasklist')">Back</button>
+            <h1 class="govuk-heading-l">Check your answers before submitting</h1>
+            <div class="govuk-inset-text">Once submitted, the API owner will review your request. You cannot edit it after submission.</div>
+            <div class="govuk-summary-card"><div class="govuk-summary-card__title-wrapper"><h2 class="govuk-summary-card__title">Access request details</h2></div><div class="govuk-summary-card__content"><dl class="govuk-summary-list" id="req-check-answers"></dl></div></div>
+            <h2 class="govuk-heading-m">Declaration</h2>
+            <p class="govuk-body">By submitting this request you confirm that:</p>
+            <div class="govuk-checkboxes__item"><input class="govuk-checkboxes__input" id="decl1" type="checkbox"><label class="govuk-checkboxes__label" for="decl1">The information I have provided is accurate and complete</label></div>
+            <div class="govuk-checkboxes__item" style="margin-bottom:24px"><input class="govuk-checkboxes__input" id="decl2" type="checkbox"><label class="govuk-checkboxes__label" for="decl2">I understand that access may be withdrawn if misused</label></div>
+            <button class="govuk-button" onclick="submitReq()">Submit request</button>
+            <button class="govuk-button govuk-button--secondary" onclick="showReqStep('tasklist')" style="margin-left:12px">Save and come back later</button>
+          </div>
+        <div class="app-dash-panel" id="c-prof"><h1 class="govuk-heading-l">My profile</h1><div class="app-form-card"><div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px"><div class="govuk-form-group" style="margin:0"><label class="govuk-label govuk-label--s" for="cPFn">First name</label><input class="govuk-input" id="cPFn" type="text"></div><div class="govuk-form-group" style="margin:0"><label class="govuk-label govuk-label--s" for="cPLn">Last name</label><input class="govuk-input" id="cPLn" type="text"></div></div><div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="cPEm">Email</label><input class="govuk-input" id="cPEm" type="email" readonly style="background:#f3f2f1;cursor:not-allowed"></div><div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="cPOrg">Organisation</label><input class="govuk-input" id="cPOrg" type="text"></div><button class="govuk-button govuk-button--secondary" onclick="saveProf('c')">Save changes</button></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- PRODUCER DASHBOARD -->
+<div id="prodDash" class="app-page">
+  <main>
+    <div class="app-dash-layout">
+      <div>
+        <nav class="app-dash-sidebar" aria-label="Producer dashboard navigation">
+          <div class="app-dash-sidebar__header"><div class="app-dash-sidebar__avatar app-dash-sidebar__avatar--producer" id="pAv" aria-hidden="true">?</div><div><div class="app-dash-sidebar__name" id="pNm">User</div><div class="app-dash-sidebar__role">Producer</div></div></div>
+          <button class="app-dash-nav__item app-dash-nav__item--active" onclick="dPanel('p','ov',this)">Overview</button>
+          <button class="app-dash-nav__item" onclick="dPanel('p','myapis',this)">My APIs</button>
+          <button class="app-dash-nav__item" onclick="dPanel('p','incoming',this)">Access requests</button>
+          <button class="app-dash-nav__item" onclick="dPanel('p','publish',this)">Publish API</button>
+          <button class="app-dash-nav__item" onclick="dPanel('p','prof',this)">My profile</button>
+          <button class="app-dash-nav__item app-dash-nav__item--danger" onclick="doLogout()">Sign out</button>
+        </nav>
+      </div>
+      <div>
+        <div class="app-dash-panel app-dash-panel--active" id="p-ov"><h1 class="govuk-heading-l" id="pGr">Welcome back</h1><div class="app-stat-grid"><div class="app-stat"><div class="app-stat__num" id="pNA">0</div><div class="app-stat__label">My APIs</div></div><div class="app-stat"><div class="app-stat__num" id="pNR">0</div><div class="app-stat__label">Pending requests</div></div><div class="app-stat"><div class="app-stat__num">0</div><div class="app-stat__label">Consumers</div></div></div><div class="app-panel app-panel--plain"><div class="app-panel__title">You are a producer</div><p class="app-panel__body">List your APIs to make them discoverable. Review access requests from consumer teams. You remain responsible for your API reliability and supporting your consumers.</p></div></div>
+        <div class="app-dash-panel" id="p-myapis"><h1 class="govuk-heading-l">My APIs</h1><p class="govuk-body" style="color:#505a5f">APIs you have registered as a producer</p><div id="pAL"><div class="app-empty-state"><div class="app-empty-state__icon" aria-hidden="true">&#128225;</div><div class="app-empty-state__title">No APIs yet</div><div class="app-empty-state__desc">Register your first API to make it discoverable.</div></div></div></div>
+        <div class="app-dash-panel" id="p-incoming"><h1 class="govuk-heading-l">Access requests</h1><div class="app-empty-state"><div class="app-empty-state__icon" aria-hidden="true">&#128229;</div><div class="app-empty-state__title">No pending requests</div><div class="app-empty-state__desc">Access requests from consumers will appear here.</div></div></div>
+        <div class="app-dash-panel" id="p-publish">
+          <div id="pub-tasklist" class="app-step-form app-step-form--active">
+            <h1 class="govuk-heading-l">Publish an API</h1>
+            <div id="pubDraftNotice" style="display:none" class="govuk-inset-text">You have a saved draft. Your progress has been restored. <a class="govuk-link" href="#" onclick="discardPubDraft();return false;">Discard draft and start again</a></div>
+            <p class="govuk-body">Complete all sections before submitting your API for review. The marketplace team will add it to the catalogue once approved.</p>
+            <p class="app-task-progress" id="pub-task-progress">0 of 3 sections completed</p>
+            <ul class="govuk-task-list" aria-label="Publish API steps">
+              <li class="govuk-task-list__item"><div class="govuk-task-list__name-and-hint"><button class="govuk-task-list__link" onclick="showPubStep('step1')">API identification</button><div class="govuk-task-list__hint">Name, SwaggerHub location and version</div></div><div class="govuk-task-list__status govuk-task-list__status--not-started" id="pub-status-1"><span class="govuk-tag govuk-tag--grey">Not yet started</span></div></li>
+              <li class="govuk-task-list__item"><div class="govuk-task-list__name-and-hint"><button class="govuk-task-list__link" onclick="showPubStep('step2')">Classification and domain</button><div class="govuk-task-list__hint">Domain, data classification and authentication type</div></div><div class="govuk-task-list__status govuk-task-list__status--not-started" id="pub-status-2"><span class="govuk-tag govuk-tag--grey">Not yet started</span></div></li>
+              <li class="govuk-task-list__item"><div class="govuk-task-list__name-and-hint"><button class="govuk-task-list__link" onclick="showPubStep('step3')">Plain-English description</button><div class="govuk-task-list__hint">What this API does, for non-technical readers</div></div><div class="govuk-task-list__status govuk-task-list__status--not-started" id="pub-status-3"><span class="govuk-tag govuk-tag--grey">Not yet started</span></div></li>
+            </ul>
+            <div style="margin-top:24px"><button class="govuk-button" id="pub-submit-btn" onclick="showPubStep('check')" disabled aria-disabled="true" style="opacity:.5;cursor:not-allowed">Check your answers and submit</button></div>
+          </div>
+          <div id="pub-step1" class="app-step-form">
+            <button class="govuk-back-link" onclick="showPubStep('tasklist')">Back</button>
+            <div id="pub-err-1" class="govuk-error-summary" style="display:none" role="alert"><h2 class="govuk-error-summary__title">There is a problem</h2><ul class="govuk-error-summary__list" id="pub-err-1-list"></ul></div>
+            <div class="app-step-header"><span class="app-step-header__caption">Publish an API &mdash; Step 1 of 3</span><h1 class="govuk-heading-l">API identification</h1></div>
+            <div class="govuk-form-group" id="fg-pubN"><label class="govuk-label govuk-label--m" for="pubN">API display name</label><div class="govuk-hint">The name shown in the catalogue. Use sentence case.</div><input class="govuk-input" id="pubN" type="text" spellcheck="false"></div>
+            <div class="govuk-form-group" id="fg-pubO"><label class="govuk-label govuk-label--m" for="pubO">SwaggerHub organisation</label><div class="govuk-hint">For example: HMCTS-DTS</div><input class="govuk-input govuk-input--width-20" id="pubO" type="text" value="HMCTS-DTS" spellcheck="false"></div>
+            <div class="govuk-form-group" id="fg-pubA"><label class="govuk-label govuk-label--m" for="pubA">SwaggerHub API name</label><div class="govuk-hint">For example: api-cp-caseadmin-case-urn-mapper</div><input class="govuk-input" id="pubA" type="text" spellcheck="false"></div>
+            <div class="govuk-form-group" id="fg-pubV"><label class="govuk-label govuk-label--m" for="pubV">Version number</label><div class="govuk-hint">For example: 1.0.0</div><input class="govuk-input govuk-input--width-10" id="pubV" type="text" spellcheck="false" onblur="validateSwaggerSpec()"></div>
+            <div id="specValidationStatus" style="display:none;margin-bottom:16px"></div>
+            <button class="govuk-button" onclick="savePubStep(1)">Save and continue</button>
+          </div>
+          <div id="pub-step2" class="app-step-form">
+            <button class="govuk-back-link" onclick="showPubStep('step1')">Back</button>
+            <div id="pub-err-2" class="govuk-error-summary" style="display:none" role="alert"><h2 class="govuk-error-summary__title">There is a problem</h2><ul class="govuk-error-summary__list" id="pub-err-2-list"></ul></div>
+            <div class="app-step-header"><span class="app-step-header__caption">Publish an API &mdash; Step 2 of 3</span><h1 class="govuk-heading-l">Classification and domain</h1></div>
+            <div class="govuk-form-group" id="fg-pubD"><label class="govuk-label govuk-label--m" for="pubD">Domain</label><div class="govuk-hint">Which business domain does this API belong to?</div><select class="govuk-select" id="pubD"><option value="">Select a domain&hellip;</option><option>Case Administration</option><option>Reference Data</option><option>Case Management</option><option>Hearing Results</option><option>Scheduling and Listing</option><option>Other</option></select></div>
+            <div class="govuk-form-group" id="fg-pubClass">
+              <fieldset class="govuk-fieldset"><legend class="govuk-fieldset__legend govuk-fieldset__legend--m">Data classification</legend>
+              <div class="govuk-hint" style="margin-bottom:12px">Select the highest data classification this API handles.</div>
+              <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:12px"><input class="govuk-checkboxes__input" id="pubClass-1" name="pubClass" type="radio" value="Official" style="width:40px;height:40px;margin:0;cursor:pointer;flex-shrink:0"><label class="govuk-label" for="pubClass-1" style="padding-top:8px;cursor:pointer"><strong>Official</strong><br><span style="font-size:14px;color:#505a5f">General government business. Most HMCTS operational data.</span></label></div>
+              <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:12px"><input class="govuk-checkboxes__input" id="pubClass-2" name="pubClass" type="radio" value="Official-Sensitive" style="width:40px;height:40px;margin:0;cursor:pointer;flex-shrink:0"><label class="govuk-label" for="pubClass-2" style="padding-top:8px;cursor:pointer"><strong>Official &mdash; Sensitive</strong><br><span style="font-size:14px;color:#505a5f">Defendant personal data, judiciary information.</span></label></div>
+              <div style="display:flex;align-items:flex-start;gap:12px"><input class="govuk-checkboxes__input" id="pubClass-3" name="pubClass" type="radio" value="Restricted" style="width:40px;height:40px;margin:0;cursor:pointer;flex-shrink:0"><label class="govuk-label" for="pubClass-3" style="padding-top:8px;cursor:pointer"><strong>Restricted</strong><br><span style="font-size:14px;color:#505a5f">Information whose disclosure could compromise personal safety.</span></label></div>
+              </fieldset>
+            </div>
+            <div class="govuk-form-group" id="fg-pubAuth"><label class="govuk-label govuk-label--m" for="pubAuth">Authentication type</label><select class="govuk-select" id="pubAuth"><option value="">Select&hellip;</option><option>JWT Bearer</option><option>API Key</option><option>JWT + API Key</option><option>CJSCPPUID header</option><option>Contact team</option><option>None</option></select></div>
+            <button class="govuk-button" onclick="savePubStep(2)">Save and continue</button>
+          </div>
+          <div id="pub-step3" class="app-step-form">
+            <button class="govuk-back-link" onclick="showPubStep('step2')">Back</button>
+            <div id="pub-err-3" class="govuk-error-summary" style="display:none" role="alert"><h2 class="govuk-error-summary__title">There is a problem</h2><ul class="govuk-error-summary__list" id="pub-err-3-list"></ul></div>
+            <div class="app-step-header"><span class="app-step-header__caption">Publish an API &mdash; Step 3 of 3</span><h1 class="govuk-heading-l">Plain-English description</h1></div>
+            <div class="govuk-inset-text">Write this for a non-technical reader. Avoid acronyms and technical jargon.</div>
+            <div class="govuk-form-group" id="fg-pubDesc"><label class="govuk-label govuk-label--m" for="pubDesc">What does this API do?</label><div class="govuk-hint">Describe what problem it solves, who uses it, and what data it handles. Minimum 50 characters.</div><textarea class="govuk-textarea" id="pubDesc" rows="6" spellcheck="true"></textarea><div id="pubDescCount" style="font-size:14px;color:#505a5f;margin-top:4px">0 characters</div></div>
+            <button class="govuk-button" onclick="savePubStep(3)">Save and continue</button>
+          </div>
+          <div id="pub-check" class="app-step-form">
+            <button class="govuk-back-link" onclick="showPubStep('tasklist')">Back</button>
+            <h1 class="govuk-heading-l">Check your answers before submitting</h1>
+            <div class="govuk-inset-text">Once submitted, the marketplace team will review your API. You cannot edit this submission once sent.</div>
+            <div class="govuk-summary-card"><div class="govuk-summary-card__title-wrapper"><h2 class="govuk-summary-card__title">API details</h2></div><div class="govuk-summary-card__content"><dl class="govuk-summary-list" id="pub-check-answers"></dl></div></div>
+            <h2 class="govuk-heading-m">Declaration</h2>
+            <p class="govuk-body">By submitting this API you confirm that:</p>
+            <div class="govuk-checkboxes__item"><input class="govuk-checkboxes__input" id="pubDecl1" type="checkbox"><label class="govuk-checkboxes__label" for="pubDecl1">I am authorised to publish this API on behalf of my team</label></div>
+            <div class="govuk-checkboxes__item"><input class="govuk-checkboxes__input" id="pubDecl2" type="checkbox"><label class="govuk-checkboxes__label" for="pubDecl2">The SwaggerHub spec is up to date and accurate</label></div>
+            <div class="govuk-checkboxes__item" style="margin-bottom:24px"><input class="govuk-checkboxes__input" id="pubDecl3" type="checkbox"><label class="govuk-checkboxes__label" for="pubDecl3">I understand my team remains responsible for supporting consumers of this API</label></div>
+            <button class="govuk-button" onclick="submitPub()">Submit for review</button>
+            <button class="govuk-button govuk-button--secondary" onclick="showPubStep('tasklist')" style="margin-left:12px">Save and come back later</button>
+          </div>
+        <div class="app-dash-panel" id="p-prof"><h1 class="govuk-heading-l">My profile</h1><div class="app-form-card"><div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px"><div class="govuk-form-group" style="margin:0"><label class="govuk-label govuk-label--s" for="pPFn">First name</label><input class="govuk-input" id="pPFn" type="text"></div><div class="govuk-form-group" style="margin:0"><label class="govuk-label govuk-label--s" for="pPLn">Last name</label><input class="govuk-input" id="pPLn" type="text"></div></div><div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="pPEm">Email</label><input class="govuk-input" id="pPEm" type="email" readonly style="background:#f3f2f1;cursor:not-allowed"></div><div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="pPOrg">Organisation</label><input class="govuk-input" id="pPOrg" type="text"></div><button class="govuk-button govuk-button--secondary" onclick="saveProf('p')">Save changes</button></div></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+const APIS = [{"id": "case-document-knowledge", "name": "Case Documents AI Responses", "shortName": "api-cp-crime-caseadmin-case-document-knowledge", "version": "0.0.8", "status": "Live", "domain": "Case Administration", "tags": ["AI / Knowledge", "Case Admin"], "icon": "🧠", "iconBg": "linear-gradient(135deg,#6366F1,#8B5CF6)", "description": "AI-generated answers to predefined queries about criminal case documents, with versioning, document ingestion tracking and pre-signed document download.", "plainEnglish": "This API lets systems ask AI-powered questions about a criminal case — such as 'summarise the case' or 'what is the defendant's position?' — and receive structured, versioned answers. Case documents must be ingested first. The API tracks the ingestion pipeline status and versions all answers so you can retrieve exactly what the AI said at any point in time.", "swaggerOrg": "HMCTS-DTS", "swaggerApi": "api-cp-crime-caseadmin-case-document-knowledge", "swaggerVer": "0.0.8", "auth": "Contact the HMCTS CP team for environment-specific auth requirements.", "authType": "Contact team", "owner": "HMCTS DTS", "contact": "no-reply@hmcts.com", "licence": "MIT", "endpointCount": 13, "notes": ["Poll GET /ingestions/status until phase = INGESTED before querying AI answers.", "Answer text may include ::SourcePage N citations linking to source document pages.", "The HMAC secret from POST /ingestions/start is shown once only — store immediately."], "changelog": [{"v": "0.0.8", "n": "Current — AI answers, query catalogue, ingestion pipeline, document download"}, {"v": "0.0.1", "n": "Initial release"}]}, {"id": "case-urn-mapper", "name": "Case URN Mapper", "shortName": "api-cp-caseadmin-case-urn-mapper", "version": "1.0.9", "status": "Live", "domain": "Case Administration", "tags": ["URN Lookup", "Case Admin"], "icon": "🔗", "iconBg": "linear-gradient(135deg,#3B82F6,#06B6D4)", "description": "Maps a criminal Case URN to its internal Case ID (UUID). Lightweight facade with in-memory caching and optional cache-bypass refresh flag.", "plainEnglish": "Criminal cases have two identifiers — a human-readable Case URN (like 'CIK1JQKECS') on documents, and an internal UUID used by backend systems. Give this API a URN and it returns the system Case ID instantly. Results are cached in memory for speed; use ?refresh=true to force a fresh backend lookup if you suspect the cache is stale.", "swaggerOrg": "HMCTS-DTS", "swaggerApi": "api-cp-caseadmin-case-urn-mapper", "swaggerVer": "1.0.9", "auth": "Requests carry a CJSCPPUID header — a system identity UUID provisioned by the CP team.", "authType": "CJSCPPUID header", "owner": "HMCTS DTS", "contact": "no-reply@hmcts.com", "licence": "MIT", "endpointCount": 1, "notes": ["Use ?refresh=true after a case URN reassignment to force cache update.", "All error responses include a traceId — quote this in all support requests."], "changelog": [{"v": "1.0.9", "n": "Current version"}, {"v": "1.0.0", "n": "Initial release"}]}, {"id": "court-houses", "name": "Reference Data Court Houses", "shortName": "api-cp-refdata-courthearing-courthouses", "version": "1.1.0", "status": "Live", "domain": "Reference Data", "tags": ["Reference Data", "Court Houses"], "icon": "🏛", "iconBg": "linear-gradient(135deg,#059669,#10B981)", "description": "Authoritative reference data for court houses and court rooms. Returns court name, type (Crown/Magistrate), full validated address and room details.", "plainEnglish": "The authoritative directory of court buildings and rooms in the HMCTS Common Platform. Give it a court house UUID and it returns the court name, type (Crown or Magistrates), full address and list of court rooms. Used by scheduling, listing and case management systems to display correct venue information.", "swaggerOrg": "HMCTS-DTS", "swaggerApi": "api-cp-refdata-courthearing-courthouses", "swaggerVer": "1.1.0", "auth": "JWT bearer token required on all requests. Requests without a valid token receive 401 Unauthorized.", "authType": "JWT Bearer", "owner": "HMCTS DTS", "contact": "no-reply@hmcts.com", "licence": "MIT", "endpointCount": 2, "notes": ["courtRoom array is only returned when using the /courthouses/{id}/courtrooms/{room_id} endpoint.", "UK postcode is validated against the full UK postcode regex pattern."], "changelog": [{"v": "1.1.0", "n": "Current — court room endpoint added"}, {"v": "1.0.0", "n": "Initial release"}]}, {"id": "prosecution-case-details", "name": "Prosecution Case Details", "shortName": "api-cp-crime-prosecution-case-details", "version": "1.0.1", "status": "Live", "domain": "Case Management", "tags": ["Case Management", "Prosecution"], "icon": "⚖", "iconBg": "linear-gradient(135deg,#DC2626,#F59E0B)", "description": "Returns key status information for a criminal prosecution case by Case URN — including active/inactive status and whether reporting restrictions are legally in force.", "plainEnglish": "Give this API a case reference number and it returns two critical pieces of information: whether the case is currently active, and whether reporting restrictions apply. Reporting restrictions are legal orders that prevent case information from being published or shared. Systems must check this flag before displaying or sharing any case data.", "swaggerOrg": "HMCTS-DTS", "swaggerApi": "api-cp-crime-prosecution-case-details", "swaggerVer": "1.0.1", "auth": "JWT bearer token required on all requests (bearerAuth).", "authType": "JWT Bearer", "owner": "HMCTS DTS", "contact": "no-reply@hmcts.com", "licence": "MIT", "endpointCount": 1, "notes": ["Always check reportingRestrictions before displaying or sharing any case information.", "A false value for reportingRestrictions does not imply all information is freely shareable."], "changelog": [{"v": "1.0.1", "n": "Current version"}, {"v": "1.0.0", "n": "Initial release"}]}, {"id": "hearing-results-subscription", "name": "Hearing Results Subscription", "shortName": "api-cp-crime-hearing-results-document-subscription", "version": "2.0.9", "status": "Live", "domain": "Hearing Results", "tags": ["Subscription", "Webhooks"], "icon": "📡", "iconBg": "linear-gradient(135deg,#7C3AED,#DB2777)", "description": "Webhook-based push notifications for hearing result documents. Subscribe with a callback URL to receive HMAC-signed notifications when warrants, sentencing records and court registers are generated.", "plainEnglish": "Instead of constantly polling for new documents, systems register a callback URL and the event types they care about. When HMCTS generates a hearing result document (warrant, sentencing record, prison court register), it sends a signed notification instantly. The subscriber then downloads the PDF. Callbacks are HMAC-SHA256 signed so recipients can verify authenticity.", "swaggerOrg": "HMCTS-DTS", "swaggerApi": "api-cp-crime-hearing-results-document-subscription", "swaggerVer": "2.0.9", "auth": "Dual auth: JWT bearer token AND Ocp-Apim-Subscription-Key header. Both required on every request.", "authType": "JWT + API Key", "owner": "HMCTS API Marketplace", "contact": "no-reply@hmcts.com", "licence": "MIT", "endpointCount": 7, "notes": ["SAVE the HMAC secret immediately at subscription creation — it is returned ONCE only.", "Verify X-Signature header on every callback to confirm authenticity.", "Your callback endpoint MUST return HTTP 202 Accepted — any other code = delivery failure."], "changelog": [{"v": "2.0.9", "n": "Current — secret rotation, PDF download, v2 answers endpoint"}, {"v": "2.0.0", "n": "Webhook model introduced"}, {"v": "1.0.0", "n": "Initial release"}]}, {"id": "court-schedule", "name": "Court Schedule", "shortName": "api-cp-crime-schedulingandlisting-courtschedule", "version": "1.1.0", "status": "Live", "domain": "Scheduling and Listing", "tags": ["Scheduling", "Listing"], "icon": "📅", "iconBg": "linear-gradient(135deg,#0891B2,#0284C7)", "description": "Returns the full court schedule for a criminal case by Case URN — hearing type, sitting times, assigned judiciary, court house and court room. Supports allocated and week-commencing hearing states.", "plainEnglish": "Give this API a case reference number and it returns the full court schedule — every hearing, when it is listed, which court room and judge are assigned, and the sitting start and end times. If a hearing has a proposed week window but is not yet fully scheduled, the API returns week-commencing dates instead. Used by listing tools, case management UIs and notification services.", "swaggerOrg": "HMCTS-DTS", "swaggerApi": "api-cp-crime-schedulingandlisting-courtschedule", "swaggerVer": "1.1.0", "auth": "No authentication defined in the public spec. Contact the HMCTS CP team for environment-specific requirements.", "authType": "Contact team", "owner": "HMCTS DTS", "contact": "no-reply@hmcts.com", "licence": "MIT", "endpointCount": 1, "notes": ["If courtSittings is empty, look for weekCommencing for the proposed scheduling window.", "All sitting times are ISO 8601 UTC (Z suffix). All reference IDs are UUIDs."], "changelog": [{"v": "1.1.0", "n": "Current — allocated and week-commencing hearing support"}, {"v": "1.0.0", "n": "Initial release"}]}];
+
+const EMBEDDED_SPECS = {"case-urn-mapper":{"openapi":"3.0.0","info":{"title":"Common Platform API Case URN Mapper","description":"Maps a criminal Case URN to an internal Case ID (UUID). Lightweight facade with in-memory Spring Cache and optional refresh flag.","version":"1.0.9","contact":{"email":"no-reply@hmcts.com"},"license":{"name":"MIT"}},"servers":[{"url":"https://virtserver.swaggerhub.com/HMCTS-DTS/api-cp-caseadmin-case-urn-mapper/1.0.9","description":"SwaggerHub Auto Mock"}],"paths":{"/urnmapper/{case_urn}":{"get":{"tags":["CaseIdByCaseUrn"],"summary":"Resolve a Case URN to its internal Case ID","description":"Returns the Case ID for a given Case URN. Uses in-memory cache by default; use ?refresh=true to bypass cache and fetch fresh from backend.","operationId":"getCaseIdByCaseUrn","parameters":[{"name":"case_urn","in":"path","required":true,"description":"Case URN - alphanumeric, 10-40 characters. Pattern: ^[0-9a-zA-Z]{10,40}$","schema":{"type":"string","pattern":"^[0-9a-zA-Z]{10,40}$","example":"CIK1JQKECS"}},{"name":"refresh","in":"query","required":false,"description":"If true, bypasses cache and fetches fresh from backend. Default: false.","schema":{"type":"boolean","default":false}}],"responses":{"200":{"description":"Case URN resolved - caseId returned","content":{"application/json":{"schema":{"$ref":"#/components/schemas/CaseMapperResponse"},"example":{"caseUrn":"CIK1JQKECS","caseId":"8a759185-73cc-479f-a420-38db2aa54cf2"}}}},"400":{"description":"Bad input - case_urn is null, empty or fails regex validation","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ErrorResponse"},"example":{"error":"400","message":"Case urn must be between 10 and 40 alphanumerics","timestamp":"2026-04-30T10:00:00Z","traceId":"abc123def456"}}}}}}}},"components":{"schemas":{"CaseMapperResponse":{"type":"object","description":"Resolved mapping of a Case URN to its internal Case ID","required":["caseUrn"],"properties":{"caseUrn":{"type":"string","description":"The case URN echoed from the request","example":"CIK1JQKECS"},"caseId":{"type":"string","description":"Internal system UUID for the case","example":"8a759185-73cc-479f-a420-38db2aa54cf2"}}},"ErrorResponse":{"type":"object","properties":{"error":{"type":"string"},"message":{"type":"string"},"details":{"type":"object"},"timestamp":{"type":"string","format":"date-time"},"traceId":{"type":"string","description":"Include in all support requests"}}}}}},"court-houses":{"openapi":"3.0.0","info":{"title":"Common Platform API Refdata Court Hearing Court Houses","description":"Authoritative reference data for court houses and court rooms.","version":"1.1.0","contact":{"email":"no-reply@hmcts.com"},"license":{"name":"MIT"}},"servers":[{"url":"https://virtserver.swaggerhub.com/HMCTS-DTS/api-cp-refdata-courthearing-courthouses/1.1.0","description":"SwaggerHub Auto Mock"}],"paths":{"/courthouses/{court_id}":{"get":{"tags":["Court House"],"summary":"Get court house details by ID","description":"Returns the full details of a court house. Requires JWT bearer token.","operationId":"getCourtHouseById","parameters":[{"name":"court_id","in":"path","required":true,"description":"Unique identifier for the court house (UUID)","schema":{"type":"string","format":"uuid","example":"57323172-1083-454d-8ab7-2455a8b993e7"}}],"responses":{"200":{"description":"Court house found","content":{"application/json":{"schema":{"$ref":"#/components/schemas/CourtHouseResponse"},"example":{"courtHouseType":"crown","courtHouseCode":"LND001","courtHouseName":"Central London County Court","address":{"address1":"Thomas More Building","address2":"Royal Courts of Justice","address3":"Strand","address4":"London","postalCode":"WC2A 2LL","country":"UK"}}}}},"400":{"description":"Invalid path parameter"},"401":{"description":"Unauthorised - JWT token missing or invalid"}},"security":[{"bearerAuth":[]}]}},"/courthouses/{court_id}/courtrooms/{court_room_id}":{"get":{"tags":["Court Room"],"summary":"Get court house with specific court room","description":"Returns court house details plus the specific court room. Requires JWT bearer token.","operationId":"getCourtRoomById","parameters":[{"name":"court_id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"court_room_id","in":"path","required":true,"description":"Unique identifier for the court room (UUID)","schema":{"type":"string","format":"uuid","example":"aa12f3dd-4cc1-4da7-b9ea-552fa3b9bc44"}}],"responses":{"200":{"description":"Court house and room found","content":{"application/json":{"schema":{"$ref":"#/components/schemas/CourtHouseResponse"},"example":{"courtHouseType":"crown","courtHouseCode":"LND001","courtHouseName":"Central London County Court","address":{"address1":"Thomas More Building","postalCode":"WC2A 2LL","country":"UK"},"courtRoom":[{"courtRoomId":101,"courtRoomName":"Courtroom A"}]}}}},"401":{"description":"Unauthorised"}},"security":[{"bearerAuth":[]}]}}},"components":{"securitySchemes":{"bearerAuth":{"type":"http","scheme":"bearer","bearerFormat":"JWT"}},"schemas":{"CourtHouseResponse":{"type":"object","properties":{"courtHouseType":{"type":"string","enum":["crown","magistrate"],"description":"Type of court house"},"courtHouseCode":{"type":"string","example":"LND001"},"courtHouseName":{"type":"string","example":"Central London County Court"},"address":{"$ref":"#/components/schemas/Address"},"courtRoom":{"type":"array","description":"Court rooms - only present when fetched with a court room ID","items":{"$ref":"#/components/schemas/CourtRoom"}}}},"Address":{"type":"object","properties":{"address1":{"type":"string"},"address2":{"type":"string"},"address3":{"type":"string"},"address4":{"type":"string"},"postalCode":{"type":"string","description":"UK postcode - validated against full UK postcode regex","example":"WC2A 2LL"},"country":{"type":"string","default":"UK"}}},"CourtRoom":{"type":"object","properties":{"courtRoomId":{"type":"integer","example":101},"courtRoomName":{"type":"string","example":"Courtroom A"}}},"ErrorResponse":{"type":"object","properties":{"error":{"type":"string"},"message":{"type":"string"},"timestamp":{"type":"string","format":"date-time"},"traceId":{"type":"string"}}}}}},"prosecution-case-details":{"openapi":"3.1.0","info":{"title":"Crime Prosecution Case Details","description":"Returns case status and whether reporting restrictions are in force for a criminal prosecution case by Case URN.","version":"1.0.1","contact":{"email":"no-reply@hmcts.com"},"license":{"name":"MIT"}},"servers":[{"url":"https://virtserver.swaggerhub.com/HMCTS-DTS/api-cp-crime-prosecution-case-details/1.0.1","description":"SwaggerHub Auto Mock"}],"paths":{"/cases/{case_urn}":{"get":{"tags":["Case Details"],"summary":"Get case status and reporting restrictions by Case URN","description":"Returns whether the case is active and whether reporting restrictions are legally in force. Always check reportingRestrictions before displaying or sharing case data.","operationId":"getCaseDetailsByUrn","parameters":[{"name":"case_urn","in":"path","required":true,"description":"Unique reference number for the case","schema":{"type":"string","example":"CIK1JQKECS"}}],"responses":{"200":{"description":"Case found - status returned","content":{"application/json":{"schema":{"$ref":"#/components/schemas/CaseDetailResponse"},"example":{"caseStatus":"ACTIVE","reportingRestrictions":false}}}},"400":{"description":"Invalid or malformed case_urn"},"404":{"description":"No case found for given URN"}},"security":[{"bearerAuth":[]}]}}},"components":{"securitySchemes":{"bearerAuth":{"type":"http","scheme":"bearer","bearerFormat":"JWT"}},"schemas":{"CaseDetailResponse":{"type":"object","description":"Key status information for a criminal prosecution case","properties":{"caseStatus":{"type":"string","description":"Current status of the case (e.g. ACTIVE, CLOSED)","example":"ACTIVE"},"reportingRestrictions":{"type":"boolean","description":"True if reporting restrictions are legally in force. Always check before displaying or sharing case data.","example":false}}},"ErrorResponse":{"type":"object","properties":{"error":{"type":"string"},"message":{"type":"string"},"timestamp":{"type":"string","format":"date-time"},"traceId":{"type":"string"}}}}}},"court-schedule":{"openapi":"3.0.0","info":{"title":"Common Platform API Scheduling and Listing Court Schedule","description":"Provides the court schedule for a given case - hearing details, sitting times, judiciary, court house and court room. Supports allocated and week-commencing hearing types.","version":"1.1.0","contact":{"email":"no-reply@hmcts.com"},"license":{"name":"MIT"}},"servers":[{"url":"https://virtserver.swaggerhub.com/HMCTS-DTS/api-cp-crime-schedulingandlisting-courtschedule/1.1.0","description":"SwaggerHub Auto Mock"}],"paths":{"/case/{case_urn}/courtschedule":{"get":{"tags":["Court Schedule"],"summary":"Get court schedule for a case by Case URN","description":"Returns the full court schedule for a case. Check courtSittings first - if empty, look for weekCommencing for the proposed scheduling window. All times are ISO 8601 UTC.","operationId":"getCourtSchedule","parameters":[{"name":"case_urn","in":"path","required":true,"description":"Unique reference number for the case","schema":{"type":"string","example":"CIK1JQKECS"}}],"responses":{"200":{"description":"Court schedule returned","content":{"application/json":{"schema":{"$ref":"#/components/schemas/CourtScheduleResponse"},"examples":{"allocated":{"summary":"Allocated hearing - specific sitting times confirmed","value":{"courtSchedule":[{"hearings":[{"hearingId":"HRG-123410","hearingType":"Trial","hearingDescription":"Sentencing for theft case","listNote":"Requires interpreter","courtSittings":[{"sittingStart":"2025-03-18T09:00:00Z","sittingEnd":"2025-03-25T12:00:00Z","judiciaryId":"123e4567-e89b-12d3-a456-426614174000","courtHouse":"223e4567-e89b-12d3-a456-426614174111","courtRoom":"b7a9cb95-4f7c-4aba-b9a2-8cb1ad3330b2"}]}]}]}},"weekCommencing":{"summary":"Week-commencing - no specific times yet","value":{"courtSchedule":[{"hearings":[{"hearingId":"HRG-123906","hearingType":"Trial","listNote":"Requires interpreter","courtSittings":[],"weekCommencing":{"startDate":"2026-02-16","endDate":"2026-02-22","durationInWeeks":1,"courtHouse":"223e4567-e89b-12d3-a456-426614174111"}}]}]}}}}}},"400":{"description":"Invalid case_urn parameter"}}}}},"components":{"schemas":{"CourtScheduleResponse":{"type":"object","properties":{"courtSchedule":{"type":"array","items":{"$ref":"#/components/schemas/CourtSchedule"}}}},"CourtSchedule":{"type":"object","properties":{"hearings":{"type":"array","items":{"$ref":"#/components/schemas/Hearing"}}}},"Hearing":{"type":"object","description":"A hearing - contains populated courtSittings (allocated) or weekCommencing (week-commencing).","properties":{"hearingId":{"type":"string","example":"HRG-123456"},"hearingType":{"type":"string","example":"Trial"},"hearingDescription":{"type":"string"},"listNote":{"type":"string","nullable":true,"description":"Listing note - always present, may be null"},"courtSittings":{"type":"array","description":"Specific slots. Empty array if week-commencing.","items":{"$ref":"#/components/schemas/CourtSitting"}},"weekCommencing":{"$ref":"#/components/schemas/WeekCommencing","description":"Present when courtSittings is empty"}}},"CourtSitting":{"type":"object","description":"A specific court sitting with confirmed times, judge and room","properties":{"sittingStart":{"type":"string","format":"date-time","example":"2025-03-25T09:00:00Z"},"sittingEnd":{"type":"string","format":"date-time","example":"2025-03-25T12:00:00Z"},"judiciaryId":{"type":"string","format":"uuid","description":"Reference ID of the assigned judge"},"courtHouse":{"type":"string","format":"uuid","description":"Reference ID of the court house"},"courtRoom":{"type":"string","format":"uuid","description":"Reference ID of the court room"}}},"WeekCommencing":{"type":"object","description":"Proposed week window for a hearing not yet fully allocated","properties":{"startDate":{"type":"string","format":"date","example":"2026-02-16"},"endDate":{"type":"string","format":"date","example":"2026-02-22"},"durationInWeeks":{"type":"integer","example":1},"courtHouse":{"type":"string","format":"uuid"}}}}}},"hearing-results-subscription":{"openapi":"3.1.0","info":{"title":"API for Crime Hearing Results Document Subscription","description":"Webhook push notifications for criminal hearing result documents. Subscribe with a callback URL to receive HMAC-signed notifications when warrants, sentencing records and court registers are generated.","version":"2.0.9","contact":{"email":"no-reply@hmcts.com"},"license":{"name":"MIT"}},"servers":[{"url":"https://virtserver.swaggerhub.com/HMCTS-DTS/api-cp-crime-hearing-results-document-subscription/2.0.9","description":"SwaggerHub Auto Mock"}],"paths":{"/event-types":{"get":{"tags":["Event Types"],"summary":"List all valid event types available for subscription","description":"Returns 40+ event type names covering warrants, notices, orders and court registers.","operationId":"getEventTypes","responses":{"200":{"description":"Event types returned","content":{"application/json":{"example":{"events":[{"eventName":"PRISON_COURT_REGISTER_GENERATED","displayName":"Prison Court Register Generated"},{"eventName":"WEE_CustodialSentence","displayName":"Warrant - Custodial Sentence"},{"eventName":"WEE_CommittalToCrownCourtForSentence","displayName":"Warrant - Committal to Crown Court for Sentence"},{"eventName":"WEE_SendingToCrownCourtForTrial","displayName":"Warrant - Sending to Crown Court for Trial"},{"eventName":"WEE_Remand","displayName":"Warrant - Remand"},{"eventName":"NEE_FootballBanning","displayName":"Notice - Football Banning Order"},{"eventName":"WEE_Detention","displayName":"Warrant - Detention"},{"eventName":"WXE_RemandYouthDetentionAccommodation","displayName":"Warrant - Remand Youth Detention"},{"eventName":"OBE_TerminationOfFootballBanning","displayName":"Order - Termination of Football Banning"}]}}}}}}},"/client-subscriptions":{"post":{"tags":["Subscriptions"],"summary":"Create a new subscription","description":"Creates a subscription with a callback URL and event types. The HMAC secret is returned ONCE - store it securely immediately.","operationId":"createSubscription","requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/CreateSubscriptionRequest"},"example":{"notificationEndpoint":{"callbackUrl":"https://client.example.com/events"},"eventTypes":["PRISON_COURT_REGISTER_GENERATED","WEE_CustodialSentence"]}}}},"responses":{"201":{"description":"Subscription created - HMAC secret shown once only","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ClientSubscription"},"example":{"clientSubscriptionId":"aa12f3dd-4cc1-4da7-b9ea-552fa3b9bc44","notificationEndpoint":{"callbackUrl":"https://client.example.com/events"},"eventTypes":["PRISON_COURT_REGISTER_GENERATED"],"hmac":{"keyId":"kid-v1-b41a48b7-a2a1-45f1-b562-1358f141ddb2","secret":"example-base64-secret-STORE-IMMEDIATELY"},"createdAt":"2025-01-01T10:00:00Z"}}}},"400":{"description":"Invalid request"}}}},"/client-subscriptions/{clientSubscriptionId}":{"get":{"tags":["Subscriptions"],"summary":"Get a subscription by ID","description":"Returns subscription details. Note: HMAC secret is NOT returned - shown only at creation.","operationId":"getSubscription","parameters":[{"name":"clientSubscriptionId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"Subscription returned"},"404":{"description":"Not found"}}},"put":{"tags":["Subscriptions"],"summary":"Update a subscription (full replace)","description":"Full update - all updatable fields must be supplied.","operationId":"updateSubscription","parameters":[{"name":"clientSubscriptionId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/UpdateSubscriptionRequest"}}}},"responses":{"200":{"description":"Updated"},"404":{"description":"Not found"}}},"delete":{"tags":["Subscriptions"],"summary":"Delete a subscription permanently","description":"Deletes the subscription. Notifications stop immediately. Returns 204 on success.","operationId":"deleteSubscription","parameters":[{"name":"clientSubscriptionId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"204":{"description":"Deleted"},"404":{"description":"Not found"}}}},"/client-subscriptions/{clientSubscriptionId}/secret/rotate":{"post":{"tags":["Subscriptions"],"summary":"Rotate the HMAC signing secret","description":"Issues a new HMAC secret. Returned once only - store immediately.","operationId":"rotateSecret","parameters":[{"name":"clientSubscriptionId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"requestBody":{"required":true,"content":{"application/json":{"example":{"keyId":"kid-v1-b41a48b7-a2a1-45f1-b562-1358f141ddb2"}}}},"responses":{"200":{"description":"New secret issued - shown once only"},"404":{"description":"Not found"}}}},"/client-subscriptions/{clientSubscriptionId}/documents/{documentId}":{"get":{"tags":["Documents"],"summary":"Download a hearing result PDF document","description":"Retrieves the PDF published for a document ID from the event notification payload.","operationId":"getDocument","parameters":[{"name":"clientSubscriptionId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"documentId","in":"path","required":true,"description":"Document ID from the event notification payload","schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"PDF returned","content":{"application/pdf":{}}},"403":{"description":"No permission"},"404":{"description":"Not found"}}}}},"components":{"securitySchemes":{"bearerAuth":{"type":"http","scheme":"bearer","bearerFormat":"JWT"},"apiKeyAuth":{"type":"apiKey","in":"header","name":"Ocp-Apim-Subscription-Key"}},"schemas":{"CreateSubscriptionRequest":{"type":"object","required":["notificationEndpoint","eventTypes"],"properties":{"notificationEndpoint":{"type":"object","properties":{"callbackUrl":{"type":"string","format":"uri"}}},"eventTypes":{"type":"array","minItems":1,"items":{"type":"string"}}}},"UpdateSubscriptionRequest":{"type":"object","required":["notificationEndpoint","eventTypes"],"properties":{"notificationEndpoint":{"type":"object","properties":{"callbackUrl":{"type":"string"}}},"eventTypes":{"type":"array","items":{"type":"string"}}}},"ClientSubscription":{"type":"object","properties":{"clientSubscriptionId":{"type":"string","format":"uuid"},"notificationEndpoint":{"type":"object","properties":{"callbackUrl":{"type":"string"}}},"eventTypes":{"type":"array","items":{"type":"string"}},"hmac":{"type":"object","description":"HMAC credentials - secret is write-only, shown once only","properties":{"keyId":{"type":"string"},"secret":{"type":"string","description":"Base64 HMAC secret - shown once at creation or rotation only"}}},"createdAt":{"type":"string","format":"date-time"},"updatedAt":{"type":"string","format":"date-time","nullable":true}}}}}},"case-document-knowledge":{"openapi":"3.0.3","info":{"title":"Case Documents AI Responses API","description":"Versioned AI-generated answers to predefined queries about criminal case documents. Includes query catalogue, document ingestion tracking and pre-signed document download.","version":"0.0.8","contact":{"email":"no-reply@hmcts.com"},"license":{"name":"MIT"}},"servers":[{"url":"https://virtserver.swaggerhub.com/HMCTS-DTS/api-cp-crime-caseadmin-case-document-knowledge/0.0.8","description":"SwaggerHub Auto Mock"}],"paths":{"/query-catalogue":{"get":{"tags":["Query Catalogue"],"summary":"List all canonical queries","description":"Returns all predefined queries with their stable IDs and display labels.","operationId":"getQueryCatalogue","responses":{"200":{"description":"Query catalogue returned","content":{"application/json":{"example":{"items":[{"queryId":"1c9d3a9a-0b1e-4e62-9b4f-8b5e6c7d8e9f","label":"Case Summary (All Witnesses)","order":1,"isActive":true},{"queryId":"5b2a0aa4-1c2d-3e4f-5a6b-7c8d9e0f1a2b","label":"Defendant Position","order":2,"isActive":true},{"queryId":"7d4e1bb5-2d3e-4f5a-6b7c-8d9e0f1a2b3c","label":"Key Evidence Summary","order":3,"isActive":true}]}}}}}}},"/query-catalogue/{queryId}":{"get":{"tags":["Query Catalogue"],"summary":"Get a single canonical query","operationId":"getQueryCatalogueItem","parameters":[{"name":"queryId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"Query returned"},"404":{"description":"Not found"}}},"put":{"tags":["Query Catalogue"],"summary":"Update the display label for a canonical query","description":"Updates the label. Idempotent. Does not affect query definition or past answers.","operationId":"updateQueryLabel","parameters":[{"name":"queryId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"requestBody":{"required":true,"content":{"application/json":{"example":{"label":"Case Summary (All Witnesses)","order":1,"isActive":true}}}},"responses":{"200":{"description":"Updated"},"409":{"description":"Label conflict"}}}},"/queries":{"get":{"tags":["Queries"],"summary":"List queries for a case (as-of view)","description":"Returns queries for a case as of a specified timestamp. Omit 'at' for current state.","operationId":"getQueries","parameters":[{"name":"caseId","in":"query","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"at","in":"query","required":false,"description":"As-of timestamp - returns query state at this time. Omit for current.","schema":{"type":"string","format":"date-time"}}],"responses":{"200":{"description":"Queries returned"}}},"post":{"tags":["Queries"],"summary":"Upsert versioned query definitions (batch)","description":"Creates or updates versioned query definitions. Each submission creates a new version.","operationId":"upsertQueries","requestBody":{"required":true,"content":{"application/json":{"example":{"effectiveAt":"2025-01-01T00:00:00Z","queries":[{"queryId":"1c9d3a9a-0b1e-4e62-9b4f-8b5e6c7d8e9f","userQuery":"Summarise the case.","queryPrompt":"Provide a concise legal summary.","level":"CASE"}]}}}},"responses":{"202":{"description":"Accepted"}}}},"/queries/{queryId}":{"get":{"tags":["Queries"],"summary":"Get single query for a case with lifecycle status","operationId":"getQueryById","parameters":[{"name":"queryId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"caseId","in":"query","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"at","in":"query","required":false,"schema":{"type":"string","format":"date-time"}}],"responses":{"200":{"description":"Query returned"}}}},"/queries/{queryId}/versions":{"get":{"tags":["Queries"],"summary":"Get full version history of a query","description":"Returns complete version history ordered by effectiveAt. Useful for audit trails.","operationId":"getQueryVersions","parameters":[{"name":"queryId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"Version history returned"}}}},"/answers/{caseId}/{queryId}":{"get":{"tags":["Answers"],"summary":"Get AI-generated answer for a case and query","description":"Returns the AI answer. Three modes: latest (default), as-of a timestamp, or specific version. Answer text may include ::SourcePage N citations.","operationId":"getAnswer","parameters":[{"name":"caseId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"queryId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"version","in":"query","required":false,"description":"Specific version. Takes precedence over at.","schema":{"type":"integer","minimum":1}},{"name":"at","in":"query","required":false,"description":"Return latest answer at or before this timestamp.","schema":{"type":"string","format":"date-time"}}],"responses":{"200":{"description":"Answer returned","content":{"application/json":{"schema":{"$ref":"#/components/schemas/AnswerResponse"},"example":{"queryId":"046b6c7f-0b8a-43b9-b35d-6489e6daee91","userQuery":"Summarise the case.","answer":"The case involves charges of theft on 15 March 2025... ::SourcePage 3","version":1,"createdAt":"2025-01-01T11:11:11Z","status":"ANSWER_AVAILABLE"}}}},"404":{"description":"No answer found"}}}},"/v2/cases/{caseId}/queries/{queryId}/answers":{"get":{"tags":["Answers"],"summary":"V2 - Get AI answers list (recommended for new integrations)","description":"V2 endpoint with asOf response envelope. Recommended for new integrations.","operationId":"getAnswersV2","parameters":[{"name":"caseId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"queryId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"version","in":"query","required":false,"schema":{"type":"integer","minimum":1}},{"name":"at","in":"query","required":false,"schema":{"type":"string","format":"date-time"}}],"responses":{"200":{"description":"Answers returned"}}}},"/answers/{caseId}/{queryId}/with-llm":{"get":{"tags":["Answers"],"summary":"Get AI answer with captured LLM input (diagnostics)","description":"Returns the answer plus the full LLM prompt captured when the answer was generated. For diagnostics and audit.","operationId":"getAnswerWithLlm","parameters":[{"name":"caseId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"queryId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"Answer with LLM input returned"}}}},"/ingestions/status":{"get":{"tags":["Ingestion"],"summary":"Get document ingestion pipeline status for a case","description":"Returns current pipeline state. Poll this until phase = INGESTED before querying AI answers.","operationId":"getIngestionStatus","parameters":[{"name":"caseId","in":"query","required":true,"description":"The internal Case ID to check","schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"Status returned","content":{"application/json":{"example":{"scope":{"caseId":"7b1c6a7b-0b1e-4e62-9b4f-8b5e6c7d8e9f","isIdpcAvailable":true},"phase":"INGESTED","lastUpdated":"2025-05-01T12:00:00Z","message":null}}}}}}},"/ingestions/start":{"post":{"tags":["Ingestion"],"summary":"Trigger document ingestion for a court centre, room and date","description":"Triggers the ingestion pipeline for all allocated hearings matching the given court centre, room and date.","operationId":"startIngestion","requestBody":{"required":true,"content":{"application/json":{"example":{"courtCentreId":"57323172-1083-454d-8ab7-2455a8b993e7","roomId":"aa12f3dd-4cc1-4da7-b9ea-552fa3b9bc44","date":"2025-05-01"}}}},"responses":{"202":{"description":"Ingestion started","content":{"application/json":{"example":{"phase":"STARTED","lastUpdated":"2025-01-02T10:00:00Z","message":"Ingestion process started"}}}}}}},"/document/{documentId}/content":{"get":{"tags":["Document"],"summary":"Get pre-signed URL to download a case document","description":"Returns a time-limited pre-signed URL. Valid for ~45 minutes - use immediately, do not cache.","operationId":"getDocumentContent","parameters":[{"name":"documentId","in":"path","required":true,"description":"Unique document ID","schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"Pre-signed URL returned","content":{"application/json":{"example":{"url":"https://sasitlargefiles.blob.core.windows.net/largefiles-blob-container/case-doc.pdf?sig=abc&se=2025-10-30T11:43:25Z"}}}}}}}},"components":{"schemas":{"AnswerResponse":{"type":"object","required":["queryId","userQuery","answer","version","createdAt"],"properties":{"queryId":{"type":"string","format":"uuid"},"userQuery":{"type":"string"},"answer":{"type":"string","description":"AI-generated answer. May include ::SourcePage N citations."},"version":{"type":"integer","description":"Monotonically increasing version number"},"createdAt":{"type":"string","format":"date-time"},"defendantId":{"type":"string","format":"uuid","nullable":true},"status":{"type":"string","enum":["ANSWER_AVAILABLE","ANSWER_NOT_AVAILABLE","IDPC_NOT_FOUND"]}}},"ErrorResponse":{"type":"object","properties":{"error":{"type":"string"},"message":{"type":"string"},"timestamp":{"type":"string","format":"date-time"},"traceId":{"type":"string"}}}}}}};
+
+var specCache = {};
+var currentApi = null;
+var AU = null, AP = null, AR = 'consumer';
+
+function renderHome() {
+  var grid = document.getElementById('apiGrid');
+  grid.innerHTML = APIS.map(function(api) {
+    return '<div class="app-api-card" onclick="showDetail(\'' + api.id + '\')" role="listitem" tabindex="0"' +
+      ' onkeydown="if(event.key===\'Enter\'||event.key===\' \')showDetail(\'' + api.id + '\')">' +
+      '<div class="app-api-card__top">' +
+        '<div style="display:flex;gap:6px;flex-wrap:wrap">' +
+          '<span class="app-tag app-tag--green">&#9679; ' + api.status + '</span>' +
+          '<span class="app-tag app-tag--grey">v' + api.version + '</span>' +
+          '<span class="app-tag app-tag--blue">' + api.domain + '</span>' +
+        '</div>' +
+        '<span class="app-tag app-tag--purple">' + api.authType + '</span>' +
+      '</div>' +
+      '<div class="app-api-card__name">' + api.name + '</div>' +
+      '<div class="app-api-card__id">' + api.shortName + '</div>' +
+      '<p class="app-api-card__desc">' + api.description + '</p>' +
+      '<div class="app-api-card__footer">' +
+        '<span class="app-api-card__meta">' + api.endpointCount + ' endpoint' + (api.endpointCount !== 1 ? 's' : '') + '</span>' +
+        '<span class="app-tag app-tag--blue">View details \u2192</span>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+  updateCount(APIS.length);
+}
+
+function updateCount(n) {
+  var el = document.getElementById('cardCount');
+  if (el) el.textContent = 'Showing ' + n + ' API' + (n !== 1 ? 's' : '');
+}
+
+var activeFilter = 'all';
+
+function filterCards(q) {
+  var lq = q.toLowerCase();
+  var filtered = APIS.filter(function(a) {
+    return (activeFilter === 'all' || a.domain === activeFilter) &&
+      (!lq || a.name.toLowerCase().includes(lq) || a.shortName.toLowerCase().includes(lq) ||
+       a.domain.toLowerCase().includes(lq) || a.description.toLowerCase().includes(lq) ||
+       a.tags.some(function(t) { return t.toLowerCase().includes(lq); }));
+  });
+  var grid = document.getElementById('apiGrid');
+  if (!filtered.length) {
+    grid.innerHTML = '<div style="grid-column:1/-1;padding:40px;text-align:center;color:#505a5f;border:1px solid #b1b4b6;background:#f3f2f1">' +
+      '<p class="govuk-body">No APIs match your search.</p>' +
+      '<p class="govuk-body-s">Can\'t find what you need? <a href="mailto:no-reply@hmcts.com" class="govuk-link">Request a new API to be listed</a>.</p></div>';
+  } else {
+    grid.innerHTML = filtered.map(function(api) {
+      return '<div class="app-api-card" onclick="showDetail(\'' + api.id + '\')" role="listitem" tabindex="0"' +
+        ' onkeydown="if(event.key===\'Enter\'||event.key===\' \')showDetail(\'' + api.id + '\')">' +
+        '<div class="app-api-card__top">' +
+          '<div style="display:flex;gap:6px;flex-wrap:wrap">' +
+            '<span class="app-tag app-tag--green">&#9679; ' + api.status + '</span>' +
+            '<span class="app-tag app-tag--grey">v' + api.version + '</span>' +
+            '<span class="app-tag app-tag--blue">' + api.domain + '</span>' +
+          '</div>' +
+          '<span class="app-tag app-tag--purple">' + api.authType + '</span>' +
+        '</div>' +
+        '<div class="app-api-card__name">' + api.name + '</div>' +
+        '<div class="app-api-card__id">' + api.shortName + '</div>' +
+        '<p class="app-api-card__desc">' + api.description + '</p>' +
+        '<div class="app-api-card__footer">' +
+          '<span class="app-api-card__meta">' + api.endpointCount + ' endpoint' + (api.endpointCount !== 1 ? 's' : '') + '</span>' +
+          '<span class="app-tag app-tag--blue">View details \u2192</span>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+  }
+  updateCount(filtered.length);
+}
+
+function setFilter(domain, btn) {
+  activeFilter = domain;
+  document.querySelectorAll('.app-filter-btn').forEach(function(p) { p.classList.remove('app-filter-btn--active'); });
+  btn.classList.add('app-filter-btn--active');
+  document.getElementById('searchBox').value = '';
+  filterCards('');
+}
+
+function hideAll() {
+  ['homePage','detailPage','marketplacePage','consDash','prodDash'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.classList.remove('app-page--active');
+  });
+}
+
+function setActiveNav(activeId) {
+  ['navBrowse','navMarket','navDash'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.classList.remove('app-nav-link--active');
+  });
+  if (activeId) {
+    var a = document.getElementById(activeId);
+    if (a) a.classList.add('app-nav-link--active');
+  }
+}
+
+function showHome() {
+  hideAll();
+  document.getElementById('homePage').classList.add('app-page--active');
+  setActiveNav('navBrowse');
+  window.scrollTo(0, 0);
+  currentApi = null;
+}
+
+function showMarketplace() {
+  hideAll();
+  document.getElementById('marketplacePage').classList.add('app-page--active');
+  setActiveNav('navMarket');
+  window.scrollTo(0, 0);
+}
+
+function showDetail(apiId) {
+  var api = APIS.find(function(a) { return a.id === apiId; });
+  if (!api) return;
+  currentApi = api;
+  hideAll();
+  document.getElementById('detailPage').classList.add('app-page--active');
+  setActiveNav('');
+  window.scrollTo(0, 0);
+
+  document.querySelectorAll('.app-tabs__tab').forEach(function(t) {
+    t.classList.remove('app-tabs__tab--active');
+    t.setAttribute('aria-selected','false');
+  });
+  document.querySelectorAll('.app-tab-panel').forEach(function(p) { p.classList.remove('app-tab-panel--active'); });
+  var ov = document.getElementById('tab-btn-overview');
+  if (ov) { ov.classList.add('app-tabs__tab--active'); ov.setAttribute('aria-selected','true'); }
+  var ovp = document.getElementById('tab-overview');
+  if (ovp) ovp.classList.add('app-tab-panel--active');
+
+  document.getElementById('breadcrumbApi').textContent = api.name;
+  document.getElementById('dBadges').innerHTML =
+    '<span class="app-tag app-tag--green">&#9679; ' + api.status + '</span> ' +
+    '<span class="app-tag app-tag--grey">v' + api.version + '</span> ' +
+    '<span class="app-tag app-tag--blue">' + api.domain + '</span> ' +
+    api.tags.map(function(t) { return '<span class="app-tag app-tag--grey">' + t + '</span>'; }).join(' ') + ' ' +
+    '<span class="app-tag app-tag--purple">' + api.authType + '</span>';
+  document.getElementById('dName').textContent = api.name;
+  document.getElementById('dId').textContent = api.shortName;
+  document.getElementById('dDesc').textContent = api.description;
+  document.getElementById('dMeta').innerHTML =
+    '<span><strong>' + api.owner + '</strong></span>' +
+    '<span>Contact: <a href="mailto:' + api.contact + '" class="govuk-link">' + api.contact + '</a></span>' +
+    '<span>Licence: ' + api.licence + '</span>';
+  document.getElementById('dActions').innerHTML =
+    '<a class="govuk-button" href="https://app.swaggerhub.com/apis/' + api.swaggerOrg + '/' + api.swaggerApi + '/' + api.swaggerVer + '" target="_blank" rel="noopener">View on SwaggerHub</a>' +
+    '<a class="govuk-button govuk-button--secondary" href="https://virtserver.swaggerhub.com/' + api.swaggerOrg + '/' + api.swaggerApi + '/' + api.swaggerVer + '" target="_blank" rel="noopener">Try mock server</a>';
+  document.getElementById('dPlain').textContent = api.plainEnglish;
+
+  if (api.notes && api.notes.length) {
+    document.getElementById('notesCard').style.display = 'block';
+    document.getElementById('notesBody').innerHTML = api.notes.map(function(n) {
+      return '<div class="app-warning"><strong>!</strong> ' + n + '</div>';
+    }).join('');
+  } else {
+    document.getElementById('notesCard').style.display = 'none';
+  }
+
+  document.getElementById('changelogBody').innerHTML = api.changelog.map(function(cl, i) {
+    return '<div style="display:flex;gap:14px;padding:10px 0;' + (i > 0 ? 'border-top:1px solid #b1b4b6' : '') + '">' +
+      '<span class="app-tag app-tag--blue" style="align-self:flex-start;flex-shrink:0">v' + cl.v + '</span>' +
+      '<span style="font-size:15px;color:#0b0c0c">' + cl.n + '</span></div>';
+  }).join('');
+
+  document.getElementById('sAuth').innerHTML = '<p class="govuk-body" style="margin:0;font-size:14px">' + api.auth + '</p>';
+  document.getElementById('sLinks').innerHTML =
+    '<a class="govuk-button" style="width:100%;text-align:center;margin:0" href="https://app.swaggerhub.com/apis/' + api.swaggerOrg + '/' + api.swaggerApi + '/' + api.swaggerVer + '" target="_blank" rel="noopener">SwaggerHub</a>' +
+    '<a class="govuk-button govuk-button--secondary" style="width:100%;text-align:center;margin:0" href="https://virtserver.swaggerhub.com/' + api.swaggerOrg + '/' + api.swaggerApi + '/' + api.swaggerVer + '" target="_blank" rel="noopener">Mock server</a>';
+  var fsl=document.getElementById('footSwaggerLink'); if(fsl) fsl.innerHTML =
+    '<a href="https://app.swaggerhub.com/apis/' + api.swaggerOrg + '/' + api.swaggerApi + '/' + api.swaggerVer + '" target="_blank" rel="noopener" class="govuk-link">SwaggerHub</a>';
+  document.title = api.name + ' - HMCTS API Catalogue';
+  loadSpec(api);
+}
+
+function switchTab(tabId, btn) {
+  document.querySelectorAll('.app-tabs__tab').forEach(function(t) {
+    t.classList.remove('app-tabs__tab--active');
+    t.setAttribute('aria-selected','false');
+  });
+  document.querySelectorAll('.app-tab-panel').forEach(function(p) { p.classList.remove('app-tab-panel--active'); });
+  btn.classList.add('app-tabs__tab--active');
+  btn.setAttribute('aria-selected','true');
+  var panel = document.getElementById('tab-' + tabId);
+  if (panel) panel.classList.add('app-tab-panel--active');
+}
+
+function toggleEp(i) {
+  var el = document.getElementById('ep' + i);
+  if (el) el.classList.toggle('app-endpoint--open');
+}
+
+
+async function loadSpec(api) {
+  var embedded = EMBEDDED_SPECS[api.id];
+
+  // Always render embedded spec immediately so content is visible right away
+  if (embedded) {
+    renderSpec(api, embedded);
+    updateSyncBar('blue', 'Loaded from embedded spec \u00b7 Connecting to SwaggerHub\u2026', '');
+  } else {
+    updateSyncBar('blue', 'Fetching from SwaggerHub\u2026', '');
+  }
+
+  var key = api.swaggerOrg + '/' + api.swaggerApi + '/' + api.swaggerVer;
+
+  // Try SwaggerHub — two URL patterns for resilience
+  var urls = [
+    'https://api.swaggerhub.com/apis/' + key,
+    'https://app.swaggerhub.com/apiproxy/registry/' + key,
+  ];
+
+  if (specCache[key]) {
+    renderSpec(api, specCache[key]);
+    updateSyncBar('green', 'Live data from SwaggerHub', '\u00b7 Updated ' + new Date().toLocaleTimeString());
+    return;
+  }
+
+  for (var u = 0; u < urls.length; u++) {
+    try {
+      var res = await fetch(urls[u], {
+        headers: { Accept: 'application/json' },
+        mode: 'cors'
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      var liveSpec = await res.json();
+      if (!liveSpec || !liveSpec.paths) throw new Error('No paths in spec');
+      specCache[key] = liveSpec;
+      renderSpec(api, liveSpec);
+      updateSyncBar('green', 'Live data from SwaggerHub', '\u00b7 Updated ' + new Date().toLocaleTimeString());
+      return;
+    } catch(e) {
+      console.info('SwaggerHub fetch failed (' + urls[u] + '):', e.message);
+    }
+  }
+
+  // Both URLs failed — embedded spec is already rendered, just update status
+  if (embedded) {
+    updateSyncBar('blue', 'Showing embedded spec \u00b7 SwaggerHub not reachable from this browser', '');
+  } else {
+    updateSyncBar('red', 'Could not load spec from SwaggerHub', '');
+    renderFallback(api);
+  }
+}
+
+function updateSyncBar(colour, msg, time) {
+  var colours = { green:'#00703c', blue:'#1d70b8', red:'#d4351c' };
+  var dot = document.getElementById('syncDot');
+  var msgEl = document.getElementById('syncMsg');
+  var timeEl = document.getElementById('syncTime');
+  if (dot) dot.style.background = colours[colour] || colours.blue;
+  if (msgEl) { msgEl.textContent = msg; msgEl.style.color = colour === 'green' ? '#005a30' : colour === 'red' ? '#942514' : '#003078'; }
+  if (timeEl) timeEl.textContent = time;
+}
+
+function refreshCurrentSpec() {
+  if (!currentApi) return;
+  var key = currentApi.swaggerOrg + '/' + currentApi.swaggerApi + '/' + currentApi.swaggerVer;
+  delete specCache[key];
+  loadSpec(currentApi);
+}
+
+function renderSpec(api, spec) {
+  var endpoints = getEndpoints(spec);
+  var schemas   = getSchemas(spec);
+
+  document.getElementById('sInfo').innerHTML =
+    [['Version', spec.info ? spec.info.version || api.version : api.version],
+     ['Status', '<strong style="color:#005a30">&#9679; ' + api.status + '</strong>'],
+     ['OpenAPI', spec.openapi || spec.swagger || '\u2014'],
+     ['Endpoints', endpoints.length],
+     ['Schemas', schemas.length],
+     ['Owner', api.owner],
+     ['Licence', api.licence]]
+    .map(function(r) {
+      return '<div class="app-summary-list__row"><span class="app-summary-list__key">' + r[0] + '</span><span class="app-summary-list__value">' + r[1] + '</span></div>';
+    }).join('');
+
+  document.getElementById('epGlance').innerHTML = endpoints.map(function(ep) {
+    return '<div style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #f3f2f1">' +
+      '<span class="app-method app-method--' + ep.method.toLowerCase() + '">' + ep.method + '</span>' +
+      '<code style="font-size:13px;color:#0b0c0c;flex:1;font-family:monospace">' + ep.path + '</code>' +
+      '<span style="font-size:12px;color:#505a5f">' + (ep.summary || '') + '</span></div>';
+  }).join('');
+
+  document.getElementById('epCount').textContent = endpoints.length + ' endpoint' + (endpoints.length !== 1 ? 's' : '');
+  document.getElementById('epList').innerHTML = endpoints.map(function(ep, i) {
+    var paramRows = '';
+    if (ep.parameters && ep.parameters.length) {
+      paramRows = '<span class="app-code-label">Parameters</span>' +
+        '<table class="app-table"><thead><tr><th>Name</th><th>In</th><th>Type</th><th>Required</th><th>Description</th></tr></thead><tbody>' +
+        ep.parameters.map(function(p) {
+          return '<tr><td><span class="app-param-name">' + p.name + '</span></td>' +
+            '<td style="color:#505a5f">' + p.in + '</td>' +
+            '<td><span class="app-param-type">' + ((p.schema && p.schema.type) || p.type || 'string') + ((p.schema && p.schema.format) ? ' (' + p.schema.format + ')' : '') + '</span></td>' +
+            '<td><span class="' + (p.required ? 'app-required' : 'app-optional') + '">' + (p.required ? 'required' : 'optional') + '</span></td>' +
+            '<td style="color:#505a5f;font-size:13px">' + (p.description || '\u2014') + '</td></tr>';
+        }).join('') + '</tbody></table>';
+    }
+    var respRows = '';
+    if (ep.responses && Object.keys(ep.responses).length) {
+      respRows = '<span class="app-code-label">Responses</span>' +
+        Object.keys(ep.responses).map(function(code) {
+          return '<div class="app-response"><span class="app-response-code app-response-code--' + code[0] + '">' + code + '</span><span style="color:#505a5f;font-size:14px">' + (ep.responses[code].description || '') + '</span></div>';
+        }).join('');
+    }
+    return '<div class="app-endpoint" id="ep' + i + '">' +
+      '<button class="app-endpoint__row" onclick="toggleEp(' + i + ')">' +
+        '<span class="app-method app-method--' + ep.method.toLowerCase() + '">' + ep.method + '</span>' +
+        '<code class="app-endpoint__path">' + ep.path + '</code>' +
+        '<span class="app-endpoint__summary">' + (ep.summary || '') + '</span>' +
+        '<span class="app-endpoint__chevron" aria-hidden="true">&#9654;</span>' +
+      '</button>' +
+      '<div class="app-endpoint__detail">' +
+        (ep.description && ep.description !== ep.summary ? '<p style="color:#0b0c0c;font-size:15px;margin-bottom:12px;line-height:1.5">' + ep.description + '</p>' : '') +
+        paramRows + respRows +
+      '</div></div>';
+  }).join('');
+
+  document.getElementById('schemaList').innerHTML = schemas.length
+    ? schemas.map(function(s, i) {
+        var propRows = '';
+        if (s.schema.properties) {
+          var req = s.schema.required || [];
+          propRows = '<table class="app-table"><thead><tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr></thead><tbody>' +
+            Object.keys(s.schema.properties).map(function(key) {
+              var p = s.schema.properties[key];
+              return '<tr><td><code style="color:#1d70b8;font-size:13px">' + key + '</code></td>' +
+                '<td><span class="app-param-type">' + (p.type || (p.$ref ? p.$ref.split('/').pop() : 'object')) + (p.format ? ' (' + p.format + ')' : '') + (p.enum ? ' (enum)' : '') + '</span></td>' +
+                '<td><span class="' + (req.includes(key) ? 'app-required' : 'app-optional') + '">' + (req.includes(key) ? 'required' : 'optional') + '</span></td>' +
+                '<td style="color:#505a5f;font-size:13px">' + (p.description || '\u2014') + '</td></tr>';
+            }).join('') + '</tbody></table>';
+        } else {
+          propRows = '<p style="font-size:14px;color:#505a5f">' + (s.schema.type ? 'Type: ' + s.schema.type : 'No properties defined') + '</p>';
+        }
+        return (i > 0 ? '<hr style="border:none;border-top:1px solid #b1b4b6;margin:18px 0">' : '') +
+          '<div style="margin-bottom:12px"><h3 style="font-size:16px;font-weight:700;color:#0b0c0c;margin-bottom:8px;display:flex;align-items:center;gap:8px">' +
+          '<span style="display:inline-block;width:4px;height:18px;background:#1d70b8;border-radius:2px"></span>' + s.name + '</h3>' +
+          (s.schema.description ? '<p style="font-size:14px;color:#505a5f;margin-bottom:8px">' + s.schema.description + '</p>' : '') +
+          propRows + '</div>';
+      }).join('')
+    : '<p class="govuk-body">No schemas defined in this spec.</p>';
+
+  var allCodes = {};
+  endpoints.forEach(function(ep) {
+    if (ep.responses) Object.keys(ep.responses).forEach(function(c) {
+      if (!allCodes[c]) allCodes[c] = ep.responses[c].description || '';
+    });
+  });
+  var codeKeys = Object.keys(allCodes).sort();
+  document.getElementById('sRC').innerHTML = codeKeys.length
+    ? codeKeys.map(function(code) {
+        return '<div class="app-response"><span class="app-response-code app-response-code--' + code[0] + '">' + code + '</span><span style="color:#505a5f;font-size:13px">' + allCodes[code] + '</span></div>';
+      }).join('')
+    : '<p style="font-size:14px;color:#505a5f">No response codes found.</p>';
+
+  var mock = 'https://virtserver.swaggerhub.com/' + api.swaggerOrg + '/' + api.swaggerApi + '/' + api.swaggerVer;
+  document.getElementById('tryItBody').innerHTML =
+    '<div class="app-panel" style="margin-bottom:14px"><p class="app-panel__body">The mock server returns example responses from the spec. No credentials needed.</p></div>' +
+    '<span class="app-code-label">Mock server base URL</span>' +
+    '<div class="app-code">' + mock + '</div>' +
+    '<span class="app-code-label" style="margin-top:14px">Example requests</span>' +
+    endpoints.slice(0, 5).map(function(ep) {
+      return '<div style="border:1px solid #b1b4b6;padding:10px 12px;margin-top:6px;background:#fff">' +
+        '<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">' +
+          '<span class="app-method app-method--' + ep.method.toLowerCase() + '">' + ep.method + '</span>' +
+          '<code style="font-size:12px;color:#0b0c0c;font-family:monospace">' + mock + ep.path + '</code>' +
+        '</div>' +
+        '<div style="font-size:12px;color:#505a5f">' + (ep.summary || '') + '</div></div>';
+    }).join('') +
+    (endpoints.length > 5 ? '<p class="govuk-body-s" style="margin-top:10px;color:#505a5f">+ ' + (endpoints.length - 5) + ' more \u2014 see Endpoints tab</p>' : '');
+}
+
+function renderFallback(api) {
+  var url = 'https://app.swaggerhub.com/apis/' + api.swaggerOrg + '/' + api.swaggerApi + '/' + api.swaggerVer;
+  var msg = '<p class="govuk-body">Could not load spec. <a href="' + url + '" target="_blank" rel="noopener" class="govuk-link">View directly on SwaggerHub</a>.</p>';
+  ['epGlance','epList','schemaList'].forEach(function(id) { document.getElementById(id).innerHTML = msg; });
+  document.getElementById('sRC').innerHTML = '<p style="font-size:14px;color:#505a5f">Load from SwaggerHub to view.</p>';
+  document.getElementById('tryItBody').innerHTML = '<a class="govuk-button" href="' + url + '" target="_blank" rel="noopener">View and try on SwaggerHub</a>';
+}
+
+function getEndpoints(spec) {
+  var eps = [];
+  var paths = (spec && spec.paths) ? spec.paths : {};
+  Object.keys(paths).forEach(function(path) {
+    ['get','post','put','delete','patch'].forEach(function(method) {
+      if (paths[path][method]) {
+        var op = paths[path][method];
+        eps.push({ method: method.toUpperCase(), path: path, summary: op.summary || '', description: op.description || '', parameters: op.parameters || [], responses: op.responses || {} });
+      }
+    });
+  });
+  return eps;
+}
+
+function getSchemas(spec) {
+  var src = (spec && spec.components && spec.components.schemas) ? spec.components.schemas : (spec && spec.definitions ? spec.definitions : {});
+  return Object.keys(src).map(function(k) { return { name: k, schema: src[k] }; });
+}
+
+/* ── Auth ────────────────────────────────────────────────── */
+function lsU()         { try { return JSON.parse(localStorage.getItem('_cat_users') || '{}'); } catch(e) { return {}; } }
+function lsSU(u)        { localStorage.setItem('_cat_users', JSON.stringify(u)); }
+function lsSess(u)      { localStorage.setItem('_cat_sess',  JSON.stringify(u)); }
+function lsGetSess()    { try { return JSON.parse(localStorage.getItem('_cat_sess')); } catch(e) { return null; } }
+function lsClear()      { localStorage.removeItem('_cat_sess'); }
+function lsAllReqs()    { try { return JSON.parse(localStorage.getItem('_cat_reqs') || '[]'); } catch(e) { return []; } }
+function lsSaveReqs(r)  { localStorage.setItem('_cat_reqs', JSON.stringify(r)); }
+function lsPApis(id)    { try { return JSON.parse(localStorage.getItem('_cat_papis_' + id) || '[]'); } catch(e) { return []; } }
+function lsSPApis(id,a) { localStorage.setItem('_cat_papis_' + id, JSON.stringify(a)); }
+
+function showAuth(tab)   { document.getElementById('authOverlay').style.display = 'flex'; authTab(tab || 'login'); }
+function hideAuth()      { document.getElementById('authOverlay').style.display = 'none'; }
+function showSignIn()    { showAuth('login'); }
+function showRegister()  { showAuth('register'); }
+
+function authTab(t) {
+  document.getElementById('fLogin').style.display    = t === 'login'    ? 'block' : 'none';
+  document.getElementById('fReg').style.display      = t === 'register' ? 'block' : 'none';
+  document.getElementById('atLogin').classList.toggle('app-auth-tab--active', t === 'login');
+  document.getElementById('atLogin').setAttribute('aria-selected', t === 'login' ? 'true' : 'false');
+  document.getElementById('atReg').classList.toggle('app-auth-tab--active',   t === 'register');
+  document.getElementById('atReg').setAttribute('aria-selected', t === 'register' ? 'true' : 'false');
+  setAErr('');
+}
+
+function setAErr(m) {
+  var e = document.getElementById('aErr');
+  e.textContent = m;
+  e.classList.toggle('app-auth-error--show', !!m);
+}
+
+function pickRole(r) {
+  AR = r;
+  document.getElementById('rcC').classList.toggle('app-role-card--selected', r === 'consumer');
+  document.getElementById('rcC').setAttribute('aria-pressed', r === 'consumer' ? 'true' : 'false');
+  document.getElementById('rcP').classList.toggle('app-role-card--selected', r === 'producer');
+  document.getElementById('rcP').setAttribute('aria-pressed', r === 'producer' ? 'true' : 'false');
+}
+
+function doLogin(e) {
+  e.preventDefault(); setAErr('');
+  var btn = document.getElementById('btnL'); btn.disabled = true; btn.textContent = 'Signing in...';
+  var email = document.getElementById('lEm').value.trim();
+  var pw    = document.getElementById('lPw').value;
+  setTimeout(function() {
+    var u = lsU()[email];
+    if (!u || u.pw !== btoa(pw)) {
+      setAErr('Incorrect email address or password.');
+      btn.disabled = false; btn.textContent = 'Sign in'; return;
+    }
+    AU = u; AP = { firstName: u.fn, lastName: u.ln, email: u.email, org: u.org, role: u.role };
+    lsSess(u); hideAuth(); renderNav(); showDash();
+    btn.disabled = false; btn.textContent = 'Sign in';
+  }, 350);
+}
+
+function doRegister(e) {
+  e.preventDefault(); setAErr('');
+  var btn = document.getElementById('btnR'); btn.disabled = true; btn.textContent = 'Creating account...';
+  var fn  = document.getElementById('rFn').value.trim();
+  var ln  = document.getElementById('rLn').value.trim();
+  var em  = document.getElementById('rEm').value.trim();
+  var pw  = document.getElementById('rPw').value;
+  var org = document.getElementById('rOrg').value.trim();
+  setTimeout(function() {
+    var users = lsU();
+    if (users[em]) {
+      setAErr('An account with this email address already exists.');
+      btn.disabled = false; btn.textContent = 'Create account'; return;
+    }
+    var id = Date.now().toString(36) + Math.random().toString(36).slice(2);
+    var u = { id: id, fn: fn, ln: ln, email: em, pw: btoa(pw), org: org, role: AR };
+    users[em] = u; lsSU(users);
+    AU = u; AP = { firstName: fn, lastName: ln, email: em, org: org, role: AR };
+    lsSess(u); hideAuth(); renderNav(); showDash();
+    btn.disabled = false; btn.textContent = 'Create account';
+  }, 350);
+}
+
+function doLogout() { lsClear(); AU = null; AP = null; renderNav(); showHome(); }
+
+function restoreSession() {
+  var u = lsGetSess();
+  if (u) { AU = u; AP = { firstName: u.fn, lastName: u.ln, email: u.email, org: u.org, role: u.role }; }
+}
+
+function renderNav() {
+  var el = document.getElementById('navRight'); if (!el) return;
+  if (AU && AP) {
+    var ini = (AP.firstName ? AP.firstName[0] : '') + (AP.lastName ? AP.lastName[0] : '');
+    var cls = AP.role === 'producer' ? 'app-user-chip__avatar--producer' : '';
+    el.innerHTML =
+      '<div class="app-user-chip" tabindex="0">' +
+        '<div class="app-user-chip__avatar ' + cls + '">' + ini + '</div>' +
+        '<div><div class="app-user-chip__name">' + AP.firstName + ' ' + AP.lastName + '</div>' +
+        '<div class="app-user-chip__role">' + AP.role + '</div></div>' +
+        '<div class="app-user-chip__dropdown">' +
+          '<span class="app-user-chip__dd-item" onclick="showDash()">My dashboard</span>' +
+          '<span class="app-user-chip__dd-item" onclick="showHome()">Browse APIs</span>' +
+          '<span class="app-user-chip__dd-item app-user-chip__dd-item--danger" onclick="doLogout()">Sign out</span>' +
+        '</div>' +
+      '</div>';
+  } else {
+    el.innerHTML =
+      '<button class="govuk-button govuk-button--secondary" style="margin:0 8px 0 0;font-size:14px;padding:6px 14px" onclick="showSignIn()">Sign in</button>' +
+      '<button class="govuk-button" style="margin:0;font-size:14px;padding:6px 14px" onclick="showRegister()">Register</button>';
+  }
+}
+
+/* ── Dashboards ──────────────────────────────────────────── */
+function showDash() {
+  if (!AU || !AP) { showAuth('login'); return; }
+  if (AP.role === 'producer') showPDash(); else showCDash();
+}
+
+function showCDash() {
+  hideAll();
+  document.getElementById('consDash').classList.add('app-page--active');
+  setActiveNav('navDash');
+  window.scrollTo(0, 0);
+  document.getElementById('cGr').textContent = 'Welcome back, ' + (AP.firstName || 'there');
+  document.getElementById('cNm').textContent  = (AP.firstName || '') + ' ' + (AP.lastName || '');
+  document.getElementById('cAv').textContent  = (AP.firstName ? AP.firstName[0] : '') + (AP.lastName ? AP.lastName[0] : '');
+  var sel = document.getElementById('rqApi');
+  if (sel) sel.innerHTML = '<option value="">Select an API\u2026</option>' + APIS.map(function(a) { return '<option value="' + a.id + '">' + a.name + '</option>'; }).join('');
+  document.getElementById('cBrowse').innerHTML = APIS.map(function(api) {
+    return '<div class="app-api-card" onclick="showDetail(\'' + api.id + '\')" style="cursor:pointer" role="listitem" tabindex="0">' +
+      '<div class="app-api-card__name">' + api.name + '</div>' +
+      '<p class="app-api-card__desc">' + api.description + '</p>' +
+      '<div class="app-api-card__footer"><span class="app-api-card__meta">' + api.endpointCount + ' endpoint' + (api.endpointCount !== 1 ? 's' : '') + '</span><span class="app-tag app-tag--blue">View \u2192</span></div>' +
+    '</div>';
+  }).join('');
+  refreshCReqs();
+}
+
+function refreshCReqs() {
+  var reqs = lsAllReqs().filter(function(r) { return AU && r.uid === AU.id; });
+  var cNR = document.getElementById('cNR'); if (cNR) cNR.textContent = reqs.length;
+  var cNA = document.getElementById('cNA'); if (cNA) cNA.textContent = reqs.filter(function(r) { return r.status === 'approved'; }).length;
+  if (reqs.length) {
+    document.getElementById('cRL').innerHTML = reqs.map(function(r) {
+      var api = APIS.find(function(a) { return a.id === r.apiId; });
+      return '<div class="app-req-card">' +
+        '<div class="app-req-icon" style="background:#f3f2f1;border:1px solid #b1b4b6">' + (api ? api.icon : '?') + '</div>' +
+        '<div style="flex:1"><div class="app-req-name">' + r.apiName + '</div><div class="app-req-meta">' + r.sys + ' \u00b7 ' + r.env + '</div></div>' +
+        '<span class="app-tag ' + (r.status === 'approved' ? 'app-tag--green' : r.status === 'rejected' ? 'app-tag--red' : 'app-tag--yellow') + '">' + r.status + '</span>' +
+      '</div>';
+    }).join('');
+  }
+}
+
+function showPDash() {
+  hideAll();
+  document.getElementById('prodDash').classList.add('app-page--active');
+  setActiveNav('navDash');
+  window.scrollTo(0, 0);
+  document.getElementById('pGr').textContent = 'Welcome back, ' + (AP.firstName || 'there');
+  document.getElementById('pNm').textContent  = (AP.firstName || '') + ' ' + (AP.lastName || '');
+  document.getElementById('pAv').textContent  = (AP.firstName ? AP.firstName[0] : '') + (AP.lastName ? AP.lastName[0] : '');
+  var myApis = lsPApis(AU.id);
+  var pNA = document.getElementById('pNA'); if (pNA) pNA.textContent = myApis.length;
+  if (myApis.length) {
+    document.getElementById('pAL').innerHTML = myApis.map(function(a) {
+      return '<div class="app-producer-api">' +
+        '<div class="app-producer-api__header">' +
+          '<div class="app-producer-api__icon">API</div>' +
+          '<div><div class="app-producer-api__name">' + a.name + '</div><div class="app-producer-api__id">' + a.api + '</div></div>' +
+          '<div style="margin-left:auto"><span class="app-tag app-tag--yellow">Pending review</span></div>' +
+        '</div>' +
+        '<div class="app-producer-api__stats"><strong>' + a.domain + '</strong><span>v' + a.ver + '</span><span>' + a.auth + '</span></div>' +
+      '</div>';
+    }).join('');
+  }
+}
+
+function dPanel(role, panel, el) {
+  var pageId = role === 'c' ? 'consDash' : 'prodDash';
+  var page = document.getElementById(pageId);
+  page.querySelectorAll('.app-dash-panel').forEach(function(p) { p.classList.remove('app-dash-panel--active'); });
+  page.querySelectorAll('.app-dash-nav__item').forEach(function(n) { n.classList.remove('app-dash-nav__item--active'); });
+  var target = document.getElementById(role + '-' + panel);
+  if (target) target.classList.add('app-dash-panel--active');
+  if (el) el.classList.add('app-dash-nav__item--active');
+  if (panel === 'prof' && AP) {
+    var isP = role === 'p';
+    var fn = document.getElementById(isP ? 'pPFn' : 'cPFn'); if (fn) fn.value = AP.firstName || '';
+    var ln = document.getElementById(isP ? 'pPLn' : 'cPLn'); if (ln) ln.value = AP.lastName  || '';
+    var em = document.getElementById(isP ? 'pPEm' : 'cPEm'); if (em) em.value = AP.email     || '';
+    var og = document.getElementById(isP ? 'pPOrg' : 'cPOrg'); if (og) og.value = AP.org    || '';
+  }
+}
+
+function saveProf(role) {
+  if (!AU || !AP) return;
+  var isP = role === 'p';
+  var fn = document.getElementById(isP ? 'pPFn' : 'cPFn').value;
+  var ln = document.getElementById(isP ? 'pPLn' : 'cPLn').value;
+  var og = document.getElementById(isP ? 'pPOrg' : 'cPOrg').value;
+  AP.firstName = fn; AP.lastName = ln; AP.org = og;
+  var users = lsU();
+  if (users[AU.email]) { users[AU.email].fn = fn; users[AU.email].ln = ln; users[AU.email].org = og; lsSU(users); }
+  var updated = {}; for (var k in AU) updated[k] = AU[k];
+  updated.fn = fn; updated.ln = ln; updated.org = og; lsSess(updated); AU = updated;
+  renderNav();
+  var n = document.createElement('div');
+  n.className = 'govuk-notification-banner govuk-notification-banner--success';
+  n.setAttribute('role','alert');
+  n.innerHTML = '<div class="govuk-notification-banner__header"><h2 class="govuk-notification-banner__title">Success</h2></div><div class="govuk-notification-banner__content"><p class="govuk-body">Profile saved.</p></div>';
+  var panelEl = document.getElementById((isP ? 'p' : 'c') + '-prof');
+  panelEl.insertBefore(n, panelEl.firstChild);
+  setTimeout(function() { n.remove(); }, 3000);
+}
+
+document.addEventListener('keydown', function(e) {
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    e.preventDefault(); showHome();
+    var sb = document.getElementById('searchBox'); if (sb) sb.focus();
+  }
+  if (e.key === 'Escape') hideAuth();
+});
+
+restoreSession();
+renderNav();
+renderHome();
+
+/* ═══ REQUEST ACCESS — task list journey ═══════════════ */
+
+/* ═══ REQUEST ACCESS — task list journey ═══════════════ */
+var reqData = {};
+var reqStepsDone = [false, false, false, false];
+
+function showReqStep(step) {
+  document.querySelectorAll('#c-access .app-step-form').forEach(function(el) {
+    el.classList.remove('app-step-form--active');
+  });
+  var target = document.getElementById('req-' + step);
+  if (target) target.classList.add('app-step-form--active');
+  if (step === 'check') buildReqCheckAnswers();
+  window.scrollTo(0,0);
+}
+
+function clearErrors(prefix, step) {
+  var errBox = document.getElementById(prefix + '-err-' + step);
+  if (errBox) errBox.style.display = 'none';
+  var errList = document.getElementById(prefix + '-err-' + step + '-list');
+  if (errList) errList.innerHTML = '';
+  document.querySelectorAll('#' + prefix + '-step' + step + ' .govuk-form-group--error').forEach(function(fg) {
+    fg.classList.remove('govuk-form-group--error');
+    var em = fg.querySelector('.govuk-error-message');
+    if (em) em.remove();
+    fg.querySelectorAll('.govuk-input--error,.govuk-select--error,.govuk-textarea--error').forEach(function(inp) {
+      inp.classList.remove('govuk-input--error','govuk-select--error','govuk-textarea--error');
+    });
+  });
+}
+
+function showErrors(prefix, step, errors) {
+  var errBox  = document.getElementById(prefix + '-err-' + step);
+  var errList = document.getElementById(prefix + '-err-' + step + '-list');
+  if (!errBox || !errList || !errors.length) return;
+  errList.innerHTML = errors.map(function(e) {
+    return '<li><a href="#' + e.fieldId + '">' + e.msg + '</a></li>';
+  }).join('');
+  errBox.style.display = 'block';
+  errBox.focus();
+  errors.forEach(function(e) {
+    var fg = document.getElementById('fg-' + e.fieldId);
+    if (!fg) return;
+    fg.classList.add('govuk-form-group--error');
+    var inp = document.getElementById(e.fieldId);
+    if (inp) {
+      if (inp.tagName === 'INPUT')    inp.classList.add('govuk-input--error');
+      if (inp.tagName === 'SELECT')   inp.classList.add('govuk-select--error');
+      if (inp.tagName === 'TEXTAREA') inp.classList.add('govuk-textarea--error');
+    }
+    var em = document.createElement('span');
+    em.className = 'govuk-error-message';
+    em.innerHTML = '<span class="govuk-visually-hidden">Error:</span> ' + e.msg;
+    var label = fg.querySelector('label');
+    if (label) label.insertAdjacentElement('afterend', em);
+    else fg.insertBefore(em, fg.firstChild);
+  });
+}
+
+function saveReqStep(stepNum) {
+  clearErrors('req', stepNum);
+  var errors = [];
+  if (stepNum === 1) {
+    var api = document.getElementById('rqApi').value;
+    if (!api) errors.push({fieldId:'rqApi', msg:'Select an API'});
+    if (!errors.length) {
+      reqData.apiId = api;
+      reqData.apiName = (APIS.find(function(a){return a.id===api;})||{}).name||api;
+    }
+  } else if (stepNum === 2) {
+    var env = document.getElementById('rqEnv').value;
+    var vol = document.getElementById('rqVol').value;
+    if (!env) errors.push({fieldId:'rqEnv', msg:'Select an environment'});
+    if (!vol) errors.push({fieldId:'rqVol', msg:'Select a request volume'});
+    if (!errors.length) { reqData.env = env; reqData.vol = vol; }
+  } else if (stepNum === 3) {
+    var sys = document.getElementById('rqSys').value.trim();
+    if (!sys) errors.push({fieldId:'rqSys', msg:'Enter the name of your system or application'});
+    if (!errors.length) reqData.sys = sys;
+  } else if (stepNum === 4) {
+    var just = document.getElementById('rqJust').value.trim();
+    if (!just) errors.push({fieldId:'rqJust', msg:'Enter your business justification'});
+    if (just && just.length < 30) errors.push({fieldId:'rqJust', msg:'Business justification must be at least 30 characters'});
+    if (!errors.length) reqData.just = just;
+  }
+  if (errors.length) { showErrors('req', stepNum, errors); return; }
+  reqStepsDone[stepNum - 1] = true;
+  updateReqTaskList();
+  var nextSteps = ['step2','step3','step4','tasklist'];
+  showReqStep(nextSteps[stepNum - 1]);
+}
+
+function updateReqTaskList() {
+  var done = 0;
+  reqStepsDone.forEach(function(d, i) {
+    var statusEl = document.getElementById('req-status-' + (i+1));
+    if (!statusEl) return;
+    if (d) {
+      done++;
+      statusEl.className = 'govuk-task-list__status govuk-task-list__status--completed';
+      statusEl.innerHTML = '<span class="govuk-tag govuk-tag--green">Completed</span>';
+    }
+  });
+  var prog = document.getElementById('req-task-progress');
+  if (prog) prog.textContent = done + ' of 4 sections completed';
+  var btn = document.getElementById('req-submit-btn');
+  if (btn) {
+    var allDone = reqStepsDone.every(function(d){return d;});
+    btn.disabled = !allDone;
+    btn.setAttribute('aria-disabled', allDone ? 'false' : 'true');
+    btn.style.opacity = allDone ? '1' : '.5';
+    btn.style.cursor = allDone ? 'pointer' : 'not-allowed';
+  }
+}
+
+function buildReqCheckAnswers() {
+  var rows = [
+    ['API', reqData.apiName || '\u2014', 'step1'],
+    ['Environment', reqData.env || '\u2014', 'step2'],
+    ['Request volume', reqData.vol || '\u2014', 'step2'],
+    ['System name', reqData.sys || '\u2014', 'step3'],
+    ['Justification', (reqData.just||'').replace(/\n/g,'<br>') || '\u2014', 'step4'],
+  ];
+  var dl = document.getElementById('req-check-answers');
+  if (dl) dl.innerHTML = rows.map(function(r) {
+    return '<div class="govuk-summary-list__row">' +
+      '<dt class="govuk-summary-list__key">' + r[0] + '</dt>' +
+      '<dd class="govuk-summary-list__value">' + r[1] + '</dd>' +
+      '<dd class="govuk-summary-list__actions"><a class="govuk-link" onclick="showReqStep(\'' + r[2] + '\');return false;" href="#">Change<span class="govuk-visually-hidden"> ' + r[0].toLowerCase() + '</span></a></dd>' +
+    '</div>';
+  }).join('');
+}
+
+function submitReq() {
+  var decl1 = document.getElementById('decl1');
+  var decl2 = document.getElementById('decl2');
+  if (!decl1 || !decl2 || !decl1.checked || !decl2.checked) {
+    alert('You must confirm both declarations before submitting.');
+    return;
+  }
+  var savedName = reqData.apiName || '';
+  var reqs = lsAllReqs();
+  reqs.push({ id: Date.now().toString(36), uid: AU.id, apiId: reqData.apiId, apiName: reqData.apiName, sys: reqData.sys, env: reqData.env, vol: reqData.vol, just: reqData.just, status: 'pending', created: new Date().toISOString() });
+  lsSaveReqs(reqs);
+  reqData = {}; reqStepsDone = [false,false,false,false];
+  document.getElementById('c-access').innerHTML =
+    '<h1 class="govuk-heading-l">Request submitted</h1>' +
+    '<div class="govuk-panel govuk-panel--confirmation" style="margin-bottom:24px"><h2 class="govuk-panel__title">Request sent</h2><div class="govuk-panel__body">For: ' + savedName + '</div></div>' +
+    '<p class="govuk-body">The API owner will review your request within 2 business days. You will be contacted at your registered email address.</p>' +
+    '<p class="govuk-body"><a class="govuk-link" onclick="dPanel(\'c\',\'reqs\',document.querySelectorAll(\'#consDash .app-dash-nav__item\')[2]);refreshCReqs();return false;" href="#">View your requests</a></p>';
+  refreshCReqs();
+}
+
+/* ═══ PUBLISH API — task list journey ═════════════════════ */
+var pubData = {};
+var pubStepsDone = [false, false, false];
+
+function showPubStep(step) {
+  document.querySelectorAll('#p-publish .app-step-form').forEach(function(el) {
+    el.classList.remove('app-step-form--active');
+  });
+  var target = document.getElementById('pub-' + step);
+  if (target) target.classList.add('app-step-form--active');
+  if (step === 'check') buildPubCheckAnswers();
+  window.scrollTo(0,0);
+}
+
+function savePubStep(stepNum) {
+  clearErrors('pub', stepNum);
+  var errors = [];
+  if (stepNum === 1) {
+    var n = document.getElementById('pubN').value.trim();
+    var o = document.getElementById('pubO').value.trim();
+    var a = document.getElementById('pubA').value.trim();
+    var v = document.getElementById('pubV').value.trim();
+    if (!n) errors.push({fieldId:'pubN', msg:'Enter an API display name'});
+    if (!o) errors.push({fieldId:'pubO', msg:'Enter the SwaggerHub organisation'});
+    if (!a) errors.push({fieldId:'pubA', msg:'Enter the SwaggerHub API name'});
+    if (!v) errors.push({fieldId:'pubV', msg:'Enter a version number'});
+    if (!errors.length) { pubData.name=n; pubData.org=o; pubData.api=a; pubData.ver=v; }
+  } else if (stepNum === 2) {
+    var d    = document.getElementById('pubD').value;
+    var auth = document.getElementById('pubAuth').value;
+    var cls  = document.querySelector('input[name="pubClass"]:checked');
+    if (!d)   errors.push({fieldId:'pubD',    msg:'Select a domain'});
+    if (!cls) errors.push({fieldId:'pubClass', msg:'Select a data classification'});
+    if (!auth) errors.push({fieldId:'pubAuth', msg:'Select an authentication type'});
+    if (!errors.length) { pubData.domain=d; pubData.classification=cls?cls.value:''; pubData.auth=auth; }
+  } else if (stepNum === 3) {
+    var desc = document.getElementById('pubDesc').value.trim();
+    if (!desc) errors.push({fieldId:'pubDesc', msg:'Enter a plain-English description'});
+    else if (desc.length < 50) errors.push({fieldId:'pubDesc', msg:'Description must be at least 50 characters'});
+    if (!errors.length) pubData.desc = desc;
+  }
+  if (errors.length) { showErrors('pub', stepNum, errors); return; }
+  pubStepsDone[stepNum - 1] = true;
+  updatePubTaskList();
+  var nextSteps = ['step2','step3','tasklist'];
+  showPubStep(nextSteps[stepNum - 1]);
+}
+
+function updatePubTaskList() {
+  var done = 0;
+  pubStepsDone.forEach(function(d, i) {
+    var statusEl = document.getElementById('pub-status-' + (i+1));
+    if (!statusEl) return;
+    if (d) {
+      done++;
+      statusEl.className = 'govuk-task-list__status govuk-task-list__status--completed';
+      statusEl.innerHTML = '<span class="govuk-tag govuk-tag--green">Completed</span>';
+    }
+  });
+  var prog = document.getElementById('pub-task-progress');
+  if (prog) prog.textContent = done + ' of 3 sections completed';
+  var btn = document.getElementById('pub-submit-btn');
+  if (btn) {
+    var allDone = pubStepsDone.every(function(d){return d;});
+    btn.disabled = !allDone;
+    btn.setAttribute('aria-disabled', allDone ? 'false' : 'true');
+    btn.style.opacity = allDone ? '1' : '.5';
+    btn.style.cursor = allDone ? 'pointer' : 'not-allowed';
+  }
+}
+
+function buildPubCheckAnswers() {
+  var rows = [
+    ['API name', pubData.name||'\u2014', 'step1'],
+    ['SwaggerHub org', pubData.org||'\u2014', 'step1'],
+    ['SwaggerHub API', pubData.api||'\u2014', 'step1'],
+    ['Version', pubData.ver||'\u2014', 'step1'],
+    ['Domain', pubData.domain||'\u2014', 'step2'],
+    ['Classification', pubData.classification||'\u2014', 'step2'],
+    ['Authentication', pubData.auth||'\u2014', 'step2'],
+    ['Description', (pubData.desc||'').replace(/\n/g,'<br>')||'\u2014', 'step3'],
+  ];
+  var dl = document.getElementById('pub-check-answers');
+  if (dl) dl.innerHTML = rows.map(function(r) {
+    return '<div class="govuk-summary-list__row">' +
+      '<dt class="govuk-summary-list__key">' + r[0] + '</dt>' +
+      '<dd class="govuk-summary-list__value">' + r[1] + '</dd>' +
+      '<dd class="govuk-summary-list__actions"><a class="govuk-link" onclick="showPubStep(\'' + r[2] + '\');return false;" href="#">Change<span class="govuk-visually-hidden"> ' + r[0].toLowerCase() + '</span></a></dd>' +
+    '</div>';
+  }).join('');
+}
+
+function submitPub() {
+  var d1 = document.getElementById('pubDecl1');
+  var d2 = document.getElementById('pubDecl2');
+  var d3 = document.getElementById('pubDecl3');
+  if (!d1.checked || !d2.checked || !d3.checked) {
+    alert('You must confirm all three declarations before submitting.');
+    return;
+  }
+  var ex = lsPApis(AU.id);
+  ex.push({ name:pubData.name, org:pubData.org, api:pubData.api, ver:pubData.ver, domain:pubData.domain, classification:pubData.classification, auth:pubData.auth, desc:pubData.desc, created:new Date().toISOString() });
+  lsSPApis(AU.id, ex);
+  var submittedName = pubData.name;
+  pubData = {}; pubStepsDone = [false,false,false];
+  document.getElementById('p-publish').innerHTML =
+    '<h1 class="govuk-heading-l">API submitted</h1>' +
+    '<div class="govuk-panel govuk-panel--confirmation" style="margin-bottom:24px"><h2 class="govuk-panel__title">Submitted for review</h2><div class="govuk-panel__body">' + submittedName + '</div></div>' +
+    '<p class="govuk-body">The marketplace team will review your API and contact you within 5 business days.</p>' +
+    '<p class="govuk-body"><a class="govuk-link" onclick="dPanel(\'p\',\'myapis\',document.querySelectorAll(\'#prodDash .app-dash-nav__item\')[1]);showPDash();return false;" href="#">View your APIs</a></p>';
+  showPDash();
+}
+
+document.addEventListener('input', function(e) {
+  if (e.target && e.target.id === 'pubDesc') {
+    var counter = document.getElementById('pubDescCount');
+    var len = e.target.value.length;
+    if (counter) {
+      counter.textContent = len + ' character' + (len !== 1 ? 's' : '');
+      counter.style.color = len < 50 ? '#d4351c' : '#005a30';
+    }
+  }
+});
+
+
+/* ── CAP-03: SwaggerHub spec validation ───────────────────── */
+var specValidating = false;
+async function validateSwaggerSpec() {
+  var org = document.getElementById('pubO') ? document.getElementById('pubO').value.trim() : '';
+  var api = document.getElementById('pubA') ? document.getElementById('pubA').value.trim() : '';
+  var ver = document.getElementById('pubV') ? document.getElementById('pubV').value.trim() : '';
+  var statusEl = document.getElementById('specValidationStatus');
+  if (!statusEl) return;
+  if (!org || !api || !ver) { statusEl.style.display = 'none'; return; }
+  if (specValidating) return;
+  specValidating = true;
+  statusEl.style.display = 'block';
+  statusEl.innerHTML = '<span style="color:#505a5f;font-size:14px">&#8635; Checking SwaggerHub&hellip;</span>';
+  var url = 'https://api.swaggerhub.com/apis/' + org + '/' + api + '/' + ver;
+  try {
+    var res = await fetch(url, { headers: { Accept: 'application/json' }, mode: 'cors' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    var spec = await res.json();
+    if (!spec || !spec.paths) throw new Error('No paths in spec');
+    var epCount = Object.values(spec.paths).reduce(function(n, p) {
+      return n + ['get','post','put','delete','patch'].filter(function(m){ return p[m]; }).length;
+    }, 0);
+    statusEl.innerHTML = '<div style="border-left:4px solid #00703c;background:#cce2d8;padding:10px 14px;font-size:14px">' +
+      '<strong style="color:#005a30">&#10003; Spec found on SwaggerHub</strong> &mdash; ' +
+      (spec.info && spec.info.title ? spec.info.title : api) + ' &middot; ' + epCount + ' endpoint' + (epCount !== 1 ? 's' : '') + '</div>';
+  } catch(e) {
+    statusEl.innerHTML = '<div style="border-left:4px solid #d4351c;background:#f6d7d2;padding:10px 14px;font-size:14px">' +
+      '<strong style="color:#942514">&#10007; Spec not found on SwaggerHub</strong> &mdash; check your organisation, API name and version are correct.</div>';
+  }
+  specValidating = false;
+}
+
+/* ── CAP-03: Draft save / restore ─────────────────────────── */
+var PUB_DRAFT_KEY = '_cat_pub_draft';
+
+function savePubDraft() {
+  try {
+    localStorage.setItem(PUB_DRAFT_KEY, JSON.stringify({
+      data:  pubData,
+      steps: pubStepsDone
+    }));
+  } catch(e) {}
+}
+
+function loadPubDraft() {
+  try {
+    var raw = localStorage.getItem(PUB_DRAFT_KEY);
+    if (!raw) return false;
+    var saved = JSON.parse(raw);
+    if (!saved || !saved.data || !Object.keys(saved.data).length) return false;
+    pubData      = saved.data;
+    pubStepsDone = saved.steps || [false, false, false];
+    return true;
+  } catch(e) { return false; }
+}
+
+function discardPubDraft() {
+  localStorage.removeItem(PUB_DRAFT_KEY);
+  pubData = {}; pubStepsDone = [false, false, false];
+  var notice = document.getElementById('pubDraftNotice');
+  if (notice) notice.style.display = 'none';
+  var btn = document.getElementById('pub-submit-btn');
+  if (btn) { btn.disabled = true; btn.style.opacity = '.5'; btn.style.cursor = 'not-allowed'; }
+  document.querySelectorAll('[id^="pub-status-"]').forEach(function(el) {
+    el.className = 'govuk-task-list__status govuk-task-list__status--not-started';
+    el.innerHTML = '<span class="govuk-tag govuk-tag--grey">Not yet started</span>';
+  });
+  var prog = document.getElementById('pub-task-progress');
+  if (prog) prog.textContent = '0 of 3 sections completed';
+}
+
+/* Restore draft fields when a step is shown */
+var _origShowPubStep = showPubStep;
+showPubStep = function(step) {
+  _origShowPubStep(step);
+  if (step === 'step1' && pubData.name !== undefined) {
+    var n = document.getElementById('pubN'); if (n && pubData.name)  n.value = pubData.name;
+    var o = document.getElementById('pubO'); if (o && pubData.org)   o.value = pubData.org;
+    var a = document.getElementById('pubA'); if (a && pubData.api)   a.value = pubData.api;
+    var v = document.getElementById('pubV'); if (v && pubData.ver)   v.value = pubData.ver;
+  }
+  if (step === 'step2' && pubData.domain !== undefined) {
+    var d = document.getElementById('pubD'); if (d && pubData.domain) d.value = pubData.domain;
+    var au = document.getElementById('pubAuth'); if (au && pubData.auth) au.value = pubData.auth;
+    if (pubData.classification) {
+      var radios = document.querySelectorAll('input[name="pubClass"]');
+      radios.forEach(function(r) { if (r.value === pubData.classification) r.checked = true; });
+    }
+  }
+  if (step === 'step3' && pubData.desc !== undefined) {
+    var desc = document.getElementById('pubDesc');
+    if (desc && pubData.desc) {
+      desc.value = pubData.desc;
+      var counter = document.getElementById('pubDescCount');
+      if (counter) {
+        counter.textContent = pubData.desc.length + ' character' + (pubData.desc.length !== 1 ? 's' : '');
+        counter.style.color = pubData.desc.length < 50 ? '#d4351c' : '#005a30';
+      }
+    }
+  }
+};
+
+/* Save draft after each step completes */
+var _origSavePubStep = savePubStep;
+savePubStep = function(stepNum) {
+  _origSavePubStep(stepNum);
+  savePubDraft();
+};
+
+/* Clear draft on successful submit */
+var _origSubmitPub = submitPub;
+submitPub = function() {
+  _origSubmitPub();
+  localStorage.removeItem(PUB_DRAFT_KEY);
+};
+
+/* ── CAP-03: Edit submitted API ───────────────────────────── */
+function editPubApi(idx) {
+  var apis = lsPApis(AU.id);
+  var api  = apis[idx];
+  if (!api) return;
+  pubData = {
+    name:           api.name,
+    org:            api.org,
+    api:            api.api,
+    ver:            api.ver,
+    domain:         api.domain,
+    classification: api.classification || '',
+    auth:           api.auth,
+    desc:           api.desc
+  };
+  pubStepsDone = [true, true, true];
+  savePubDraft();
+  dPanel('p', 'publish', document.querySelectorAll('#prodDash .app-dash-nav__item')[3]);
+  showPubStep('tasklist');
+  updatePubTaskList();
+  var notice = document.getElementById('pubDraftNotice');
+  if (notice) notice.style.display = 'block';
+}
+
+/* ── CAP-03: Patch showPDash to show Edit buttons ─────────── */
+var _origShowPDash = showPDash;
+showPDash = function() {
+  _origShowPDash();
+  var myApis = lsPApis(AU.id);
+  if (myApis.length) {
+    document.getElementById('pAL').innerHTML = myApis.map(function(a, i) {
+      return '<div class="app-producer-api">' +
+        '<div class="app-producer-api__header">' +
+          '<div class="app-producer-api__icon">API</div>' +
+          '<div style="flex:1">' +
+            '<div class="app-producer-api__name">' + a.name + '</div>' +
+            '<div class="app-producer-api__id">' + (a.api || '') + '</div>' +
+          '</div>' +
+          '<div style="display:flex;align-items:center;gap:10px">' +
+            '<span class="app-tag app-tag--yellow">Pending review</span>' +
+            '<button class="govuk-link" style="background:none;border:none;cursor:pointer;font-size:14px;text-decoration:underline;color:#1d70b8;padding:0" onclick="editPubApi(' + i + ')">Edit</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="app-producer-api__stats">' +
+          '<strong>' + (a.domain || '') + '</strong>' +
+          (a.classification ? '<span class="app-tag app-tag--' + (a.classification === 'Official' ? 'blue' : a.classification === 'Restricted' ? 'red' : 'yellow') + '" style="font-size:11px">' + a.classification + '</span>' : '') +
+          '<span>v' + (a.ver || '') + '</span>' +
+          '<span>' + (a.auth || '') + '</span>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+  }
+  /* Restore draft notice if one exists */
+  if (loadPubDraft()) {
+    updatePubTaskList();
+  }
+};
+
+/* ── On producer dashboard load: restore any saved draft ──── */
+var _origShowCDash = showCDash;
+showCDash = function() {
+  _origShowCDash();
+};
+
+/* Restore draft when producer opens Publish panel via dPanel */
+var _origDPanel = dPanel;
+dPanel = function(role, panel, el) {
+  _origDPanel(role, panel, el);
+  if (role === 'p' && panel === 'publish') {
+    var hasDraft = loadPubDraft();
+    var notice = document.getElementById('pubDraftNotice');
+    if (notice) notice.style.display = hasDraft ? 'block' : 'none';
+    if (hasDraft) {
+      updatePubTaskList();
+    }
+  }
+};
+
+</script>
+</body>
+</html>

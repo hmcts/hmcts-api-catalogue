@@ -6,7 +6,7 @@
 
 ## What is the HMCTS API Catalogue?
 
-The HMCTS API Catalogue is a curated discovery, publication and access management platform for APIs across the Common Platform Programme. Think of it as the central directory for all available APIs — one place to browse what exists, understand how it works, and request access.
+The HMCTS API Catalogue is a curated discovery, publication and access management platform for APIs across the HMCTS Digital and Technology Solutions. Think of it as the central directory for all available APIs — one place to browse what exists, understand how it works, and request access.
 
 The catalogue does not own, build or run any of the APIs it lists. Their respective teams do. The catalogue makes them **discoverable, documented and accessible**.
 
@@ -14,13 +14,13 @@ The catalogue does not own, build or run any of the APIs it lists. Their respect
 
 ## Vision statement
 
-To be the single authoritative source of truth for all HMCTS Common Platform APIs — enabling any team to find the data they need in minutes, not days, and giving API owners a governed, visible channel to share their work with the wider organisation.
+To be the single authoritative source of truth for all HMCTS HMCTS APIs — enabling any team to find the data they need in minutes, not days, and giving API owners a governed, visible channel to share their work with the wider organisation.
 
 ---
 
 ## What the marketplace does
 
-- Catalogues and curates APIs across the Common Platform Programme
+- Catalogues and curates APIs across the HMCTS Digital and Technology Solutions
 - Provides a single point of discovery for consumers and producers
 - Documents what each API does in plain English and technical detail
 - Manages access requests and the approval workflow
@@ -123,7 +123,7 @@ Leadership and programme management get a clear, always-current picture of the A
 
 ## Programme context
 
-The HMCTS API Catalogue is part of the Common Platform Programme, delivered by HMCTS Digital and Technology Solutions. It sits alongside the API gateway and SwaggerHub organisation as part of the broader API management capability.
+The HMCTS API Catalogue is part of the HMCTS Digital and Technology Solutions, delivered by HMCTS Digital and Technology Solutions. It sits alongside the API gateway and SwaggerHub organisation as part of the broader API management capability.
 
 The prototype was built using the GOV.UK Design System and is designed to be deployable as a static web application on Azure Static Web Apps or GitHub Pages, with Supabase as the recommended shared backend when moving from prototype to production.
 

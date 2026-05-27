@@ -8,7 +8,7 @@
 
 ## What is the HMCTS API Marketplace?
 
-The HMCTS API Marketplace is a **discovery, publication and access management platform** for APIs across the Common Platform Programme. Think of it as the central directory for all available APIs — one place to browse what exists, understand how it works, and request access.
+The HMCTS API Marketplace is a **discovery, publication and access management platform** for APIs across the HMCTS Digital and Technology Solutions. Think of it as the central directory for all available APIs — one place to browse what exists, understand how it works, and request access.
 
 It is **not** a development team. The marketplace does not own, build or run any of the APIs it lists. Their respective teams do. The marketplace makes them **discoverable, documented and accessible**.
 
@@ -132,4 +132,4 @@ hmcts-api-catalogue/
 
 ## Licence
 
-MIT — HMCTS Digital and Technology Solutions, Common Platform Programme.
+MIT — HMCTS Digital and Technology Solutions, HMCTS Digital and Technology Solutions.

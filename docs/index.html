@@ -649,6 +649,7 @@ body, input, select, textarea, button {
           <button class="app-dash-nav__item" onclick="dPanel('c','reqs',this)">My requests</button>
           <button class="app-dash-nav__item" onclick="dPanel('c','access',this)">Request access</button>
           <button class="app-dash-nav__item" onclick="dPanel('c','prof',this)">My profile</button>
+          <button class="app-dash-nav__item" onclick="dPanel('c','newapi',this);renderNewApiHistory()">Request a new API</button>
           <button class="app-dash-nav__item app-dash-nav__item--danger" onclick="doLogout()">Sign out</button>
         </nav>
       </div>
@@ -714,6 +715,30 @@ body, input, select, textarea, button {
             <button class="govuk-button" onclick="submitReq()">Submit request</button>
             <button class="govuk-button govuk-button--secondary" onclick="showReqStep('tasklist')" style="margin-left:12px">Save and come back later</button>
           </div>
+        <div class="app-dash-panel" id="c-newapi">
+          <h1 class="govuk-heading-l">Request a new API</h1>
+          <p class="govuk-body">Can't find the data you need in the catalogue? Complete this form and the marketplace team will investigate and get back to you.</p>
+          <div class="govuk-inset-text">This is for requesting a <strong>new API to be created or listed</strong>. If the API already exists and you need access, use <a class="govuk-link" onclick="dPanel('c','access',document.querySelectorAll('#consDash .app-dash-nav__item')[3]);return false;" href="#">Request access</a> instead.</div>
+          <div id="c-newapi-form">
+            <div class="app-form-card">
+              <div class="govuk-form-group" id="fg-napiName"><label class="govuk-label govuk-label--m" for="napiName">What would you call this API?</label><div class="govuk-hint">A short descriptive name, for example: Defendant Address Lookup or Bail Status API.</div><input class="govuk-input" id="napiName" type="text" autocomplete="off" spellcheck="true"></div>
+              <div class="govuk-form-group" id="fg-napiDomain"><label class="govuk-label govuk-label--m" for="napiDomain">Which business domain does this relate to?</label><select class="govuk-select" id="napiDomain" style="width:100%"><option value="">Select a domain&hellip;</option><option>Case Administration</option><option>Reference Data</option><option>Case Management</option><option>Hearing Results</option><option>Scheduling and Listing</option><option>I am not sure</option><option>Other</option></select></div>
+              <div class="govuk-form-group" id="fg-napiData"><label class="govuk-label govuk-label--m" for="napiData">What data do you need?</label><div class="govuk-hint">Be as specific as you can — for example: "defendant name, date of birth and current bail status for a given case URN".</div><textarea class="govuk-textarea" id="napiData" rows="5" spellcheck="true"></textarea></div>
+              <div class="govuk-form-group" id="fg-napiWhy"><label class="govuk-label govuk-label--m" for="napiWhy">Why does your system need this data?</label><div class="govuk-hint">Describe the business use case — what decisions or actions will this data support?</div><textarea class="govuk-textarea" id="napiWhy" rows="4" spellcheck="true"></textarea></div>
+              <div class="govuk-form-group" id="fg-napiSystem"><label class="govuk-label govuk-label--m" for="napiSystem">Which system or service would consume this API?</label><input class="govuk-input" id="napiSystem" type="text" placeholder="e.g. Case Admin Portal" autocomplete="off"></div>
+              <div class="govuk-form-group" id="fg-napiVol"><label class="govuk-label govuk-label--m" for="napiVol">What is your expected request volume?</label><div class="govuk-hint">An approximate daily estimate helps us plan infrastructure.</div><select class="govuk-select" id="napiVol" style="width:100%"><option value="">Select an option&hellip;</option><option>Low — up to 1,000 requests per day</option><option>Medium — 1,000 to 10,000 requests per day</option><option>High — over 10,000 requests per day</option><option>Not sure yet</option></select></div>
+              <div class="govuk-form-group" id="fg-napiClass"><fieldset class="govuk-fieldset"><legend class="govuk-fieldset__legend govuk-fieldset__legend--m">What data classification do you expect this API to carry?</legend><div class="govuk-hint">If unsure, select Official.</div><div class="govuk-radios"><div class="govuk-radios__item"><input class="govuk-radios__input" id="napiClass-1" name="napiClass" type="radio" value="Official"><label class="govuk-label govuk-radios__label" for="napiClass-1">Official — general government business</label></div><div class="govuk-radios__item"><input class="govuk-radios__input" id="napiClass-2" name="napiClass" type="radio" value="Official-Sensitive"><label class="govuk-label govuk-radios__label" for="napiClass-2">Official-Sensitive — defendant personal data, judiciary information</label></div><div class="govuk-radios__item"><input class="govuk-radios__input" id="napiClass-3" name="napiClass" type="radio" value="Restricted"><label class="govuk-label govuk-radios__label" for="napiClass-3">Restricted — information whose disclosure could compromise personal safety</label></div></div></fieldset></div>
+              <div class="govuk-form-group" id="fg-napiKnown"><label class="govuk-label govuk-label--m" for="napiKnown">Do you know of an existing data source that provides this? (optional)</label><div class="govuk-hint">If you have seen this data elsewhere, tell us — it may already exist.</div><input class="govuk-input" id="napiKnown" type="text" placeholder="e.g. Internal XHIBIT feed, or not sure" autocomplete="off"></div>
+              <div class="govuk-form-group" id="fg-napiPriority"><label class="govuk-label govuk-label--m" for="napiPriority">How urgent is this request?</label><select class="govuk-select" id="napiPriority" style="width:100%"><option value="">Select an option&hellip;</option><option>Critical — blocking a live service</option><option>High — needed for an upcoming delivery</option><option>Medium — needed within the next quarter</option><option>Low — longer term planning</option></select></div>
+              <div id="napi-err" class="govuk-error-summary" style="display:none" role="alert"><h2 class="govuk-error-summary__title">There is a problem</h2><ul class="govuk-error-summary__list" id="napi-err-list"></ul></div>
+              <button class="govuk-button" onclick="submitNewApiRequest()">Submit request</button>
+            </div>
+          </div>
+          <div id="c-newapi-history" style="margin-top:32px">
+            <h2 class="govuk-heading-m">My previous requests</h2>
+            <div id="napiHistoryList"></div>
+          </div>
+        </div>
         <div class="app-dash-panel" id="c-prof"><h1 class="govuk-heading-l">My profile</h1><div class="app-form-card"><div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px"><div class="govuk-form-group" style="margin:0"><label class="govuk-label govuk-label--s" for="cPFn">First name</label><input class="govuk-input" id="cPFn" type="text"></div><div class="govuk-form-group" style="margin:0"><label class="govuk-label govuk-label--s" for="cPLn">Last name</label><input class="govuk-input" id="cPLn" type="text"></div></div><div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="cPEm">Email</label><input class="govuk-input" id="cPEm" type="email" readonly style="background:#f3f2f1;cursor:not-allowed"></div><div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="cPOrg">Organisation</label><input class="govuk-input" id="cPOrg" type="text"></div><button class="govuk-button govuk-button--secondary" onclick="saveProf('c')">Save changes</button></div></div>
       </div>
     </div>
@@ -860,7 +885,7 @@ function filterCards(q) {
   if (!filtered.length) {
     grid.innerHTML = '<div style="grid-column:1/-1;padding:40px;text-align:center;color:#505a5f;border:1px solid #b1b4b6;background:#f3f2f1">' +
       '<p class="govuk-body">No APIs match your search.</p>' +
-      '<p class="govuk-body-s">Can\'t find what you need? <a href="mailto:no-reply@hmcts.com" class="govuk-link">Request a new API to be listed</a>.</p></div>';
+      '<p class="govuk-body-s">Can\'t find what you need? <a onclick="requestNewApi()" class="govuk-link" style="cursor:pointer">Request a new API to be listed</a>.</p></div>';
   } else {
     grid.innerHTML = filtered.map(function(api) {
       return '<div class="app-api-card" onclick="showDetail(\'' + api.id + '\')" role="listitem" tabindex="0"' +
@@ -1335,6 +1360,13 @@ function showCDash() {
   hideAll();
   document.getElementById('consDash').classList.add('app-page--active');
   setActiveNav('navDash');
+  /* Reset to overview panel */
+  document.querySelectorAll('#consDash .app-dash-panel').forEach(function(p){ p.classList.remove('app-dash-panel--active'); });
+  document.querySelectorAll('#consDash .app-dash-nav__item').forEach(function(n){ n.classList.remove('app-dash-nav__item--active'); });
+  var ovPanel = document.getElementById('c-ov');
+  if (ovPanel) ovPanel.classList.add('app-dash-panel--active');
+  var ovBtn = document.querySelector('#consDash .app-dash-nav__item');
+  if (ovBtn) ovBtn.classList.add('app-dash-nav__item--active');
   window.scrollTo(0, 0);
   document.getElementById('cGr').textContent = 'Welcome back, ' + (AP.firstName || 'there');
   document.getElementById('cNm').textContent  = (AP.firstName || '') + ' ' + (AP.lastName || '');
@@ -1913,6 +1945,138 @@ dPanel = function(role, panel, el) {
   }
 };
 
+
+/* ════════════════════════════════════════════════════════════
+   Request a New API — consumer flow
+   ════════════════════════════════════════════════════════════ */
+function lsNewApiReqs()     { try { return JSON.parse(localStorage.getItem('_cat_new_api_reqs') || '[]'); } catch(e) { return []; } }
+function lsSaveNewApiReqs(a){ localStorage.setItem('_cat_new_api_reqs', JSON.stringify(a)); }
+
+function requestNewApi() {
+  if (AU && AP && AP.role === 'consumer') {
+    /* If not on consumer dashboard, navigate there first */
+    var consDash = document.getElementById('consDash');
+    if (!consDash || !consDash.classList.contains('app-page--active')) {
+      showCDash();
+    }
+    /* Now activate the c-newapi panel */
+    dPanel('c', 'newapi', null);
+    /* Highlight the correct nav item */
+    document.querySelectorAll('#consDash .app-dash-nav__item').forEach(function(b){
+      if (b.textContent.trim() === 'Request a new API') b.classList.add('app-dash-nav__item--active');
+    });
+    renderNewApiHistory();
+    window.scrollTo(0, 0);
+  } else if (AU && AP) {
+    alert('Please sign in with a consumer account to request a new API.');
+  } else {
+    showAuth('login');
+  }
+}
+
+function submitNewApiRequest() {
+  var name     = document.getElementById('napiName')     ? document.getElementById('napiName').value.trim()  : '';
+  var domain   = document.getElementById('napiDomain')   ? document.getElementById('napiDomain').value        : '';
+  var data     = document.getElementById('napiData')     ? document.getElementById('napiData').value.trim()   : '';
+  var why      = document.getElementById('napiWhy')      ? document.getElementById('napiWhy').value.trim()    : '';
+  var system   = document.getElementById('napiSystem')   ? document.getElementById('napiSystem').value.trim() : '';
+  var vol      = document.getElementById('napiVol')      ? document.getElementById('napiVol').value            : '';
+  var priority = document.getElementById('napiPriority') ? document.getElementById('napiPriority').value       : '';
+  var known    = document.getElementById('napiKnown')    ? document.getElementById('napiKnown').value.trim()   : '';
+  var classEl  = document.querySelector('input[name="napiClass"]:checked');
+  var classification = classEl ? classEl.value : '';
+
+  var errors = [];
+  if (!name)           errors.push({ id:'napiName',     msg:'Enter a name for the API you need' });
+  if (!domain)         errors.push({ id:'napiDomain',   msg:'Select a business domain' });
+  if (!data)           errors.push({ id:'napiData',     msg:'Describe the data you need' });
+  if (!why)            errors.push({ id:'napiWhy',      msg:'Explain why your system needs this data' });
+  if (!system)         errors.push({ id:'napiSystem',   msg:'Enter the name of your system or service' });
+  if (!vol)            errors.push({ id:'napiVol',      msg:'Select an expected request volume' });
+  if (!classification) errors.push({ id:'napiClass',    msg:'Select a data classification' });
+  if (!priority)       errors.push({ id:'napiPriority', msg:'Select how urgent this request is' });
+
+  ['napiName','napiDomain','napiData','napiWhy','napiSystem','napiVol','napiPriority'].forEach(function(id) {
+    var fg = document.getElementById('fg-' + id);
+    var inp = document.getElementById(id);
+    if (fg) { fg.classList.remove('govuk-form-group--error'); var em = fg.querySelector('.govuk-error-message'); if (em) em.remove(); }
+    if (inp) inp.classList.remove('govuk-input--error','govuk-select--error','govuk-textarea--error');
+  });
+  var fgClass = document.getElementById('fg-napiClass');
+  if (fgClass) { fgClass.classList.remove('govuk-form-group--error'); var em2 = fgClass.querySelector('.govuk-error-message'); if (em2) em2.remove(); }
+
+  var errBox = document.getElementById('napi-err');
+  var errList = document.getElementById('napi-err-list');
+  if (errors.length) {
+    if (errBox) errBox.style.display = 'block';
+    if (errList) errList.innerHTML = errors.map(function(e){ return '<li><a href="#' + e.id + '">' + e.msg + '</a></li>'; }).join('');
+    errors.forEach(function(e) {
+      var fg = document.getElementById('fg-' + e.id);
+      var inp = document.getElementById(e.id);
+      if (fg) { fg.classList.add('govuk-form-group--error'); var em = document.createElement('span'); em.className = 'govuk-error-message'; em.innerHTML = '<span class="govuk-visually-hidden">Error:</span> ' + e.msg; var lbl = fg.querySelector('label')||fg.querySelector('legend'); if (lbl) lbl.insertAdjacentElement('afterend', em); }
+      if (inp) inp.classList.add(inp.tagName==='TEXTAREA'?'govuk-textarea--error':inp.tagName==='SELECT'?'govuk-select--error':'govuk-input--error');
+    });
+    if (errBox) errBox.scrollIntoView({ behavior:'smooth' }); return;
+  }
+  if (errBox) errBox.style.display = 'none';
+
+  var id = Date.now().toString(36) + Math.random().toString(36).slice(2,5);
+  var req = { id:id, name:name, domain:domain, dataNeed:data, why:why, system:system,
+    volume:vol, classification:classification, knownSource:known, priority:priority,
+    submittedBy: AU?AU.id:'', submitterName: AU?(AU.fn+' '+AU.ln):'',
+    submittedAt: new Date().toISOString(), status:'Received' };
+  var reqs = lsNewApiReqs(); reqs.push(req); lsSaveNewApiReqs(reqs);
+
+  var formEl = document.getElementById('c-newapi-form');
+  if (formEl) formEl.innerHTML =
+    '<div class="govuk-panel govuk-panel--confirmation" style="margin-bottom:24px">' +
+      '<h2 class="govuk-panel__title">Request submitted</h2>' +
+      '<div class="govuk-panel__body">' + name + '</div>' +
+    '</div>' +
+    '<dl class="govuk-summary-list" style="margin-bottom:24px">' +
+      '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Domain</dt><dd class="govuk-summary-list__value">' + domain + '</dd></div>' +
+      '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Classification</dt><dd class="govuk-summary-list__value">' + classification + '</dd></div>' +
+      '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Priority</dt><dd class="govuk-summary-list__value">' + priority + '</dd></div>' +
+      '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Reference</dt><dd class="govuk-summary-list__value"><strong>' + id + '</strong></dd></div>' +
+    '</dl>' +
+    '<p class="govuk-body">Thank you. The marketplace team will review your request and contact you if they need more information.</p>' +
+    '<p class="govuk-body"><a class="govuk-link" onclick="resetNewApiForm();return false;" href="#">Submit another request</a></p>';
+  renderNewApiHistory();
+}
+
+function resetNewApiForm() {
+  var formEl = document.getElementById('c-newapi-form');
+  if (!formEl) return;
+  formEl.innerHTML =
+    '<div class="app-form-card">' +
+    '<div class="govuk-form-group" id="fg-napiName"><label class="govuk-label govuk-label--m" for="napiName">What would you call this API?</label><div class="govuk-hint">A short descriptive name.</div><input class="govuk-input" id="napiName" type="text" autocomplete="off"></div>' +
+    '<div class="govuk-form-group" id="fg-napiDomain"><label class="govuk-label govuk-label--m" for="napiDomain">Which business domain?</label><select class="govuk-select" id="napiDomain" style="width:100%"><option value="">Select a domain&hellip;</option><option>Case Administration</option><option>Reference Data</option><option>Case Management</option><option>Hearing Results</option><option>Scheduling and Listing</option><option>I am not sure</option><option>Other</option></select></div>' +
+    '<div class="govuk-form-group" id="fg-napiData"><label class="govuk-label govuk-label--m" for="napiData">What data do you need?</label><textarea class="govuk-textarea" id="napiData" rows="5"></textarea></div>' +
+    '<div class="govuk-form-group" id="fg-napiWhy"><label class="govuk-label govuk-label--m" for="napiWhy">Why does your system need this data?</label><textarea class="govuk-textarea" id="napiWhy" rows="4"></textarea></div>' +
+    '<div class="govuk-form-group" id="fg-napiSystem"><label class="govuk-label govuk-label--m" for="napiSystem">Which system would consume this API?</label><input class="govuk-input" id="napiSystem" type="text" autocomplete="off"></div>' +
+    '<div class="govuk-form-group" id="fg-napiVol"><label class="govuk-label govuk-label--m" for="napiVol">Expected request volume?</label><select class="govuk-select" id="napiVol" style="width:100%"><option value="">Select&hellip;</option><option>Low — up to 1,000 requests per day</option><option>Medium — 1,000 to 10,000 requests per day</option><option>High — over 10,000 requests per day</option><option>Not sure yet</option></select></div>' +
+    '<div class="govuk-form-group" id="fg-napiClass"><fieldset class="govuk-fieldset"><legend class="govuk-fieldset__legend govuk-fieldset__legend--m">Expected data classification?</legend><div class="govuk-radios"><div class="govuk-radios__item"><input class="govuk-radios__input" id="napiClass-1" name="napiClass" type="radio" value="Official"><label class="govuk-label govuk-radios__label" for="napiClass-1">Official</label></div><div class="govuk-radios__item"><input class="govuk-radios__input" id="napiClass-2" name="napiClass" type="radio" value="Official-Sensitive"><label class="govuk-label govuk-radios__label" for="napiClass-2">Official-Sensitive</label></div><div class="govuk-radios__item"><input class="govuk-radios__input" id="napiClass-3" name="napiClass" type="radio" value="Restricted"><label class="govuk-label govuk-radios__label" for="napiClass-3">Restricted</label></div></div></fieldset></div>' +
+    '<div class="govuk-form-group" id="fg-napiKnown"><label class="govuk-label govuk-label--m" for="napiKnown">Known existing source? (optional)</label><input class="govuk-input" id="napiKnown" type="text" autocomplete="off"></div>' +
+    '<div class="govuk-form-group" id="fg-napiPriority"><label class="govuk-label govuk-label--m" for="napiPriority">How urgent is this?</label><select class="govuk-select" id="napiPriority" style="width:100%"><option value="">Select&hellip;</option><option>Critical — blocking a live service</option><option>High — needed for an upcoming delivery</option><option>Medium — needed within the next quarter</option><option>Low — longer term planning</option></select></div>' +
+    '<div id="napi-err" class="govuk-error-summary" style="display:none" role="alert"><h2 class="govuk-error-summary__title">There is a problem</h2><ul class="govuk-error-summary__list" id="napi-err-list"></ul></div>' +
+    '<button class="govuk-button" onclick="submitNewApiRequest()">Submit request</button>' +
+    '</div>';
+}
+
+function renderNewApiHistory() {
+  var list = document.getElementById('napiHistoryList');
+  if (!list) return;
+  var mine = lsNewApiReqs().filter(function(r){ return AU && r.submittedBy === AU.id; });
+  if (!mine.length) { list.innerHTML = '<p class="govuk-body" style="color:#505a5f">Your submitted requests will appear here.</p>'; return; }
+  list.innerHTML = mine.sort(function(a,b){ return a.submittedAt < b.submittedAt ? 1 : -1; })
+    .map(function(r) {
+      return '<div class="app-submission-card"><div class="app-submission-card__header">' +
+        '<div><div class="app-submission-card__name">' + r.name + '</div>' +
+        '<div class="app-submission-card__meta">' + (r.domain||'') + ' &middot; ' + (r.priority||'') + ' &middot; Ref: ' + r.id + ' &middot; ' + timeSince(r.submittedAt) + '</div></div>' +
+        '<span class="app-tag app-tag--blue">' + r.status + '</span></div>' +
+        '<p class="app-submission-card__body">' + (r.dataNeed||'').substring(0,120) + (r.dataNeed&&r.dataNeed.length>120?'&hellip;':'') + '</p></div>';
+    }).join('');
+}
 </script>
 </body>
 </html>

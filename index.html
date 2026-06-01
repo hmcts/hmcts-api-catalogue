@@ -1274,10 +1274,29 @@ function setAErr(m) {
 
 function pickRole(r) {
   AR = r;
-  document.getElementById('rcC').classList.toggle('app-role-card--selected', r === 'consumer');
-  document.getElementById('rcC').setAttribute('aria-pressed', r === 'consumer' ? 'true' : 'false');
-  document.getElementById('rcP').classList.toggle('app-role-card--selected', r === 'producer');
-  document.getElementById('rcP').setAttribute('aria-pressed', r === 'producer' ? 'true' : 'false');
+  ['rcC','rcP','rcR'].forEach(function(id) {
+    var el = document.getElementById(id); if (!el) return;
+    var val = id === 'rcC' ? 'consumer' : id === 'rcP' ? 'producer' : 'reviewer';
+    el.classList.toggle('app-role-card--selected', r === val);
+    el.setAttribute('aria-pressed', r === val ? 'true' : 'false');
+  });
+}
+
+
+/* ── Permission model ────────────────────────────────────── */
+function defaultPermissions(role) {
+  return {
+    canBrowse:        true,
+    canRequestAccess: role === 'consumer' || role === 'producer',
+    canRequestNewApi: role === 'consumer' || role === 'producer',
+    canPublish:       role === 'producer',
+    canReview:        role === 'reviewer',
+    canAdmin:         false
+  };
+}
+
+function hasPermission(perm) {
+  return AP && AP.permissions && AP.permissions[perm] === true;
 }
 
 function doLogin(e) {
@@ -1291,7 +1310,9 @@ function doLogin(e) {
       setAErr('Incorrect email address or password.');
       btn.disabled = false; btn.textContent = 'Sign in'; return;
     }
-    AU = u; AP = { firstName: u.fn, lastName: u.ln, email: u.email, org: u.org, role: u.role };
+    /* Back-fill permissions for accounts registered before this update */
+    if (!u.permissions) { u.permissions = defaultPermissions(u.role); lsSU(Object.assign(lsU(), {[email]: u})); }
+    AU = u; AP = { firstName: u.fn, lastName: u.ln, email: u.email, org: u.org, role: u.role, permissions: u.permissions };
     lsSess(u); hideAuth(); renderNav(); showDash();
     btn.disabled = false; btn.textContent = 'Sign in';
   }, 350);
@@ -1312,9 +1333,10 @@ function doRegister(e) {
       btn.disabled = false; btn.textContent = 'Create account'; return;
     }
     var id = Date.now().toString(36) + Math.random().toString(36).slice(2);
-    var u = { id: id, fn: fn, ln: ln, email: em, pw: btoa(pw), org: org, role: AR };
+    var perms = defaultPermissions(AR);
+    var u = { id: id, fn: fn, ln: ln, email: em, pw: btoa(pw), org: org, role: AR, permissions: perms };
     users[em] = u; lsSU(users);
-    AU = u; AP = { firstName: fn, lastName: ln, email: em, org: org, role: AR };
+    AU = u; AP = { firstName: fn, lastName: ln, email: em, org: org, role: AR, permissions: perms };
     lsSess(u); hideAuth(); renderNav(); showDash();
     btn.disabled = false; btn.textContent = 'Create account';
   }, 350);
@@ -1324,14 +1346,14 @@ function doLogout() { lsClear(); AU = null; AP = null; renderNav(); showHome(); 
 
 function restoreSession() {
   var u = lsGetSess();
-  if (u) { AU = u; AP = { firstName: u.fn, lastName: u.ln, email: u.email, org: u.org, role: u.role }; }
+  if (u) { if (!u.permissions) u.permissions = defaultPermissions(u.role); AU = u; AP = { firstName: u.fn, lastName: u.ln, email: u.email, org: u.org, role: u.role, permissions: u.permissions }; }
 }
 
 function renderNav() {
   var el = document.getElementById('navRight'); if (!el) return;
   if (AU && AP) {
     var ini = (AP.firstName ? AP.firstName[0] : '') + (AP.lastName ? AP.lastName[0] : '');
-    var cls = AP.role === 'producer' ? 'app-user-chip__avatar--producer' : '';
+    var cls = hasPermission('canPublish') ? 'app-user-chip__avatar--producer' : hasPermission('canReview') ? 'app-user-chip__avatar--reviewer' : '';
     el.innerHTML =
       '<div class="app-user-chip" tabindex="0">' +
         '<div class="app-user-chip__avatar ' + cls + '">' + ini + '</div>' +
@@ -1353,7 +1375,9 @@ function renderNav() {
 /* ── Dashboards ──────────────────────────────────────────── */
 function showDash() {
   if (!AU || !AP) { showAuth('login'); return; }
-  if (AP.role === 'producer') showPDash(); else showCDash();
+  if (hasPermission('canReview')) showRvDash();
+  else if (hasPermission('canPublish')) showPDash();
+  else showCDash();
 }
 
 function showCDash() {
@@ -1953,7 +1977,7 @@ function lsNewApiReqs()     { try { return JSON.parse(localStorage.getItem('_cat
 function lsSaveNewApiReqs(a){ localStorage.setItem('_cat_new_api_reqs', JSON.stringify(a)); }
 
 function requestNewApi() {
-  if (AU && AP && AP.role === 'consumer') {
+  if (AU && AP && (hasPermission('canRequestNewApi') || hasPermission('canRequestAccess'))) {
     /* If not on consumer dashboard, navigate there first */
     var consDash = document.getElementById('consDash');
     if (!consDash || !consDash.classList.contains('app-page--active')) {

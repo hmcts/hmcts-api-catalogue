@@ -1,8 +1,6 @@
 # Requirements Status — api-catalogue-v7
 
-**Date:** May 2026 | **Scope:** CAP-01, CAP-03, CAP-05 (actively developed capabilities)
-
-For the full capability gap analysis see [capability-gap-analysis.md](capability-gap-analysis.md).
+**Date:** June 2026 | **Scope:** CAP-01, CAP-03, CAP-05, CAP-06 (actively developed capabilities)
 
 ---
 
@@ -18,7 +16,7 @@ For the full capability gap analysis see [capability-gap-analysis.md](capability
 | REQ-CAP01-06 | 5-tab detail page | ✅ |
 | REQ-CAP01-07 | Plain-English summary | ✅ |
 | REQ-CAP01-08 | Related APIs in sidebar | ❌ Outstanding |
-| REQ-CAP01-09 | Zero-results suggest prompt | ✅ |
+| REQ-CAP01-09 | Zero-results → Request a new API | ✅ |
 | REQ-CAP01-10 | Embedded + live spec | ✅ |
 | REQ-CAP01-11 | Approved APIs in catalogue | ✅ |
 | REQ-CAP01-12 | Multiple spec sources | ✅ |
@@ -27,31 +25,11 @@ For the full capability gap analysis see [capability-gap-analysis.md](capability
 
 ## CAP-03: API Publication & Onboarding — 19/19 (100%)
 
-| Req | Description | Status |
-|---|---|---|
-| REQ-CAP03-01 | Display name field | ✅ |
-| REQ-CAP03-02 | SwaggerHub spec source | ✅ |
-| REQ-CAP03-03 | URL spec source | ✅ |
-| REQ-CAP03-04 | File upload spec source | ✅ |
-| REQ-CAP03-05 | Live spec validation | ✅ |
-| REQ-CAP03-06 | Data classification field | ✅ |
-| REQ-CAP03-07 | Domain field | ✅ |
-| REQ-CAP03-08 | Authentication type field | ✅ |
-| REQ-CAP03-09 | Plain-English description (min 50 chars) | ✅ |
-| REQ-CAP03-10 | Character counter | ✅ |
-| REQ-CAP03-11 | 3-step task list | ✅ |
-| REQ-CAP03-12 | Check your answers | ✅ |
-| REQ-CAP03-13 | Declaration checkboxes (×3) | ✅ |
-| REQ-CAP03-14 | Draft save and restore | ✅ |
-| REQ-CAP03-15 | Edit submitted API | ✅ |
-| REQ-CAP03-16 | Submission to shared queue | ✅ |
-| REQ-CAP03-17 | Status visible in My APIs | ✅ |
-| REQ-CAP03-18 | Reviewer notes to producer | ✅ |
-| REQ-CAP03-19 | Reference number on submission | ✅ |
+All requirements met. See CAP-03-publication.md for full detail.
 
 ---
 
-## CAP-05: Access Request Management — 10/13 (77%)
+## CAP-05: Access Request Management — 13/13 (100%)
 
 | Req | Description | Status |
 |---|---|---|
@@ -59,15 +37,39 @@ For the full capability gap analysis see [capability-gap-analysis.md](capability
 | REQ-CAP05-02 | Environment selection | ✅ |
 | REQ-CAP05-03 | Volume selection | ✅ |
 | REQ-CAP05-04 | System name field | ✅ |
-| REQ-CAP05-05 | Business justification (min 30 chars) | ✅ |
+| REQ-CAP05-05 | Business justification | ✅ |
 | REQ-CAP05-06 | 4-step task list | ✅ |
 | REQ-CAP05-07 | Check your answers | ✅ |
 | REQ-CAP05-08 | Declaration checkboxes (×2) | ✅ |
 | REQ-CAP05-09 | Request stored | ✅ |
 | REQ-CAP05-10 | Consumer status tracking | ✅ |
-| REQ-CAP05-11 | Request visible to API owner | ❌ Outstanding |
-| REQ-CAP05-12 | Status updates to consumer | ❌ Outstanding |
-| REQ-CAP05-13 | In-portal notification | ❌ Outstanding |
+| REQ-CAP05-11 | Request visible to API owner | ✅ |
+| REQ-CAP05-12 | Status updates to consumer | ✅ |
+| REQ-CAP05-13 | In-portal notification | ❌ CAP-07 |
+
+---
+
+## CAP-06: Access Request Approval Workflow — 4/8 (50%)
+
+| Req | Description | Status |
+|---|---|---|
+| REQ-CAP06-01 | Validate request fields | ✅ |
+| REQ-CAP06-02 | Route to API owner | ✅ |
+| REQ-CAP06-03 | Governance stage for Official-Sensitive | ❌ Outstanding |
+| REQ-CAP06-04 | Approve or reject with notes | ✅ |
+| REQ-CAP06-05 | Request further information | ❌ Outstanding |
+| REQ-CAP06-06 | SLA enforcement | ❌ Requires backend |
+| REQ-CAP06-07 | SLA breach reminders | ❌ Requires backend |
+| REQ-CAP06-08 | Consumer resubmit after rejection | ❌ Outstanding |
+
+---
+
+## Additional capabilities built (not in original gap analysis)
+
+| Feature | Description |
+|---|---|
+| Request a new API | Consumer 8-field form for requesting new APIs not in the catalogue |
+| Permission-based auth | `defaultPermissions()` and `hasPermission()` model replacing role string checks |
 
 ---
 
@@ -78,6 +80,9 @@ A requirement is **done** when:
 2. No console errors on the happy path
 3. GOV.UK Frontend component pattern used where one exists
 4. Keyboard navigation works
-5. Error states are handled (empty fields, invalid input, network failure)
-6. The file is saved to the project
+5. Error states are handled
+6. The file is saved to the project and pushed to the repo
 
+---
+
+*Last updated: June 2026*

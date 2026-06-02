@@ -767,12 +767,13 @@ body, input, select, textarea, button {
         <div class="app-dash-panel" id="p-incoming">
           <h1 class="govuk-heading-l">Access requests</h1>
           <p class="govuk-body" style="color:#505a5f">Requests from consumers for your APIs. Review each request and approve or reject with a reason.</p>
-          <div class="govuk-tabs" style="margin-top:16px">
-            <ul class="govuk-tabs__list">
-              <li class="govuk-tabs__list-item govuk-tabs__list-item--selected"><button class="govuk-tabs__tab" onclick="switchIncomingTab('pending',this)">Pending <span id="incomingPendingCount" class="govuk-tag govuk-tag--blue" style="margin-left:4px;font-size:11px">0</span></button></li>
-              <li class="govuk-tabs__list-item"><button class="govuk-tabs__tab" onclick="switchIncomingTab('actioned',this)">Actioned</button></li>
-            </ul>
+
+          <!-- Tab buttons -->
+          <div style="display:flex;gap:0;border-bottom:2px solid #b1b4b6;margin-top:16px;margin-bottom:0">
+            <button id="tabBtnPending" onclick="switchIncomingTab('pending',this)" style="padding:10px 16px;border:none;border-bottom:4px solid #1d70b8;background:none;font-size:16px;font-weight:700;color:#1d70b8;cursor:pointer;margin-bottom:-2px">Pending <span id="incomingPendingCount" style="background:#1d70b8;color:#fff;border-radius:10px;padding:1px 7px;font-size:12px;margin-left:4px">0</span></button>
+            <button id="tabBtnActioned" onclick="switchIncomingTab('actioned',this)" style="padding:10px 16px;border:none;border-bottom:4px solid transparent;background:none;font-size:16px;color:#505a5f;cursor:pointer;margin-bottom:-2px">Actioned</button>
           </div>
+
           <div id="incomingPendingList" style="margin-top:16px"></div>
           <div id="incomingActionedList" style="margin-top:16px;display:none"></div>
 
@@ -1456,7 +1457,7 @@ function refreshCReqs() {
     return '<div class="app-submission-card">' +
       '<div class="app-submission-card__header">' +
         '<div><div class="app-submission-card__name">' + r.apiName + '</div>' +
-        '<div class="app-submission-card__meta">' + r.env + ' &middot; ' + r.sys + ' &middot; ' + timeSince(r.created) + '</div></div>' +
+        '<div class="app-submission-card__meta">' + r.env + ' &middot; ' + r.sys + ' &middot; ' + (function(d){var s=Math.floor((new Date()-new Date(d))/1000);if(s<60)return 'just now';if(s<3600)return Math.floor(s/60)+'m ago';if(s<86400)return Math.floor(s/3600)+'h ago';return Math.floor(s/86400)+'d ago';})(r.created) + '</div></div>' +
         '<span class="app-tag ' + tagClass + '">' + tagLabel + '</span>' +
       '</div>' +
       (r.producerNotes && r.status !== 'pending' ? '<div class="app-notes-box"><strong>Decision note:</strong> ' + r.producerNotes + '</div>' : '') +
@@ -2148,13 +2149,22 @@ function renderNewApiHistory() {
     .map(function(r) {
       return '<div class="app-submission-card"><div class="app-submission-card__header">' +
         '<div><div class="app-submission-card__name">' + r.name + '</div>' +
-        '<div class="app-submission-card__meta">' + (r.domain||'') + ' &middot; ' + (r.priority||'') + ' &middot; Ref: ' + r.id + ' &middot; ' + timeSince(r.submittedAt) + '</div></div>' +
+        '<div class="app-submission-card__meta">' + (r.domain||'') + ' &middot; ' + (r.priority||'') + ' &middot; Ref: ' + r.id + ' &middot; ' + (function(d){var s=Math.floor((new Date()-new Date(d))/1000);if(s<60)return 'just now';if(s<3600)return Math.floor(s/60)+'m ago';if(s<86400)return Math.floor(s/3600)+'h ago';return Math.floor(s/86400)+'d ago';})(r.submittedAt) + '</div></div>' +
         '<span class="app-tag app-tag--blue">' + r.status + '</span></div>' +
         '<p class="app-submission-card__body">' + (r.dataNeed||'').substring(0,120) + (r.dataNeed&&r.dataNeed.length>120?'&hellip;':'') + '</p></div>';
     }).join('');
 }
 
 
+
+/* ── Utility: human-readable time since ─────────────────── */
+function timeSince(dateStr) {
+  var s = Math.floor((new Date() - new Date(dateStr)) / 1000);
+  if (s < 60)    return 'just now';
+  if (s < 3600)  return Math.floor(s / 60) + 'm ago';
+  if (s < 86400) return Math.floor(s / 3600) + 'h ago';
+  return Math.floor(s / 86400) + 'd ago';
+}
 /* ════════════════════════════════════════════════════════════
    CAP-06  Access Request Approval Workflow
    ════════════════════════════════════════════════════════════ */
@@ -2256,7 +2266,7 @@ function renderIncomingCard(r, isPending) {
     '<div class="app-submission-card__header">' +
       '<div>' +
         '<div class="app-submission-card__name">' + r.apiName + '</div>' +
-        '<div class="app-submission-card__meta">From: ' + (r.submitterName || 'Consumer') + (r.submitterOrg ? ' &mdash; ' + r.submitterOrg : '') + ' &middot; ' + timeSince(r.created) + '</div>' +
+        '<div class="app-submission-card__meta">From: ' + (r.submitterName || 'Consumer') + (r.submitterOrg ? ' &mdash; ' + r.submitterOrg : '') + ' &middot; ' + (function(d){var s=Math.floor((new Date()-new Date(d))/1000);if(s<60)return 'just now';if(s<3600)return Math.floor(s/60)+'m ago';if(s<86400)return Math.floor(s/3600)+'h ago';return Math.floor(s/86400)+'d ago';})(r.created) + '</div>' +
       '</div>' +
       '<span class="app-tag ' + tagClass + '">' + tagLabel + '</span>' +
     '</div>' +
@@ -2280,8 +2290,10 @@ function switchIncomingTab(tab, el) {
   var aList = document.getElementById('incomingActionedList');
   if (pList) pList.style.display = tab === 'pending'  ? 'block' : 'none';
   if (aList) aList.style.display = tab === 'actioned' ? 'block' : 'none';
-  document.querySelectorAll('#p-incoming .govuk-tabs__list-item').forEach(function(li){ li.classList.remove('govuk-tabs__list-item--selected'); });
-  if (el) el.closest('.govuk-tabs__list-item').classList.add('govuk-tabs__list-item--selected');
+  var btnP = document.getElementById('tabBtnPending');
+  var btnA = document.getElementById('tabBtnActioned');
+  if (btnP) { btnP.style.borderBottomColor = tab === 'pending'  ? '#1d70b8' : 'transparent'; btnP.style.color = tab === 'pending'  ? '#1d70b8' : '#505a5f'; btnP.style.fontWeight = tab === 'pending'  ? '700' : '400'; }
+  if (btnA) { btnA.style.borderBottomColor = tab === 'actioned' ? '#1d70b8' : 'transparent'; btnA.style.color = tab === 'actioned' ? '#1d70b8' : '#505a5f'; btnA.style.fontWeight = tab === 'actioned' ? '700' : '400'; }
 }
 
 /* ── Review detail ────────────────────────────────────────── */

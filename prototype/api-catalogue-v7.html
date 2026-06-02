@@ -646,7 +646,7 @@ body, input, select, textarea, button {
           <div class="app-dash-sidebar__header"><div class="app-dash-sidebar__avatar" id="cAv" aria-hidden="true">?</div><div><div class="app-dash-sidebar__name" id="cNm">User</div><div class="app-dash-sidebar__role">Consumer</div></div></div>
           <button class="app-dash-nav__item app-dash-nav__item--active" onclick="dPanel('c','ov',this)">Overview</button>
           <button class="app-dash-nav__item" onclick="dPanel('c','browse',this)">Browse APIs</button>
-          <button class="app-dash-nav__item" onclick="dPanel('c','reqs',this)">My requests</button>
+          <button class="app-dash-nav__item" onclick="dPanel('c','reqs',this);refreshCReqs()">My requests</button>
           <button class="app-dash-nav__item" onclick="dPanel('c','access',this)">Request access</button>
           <button class="app-dash-nav__item" onclick="dPanel('c','prof',this)">My profile</button>
           <button class="app-dash-nav__item" onclick="dPanel('c','newapi',this);renderNewApiHistory()">Request a new API</button>
@@ -715,6 +715,7 @@ body, input, select, textarea, button {
             <button class="govuk-button" onclick="submitReq()">Submit request</button>
             <button class="govuk-button govuk-button--secondary" onclick="showReqStep('tasklist')" style="margin-left:12px">Save and come back later</button>
           </div>
+        </div>
         <div class="app-dash-panel" id="c-newapi">
           <h1 class="govuk-heading-l">Request a new API</h1>
           <p class="govuk-body">Can't find the data you need in the catalogue? Complete this form and the marketplace team will investigate and get back to you.</p>
@@ -754,7 +755,7 @@ body, input, select, textarea, button {
           <div class="app-dash-sidebar__header"><div class="app-dash-sidebar__avatar app-dash-sidebar__avatar--producer" id="pAv" aria-hidden="true">?</div><div><div class="app-dash-sidebar__name" id="pNm">User</div><div class="app-dash-sidebar__role">Producer</div></div></div>
           <button class="app-dash-nav__item app-dash-nav__item--active" onclick="dPanel('p','ov',this)">Overview</button>
           <button class="app-dash-nav__item" onclick="dPanel('p','myapis',this)">My APIs</button>
-          <button class="app-dash-nav__item" onclick="dPanel('p','incoming',this)">Access requests</button>
+          <button class="app-dash-nav__item" onclick="dPanel('p','incoming',this);renderIncomingRequests()">Access requests <span id='incomingBadge' style='display:none;background:#d4351c;color:#fff;border-radius:10px;padding:1px 7px;font-size:12px;font-weight:700;margin-left:4px'>0</span></button>
           <button class="app-dash-nav__item" onclick="dPanel('p','publish',this)">Publish API</button>
           <button class="app-dash-nav__item" onclick="dPanel('p','prof',this)">My profile</button>
           <button class="app-dash-nav__item app-dash-nav__item--danger" onclick="doLogout()">Sign out</button>
@@ -763,7 +764,30 @@ body, input, select, textarea, button {
       <div>
         <div class="app-dash-panel app-dash-panel--active" id="p-ov"><h1 class="govuk-heading-l" id="pGr">Welcome back</h1><div class="app-stat-grid"><div class="app-stat"><div class="app-stat__num" id="pNA">0</div><div class="app-stat__label">My APIs</div></div><div class="app-stat"><div class="app-stat__num" id="pNR">0</div><div class="app-stat__label">Pending requests</div></div><div class="app-stat"><div class="app-stat__num">0</div><div class="app-stat__label">Consumers</div></div></div><div class="app-panel app-panel--plain"><div class="app-panel__title">You are a producer</div><p class="app-panel__body">List your APIs to make them discoverable. Review access requests from consumer teams. You remain responsible for your API reliability and supporting your consumers.</p></div></div>
         <div class="app-dash-panel" id="p-myapis"><h1 class="govuk-heading-l">My APIs</h1><p class="govuk-body" style="color:#505a5f">APIs you have registered as a producer</p><div id="pAL"><div class="app-empty-state"><div class="app-empty-state__icon" aria-hidden="true">&#128225;</div><div class="app-empty-state__title">No APIs yet</div><div class="app-empty-state__desc">Register your first API to make it discoverable.</div></div></div></div>
-        <div class="app-dash-panel" id="p-incoming"><h1 class="govuk-heading-l">Access requests</h1><div class="app-empty-state"><div class="app-empty-state__icon" aria-hidden="true">&#128229;</div><div class="app-empty-state__title">No pending requests</div><div class="app-empty-state__desc">Access requests from consumers will appear here.</div></div></div>
+        <div class="app-dash-panel" id="p-incoming">
+          <h1 class="govuk-heading-l">Access requests</h1>
+          <p class="govuk-body" style="color:#505a5f">Requests from consumers for your APIs. Review each request and approve or reject with a reason.</p>
+          <div class="govuk-tabs" style="margin-top:16px">
+            <ul class="govuk-tabs__list">
+              <li class="govuk-tabs__list-item govuk-tabs__list-item--selected"><button class="govuk-tabs__tab" onclick="switchIncomingTab('pending',this)">Pending <span id="incomingPendingCount" class="govuk-tag govuk-tag--blue" style="margin-left:4px;font-size:11px">0</span></button></li>
+              <li class="govuk-tabs__list-item"><button class="govuk-tabs__tab" onclick="switchIncomingTab('actioned',this)">Actioned</button></li>
+            </ul>
+          </div>
+          <div id="incomingPendingList" style="margin-top:16px"></div>
+          <div id="incomingActionedList" style="margin-top:16px;display:none"></div>
+
+          <!-- Inline review detail panel -->
+          <div id="incomingDetail" style="display:none;margin-top:16px">
+            <button class="govuk-back-link" onclick="closeIncomingDetail()">Back to requests</button>
+            <div id="incomingDetailBody"></div>
+          </div>
+
+          <!-- Approve/reject action panel -->
+          <div id="incomingAction" style="display:none;margin-top:16px">
+            <button class="govuk-back-link" onclick="closeIncomingAction()">Back to request</button>
+            <div id="incomingActionBody"></div>
+          </div>
+        </div>
         <div class="app-dash-panel" id="p-publish">
           <div id="pub-tasklist" class="app-step-form app-step-form--active">
             <h1 class="govuk-heading-l">Publish an API</h1>
@@ -1408,19 +1432,36 @@ function showCDash() {
 }
 
 function refreshCReqs() {
-  var reqs = lsAllReqs().filter(function(r) { return AU && r.uid === AU.id; });
-  var cNR = document.getElementById('cNR'); if (cNR) cNR.textContent = reqs.length;
-  var cNA = document.getElementById('cNA'); if (cNA) cNA.textContent = reqs.filter(function(r) { return r.status === 'approved'; }).length;
-  if (reqs.length) {
-    document.getElementById('cRL').innerHTML = reqs.map(function(r) {
-      var api = APIS.find(function(a) { return a.id === r.apiId; });
-      return '<div class="app-req-card">' +
-        '<div class="app-req-icon" style="background:#f3f2f1;border:1px solid #b1b4b6">' + (api ? api.icon : '?') + '</div>' +
-        '<div style="flex:1"><div class="app-req-name">' + r.apiName + '</div><div class="app-req-meta">' + r.sys + ' \u00b7 ' + r.env + '</div></div>' +
-        '<span class="app-tag ' + (r.status === 'approved' ? 'app-tag--green' : r.status === 'rejected' ? 'app-tag--red' : 'app-tag--yellow') + '">' + r.status + '</span>' +
-      '</div>';
-    }).join('');
+  var list = document.getElementById('cRL');
+  if (!list) { console.warn('refreshCReqs: cRL element not found'); return; }
+  if (!AU) { list.innerHTML = '<p class="govuk-body" style="color:#505a5f">Sign in to see your requests.</p>'; return; }
+  /* Read from per-user store (always written) and merge with global for status updates */
+  var perUser = lsAllReqs().filter(function(r){ return r.uid === AU.id; });
+  var global  = lsAllReqsGlobal().filter(function(r){ return r.uid === AU.id; });
+  console.log('[refreshCReqs] AU.id:', AU.id, '| perUser:', perUser.length, '| global:', global.length);
+  console.log('[refreshCReqs] _cat_reqs raw:', localStorage.getItem('_cat_reqs'));
+  console.log('[refreshCReqs] _cat_all_reqs raw:', localStorage.getItem('_cat_all_reqs'));
+  /* Merge: global has latest status/notes; per-user has original submissions */
+  var merged = {};
+  perUser.forEach(function(r){ merged[r.id] = r; });
+  global.forEach(function(r){ if (merged[r.id]) { merged[r.id].status = r.status; merged[r.id].producerNotes = r.producerNotes || ''; } else { merged[r.id] = r; } });
+  var mine = Object.values(merged);
+  if (!mine.length) {
+    list.innerHTML = '<div class="app-empty-state"><div class="app-empty-state__icon" aria-hidden="true">&#128203;</div><div class="app-empty-state__title">No requests yet</div><div class="app-empty-state__desc">Submit your first access request to get started.</div></div>';
+    return;
   }
+  list.innerHTML = mine.sort(function(a,b){ return a.created < b.created ? 1 : -1; }).map(function(r) {
+    var tagClass = r.status === 'approved' ? 'app-tag--green' : r.status === 'rejected' ? 'app-tag--red' : 'app-tag--yellow';
+    var tagLabel = r.status === 'approved' ? '&#10003; Approved' : r.status === 'rejected' ? '&#10007; Rejected' : 'Pending review';
+    return '<div class="app-submission-card">' +
+      '<div class="app-submission-card__header">' +
+        '<div><div class="app-submission-card__name">' + r.apiName + '</div>' +
+        '<div class="app-submission-card__meta">' + r.env + ' &middot; ' + r.sys + ' &middot; ' + timeSince(r.created) + '</div></div>' +
+        '<span class="app-tag ' + tagClass + '">' + tagLabel + '</span>' +
+      '</div>' +
+      (r.producerNotes && r.status !== 'pending' ? '<div class="app-notes-box"><strong>Decision note:</strong> ' + r.producerNotes + '</div>' : '') +
+    '</div>';
+  }).join('');
 }
 
 function showPDash() {
@@ -1639,14 +1680,19 @@ function submitReq() {
   }
   var savedName = reqData.apiName || '';
   var reqs = lsAllReqs();
-  reqs.push({ id: Date.now().toString(36), uid: AU.id, apiId: reqData.apiId, apiName: reqData.apiName, sys: reqData.sys, env: reqData.env, vol: reqData.vol, just: reqData.just, status: 'pending', created: new Date().toISOString() });
+  var reqId = Date.now().toString(36) + Math.random().toString(36).slice(2,4);
+  var reqRecord = { id: reqId, uid: AU.id, submitterName: (AU.fn + ' ' + AU.ln), submitterOrg: (AU.org || ''), apiId: reqData.apiId, apiName: reqData.apiName, sys: reqData.sys, env: reqData.env, vol: reqData.vol, just: reqData.just, status: 'pending', producerNotes: '', created: new Date().toISOString() };
+  reqs.push(reqRecord);
   lsSaveReqs(reqs);
+  /* Also write to shared global store so producers can see it */
+  var allReqs = lsAllReqsGlobal(); allReqs.push(reqRecord); lsSaveAllReqsGlobal(allReqs);
+  console.log('[submitReq] Written to _cat_reqs and _cat_all_reqs. reqRecord:', JSON.stringify(reqRecord));
   reqData = {}; reqStepsDone = [false,false,false,false];
   document.getElementById('c-access').innerHTML =
     '<h1 class="govuk-heading-l">Request submitted</h1>' +
     '<div class="govuk-panel govuk-panel--confirmation" style="margin-bottom:24px"><h2 class="govuk-panel__title">Request sent</h2><div class="govuk-panel__body">For: ' + savedName + '</div></div>' +
     '<p class="govuk-body">The API owner will review your request within 2 business days. You will be contacted at your registered email address.</p>' +
-    '<p class="govuk-body"><a class="govuk-link" onclick="dPanel(\'c\',\'reqs\',document.querySelectorAll(\'#consDash .app-dash-nav__item\')[2]);refreshCReqs();return false;" href="#">View your requests</a></p>';
+    '<p class="govuk-body"><a class="govuk-link" onclick="var _rb=null;document.querySelectorAll(\'#consDash .app-dash-nav__item\').forEach(function(b){if(b.textContent.trim()===\'My requests\')_rb=b;});dPanel(\'c\',\'reqs\',_rb);refreshCReqs();return false;" href="#">View your requests</a></p>';
   refreshCReqs();
 }
 
@@ -1963,12 +2009,18 @@ dPanel = function(role, panel, el) {
     var hasDraft = loadPubDraft();
     var notice = document.getElementById('pubDraftNotice');
     if (notice) notice.style.display = hasDraft ? 'block' : 'none';
-    if (hasDraft) {
-      updatePubTaskList();
-    }
+    if (hasDraft) { updatePubTaskList(); }
+  }
+  if (role === 'c' && panel === 'access') {
+    showReqStep('tasklist');
+  }
+  if (role === 'c' && panel === 'reqs') {
+    refreshCReqs();
+  }
+  if (role === 'p' && panel === 'incoming') {
+    renderIncomingRequests();
   }
 };
-
 
 /* ════════════════════════════════════════════════════════════
    Request a New API — consumer flow
@@ -2100,6 +2152,322 @@ function renderNewApiHistory() {
         '<span class="app-tag app-tag--blue">' + r.status + '</span></div>' +
         '<p class="app-submission-card__body">' + (r.dataNeed||'').substring(0,120) + (r.dataNeed&&r.dataNeed.length>120?'&hellip;':'') + '</p></div>';
     }).join('');
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   CAP-06  Access Request Approval Workflow
+   ════════════════════════════════════════════════════════════ */
+
+/* ── Shared global request store ─────────────────────────── */
+function lsAllReqsGlobal()    { try { return JSON.parse(localStorage.getItem('_cat_all_reqs') || '[]'); } catch(e) { return []; } }
+function lsAllSubs()           { try { return JSON.parse(localStorage.getItem('_cat_submissions') || '[]'); } catch(e) { return []; } }
+function lsSaveAllReqsGlobal(a){ localStorage.setItem('_cat_all_reqs', JSON.stringify(a)); }
+
+/* ── Migrate existing per-user reqs into global store ─────── */
+function migrateReqsToGlobal() {
+  var existing = lsAllReqsGlobal();
+  if (existing.length) return; /* already migrated */
+  var perUser = lsAllReqs();
+  if (!perUser.length) return;
+  /* Back-fill submitter info if missing */
+  perUser.forEach(function(r) {
+    if (!r.submitterName) r.submitterName = r.uid || 'Unknown';
+    if (!r.submitterOrg)  r.submitterOrg  = '';
+    if (!r.producerNotes) r.producerNotes = '';
+  });
+  lsSaveAllReqsGlobal(perUser);
+}
+
+/* ── Get requests for producer's APIs ─────────────────────── */
+function getIncomingForProducer() {
+  var myApiIds = [];
+  /* Built-in APIS owned by this producer (by apiId match or all if no submissions) */
+  APIS.forEach(function(a) { myApiIds.push(a.id); });
+  /* Also submitted APIs */
+  var subs = lsAllSubs ? lsAllSubs() : [];
+  subs.filter(function(s){ return s.submittedBy === AU.id; })
+      .forEach(function(s){ myApiIds.push(s.id || s.api); });
+  /* In prototype: producer sees requests for their submitted APIs OR all requests if no submissions */
+  var mySubmissions = lsAllSubs ? lsAllSubs().filter(function(s){ return s.submittedBy === AU.id; }) : [];
+  var allReqs = lsAllReqsGlobal();
+  if (mySubmissions.length === 0) {
+    /* No submitted APIs yet — show all requests (demo mode) */
+    return allReqs;
+  }
+  var mySubApiIds = mySubmissions.map(function(s){ return s.api; });
+  return allReqs.filter(function(r){
+    return mySubApiIds.indexOf(r.apiId) >= 0 || mySubApiIds.indexOf(r.apiName) >= 0;
+  });
+}
+
+/* ── Render producer incoming requests ─────────────────────── */
+var _currentIncomingTab = 'pending';
+var _currentReviewReqId = null;
+
+function renderIncomingRequests() {
+  migrateReqsToGlobal();
+  var all      = getIncomingForProducer();
+  var pending  = all.filter(function(r){ return r.status === 'pending'; });
+  var actioned = all.filter(function(r){ return r.status !== 'pending'; });
+
+  /* Badge count */
+  var badge = document.getElementById('incomingBadge');
+  if (badge) { badge.style.display = pending.length ? 'inline' : 'none'; badge.textContent = pending.length; }
+  var countEl = document.getElementById('incomingPendingCount');
+  if (countEl) countEl.textContent = pending.length;
+
+  /* Pending list */
+  var pList = document.getElementById('incomingPendingList');
+  if (pList) {
+    if (!pending.length) {
+      pList.innerHTML =
+        '<div class="app-empty-state">' +
+          '<div class="app-empty-state__icon" aria-hidden="true">&#128229;</div>' +
+          '<div class="app-empty-state__title">No pending requests</div>' +
+          '<div class="app-empty-state__desc">Access requests submitted by consumers in this browser session will appear here.</div>' +
+          '<div class="govuk-inset-text" style="margin-top:16px;text-align:left">' +
+            '<p class="govuk-body-s" style="margin-bottom:8px"><strong>Prototype note:</strong> Because this prototype uses browser storage, consumer and producer accounts must use the <strong>same browser window</strong> to share data. Open a second tab, register as a consumer, submit a request, then come back here.</p>' +
+            '<button class="govuk-button govuk-button--secondary" style="font-size:13px;margin:0" onclick="loadDemoRequest()">Load a demo request to test this flow</button>' +
+          '</div>' +
+        '</div>';
+    } else {
+      pList.innerHTML = pending.sort(function(a,b){ return a.created < b.created ? -1 : 1; })
+        .map(function(r){ return renderIncomingCard(r, true); }).join('');
+    }
+  }
+
+  /* Actioned list */
+  var aList = document.getElementById('incomingActionedList');
+  if (aList) {
+    if (!actioned.length) {
+      aList.innerHTML = '<p class="govuk-body" style="color:#505a5f">Requests you have approved or rejected will appear here.</p>';
+    } else {
+      aList.innerHTML = actioned.sort(function(a,b){ return a.decidedAt < b.decidedAt ? 1 : -1; })
+        .map(function(r){ return renderIncomingCard(r, false); }).join('');
+    }
+  }
+}
+
+function renderIncomingCard(r, isPending) {
+  var tagClass = r.status === 'approved' ? 'app-tag--green' : r.status === 'rejected' ? 'app-tag--red' : 'app-tag--yellow';
+  var tagLabel = r.status === 'approved' ? '&#10003; Approved' : r.status === 'rejected' ? '&#10007; Rejected' : 'Pending review';
+  return '<div class="app-submission-card">' +
+    '<div class="app-submission-card__header">' +
+      '<div>' +
+        '<div class="app-submission-card__name">' + r.apiName + '</div>' +
+        '<div class="app-submission-card__meta">From: ' + (r.submitterName || 'Consumer') + (r.submitterOrg ? ' &mdash; ' + r.submitterOrg : '') + ' &middot; ' + timeSince(r.created) + '</div>' +
+      '</div>' +
+      '<span class="app-tag ' + tagClass + '">' + tagLabel + '</span>' +
+    '</div>' +
+    '<div class="app-submission-card__footer" style="margin-top:8px">' +
+      '<span class="app-tag app-tag--grey">' + r.env + '</span>' +
+      '<span class="app-tag app-tag--grey">' + r.vol + '</span>' +
+      '<span class="app-tag app-tag--grey">' + r.sys + '</span>' +
+    '</div>' +
+    (r.producerNotes && !isPending ? '<div class="app-notes-box" style="margin-top:8px"><strong>Your note:</strong> ' + r.producerNotes + '</div>' : '') +
+    '<div style="margin-top:12px">' +
+      '<button class="govuk-button govuk-button--secondary" style="margin:0;font-size:14px" onclick="showIncomingDetail(\'' + r.id + '\')">' +
+        (isPending ? 'Review request' : 'View detail') +
+      '</button>' +
+    '</div>' +
+  '</div>';
+}
+
+function switchIncomingTab(tab, el) {
+  _currentIncomingTab = tab;
+  var pList = document.getElementById('incomingPendingList');
+  var aList = document.getElementById('incomingActionedList');
+  if (pList) pList.style.display = tab === 'pending'  ? 'block' : 'none';
+  if (aList) aList.style.display = tab === 'actioned' ? 'block' : 'none';
+  document.querySelectorAll('#p-incoming .govuk-tabs__list-item').forEach(function(li){ li.classList.remove('govuk-tabs__list-item--selected'); });
+  if (el) el.closest('.govuk-tabs__list-item').classList.add('govuk-tabs__list-item--selected');
+}
+
+/* ── Review detail ────────────────────────────────────────── */
+function showIncomingDetail(reqId) {
+  _currentReviewReqId = reqId;
+  var r = lsAllReqsGlobal().find(function(x){ return x.id === reqId; });
+  if (!r) return;
+
+  /* Hide lists, show detail */
+  document.getElementById('incomingPendingList').style.display  = 'none';
+  document.getElementById('incomingActionedList').style.display = 'none';
+  document.getElementById('incomingDetail').style.display = 'block';
+  document.getElementById('incomingAction').style.display = 'none';
+
+  var isPending = r.status === 'pending';
+  var html =
+    '<h1 class="govuk-heading-l">Access request — ' + r.apiName + '</h1>' +
+    '<dl class="govuk-summary-list">' +
+      '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">API requested</dt><dd class="govuk-summary-list__value">' + r.apiName + '</dd></div>' +
+      '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Submitted by</dt><dd class="govuk-summary-list__value">' + (r.submitterName || 'Unknown') + (r.submitterOrg ? ' &mdash; ' + r.submitterOrg : '') + '</dd></div>' +
+      '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">System / application</dt><dd class="govuk-summary-list__value">' + r.sys + '</dd></div>' +
+      '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Environment</dt><dd class="govuk-summary-list__value">' + r.env + '</dd></div>' +
+      '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Expected volume</dt><dd class="govuk-summary-list__value">' + r.vol + '</dd></div>' +
+      '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Business justification</dt><dd class="govuk-summary-list__value">' + r.just + '</dd></div>' +
+      '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Submitted</dt><dd class="govuk-summary-list__value">' + new Date(r.created).toLocaleString() + '</dd></div>' +
+    '</dl>';
+
+  if (r.producerNotes && !isPending) {
+    html += '<div class="app-notes-box"><strong>Your decision note:</strong> ' + r.producerNotes + '</div>';
+  }
+
+  if (isPending) {
+    html +=
+      '<h2 class="govuk-heading-m" style="margin-top:24px">Make a decision</h2>' +
+      '<div style="display:flex;gap:12px;flex-wrap:wrap">' +
+        '<button class="govuk-button" onclick="showIncomingAction(\'' + reqId + '\',\'approve\')">Approve access</button>' +
+        '<button class="govuk-button govuk-button--warning" onclick="showIncomingAction(\'' + reqId + '\',\'reject\')">Reject request</button>' +
+      '</div>';
+  }
+
+  document.getElementById('incomingDetailBody').innerHTML = html;
+}
+
+function closeIncomingDetail() {
+  document.getElementById('incomingDetail').style.display = 'none';
+  document.getElementById('incomingAction').style.display = 'none';
+  document.getElementById('incomingPendingList').style.display  = _currentIncomingTab === 'pending'  ? 'block' : 'none';
+  document.getElementById('incomingActionedList').style.display = _currentIncomingTab === 'actioned' ? 'block' : 'none';
+}
+
+/* ── Approve / reject action ──────────────────────────────── */
+function showIncomingAction(reqId, action) {
+  _currentReviewReqId = reqId;
+  var r = lsAllReqsGlobal().find(function(x){ return x.id === reqId; });
+  if (!r) return;
+
+  var isApprove = action === 'approve';
+  document.getElementById('incomingDetail').style.display = 'none';
+  document.getElementById('incomingAction').style.display = 'block';
+
+  var html =
+    '<h1 class="govuk-heading-l">' + (isApprove ? 'Approve' : 'Reject') + ' access request</h1>' +
+    '<div class="govuk-summary-card" style="margin-bottom:20px">' +
+      '<div class="govuk-summary-card__title-wrapper"><h2 class="govuk-summary-card__title">' + r.apiName + '</h2></div>' +
+      '<div class="govuk-summary-card__content"><dl class="govuk-summary-list">' +
+        '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Consumer</dt><dd class="govuk-summary-list__value">' + (r.submitterName || 'Unknown') + '</dd></div>' +
+        '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">System</dt><dd class="govuk-summary-list__value">' + r.sys + '</dd></div>' +
+        '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Environment</dt><dd class="govuk-summary-list__value">' + r.env + '</dd></div>' +
+      '</dl></div>' +
+    '</div>' +
+    (isApprove
+      ? '<div class="govuk-inset-text">Approving this request grants the consumer access to <strong>' + r.apiName + '</strong>. They will see the decision in their My requests panel.</div>'
+      : '<div class="govuk-inset-text">Rejecting this request will notify the consumer with your reason. They can resubmit after addressing your concerns.</div>') +
+    '<div class="govuk-form-group" id="fg-incomingNotes">' +
+      '<label class="govuk-label govuk-label--m" for="incomingNotes">' + (isApprove ? 'Note for the consumer (optional)' : 'Reason for rejection (required)') + '</label>' +
+      '<div class="govuk-hint">' + (isApprove ? 'Any conditions, usage guidance or next steps.' : 'Be specific so the consumer knows what to address.') + '</div>' +
+      '<textarea class="govuk-textarea" id="incomingNotes" rows="4"></textarea>' +
+    '</div>' +
+    '<div style="display:flex;gap:12px;flex-wrap:wrap">' +
+      '<button class="govuk-button' + (isApprove ? '' : ' govuk-button--warning') + '" onclick="confirmIncomingAction(\'' + reqId + '\',\'' + action + '\')">' +
+        (isApprove ? 'Confirm: approve access' : 'Confirm: reject request') +
+      '</button>' +
+      '<button class="govuk-button govuk-button--secondary" onclick="showIncomingDetail(\'' + reqId + '\')">Cancel</button>' +
+    '</div>';
+
+  document.getElementById('incomingActionBody').innerHTML = html;
+}
+
+function closeIncomingAction() {
+  showIncomingDetail(_currentReviewReqId);
+}
+
+function confirmIncomingAction(reqId, action) {
+  var notes = document.getElementById('incomingNotes') ? document.getElementById('incomingNotes').value.trim() : '';
+  if (action === 'reject' && !notes) {
+    var fg = document.getElementById('fg-incomingNotes');
+    if (fg) {
+      fg.classList.add('govuk-form-group--error');
+      var existing = fg.querySelector('.govuk-error-message');
+      if (!existing) {
+        var em = document.createElement('span');
+        em.className = 'govuk-error-message';
+        em.innerHTML = '<span class="govuk-visually-hidden">Error:</span> Enter a reason for rejection';
+        var label = fg.querySelector('label');
+        if (label) label.insertAdjacentElement('afterend', em);
+      }
+    }
+    return;
+  }
+
+  var allReqs = lsAllReqsGlobal();
+  var idx = allReqs.findIndex(function(x){ return x.id === reqId; });
+  if (idx < 0) return;
+
+  allReqs[idx].status       = action === 'approve' ? 'approved' : 'rejected';
+  allReqs[idx].producerNotes = notes;
+  allReqs[idx].decidedAt    = new Date().toISOString();
+  allReqs[idx].decidedBy    = AU ? (AU.fn + ' ' + AU.ln) : '';
+  lsSaveAllReqsGlobal(allReqs);
+
+  /* Also update the per-user _cat_reqs for the consumer */
+  var perUserReqs = JSON.parse(localStorage.getItem('_cat_reqs') || '[]');
+  perUserReqs.forEach(function(r, i) {
+    if (r.id === reqId) {
+      perUserReqs[i].status        = allReqs[idx].status;
+      perUserReqs[i].producerNotes = notes;
+    }
+  });
+  localStorage.setItem('_cat_reqs', JSON.stringify(perUserReqs));
+
+  /* Show confirmation */
+  var isApprove = action === 'approve';
+  var r = allReqs[idx];
+  document.getElementById('incomingActionBody').innerHTML =
+    '<h1 class="govuk-heading-l">Decision recorded</h1>' +
+    '<div class="govuk-panel govuk-panel--confirmation" style="margin-bottom:24px">' +
+      '<h2 class="govuk-panel__title">' + (isApprove ? 'Access approved' : 'Request rejected') + '</h2>' +
+      '<div class="govuk-panel__body">' + r.apiName + '</div>' +
+    '</div>' +
+    (isApprove
+      ? '<p class="govuk-body">The consumer has been notified. Their request status has been updated to <strong>Approved</strong>.</p>'
+      : '<p class="govuk-body">The consumer has been notified with your reason. Their request status has been updated to <strong>Rejected</strong>.</p>') +
+    '<p class="govuk-body"><a class="govuk-link" onclick="closeIncomingDetail();renderIncomingRequests();return false;" href="#">Back to access requests</a></p>';
+
+  renderIncomingRequests();
+}
+
+/* ── Patch showPDash to also render incoming badge ─────────── */
+var _cap06OrigShowPDash = showPDash;
+showPDash = function() {
+  _cap06OrigShowPDash();
+  migrateReqsToGlobal();
+  var pending = getIncomingForProducer().filter(function(r){ return r.status === 'pending'; });
+  var badge = document.getElementById('incomingBadge');
+  if (badge) { badge.style.display = pending.length ? 'inline' : 'none'; badge.textContent = pending.length; }
+};
+
+/* ── On page load: migrate old requests ───────────────────── */
+document.addEventListener('DOMContentLoaded', function() {
+  migrateReqsToGlobal();
+});
+
+/* ── Demo request loader for prototype testing ─────────────── */
+function loadDemoRequest() {
+  var demo = {
+    id: 'demo-' + Date.now().toString(36),
+    uid: 'demo-consumer-001',
+    submitterName: 'Demo Consumer',
+    submitterOrg: 'HMCTS Test Team',
+    apiId: 'prosecution-case-details',
+    apiName: 'Prosecution Case Details',
+    sys: 'Case Management Portal',
+    env: 'Production',
+    vol: 'Medium \u2014 100 to 10,000 requests per day',
+    just: 'Our case management portal needs to retrieve prosecution case details to display defendant information to court clerks. This data is currently retrieved manually which causes delays during hearings.',
+    status: 'pending',
+    producerNotes: '',
+    created: new Date(Date.now() - 3600000).toISOString()
+  };
+  var allReqs = lsAllReqsGlobal();
+  /* Only add if not already there */
+  if (!allReqs.find(function(r){ return r.id === demo.id || r.uid === 'demo-consumer-001'; })) {
+    allReqs.push(demo);
+    lsSaveAllReqsGlobal(allReqs);
+  }
+  renderIncomingRequests();
 }
 </script>
 </body>

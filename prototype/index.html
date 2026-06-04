@@ -382,6 +382,113 @@ body, input, select, textarea, button {
   </div>
 </nav>
 
+<!-- SIGN IN PAGE -->
+<div id="signInPage" class="app-page">
+  <main style="background:#f3f2f1;min-height:calc(100vh - 112px);padding-bottom:60px">
+    <div style="max-width:500px;margin:0 auto;padding:48px 16px 0">
+
+      <!-- Sign in card -->
+      <div id="signInCard" style="background:white;border:1px solid #b1b4b6;padding:32px">
+        <h1 class="govuk-heading-l" style="margin-bottom:24px">Sign in to HMCTS API Catalogue</h1>
+
+        <div id="signInError" class="govuk-error-summary" style="display:none" role="alert">
+          <h2 class="govuk-error-summary__title">There is a problem</h2>
+          <ul class="govuk-error-summary__list"><li id="signInErrorMsg">Email address or password is incorrect</li></ul>
+        </div>
+
+        <div class="govuk-form-group" id="fgSignInEmail">
+          <label class="govuk-label govuk-label--m" for="signInEmail">Email address</label>
+          <input class="govuk-input" type="email" id="signInEmail" autocomplete="email" spellcheck="false">
+        </div>
+
+        <div class="govuk-form-group" id="fgSignInPwd">
+          <label class="govuk-label govuk-label--m" for="signInPwd">Password</label>
+          <div style="position:relative">
+            <input class="govuk-input" type="password" id="signInPwd" autocomplete="current-password" style="padding-right:60px">
+            <button type="button" onclick="togglePwdVisibility('signInPwd',this)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:14px;color:#1d70b8;text-decoration:underline;cursor:pointer;background:none;border:none;font-family:inherit">Show</button>
+          </div>
+        </div>
+
+        <p style="margin-bottom:24px"><a class="govuk-link" href="#" onclick="showForgotPassword();return false;">Forgot your password?</a></p>
+
+        <button class="govuk-button" style="width:100%;margin-bottom:0;font-size:18px" onclick="doSignInPage()">Sign in</button>
+
+        <hr style="border:none;border-top:1px solid #b1b4b6;margin:28px 0">
+
+        <p class="govuk-body" style="text-align:center;margin-bottom:16px">Don&rsquo;t have an account?</p>
+        <button class="govuk-button govuk-button--secondary" style="width:100%;margin-bottom:0" onclick="showSignInPage('register')">Create an account</button>
+      </div>
+
+      <!-- Register card (hidden by default) -->
+      <div id="registerCard" style="background:white;border:1px solid #b1b4b6;padding:32px;display:none">
+        <h1 class="govuk-heading-l" style="margin-bottom:8px">Create an account</h1>
+        <p class="govuk-body" style="margin-bottom:24px;color:#505a5f">Already have an account? <a class="govuk-link" href="#" onclick="showSignInPage('login');return false;">Sign in</a></p>
+
+        <div id="registerError" class="govuk-error-summary" style="display:none" role="alert">
+          <h2 class="govuk-error-summary__title">There is a problem</h2>
+          <ul class="govuk-error-summary__list" id="registerErrorList"></ul>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div class="govuk-form-group" id="fgRegFn">
+            <label class="govuk-label govuk-label--m" for="regFn">First name</label>
+            <input class="govuk-input" type="text" id="regFn" autocomplete="given-name">
+          </div>
+          <div class="govuk-form-group" id="fgRegLn">
+            <label class="govuk-label govuk-label--m" for="regLn">Last name</label>
+            <input class="govuk-input" type="text" id="regLn" autocomplete="family-name">
+          </div>
+        </div>
+
+        <div class="govuk-form-group" id="fgRegEmail">
+          <label class="govuk-label govuk-label--m" for="regEmail">Email address</label>
+          <div class="govuk-hint">Use your work email address</div>
+          <input class="govuk-input" type="email" id="regEmail" autocomplete="email" spellcheck="false">
+        </div>
+
+        <div class="govuk-form-group" id="fgRegOrg">
+          <label class="govuk-label govuk-label--m" for="regOrg">Organisation</label>
+          <input class="govuk-input" type="text" id="regOrg" autocomplete="organization">
+        </div>
+
+        <div class="govuk-form-group" id="fgRegPwd">
+          <label class="govuk-label govuk-label--m" for="regPwd">Create a password</label>
+          <div class="govuk-hint">At least 8 characters</div>
+          <div style="position:relative">
+            <input class="govuk-input" type="password" id="regPwd" autocomplete="new-password" style="padding-right:60px">
+            <button type="button" onclick="togglePwdVisibility('regPwd',this)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:14px;color:#1d70b8;text-decoration:underline;cursor:pointer;background:none;border:none;font-family:inherit">Show</button>
+          </div>
+        </div>
+
+        <div class="govuk-form-group" id="fgRegRole">
+          <label class="govuk-label govuk-label--m">I am registering as a</label>
+          <div class="govuk-radios" style="margin-top:8px">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="roleConsumer" name="regRole" type="radio" value="consumer" checked>
+              <label class="govuk-label govuk-radios__label" for="roleConsumer"><strong>Consumer</strong> — I need to use APIs to build or integrate services</label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="roleProducer" name="regRole" type="radio" value="producer">
+              <label class="govuk-label govuk-radios__label" for="roleProducer"><strong>Producer</strong> — I own or publish APIs and want them listed</label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="roleReviewer" name="regRole" type="radio" value="reviewer">
+              <label class="govuk-label govuk-radios__label" for="roleReviewer"><strong>Reviewer</strong> — I am part of the marketplace governance team</label>
+            </div>
+          </div>
+        </div>
+
+        <button class="govuk-button" style="width:100%;margin-bottom:0;font-size:18px" onclick="doRegisterPage()">Create account</button>
+      </div>
+
+      <p style="font-size:14px;color:#505a5f;text-align:center;margin-top:20px">
+        Having trouble? <a class="govuk-link" href="mailto:no-reply@hmcts.com">Contact the HMCTS API Catalogue team</a>
+      </p>
+
+    </div>
+  </main>
+</div>
+
 <!-- HOME PAGE -->
 <div id="homePage" class="app-page">
   <div class="app-phase-banner" role="region" aria-label="Service phase">
@@ -972,7 +1079,7 @@ function setFilter(domain, btn) {
 }
 
 function hideAll() {
-  ['homePage','detailPage','marketplacePage','consDash','prodDash'].forEach(function(id) {
+  ['homePage','detailPage','marketplacePage','consDash','prodDash','signInPage'].forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.classList.remove('app-page--active');
   });
@@ -1304,7 +1411,7 @@ function lsSaveReqs(r)  { localStorage.setItem('_cat_reqs', JSON.stringify(r)); 
 function lsPApis(id)    { try { return JSON.parse(localStorage.getItem('_cat_papis_' + id) || '[]'); } catch(e) { return []; } }
 function lsSPApis(id,a) { localStorage.setItem('_cat_papis_' + id, JSON.stringify(a)); }
 
-function showAuth(tab)   { document.getElementById('authOverlay').style.display = 'flex'; authTab(tab || 'login'); }
+function showAuth(tab)   { showSignInPage(tab || 'login'); }
 function hideAuth()      { document.getElementById('authOverlay').style.display = 'none'; }
 function showSignIn()    { showAuth('login'); }
 function showRegister()  { showAuth('register'); }
@@ -2508,6 +2615,105 @@ function loadDemoRequest() {
     lsSaveAllReqsGlobal(allReqs);
   }
   renderIncomingRequests();
+}
+
+/* ── Sign in / Register page ─────────────────────────────────*/
+function showSignInPage(tab) {
+  hideAll();
+  document.getElementById('signInPage').classList.add('app-page--active');
+  setActiveNav('');
+  var si = document.getElementById('navSignIn');
+  if (si) si.style.display = 'none';
+  showSignInCard(tab || 'login');
+  window.scrollTo(0, 0);
+}
+
+function showSignInCard(tab) {
+  var siCard  = document.getElementById('signInCard');
+  var regCard = document.getElementById('registerCard');
+  if (siCard)  siCard.style.display  = tab === 'login'    ? 'block' : 'none';
+  if (regCard) regCard.style.display = tab === 'register' ? 'block' : 'none';
+}
+
+function togglePwdVisibility(inputId, btn) {
+  var inp = document.getElementById(inputId);
+  if (!inp) return;
+  if (inp.type === 'password') { inp.type = 'text';     btn.textContent = 'Hide'; }
+  else                         { inp.type = 'password'; btn.textContent = 'Show'; }
+}
+
+function showForgotPassword() {
+  alert('Password reset is not available in this prototype. In production this would send a reset link to your email.');
+}
+
+function doSignInPage() {
+  var email = document.getElementById('signInEmail') ? document.getElementById('signInEmail').value.trim() : '';
+  var pwd   = document.getElementById('signInPwd')   ? document.getElementById('signInPwd').value           : '';
+  var errBox = document.getElementById('signInError');
+
+  if (!email || !pwd) {
+    if (errBox) { errBox.style.display = 'block'; document.getElementById('signInErrorMsg').textContent = 'Enter your email address and password'; }
+    return;
+  }
+
+  var users = lsU();
+  var user  = users[email.toLowerCase()];
+  if (!user || atob(user.pw) !== pwd) {
+    if (errBox) { errBox.style.display = 'block'; document.getElementById('signInErrorMsg').textContent = 'Email address or password is incorrect'; }
+    return;
+  }
+
+  if (errBox) errBox.style.display = 'none';
+  if (!user.permissions) user.permissions = defaultPermissions(user.role);
+  AU = user;
+  AP = { firstName: user.fn, lastName: user.ln, email: user.email, org: user.org, role: user.role, permissions: user.permissions };
+  lsSess(user);
+  renderNav();
+  showDash();
+}
+
+function doRegisterPage() {
+  var fn    = document.getElementById('regFn')    ? document.getElementById('regFn').value.trim()    : '';
+  var ln    = document.getElementById('regLn')    ? document.getElementById('regLn').value.trim()    : '';
+  var email = document.getElementById('regEmail') ? document.getElementById('regEmail').value.trim().toLowerCase() : '';
+  var org   = document.getElementById('regOrg')   ? document.getElementById('regOrg').value.trim()   : '';
+  var pwd   = document.getElementById('regPwd')   ? document.getElementById('regPwd').value           : '';
+  var roleEl = document.querySelector('input[name="regRole"]:checked');
+  var role  = roleEl ? roleEl.value : 'consumer';
+
+  var errors = [];
+  if (!fn)              errors.push('Enter your first name');
+  if (!ln)              errors.push('Enter your last name');
+  if (!email)           errors.push('Enter your email address');
+  if (!org)             errors.push('Enter your organisation');
+  if (!pwd || pwd.length < 8) errors.push('Password must be at least 8 characters');
+
+  var errBox  = document.getElementById('registerError');
+  var errList = document.getElementById('registerErrorList');
+  if (errors.length) {
+    if (errBox)  errBox.style.display = 'block';
+    if (errList) errList.innerHTML = errors.map(function(e){ return '<li>' + e + '</li>'; }).join('');
+    return;
+  }
+  if (errBox) errBox.style.display = 'none';
+
+  var users = lsU();
+  if (users[email]) {
+    if (errBox)  errBox.style.display = 'block';
+    if (errList) errList.innerHTML = '<li>An account with this email address already exists. <a href="#" onclick="showSignInCard(\'login\');return false;" style="color:#1d70b8">Sign in instead</a></li>';
+    return;
+  }
+
+  var id    = Date.now().toString(36) + Math.random().toString(36).slice(2,5);
+  var perms = defaultPermissions(role);
+  var user  = { id:id, fn:fn, ln:ln, email:email, pw:btoa(pwd), org:org, role:role, permissions:perms };
+  users[email] = user;
+  lsSU(users);
+  AU = user;
+  AP = { firstName:fn, lastName:ln, email:email, org:org, role:role, permissions:perms };
+  lsSess(user);
+  renderNav();
+  showDash();
 }
 </script>
 </body>

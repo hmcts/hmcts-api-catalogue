@@ -70,19 +70,19 @@ body, input, select, textarea, button {
 .app-user-chip__dd-item:last-child{border-bottom:none}
 .app-user-chip__dd-item:hover{background:#f3f2f1}
 .app-user-chip__dd-item--danger{color:#d4351c}
-.app-hero{background:#1d2f44;padding:40px 0 36px;border-bottom:4px solid #1d70b8}
-.app-hero__inner{max-width:1200px;margin:0 auto;padding:0 30px}
+.app-hero{background:#1d70b8;padding:8px 0 40px;border-bottom:none}
+.app-hero__inner{max-width:1200px;margin:0 auto;padding:0 16px}
 .app-hero__title{font-size:clamp(28px,4vw,46px);font-weight:700;color:#fff;margin:0 0 10px;line-height:1.1;font-family:GDS Transport,arial,sans-serif}
-.app-hero__lead{font-size:18px;color:#b1b4b6;max-width:580px;margin:0 0 22px;line-height:1.5}
+.app-hero__lead{font-size:18px;color:rgba(255,255,255,0.9);max-width:580px;margin:0 0 22px;line-height:1.5}
 .app-hero__search-wrap{display:flex;max-width:520px;margin-bottom:28px}
-.app-hero__search-input{flex:1;padding:10px 14px;font-size:16px;border:2px solid #b1b4b6;border-right:none;background:#fff;font-family:GDS Transport,arial,sans-serif}
+.app-hero__search-input{flex:1;padding:10px 14px;font-size:16px;border:2px solid white;border-right:none;background:#fff;font-family:GDS Transport,arial,sans-serif}
 .app-hero__search-input:focus{outline:3px solid #fd0;outline-offset:0;border-color:#0b0c0c;z-index:1}
 .app-hero__search-btn{padding:10px 16px;background:#1d70b8;border:2px solid #1d70b8;color:#fff;font-size:16px;font-weight:700;cursor:pointer;font-family:GDS Transport,arial,sans-serif}
 .app-hero__search-btn:hover{background:#003078;border-color:#003078}
 .app-hero__search-btn:focus{outline:3px solid #fd0;outline-offset:0}
 .app-hero__stats{display:flex;gap:32px;flex-wrap:wrap}
 .app-hero__stat-num{font-size:32px;font-weight:700;color:#fff;line-height:1;font-family:GDS Transport,arial,sans-serif}
-.app-hero__stat-label{font-size:14px;color:#b1b4b6;margin-top:3px}
+.app-hero__stat-label{font-size:14px;color:rgba(255,255,255,0.8);margin-top:3px}
 .app-phase-banner{background:#1d70b8;padding:8px 0}
 .app-phase-banner__inner{max-width:1200px;margin:0 auto;padding:0 30px;display:flex;align-items:center;gap:12px;font-size:14px;color:#fff}
 .app-phase-banner__tag{background:#fff;color:#1d70b8;font-weight:700;padding:2px 8px;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
@@ -501,7 +501,11 @@ body, input, select, textarea, button {
   </div>
   <div class="app-hero">
     <div class="app-hero__inner">
-      <span class="govuk-caption-l" style="color:#b1b4b6;margin-bottom:8px;display:block">HMCTS Digital and Technology Solutions</span>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:24px;padding-top:8px">
+        <strong class="govuk-tag">Alpha</strong>
+        <span style="font-size:13px;color:white">This is a new service &mdash; <a href="#" style="color:white">give your feedback</a> to help us improve it.</span>
+      </div>
+      <span class="govuk-caption-l" style="color:rgba(255,255,255,0.85);margin-bottom:8px;display:block">HMCTS Digital and Technology Solutions</span>
       <h1 class="app-hero__title">HMCTS API Catalogue</h1>
       <p class="app-hero__lead">Discover, explore and integrate with the HMCTS APIs. Documentation is dynamically connected to SwaggerHub.</p>
       <div class="app-hero__search-wrap" role="search">

@@ -49,7 +49,7 @@ body, input, select, textarea, button {
 .app-header__inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;justify-content:space-between;min-height:60px}
 .app-header__logo-link{display:flex;align-items:center;gap:10px;text-decoration:none}
 .app-header__logo-link:focus{outline:3px solid #fd0;outline-offset:0}
-.app-header__logo-icon{background:#1d70b8;color:#fff;font-size:18px;width:36px;height:36px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.app-header__logo-crown{flex-shrink:0}
 .app-header__logo-text{color:#fff;font-size:16px;font-weight:700;font-family:GDS Transport,arial,sans-serif}
 .app-header__logo-text span{font-weight:400}
 .app-header__nav{display:flex;align-items:center;gap:4px}
@@ -367,7 +367,9 @@ body, input, select, textarea, button {
 <header class="app-header" role="banner">
   <div class="app-header__inner">
     <a class="app-header__logo-link" onclick="showHome();return false;" href="#" aria-label="HMCTS API Catalogue home">
-      <div class="app-header__logo-icon" aria-hidden="true">&#9889;</div>
+      <svg aria-hidden="true" focusable="false" class="app-header__logo-crown" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 97" height="32" width="44" style="fill:white;vertical-align:middle;margin-right:8px">
+        <path d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.5-.2-7.7-3.7-9.1-3.5-1.5-7.7.2-9.1 3.7-1.4 3.5.3 7.6 3.7 9.1zm-17.5 0c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.5-.2-7.7-3.7-9.1-3.5-1.5-7.7.2-9.1 3.7-1.4 3.5.3 7.6 3.7 9.1zM10 48.5l9.5-8.7 4 8 5.2-8 5.3 8 5.2-8 5.2 8 4-8 9.6 8.7H10zm26.5-18.3c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.5-.2-7.7-3.7-9.1-3.5-1.5-7.7.2-9.1 3.7-1.4 3.5.3 7.6 3.7 9.1zm17.5 0c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.5-.2-7.7-3.7-9.1-3.5-1.5-7.7.2-9.1 3.7-1.4 3.5.3 7.6 3.7 9.1zM20 65l2.5 14H110l2.5-14H20zm92.5-16.5l9.5-8.7 4 8 5.2-8 5.3 8 5.2-8 5.2 8 4-8 9.6 8.7h-47.5zm-92.5 0l9.5-8.7 4 8 5.2-8 5.3 8 5.2-8 5.2 8 4-8 9.6 8.7H20zm112.5 0c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.5-.2-7.7-3.7-9.1-3.5-1.5-7.7.2-9.1 3.7-1.4 3.5.3 7.6 3.7 9.1zm-17.5 0c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.5-.2-7.7-3.7-9.1-3.5-1.5-7.7.2-9.1 3.7-1.4 3.5.3 7.6 3.7 9.1z"/>
+      </svg>
       <span class="app-header__logo-text">HMCTS <span>API Catalogue</span></span>
     </a>
   </div>

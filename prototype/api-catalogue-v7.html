@@ -30,26 +30,11 @@ body, input, select, textarea, button {
 </style>
 <style>
 .app-page{display:none}.app-page--active{display:block}
-.app-header{background:#0b0c0c;border-bottom:none;padding:0}
-.app-subnav{background:#f3f2f1;border-bottom:1px solid #b1b4b6;padding:0 16px}
-.app-subnav__inner{max-width:1200px;margin:0 auto;display:flex;align-items:center}
-.app-subnav__link{display:block;padding:12px 16px;font-size:15px;color:#0b0c0c;text-decoration:none;border-bottom:4px solid transparent;white-space:nowrap;font-family:GDS Transport,arial,sans-serif}
-.app-subnav__link:hover{background:#e8e8e8}
-.app-subnav__link--active{border-bottom-color:#1d70b8 !important;font-weight:700 !important;color:#1d70b8 !important}
-.app-subnav__signin{display:block;padding:12px 16px;font-size:15px;color:#1d70b8;text-decoration:underline;white-space:nowrap;font-family:GDS Transport,arial,sans-serif}
-.app-subnav__signin:hover{background:#e8e8e8}
-.govuk-width-container{max-width:1200px;margin:0 auto;padding:0 16px}
-.app-hero-band{background:#1d70b8;padding:8px 0 40px;width:100%}
-.app-hero-band__inner{max-width:1200px;margin:0 auto;padding:0 16px}
-.app-hero-band__quote{border-left:5px solid rgba(255,255,255,0.5);padding:14px 18px;background:rgba(0,0,0,0.15);margin-bottom:18px}
-.app-hero-band__quote p{font-size:17px;font-style:italic;color:white;margin:0;line-height:1.5}
-.app-hero-band__body{font-size:17px;color:rgba(255,255,255,0.9);line-height:1.5;max-width:640px;margin-bottom:24px}
-.app-btn-start{display:inline-flex;align-items:center;gap:10px;background:#00703c;color:white;border:2px solid transparent;padding:10px 20px;font-size:18px;font-weight:700;cursor:pointer;box-shadow:0 2px 0 #002d18;text-decoration:none;font-family:GDS Transport,arial,sans-serif}
-.app-btn-start:hover{background:#005a30;box-shadow:0 2px 0 #00140b;color:white;text-decoration:none}
-.app-header__inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;justify-content:space-between;min-height:60px}
+.app-header{background:#0b0c0c;border-bottom:4px solid #1d70b8}
+.app-header__inner{max-width:1200px;margin:0 auto;padding:0 30px;display:flex;align-items:center;justify-content:space-between;min-height:60px}
 .app-header__logo-link{display:flex;align-items:center;gap:10px;text-decoration:none}
 .app-header__logo-link:focus{outline:3px solid #fd0;outline-offset:0}
-.app-header__logo-crown{flex-shrink:0}
+.app-header__logo-icon{background:#1d70b8;color:#fff;font-size:18px;width:36px;height:36px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .app-header__logo-text{color:#fff;font-size:16px;font-weight:700;font-family:GDS Transport,arial,sans-serif}
 .app-header__logo-text span{font-weight:400}
 .app-header__nav{display:flex;align-items:center;gap:4px}
@@ -70,19 +55,19 @@ body, input, select, textarea, button {
 .app-user-chip__dd-item:last-child{border-bottom:none}
 .app-user-chip__dd-item:hover{background:#f3f2f1}
 .app-user-chip__dd-item--danger{color:#d4351c}
-.app-hero{background:#1d70b8;padding:8px 0 40px;border-bottom:none}
-.app-hero__inner{max-width:1200px;margin:0 auto;padding:0 16px}
+.app-hero{background:#1d2f44;padding:40px 0 36px;border-bottom:4px solid #1d70b8}
+.app-hero__inner{max-width:1200px;margin:0 auto;padding:0 30px}
 .app-hero__title{font-size:clamp(28px,4vw,46px);font-weight:700;color:#fff;margin:0 0 10px;line-height:1.1;font-family:GDS Transport,arial,sans-serif}
-.app-hero__lead{font-size:18px;color:rgba(255,255,255,0.9);max-width:580px;margin:0 0 22px;line-height:1.5}
+.app-hero__lead{font-size:18px;color:#b1b4b6;max-width:580px;margin:0 0 22px;line-height:1.5}
 .app-hero__search-wrap{display:flex;max-width:520px;margin-bottom:28px}
-.app-hero__search-input{flex:1;padding:10px 14px;font-size:16px;border:2px solid white;border-right:none;background:#fff;font-family:GDS Transport,arial,sans-serif}
+.app-hero__search-input{flex:1;padding:10px 14px;font-size:16px;border:2px solid #b1b4b6;border-right:none;background:#fff;font-family:GDS Transport,arial,sans-serif}
 .app-hero__search-input:focus{outline:3px solid #fd0;outline-offset:0;border-color:#0b0c0c;z-index:1}
 .app-hero__search-btn{padding:10px 16px;background:#1d70b8;border:2px solid #1d70b8;color:#fff;font-size:16px;font-weight:700;cursor:pointer;font-family:GDS Transport,arial,sans-serif}
 .app-hero__search-btn:hover{background:#003078;border-color:#003078}
 .app-hero__search-btn:focus{outline:3px solid #fd0;outline-offset:0}
 .app-hero__stats{display:flex;gap:32px;flex-wrap:wrap}
 .app-hero__stat-num{font-size:32px;font-weight:700;color:#fff;line-height:1;font-family:GDS Transport,arial,sans-serif}
-.app-hero__stat-label{font-size:14px;color:rgba(255,255,255,0.8);margin-top:3px}
+.app-hero__stat-label{font-size:14px;color:#b1b4b6;margin-top:3px}
 .app-phase-banner{background:#1d70b8;padding:8px 0}
 .app-phase-banner__inner{max-width:1200px;margin:0 auto;padding:0 30px;display:flex;align-items:center;gap:12px;font-size:14px;color:#fff}
 .app-phase-banner__tag{background:#fff;color:#1d70b8;font-weight:700;padding:2px 8px;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
@@ -292,7 +277,7 @@ body, input, select, textarea, button {
 .app-footer__inner{max-width:1200px;margin:0 auto;padding:0 30px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:14px;color:#505a5f}
 .app-footer__links{display:flex;gap:16px}
 .app-footer__links a{color:#1d70b8;font-size:14px}
-@media(max-width:640px){.app-detail-body,.app-dash-layout{padding:16px 16px 40px}.app-hero__inner,.app-main,.app-mp-section,.app-mp-hero__inner,.app-header__inner,.app-sync-bar__inner{padding-left:16px;padding-right:16px}.app-stat-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.app-detail-body,.app-dash-layout{padding:16px 16px 40px}.app-hero__inner,.app-main,.app-mp-section,.app-mp-hero__inner,.app-header__inner,.app-sync-bar__inner{padding-left:16px;padding-right:16px}.app-header__nav{display:none}.app-stat-grid{grid-template-columns:1fr 1fr}}
 
 /* Skip link */
 .govuk-skip-link{display:block;padding:10px 15px;background:#fd0;color:#0b0c0c;font-weight:700;font-size:19px;text-decoration:none;position:absolute;top:-999px;left:0;z-index:999}
@@ -367,132 +352,21 @@ body, input, select, textarea, button {
 <header class="app-header" role="banner">
   <div class="app-header__inner">
     <a class="app-header__logo-link" onclick="showHome();return false;" href="#" aria-label="HMCTS API Catalogue home">
-      <svg aria-hidden="true" focusable="false" class="app-header__logo-crown" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 97" height="32" width="44" style="fill:white;vertical-align:middle;margin-right:8px">
-        <path d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.5-.2-7.7-3.7-9.1-3.5-1.5-7.7.2-9.1 3.7-1.4 3.5.3 7.6 3.7 9.1zm-17.5 0c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.5-.2-7.7-3.7-9.1-3.5-1.5-7.7.2-9.1 3.7-1.4 3.5.3 7.6 3.7 9.1zM10 48.5l9.5-8.7 4 8 5.2-8 5.3 8 5.2-8 5.2 8 4-8 9.6 8.7H10zm26.5-18.3c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.5-.2-7.7-3.7-9.1-3.5-1.5-7.7.2-9.1 3.7-1.4 3.5.3 7.6 3.7 9.1zm17.5 0c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.5-.2-7.7-3.7-9.1-3.5-1.5-7.7.2-9.1 3.7-1.4 3.5.3 7.6 3.7 9.1zM20 65l2.5 14H110l2.5-14H20zm92.5-16.5l9.5-8.7 4 8 5.2-8 5.3 8 5.2-8 5.2 8 4-8 9.6 8.7h-47.5zm-92.5 0l9.5-8.7 4 8 5.2-8 5.3 8 5.2-8 5.2 8 4-8 9.6 8.7H20zm112.5 0c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.5-.2-7.7-3.7-9.1-3.5-1.5-7.7.2-9.1 3.7-1.4 3.5.3 7.6 3.7 9.1zm-17.5 0c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.5-.2-7.7-3.7-9.1-3.5-1.5-7.7.2-9.1 3.7-1.4 3.5.3 7.6 3.7 9.1z"/>
-      </svg>
+      <div class="app-header__logo-icon" aria-hidden="true">&#9889;</div>
       <span class="app-header__logo-text">HMCTS <span>API Catalogue</span></span>
     </a>
+    <nav class="app-header__nav" aria-label="Primary navigation">
+      <a class="app-nav-link app-nav-link--active" id="navBrowse" onclick="showHome();setActiveNav('navBrowse');return false;" href="#">Browse APIs</a>
+      <a class="app-nav-link" id="navMarket" onclick="showMarketplace();setActiveNav('navMarket');return false;" href="#">What is API Marketplace?</a>
+      <a class="app-nav-link" id="navDash" onclick="showDash();setActiveNav('navDash');return false;" href="#">My dashboard</a>
+      <a class="app-nav-link" onclick="document.getElementById('gettingStarted').scrollIntoView({behavior:'smooth'});return false;" href="#">Getting started</a>
+    </nav>
+    <div class="app-header__right" id="navRight"></div>
   </div>
 </header>
-<nav class="app-subnav" aria-label="Primary navigation">
-  <div class="app-subnav__inner">
-    <a class="app-subnav__link app-subnav__link--active" id="navMarket" onclick="showHome();setActiveNav('navMarket');return false;" href="#">What is the API Catalogue?</a>
-    <a class="app-subnav__link" id="navBrowse" onclick="showMarketplace();setActiveNav('navBrowse');return false;" href="#">Browse APIs</a>
-    <a class="app-subnav__link" id="navDash" onclick="showDash();setActiveNav('navDash');return false;" href="#">My dashboard</a>
-    <div style="flex:1"></div>
-    <a class="app-subnav__signin" id="navSignIn" onclick="showAuth('login');return false;" href="#">Sign in</a>
-  </div>
-</nav>
-
-<!-- SIGN IN PAGE -->
-<div id="signInPage" class="app-page">
-  <main style="background:#f3f2f1;min-height:calc(100vh - 112px);padding-bottom:60px">
-    <div style="max-width:500px;margin:0 auto;padding:48px 16px 0">
-
-      <!-- Sign in card -->
-      <div id="signInCard" style="background:white;border:1px solid #b1b4b6;padding:32px">
-        <h1 class="govuk-heading-l" style="margin-bottom:24px">Sign in to HMCTS API Catalogue</h1>
-
-        <div id="signInError" class="govuk-error-summary" style="display:none" role="alert">
-          <h2 class="govuk-error-summary__title">There is a problem</h2>
-          <ul class="govuk-error-summary__list"><li id="signInErrorMsg">Email address or password is incorrect</li></ul>
-        </div>
-
-        <div class="govuk-form-group" id="fgSignInEmail">
-          <label class="govuk-label govuk-label--m" for="signInEmail">Email address</label>
-          <input class="govuk-input" type="email" id="signInEmail" autocomplete="email" spellcheck="false">
-        </div>
-
-        <div class="govuk-form-group" id="fgSignInPwd">
-          <label class="govuk-label govuk-label--m" for="signInPwd">Password</label>
-          <div style="position:relative">
-            <input class="govuk-input" type="password" id="signInPwd" autocomplete="current-password" style="padding-right:60px">
-            <button type="button" onclick="togglePwdVisibility('signInPwd',this)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:14px;color:#1d70b8;text-decoration:underline;cursor:pointer;background:none;border:none;font-family:inherit">Show</button>
-          </div>
-        </div>
-
-        <p style="margin-bottom:24px"><a class="govuk-link" href="#" onclick="showForgotPassword();return false;">Forgot your password?</a></p>
-
-        <button class="govuk-button" style="width:100%;margin-bottom:0;font-size:18px" onclick="doSignInPage()">Sign in</button>
-
-        <hr style="border:none;border-top:1px solid #b1b4b6;margin:28px 0">
-
-        <p class="govuk-body" style="text-align:center;margin-bottom:16px">Don&rsquo;t have an account?</p>
-        <button class="govuk-button govuk-button--secondary" style="width:100%;margin-bottom:0" onclick="showSignInPage('register')">Create an account</button>
-      </div>
-
-      <!-- Register card (hidden by default) -->
-      <div id="registerCard" style="background:white;border:1px solid #b1b4b6;padding:32px;display:none">
-        <h1 class="govuk-heading-l" style="margin-bottom:8px">Create an account</h1>
-        <p class="govuk-body" style="margin-bottom:24px;color:#505a5f">Already have an account? <a class="govuk-link" href="#" onclick="showSignInPage('login');return false;">Sign in</a></p>
-
-        <div id="registerError" class="govuk-error-summary" style="display:none" role="alert">
-          <h2 class="govuk-error-summary__title">There is a problem</h2>
-          <ul class="govuk-error-summary__list" id="registerErrorList"></ul>
-        </div>
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-          <div class="govuk-form-group" id="fgRegFn">
-            <label class="govuk-label govuk-label--m" for="regFn">First name</label>
-            <input class="govuk-input" type="text" id="regFn" autocomplete="given-name">
-          </div>
-          <div class="govuk-form-group" id="fgRegLn">
-            <label class="govuk-label govuk-label--m" for="regLn">Last name</label>
-            <input class="govuk-input" type="text" id="regLn" autocomplete="family-name">
-          </div>
-        </div>
-
-        <div class="govuk-form-group" id="fgRegEmail">
-          <label class="govuk-label govuk-label--m" for="regEmail">Email address</label>
-          <div class="govuk-hint">Use your work email address</div>
-          <input class="govuk-input" type="email" id="regEmail" autocomplete="email" spellcheck="false">
-        </div>
-
-        <div class="govuk-form-group" id="fgRegOrg">
-          <label class="govuk-label govuk-label--m" for="regOrg">Organisation</label>
-          <input class="govuk-input" type="text" id="regOrg" autocomplete="organization">
-        </div>
-
-        <div class="govuk-form-group" id="fgRegPwd">
-          <label class="govuk-label govuk-label--m" for="regPwd">Create a password</label>
-          <div class="govuk-hint">At least 8 characters</div>
-          <div style="position:relative">
-            <input class="govuk-input" type="password" id="regPwd" autocomplete="new-password" style="padding-right:60px">
-            <button type="button" onclick="togglePwdVisibility('regPwd',this)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:14px;color:#1d70b8;text-decoration:underline;cursor:pointer;background:none;border:none;font-family:inherit">Show</button>
-          </div>
-        </div>
-
-        <div class="govuk-form-group" id="fgRegRole">
-          <label class="govuk-label govuk-label--m">I am registering as a</label>
-          <div class="govuk-radios" style="margin-top:8px">
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="roleConsumer" name="regRole" type="radio" value="consumer" checked>
-              <label class="govuk-label govuk-radios__label" for="roleConsumer"><strong>Consumer</strong> — I need to use APIs to build or integrate services</label>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="roleProducer" name="regRole" type="radio" value="producer">
-              <label class="govuk-label govuk-radios__label" for="roleProducer"><strong>Producer</strong> — I own or publish APIs and want them listed</label>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="roleReviewer" name="regRole" type="radio" value="reviewer">
-              <label class="govuk-label govuk-radios__label" for="roleReviewer"><strong>Reviewer</strong> — I am part of the marketplace governance team</label>
-            </div>
-          </div>
-        </div>
-
-        <button class="govuk-button" style="width:100%;margin-bottom:0;font-size:18px" onclick="doRegisterPage()">Create account</button>
-      </div>
-
-      <p style="font-size:14px;color:#505a5f;text-align:center;margin-top:20px">
-        Having trouble? <a class="govuk-link" href="mailto:no-reply@hmcts.com">Contact the HMCTS API Catalogue team</a>
-      </p>
-
-    </div>
-  </main>
-</div>
 
 <!-- HOME PAGE -->
-<div id="homePage" class="app-page">
+<div id="homePage" class="app-page app-page--active">
   <div class="app-phase-banner" role="region" aria-label="Service phase">
     <div class="app-phase-banner__inner">
       <strong class="app-phase-banner__tag">Beta</strong>
@@ -505,9 +379,9 @@ body, input, select, textarea, button {
         <strong class="govuk-tag">Alpha</strong>
         <span style="font-size:13px;color:white">This is a new service &mdash; <a href="#" style="color:white">give your feedback</a> to help us improve it.</span>
       </div>
-      <span class="govuk-caption-l" style="color:rgba(255,255,255,0.85);margin-bottom:8px;display:block">HMCTS Digital and Technology Solutions</span>
+      <span class="govuk-caption-l" style="color:rgba(255,255,255,0.85);margin-bottom:8px;display:block">Common Platform Programme &middot; HMCTS Digital and Technology Solutions</span>
       <h1 class="app-hero__title">HMCTS API Catalogue</h1>
-      <p class="app-hero__lead">Discover, explore and integrate with the HMCTS APIs. Documentation is dynamically connected to SwaggerHub.</p>
+      <p class="app-hero__lead">Discover, explore and integrate with the Common Platform APIs. Documentation is dynamically connected to SwaggerHub.</p>
       <div class="app-hero__search-wrap" role="search">
         <label for="searchBox" class="govuk-visually-hidden">Search APIs by name, domain or tag</label>
         <input class="app-hero__search-input" id="searchBox" type="search" placeholder="Search by name, domain or tag&hellip;" oninput="filterCards(this.value)" autocomplete="off">
@@ -540,7 +414,7 @@ body, input, select, textarea, button {
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
         <div>
           <h2 class="govuk-heading-l" id="gs-heading">Getting started</h2>
-          <p class="govuk-body">New to the HMCTS APIs? Each API includes a plain-English summary for non-technical readers and full technical documentation for developers.</p>
+          <p class="govuk-body">New to the Common Platform APIs? Each API includes a plain-English summary for non-technical readers and full technical documentation for developers.</p>
           <div class="app-steps" role="list">
             <div class="app-step" role="listitem"><div class="app-step__number" aria-hidden="true">1</div><div><div class="app-step__title">Browse and discover</div><div class="app-step__desc">Use search and domain filters to find the API you need.</div></div></div>
             <div class="app-step" role="listitem"><div class="app-step__number" aria-hidden="true">2</div><div><div class="app-step__title">Try the mock server</div><div class="app-step__desc">Every API has a free SwaggerHub mock server &mdash; no credentials required.</div></div></div>
@@ -573,207 +447,198 @@ body, input, select, textarea, button {
         <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:no-reply@hmcts.com" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a href="mailto:no-reply@hmcts.com" class="govuk-footer__link">Request a new API</a></li></ul></div>
         <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Policies</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Accessibility statement</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Cookies</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Privacy notice</a></li></ul></div>
       </div>
-      <div class="govuk-footer__meta"><div class="govuk-footer__meta-item">Built by <a href="https://www.gov.uk/hmcts" class="govuk-footer__link">HMCTS Digital and Technology Solutions</a> &mdash; HMCTS Digital and Technology Solutions<span id="footSwaggerLink" style="margin-left:12px"></span></div><div class="govuk-footer__copyright-logo">&copy; Crown copyright &mdash; MIT Licence</div></div>
+      <div class="govuk-footer__meta"><div class="govuk-footer__meta-item">Built by <a href="https://www.gov.uk/hmcts" class="govuk-footer__link">HMCTS Digital and Technology Solutions</a> &mdash; Common Platform Programme<span id="footSwaggerLink" style="margin-left:12px"></span></div><div class="govuk-footer__copyright-logo">&copy; Crown copyright &mdash; MIT Licence</div></div>
     </div>
   </footer>
 </div>
 
 <!-- MARKETPLACE PAGE -->
-<div id="marketplacePage" class="app-page app-page--active">
-<style>
-  .app-header-crown { display:inline-block; width:32px; height:32px; margin-right:8px; vertical-align:middle; }
-  .app-one-pager-hero { background:#f3f2f1; padding:40px 0; border-bottom:2px solid #b1b4b6; }
-  .app-inset-quote { border-left:6px solid #1d70b8; padding:16px 20px; background:white; margin-bottom:20px; }
-  .app-inset-quote p { font-size:19px; font-style:italic; color:#0b0c0c; margin:0; line-height:1.5; }
-  .app-section-rule { border:none; border-top:3px solid #1d70b8; margin-bottom:20px; }
-  .app-does-table { width:100%; border-collapse:collapse; margin-bottom:30px; }
-  .app-does-table th { padding:12px 16px; text-align:left; font-family:GDS Transport,Arial,sans-serif; font-size:16px; font-weight:700; color:white; }
-  .app-does-table th.app-does-yes { background:#00703c; }
-  .app-does-table th.app-does-no  { background:#d4351c; }
-  .app-does-table td { padding:10px 16px; border-bottom:1px solid #b1b4b6; font-family:GDS Transport,Arial,sans-serif; font-size:16px; color:#0b0c0c; vertical-align:top; }
-  .app-does-table tr:nth-child(even) td { background:#f3f2f1; }
-  .app-tick { color:#00703c; font-weight:700; margin-right:6px; }
-  .app-cross { color:#d4351c; font-weight:700; margin-right:6px; }
-  .app-role-card { border:1px solid #b1b4b6; padding:20px; border-top:5px solid #1d70b8; background:white; }
-  .app-role-card--producer { border-top-color:#00703c; }
-  .app-role-card--reviewer { border-top-color:#f47738; }
-  .app-role-tag { display:inline-block; background:#e8f1f8; color:#003078; font-size:13px; font-weight:700; padding:3px 8px; margin:2px 2px 0 0; }
-  .app-role-tag--green  { background:#e3f3e3; color:#005a30; }
-  .app-role-tag--orange { background:#fef2e4; color:#6e3a0a; }
-  .app-how-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:8px; margin-bottom:40px; }
-  .app-how-step { text-align:center; padding:0 8px; }
-  .app-how-step__num { width:56px; height:56px; background:#1d70b8; color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:700; margin:0 auto 12px; border:3px solid white; outline:3px solid #1d70b8; }
-  .app-how-step__title { font-family:GDS Transport,Arial,sans-serif; font-size:16px; font-weight:700; color:#0b0c0c; margin-bottom:4px; }
-  .app-how-step__body  { font-family:GDS Transport,Arial,sans-serif; font-size:14px; color:#505a5f; line-height:1.4; }
-  .app-benefit-card { border-left:5px solid #1d70b8; border:1px solid #b1b4b6; border-left:5px solid #1d70b8; padding:16px 20px; background:white; }
-  .app-benefit-card__title { font-family:GDS Transport,Arial,sans-serif; font-size:17px; font-weight:700; color:#0b0c0c; margin-bottom:6px; }
-  .app-benefit-card__body  { font-family:GDS Transport,Arial,sans-serif; font-size:15px; color:#505a5f; line-height:1.5; margin:0; }
-  .app-misconception { padding:14px 16px; background:white; border:1px solid #b1b4b6; border-left:5px solid #b1b4b6; margin-bottom:10px; }
-  .app-misconception__q { font-family:GDS Transport,Arial,sans-serif; font-size:15px; color:#d4351c; font-style:italic; margin-bottom:4px; }
-  .app-misconception__a { font-family:GDS Transport,Arial,sans-serif; font-size:15px; color:#0b0c0c; margin:0; }
-</style>
-
-<div class="app-hero-band">
-  <div class="app-hero-band__inner">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:28px;padding-top:8px">
-      <strong class="govuk-tag">Alpha</strong>
-      <span style="font-size:13px;color:white">This is a new service &mdash; <a href="#" style="color:white">give your feedback</a> to help us improve it.</span>
+<div id="marketplacePage" class="app-page">
+  <div class="app-mp-hero" role="banner">
+    <div class="app-mp-hero__inner">
+      <span class="app-mp-hero__tag">HMCTS Common Platform Programme</span>
+      <h1 class="app-mp-hero__title">What is the API Marketplace?</h1>
+      <p class="app-mp-hero__lead">A plain-English guide for technical and non-technical audiences &mdash; what the API Marketplace is, who it is for, how it works, and what it is not.</p>
+      <blockquote style="border-left:4px solid #fff;padding:10px 16px;margin:0;color:#fff;font-size:18px;font-style:italic">&ldquo;We don&rsquo;t build APIs &mdash; we connect you to them.&rdquo;</blockquote>
     </div>
-    <h1 class="govuk-heading-xl" style="color:white;margin-bottom:16px">HMCTS API Catalogue</h1>
-    <div class="app-hero-band__quote">
-      <p>&ldquo;We don&rsquo;t build APIs &mdash; we connect you to them. Like a library &mdash; we don&rsquo;t write the books, we organise them so you can find and borrow what you need.&rdquo;</p>
-    </div>
-    <p class="app-hero-band__body">A discovery, publication and access management platform for APIs across HMCTS Digital and Technology Solutions. One place to find what data exists, understand how it works, and request access.</p>
-    <a href="#" class="app-btn-start" onclick="showMarketplace();setActiveNav('navBrowse');return false;">Browse the catalogue <svg xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false"><path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"/></svg></a>
   </div>
-</div>
-
-<div class="govuk-width-container">
-
-<!-- Who it's for -->
-    <h2 class="govuk-heading-l">Who it's for</h2>
-    <hr class="app-section-rule">
-    <div class="govuk-grid-row govuk-!-margin-bottom-8">
-      <div class="govuk-grid-column-one-third">
-        <div class="app-role-card">
-          <h3 class="govuk-heading-m">API Consumers</h3>
-          <p class="govuk-body">Teams and developers who need to use an existing API rather than build one from scratch.</p>
-          <span class="app-role-tag">Browse APIs</span>
-          <span class="app-role-tag">Read docs</span>
-          <span class="app-role-tag">Request access</span>
-          <span class="app-role-tag">Track requests</span>
+  <main>
+    <section class="app-mp-section"><div class="app-mp-section__eyebrow">The simple answer</div><h2 class="app-mp-section__title">Think of it like an App Store for APIs</h2><p class="app-mp-section__body">Just as an App Store curates and gives you a single place to discover and access apps, the API Marketplace does the same for APIs. We are the catalogue and access layer. The APIs belong to their respective teams; we make them <strong>discoverable, documented, and accessible</strong>.</p></section>
+    <section class="app-mp-section" style="padding-top:0"><div class="app-mp-section__eyebrow">What we do and don&rsquo;t do</div><h2 class="app-mp-section__title">Let&rsquo;s be crystal clear</h2>
+      <div class="app-mp-does">
+        <div class="app-mp-yes"><div class="app-mp-panel-title">What the marketplace does</div><div class="app-mp-item"><span aria-hidden="true">&#10003;</span><span>Discovers, catalogues and curates APIs across the organisation</span></div><div class="app-mp-item"><span aria-hidden="true">&#10003;</span><span>Single place to find, understand and compare APIs</span></div><div class="app-mp-item"><span aria-hidden="true">&#10003;</span><span>Manages access requests so teams can be approved to use APIs</span></div><div class="app-mp-item"><span aria-hidden="true">&#10003;</span><span>Hosts documentation so consumers know how to integrate</span></div><div class="app-mp-item"><span aria-hidden="true">&#10003;</span><span>Connects API providers with the consumers who need them</span></div><div class="app-mp-item"><span aria-hidden="true">&#10003;</span><span>Provides visibility into what APIs exist and who is using them</span></div></div>
+        <div class="app-mp-no"><div class="app-mp-panel-title">What the marketplace does NOT do</div><div class="app-mp-item"><span aria-hidden="true">&#10007;</span><span>Build, own or develop APIs &mdash; that stays with each product team</span></div><div class="app-mp-item"><span aria-hidden="true">&#10007;</span><span>Host your data or run your backend services</span></div><div class="app-mp-item"><span aria-hidden="true">&#10007;</span><span>Support the API itself &mdash; support stays with the API owner</span></div><div class="app-mp-item"><span aria-hidden="true">&#10007;</span><span>Make architectural decisions for your API</span></div><div class="app-mp-item"><span aria-hidden="true">&#10007;</span><span>Guarantee uptime or SLAs for listed APIs</span></div><div class="app-mp-item"><span aria-hidden="true">&#10007;</span><span>Replace your team&rsquo;s responsibility for maintaining their APIs</span></div></div>
+      </div>
+    </section>
+    <hr class="app-divider">
+    <section class="app-mp-section"><div class="app-mp-section__eyebrow">Who it&rsquo;s for</div><h2 class="app-mp-section__title">Two audiences, one marketplace</h2>
+      <div class="app-mp-aud">
+        <div class="app-mp-aud-card"><div class="app-mp-aud-icon" aria-hidden="true">&#128105;&#8205;&#128187;</div><div class="app-mp-aud-title">API Consumers</div><p class="app-mp-aud-desc">Teams and developers who need to use an existing API rather than build one from scratch.</p><ul class="app-mp-aud-list"><li>Browse the catalogue to find APIs that meet your needs</li><li>Read docs to understand how to integrate</li><li>Submit an access request to be approved</li><li>Try the mock server before connecting to production</li></ul></div>
+        <div class="app-mp-aud-card"><div class="app-mp-aud-icon" aria-hidden="true">&#127959;&#65039;</div><div class="app-mp-aud-title">API Producers</div><p class="app-mp-aud-desc">Teams that build and own APIs and want them discoverable and usable by others.</p><ul class="app-mp-aud-list"><li>List your API with a spec and documentation</li><li>Manage who can access your API</li><li>Keep your spec up to date in SwaggerHub</li><li>Support the consumers of your API</li></ul></div>
+      </div>
+    </section>
+    <hr class="app-divider">
+    <section class="app-mp-section"><div class="app-mp-section__eyebrow">How it works</div><h2 class="app-mp-section__title">Four steps from discovery to integration</h2>
+      <div class="app-mp-flow">
+        <div class="app-mp-step"><div class="app-mp-step__num" aria-hidden="true">1</div><div class="app-mp-step__title">Browse</div><p class="app-mp-step__desc">Search or filter the catalogue by domain or keyword.</p></div>
+        <div class="app-mp-step"><div class="app-mp-step__num" aria-hidden="true">2</div><div class="app-mp-step__title">Discover</div><p class="app-mp-step__desc">Read the plain-English summary and full technical docs. Try the mock server.</p></div>
+        <div class="app-mp-step"><div class="app-mp-step__num" aria-hidden="true">3</div><div class="app-mp-step__title">Request access</div><p class="app-mp-step__desc">Submit a request. The API owner reviews and approves or declines.</p></div>
+        <div class="app-mp-step"><div class="app-mp-step__num" aria-hidden="true">4</div><div class="app-mp-step__title">Integrate</div><p class="app-mp-step__desc">Use the documentation and spec to connect your system.</p></div>
+      </div>
+    </section>
+    <hr class="app-divider">
+    <section class="app-mp-section"><div class="app-mp-section__eyebrow">Why it matters</div><h2 class="app-mp-section__title">Key benefits</h2>
+      <div class="app-mp-ben">
+        <div class="app-mp-ben-card"><div class="app-mp-ben-icon" aria-hidden="true">&#128269;</div><div class="app-mp-ben-title">Stops duplication</div><p class="app-mp-ben-desc">Teams can check whether an API already exists before building a new one.</p></div>
+        <div class="app-mp-ben-card"><div class="app-mp-ben-icon" aria-hidden="true">&#9889;</div><div class="app-mp-ben-title">Faster integration</div><p class="app-mp-ben-desc">Consumers get docs, specs, mock servers and access requests in one place.</p></div>
+        <div class="app-mp-ben-card"><div class="app-mp-ben-icon" aria-hidden="true">&#127963;&#65039;</div><div class="app-mp-ben-title">Governance and standards</div><p class="app-mp-ben-desc">Enforces naming conventions and documentation standards across all APIs.</p></div>
+        <div class="app-mp-ben-card"><div class="app-mp-ben-icon" aria-hidden="true">&#127760;</div><div class="app-mp-ben-title">Wider discoverability</div><p class="app-mp-ben-desc">APIs that are hard to find go unused. Listing gets them in front of the right consumers.</p></div>
+        <div class="app-mp-ben-card"><div class="app-mp-ben-icon" aria-hidden="true">&#128274;</div><div class="app-mp-ben-title">Controlled access</div><p class="app-mp-ben-desc">The approval workflow ensures only authorised teams access sensitive APIs.</p></div>
+        <div class="app-mp-ben-card"><div class="app-mp-ben-icon" aria-hidden="true">&#128065;&#65039;</div><div class="app-mp-ben-title">Visibility</div><p class="app-mp-ben-desc">Leadership gets a clear picture of all APIs &mdash; what exists, who owns it, how widely it is used.</p></div>
+      </div>
+    </section>
+    <hr class="app-divider">
+    <section class="app-mp-section"><div class="app-mp-section__eyebrow">Setting the record straight</div><h2 class="app-mp-section__title">Common misconceptions</h2>
+      <div class="app-mp-myth"><span class="app-mp-myth__x" aria-hidden="true">&#10007;</span><p class="app-mp-myth__text"><strong>&ldquo;The marketplace team builds the APIs.&rdquo;</strong> We don&rsquo;t build APIs &mdash; we list them. Your team builds and owns the API; we make it findable.</p></div>
+      <div class="app-mp-myth"><span class="app-mp-myth__x" aria-hidden="true">&#10007;</span><p class="app-mp-myth__text"><strong>&ldquo;If it&rsquo;s in the catalogue, the marketplace team supports it.&rdquo;</strong> Support stays with the API owner. We connect you to them.</p></div>
+      <div class="app-mp-myth"><span class="app-mp-myth__x" aria-hidden="true">&#10007;</span><p class="app-mp-myth__text"><strong>&ldquo;It&rsquo;s only for developers.&rdquo;</strong> Anyone can browse &mdash; product managers, architects and delivery managers should use it too.</p></div>
+      <div class="app-mp-myth"><span class="app-mp-myth__x" aria-hidden="true">&#10007;</span><p class="app-mp-myth__text"><strong>&ldquo;Listing my API means giving up ownership.&rdquo;</strong> You remain the owner. Listing simply makes your API discoverable; you control who gets access.</p></div>
+      <div class="app-mp-myth"><span class="app-mp-myth__x" aria-hidden="true">&#10007;</span><p class="app-mp-myth__text"><strong>&ldquo;The marketplace hosts our data.&rdquo;</strong> We host documentation and metadata about your API &mdash; not your data, not your service.</p></div>
+    </section>
+    <section class="app-mp-section" style="padding-top:0">
+      <div class="app-mp-cta">
+        <h2 class="app-mp-cta__title">Ready to get involved?</h2>
+        <p class="app-mp-cta__body">Whether you have an API to list or are looking for one to integrate with, get in touch with the marketplace team.</p>
+        <div class="app-mp-cta__btns">
+          <button class="govuk-button" onclick="showHome()">Browse the catalogue</button>
+          <a class="govuk-button govuk-button--secondary" href="mailto:no-reply@hmcts.com">Contact the team</a>
         </div>
       </div>
-      <div class="govuk-grid-column-one-third">
-        <div class="app-role-card app-role-card--producer">
-          <h3 class="govuk-heading-m">API Producers</h3>
-          <p class="govuk-body">Teams that build and own APIs and want them discoverable and usable by others.</p>
-          <span class="app-role-tag app-role-tag--green">Publish APIs</span>
-          <span class="app-role-tag app-role-tag--green">Manage access</span>
-          <span class="app-role-tag app-role-tag--green">Review requests</span>
-        </div>
-      </div>
-      <div class="govuk-grid-column-one-third">
-        <div class="app-role-card app-role-card--reviewer">
-          <h3 class="govuk-heading-m">Reviewers</h3>
-          <p class="govuk-body">Marketplace team members responsible for governance and quality standards.</p>
-          <span class="app-role-tag app-role-tag--orange">Review submissions</span>
-          <span class="app-role-tag app-role-tag--orange">Approve APIs</span>
-          <span class="app-role-tag app-role-tag--orange">Triage requests</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Does / doesn't do -->
-    <h2 class="govuk-heading-l">What the API Catalogue does and doesn't do</h2>
-    <hr class="app-section-rule">
-    <table class="app-does-table govuk-!-margin-bottom-8">
-      <thead>
-        <tr>
-          <th class="app-does-yes">✓&nbsp; The API Catalogue does</th>
-          <th class="app-does-no">✗&nbsp; The API Catalogue does not</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td><span class="app-tick">✓</span>Catalogue and curate APIs across the programme</td><td><span class="app-cross">✗</span>Build, own or develop APIs</td></tr>
-        <tr><td><span class="app-tick">✓</span>Provide a single point of discovery</td><td><span class="app-cross">✗</span>Host data or run backend services</td></tr>
-        <tr><td><span class="app-tick">✓</span>Document what each API does in plain English</td><td><span class="app-cross">✗</span>Support the API — that stays with the owner</td></tr>
-        <tr><td><span class="app-tick">✓</span>Manage access requests and the approval workflow</td><td><span class="app-cross">✗</span>Make architectural decisions for API teams</td></tr>
-        <tr><td><span class="app-tick">✓</span>Enforce naming conventions and data classification standards</td><td><span class="app-cross">✗</span>Guarantee uptime or SLAs for listed APIs</td></tr>
-        <tr><td><span class="app-tick">✓</span>Capture demand signals when consumers need data not yet available</td><td><span class="app-cross">✗</span>Replace any team's responsibility for their APIs</td></tr>
-      </tbody>
-    </table>
-
-    <!-- How it works -->
-    <h2 class="govuk-heading-l">How it works</h2>
-    <hr class="app-section-rule">
-    <div class="app-how-grid govuk-!-margin-bottom-8">
-      <div class="app-how-step">
-        <div class="app-how-step__num">1</div>
-        <p class="app-how-step__title">Browse</p>
-        <p class="app-how-step__body">Search by keyword or domain — no login required</p>
-      </div>
-      <div class="app-how-step">
-        <div class="app-how-step__num">2</div>
-        <p class="app-how-step__title">Discover</p>
-        <p class="app-how-step__body">Read plain-English summaries and full technical documentation</p>
-      </div>
-      <div class="app-how-step">
-        <div class="app-how-step__num">3</div>
-        <p class="app-how-step__title">Request access</p>
-        <p class="app-how-step__body">Submit a formal request with your business justification</p>
-      </div>
-      <div class="app-how-step">
-        <div class="app-how-step__num">4</div>
-        <p class="app-how-step__title">Integrate</p>
-        <p class="app-how-step__body">Use your credentials to connect via the API</p>
-      </div>
-    </div>
-
-    <!-- Key benefits -->
-    <h2 class="govuk-heading-l">Key benefits</h2>
-    <hr class="app-section-rule">
-    <div class="govuk-grid-row govuk-!-margin-bottom-8">
-      <div class="govuk-grid-column-one-half govuk-!-margin-bottom-4">
-        <div class="app-benefit-card">
-          <p class="app-benefit-card__title">Stops duplication</p>
-          <p class="app-benefit-card__body">Check whether an API already exists before building one. The catalogue makes invisible work visible.</p>
-        </div>
-      </div>
-      <div class="govuk-grid-column-one-half govuk-!-margin-bottom-4">
-        <div class="app-benefit-card">
-          <p class="app-benefit-card__title">Faster integration</p>
-          <p class="app-benefit-card__body">Documentation, specs, mock servers and access requests in one place. Integration time reduces from weeks to days.</p>
-        </div>
-      </div>
-      <div class="govuk-grid-column-one-half govuk-!-margin-bottom-4">
-        <div class="app-benefit-card">
-          <p class="app-benefit-card__title">Governance and standards</p>
-          <p class="app-benefit-card__body">The approval workflow ensures only APIs that meet quality and classification standards appear in the catalogue.</p>
-        </div>
-      </div>
-      <div class="govuk-grid-column-one-half govuk-!-margin-bottom-4">
-        <div class="app-benefit-card">
-          <p class="app-benefit-card__title">Controlled access</p>
-          <p class="app-benefit-card__body">Formal justifications mean sensitive data is only shared with authorised teams who have stated their use case.</p>
-        </div>
-      </div>
-      <div class="govuk-grid-column-one-half govuk-!-margin-bottom-4">
-        <div class="app-benefit-card">
-          <p class="app-benefit-card__title">Visibility for leadership</p>
-          <p class="app-benefit-card__body">Leadership and programme management get a clear picture of the API landscape — what exists, who owns it, and what demand looks like.</p>
-        </div>
-      </div>
-      <div class="govuk-grid-column-one-half govuk-!-margin-bottom-4">
-        <div class="app-benefit-card">
-          <p class="app-benefit-card__title">Captures demand signals</p>
-          <p class="app-benefit-card__body">When consumers can't find the data they need, they can request a new API — giving teams visibility of what the organisation actually needs.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Common misconceptions -->
-    <h2 class="govuk-heading-l">Common misconceptions</h2>
-    <hr class="app-section-rule">
-    <div class="govuk-!-margin-bottom-8">
-      <div class="app-misconception"><p class="app-misconception__q">"The marketplace team builds the APIs"</p><p class="app-misconception__a">We list them. Your team builds and owns the API. The catalogue makes it discoverable.</p></div>
-      <div class="app-misconception"><p class="app-misconception__q">"If it's in the catalogue, the marketplace team supports it"</p><p class="app-misconception__a">Support stays with the API owner. The catalogue is a directory, not a support desk.</p></div>
-      <div class="app-misconception"><p class="app-misconception__q">"It's only for developers"</p><p class="app-misconception__a">Product managers, architects, delivery managers and business analysts should all use it.</p></div>
-      <div class="app-misconception"><p class="app-misconception__q">"Listing my API means giving up ownership"</p><p class="app-misconception__a">You remain the owner. Listing makes your API discoverable — nothing more.</p></div>
-    </div>
-
-  </div>
-
+    </section>
+  </main>
   <footer class="govuk-footer" role="contentinfo">
     <div class="govuk-footer__inner">
       <div class="govuk-footer__navigation">
-        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">API Catalogue</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a onclick="showHome();return false;" href="#" class="govuk-footer__link">Browse APIs</a></li><li class="govuk-footer__list-item"><a onclick="showMarketplace();return false;" href="#" class="govuk-footer__link">What is API Catalogue?</a></li><li class="govuk-footer__list-item"><a href="https://app.swaggerhub.com/organizations/HMCTS-DTS" target="_blank" rel="noopener" class="govuk-footer__link">SwaggerHub organisation</a></li></ul></div>
-        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:no-reply@hmcts.com" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a onclick="requestNewApi();return false;" href="#" class="govuk-footer__link">Request a new API</a></li></ul></div>
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">API Catalogue</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a onclick="showHome();return false;" href="#" class="govuk-footer__link">Browse APIs</a></li><li class="govuk-footer__list-item"><a onclick="showMarketplace();return false;" href="#" class="govuk-footer__link">What is API Marketplace?</a></li><li class="govuk-footer__list-item"><a href="https://app.swaggerhub.com/organizations/HMCTS-DTS" target="_blank" rel="noopener" class="govuk-footer__link">SwaggerHub organisation</a></li></ul></div>
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:no-reply@hmcts.com" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a href="mailto:no-reply@hmcts.com" class="govuk-footer__link">Request a new API</a></li></ul></div>
         <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Policies</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Accessibility statement</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Cookies</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Privacy notice</a></li></ul></div>
       </div>
-      <div class="govuk-footer__meta"><div class="govuk-footer__meta-item">Built by <a href="https://www.gov.uk/hmcts" class="govuk-footer__link">HMCTS Digital and Technology Solutions</a></div><div class="govuk-footer__copyright-logo">&copy; Crown copyright &mdash; MIT Licence</div></div>
+      <div class="govuk-footer__meta"><div class="govuk-footer__meta-item">Built by <a href="https://www.gov.uk/hmcts" class="govuk-footer__link">HMCTS Digital and Technology Solutions</a> &mdash; Common Platform Programme</div><div class="govuk-footer__copyright-logo">&copy; Crown copyright &mdash; MIT Licence</div></div>
     </div>
   </footer>
+</div>
+
+<!-- DETAIL PAGE -->
+<div id="detailPage" class="app-page">
+  <div class="app-detail-header">
+    <div class="app-detail-header__inner">
+      <nav aria-label="Breadcrumb">
+        <ol style="list-style:none;padding:0;margin:0 0 16px;display:flex;gap:8px;flex-wrap:wrap;font-size:14px">
+          <li><a onclick="showHome();return false;" href="#" class="govuk-link">API Catalogue</a></li>
+          <li style="color:#505a5f">&rsaquo;</li>
+          <li style="color:#505a5f" aria-current="page" id="breadcrumbApi">API Detail</li>
+        </ol>
+      </nav>
+      <div id="dBadges" style="margin-bottom:12px"></div>
+      <h1 class="app-detail-header__name" id="dName"></h1>
+      <div class="app-detail-header__id" id="dId"></div>
+      <p class="app-detail-header__desc" id="dDesc"></p>
+      <div class="app-detail-header__meta" id="dMeta"></div>
+      <div class="app-detail-header__actions" id="dActions"></div>
+    </div>
+  </div>
+  <div class="app-sync-bar" role="status" aria-live="polite">
+    <div class="app-sync-bar__inner" id="syncBar">
+      <div class="app-sync-bar__status">
+        <div class="app-sync-bar__dot" id="syncDot"></div>
+        <span id="syncMsg">Loading&hellip;</span>
+        <span id="syncTime" style="color:#505a5f;font-size:13px;margin-left:6px"></span>
+      </div>
+      <button class="govuk-link" style="background:none;border:none;cursor:pointer;font-size:14px;padding:0" onclick="refreshCurrentSpec()">&#8635; Refresh</button>
+    </div>
+  </div>
+  <div style="background:#fff;border-bottom:1px solid #b1b4b6">
+    <div style="max-width:1200px;margin:0 auto;padding:0 30px">
+      <nav class="app-tabs" aria-label="API documentation sections">
+        <ul class="app-tabs__list" role="tablist">
+          <li role="presentation"><button class="app-tabs__tab app-tabs__tab--active" role="tab" aria-selected="true"  id="tab-btn-overview"  onclick="switchTab('overview',this)">Overview</button></li>
+          <li role="presentation"><button class="app-tabs__tab" role="tab" aria-selected="false" id="tab-btn-endpoints" onclick="switchTab('endpoints',this)">Endpoints</button></li>
+          <li role="presentation"><button class="app-tabs__tab" role="tab" aria-selected="false" id="tab-btn-schemas"   onclick="switchTab('schemas',this)">Data model</button></li>
+          <li role="presentation"><button class="app-tabs__tab" role="tab" aria-selected="false" id="tab-btn-changelog" onclick="switchTab('changelog',this)">Changelog</button></li>
+          <li role="presentation"><button class="app-tabs__tab" role="tab" aria-selected="false" id="tab-btn-tryit"     onclick="switchTab('tryit',this)">Try it out</button></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="app-detail-body">
+    <div>
+      <div id="tab-overview" class="app-tab-panel app-tab-panel--active" role="tabpanel">
+        <div class="app-panel"><div class="app-panel__title">What does this API do? <span class="govuk-tag govuk-tag--blue" style="font-size:11px;vertical-align:middle;margin-left:8px">Non-technical summary</span></div><p class="app-panel__body" id="dPlain"></p></div>
+        <div class="app-sidebar-card"><div class="app-sidebar-card__header">Endpoints at a glance <span class="app-spinner" id="epSpin" style="display:none" aria-label="Loading"></span></div><div class="app-sidebar-card__body" id="epGlance"><div class="app-skel" style="height:40px;margin-bottom:8px"></div><div class="app-skel" style="height:40px;margin-bottom:8px"></div><div class="app-skel" style="height:40px"></div></div></div>
+        <div id="notesCard" style="display:none"><div class="govuk-warning-text"><span class="govuk-warning-text__icon" aria-hidden="true">!</span><strong class="govuk-warning-text__text"><span class="govuk-visually-hidden">Warning</span>Consumer guidance</strong></div><div id="notesBody"></div></div>
+      </div>
+      <div id="tab-endpoints" class="app-tab-panel" role="tabpanel"><div class="app-sidebar-card"><div class="app-sidebar-card__header">All endpoints <span id="epCount" style="font-size:13px;color:#505a5f;font-weight:400;margin-left:8px"></span></div><div class="app-sidebar-card__body" id="epList"><div class="app-skel" style="height:44px;margin-bottom:8px"></div><div class="app-skel" style="height:44px;margin-bottom:8px"></div><div class="app-skel" style="height:44px"></div></div></div></div>
+      <div id="tab-schemas" class="app-tab-panel" role="tabpanel"><div class="app-sidebar-card"><div class="app-sidebar-card__header">Data model</div><div class="app-sidebar-card__body" id="schemaList"><div class="app-skel" style="height:120px"></div></div></div></div>
+      <div id="tab-changelog" class="app-tab-panel" role="tabpanel"><div class="app-sidebar-card"><div class="app-sidebar-card__header">Changelog</div><div class="app-sidebar-card__body" id="changelogBody"></div></div></div>
+      <div id="tab-tryit" class="app-tab-panel" role="tabpanel"><div class="app-sidebar-card"><div class="app-sidebar-card__header">Try it out &mdash; mock server</div><div class="app-sidebar-card__body" id="tryItBody"><div class="app-skel" style="height:60px"></div></div></div></div>
+    </div>
+    <div>
+      <div class="app-sidebar-card"><div class="app-sidebar-card__header">API information</div><div class="app-sidebar-card__body" id="sInfo"><div class="app-skel" style="height:14px;width:80%;margin-bottom:8px"></div><div class="app-skel" style="height:14px;width:60%"></div></div></div>
+      <div class="app-sidebar-card"><div class="app-sidebar-card__header">Authentication</div><div class="app-sidebar-card__body" id="sAuth"></div></div>
+      <div class="app-sidebar-card"><div class="app-sidebar-card__header">Response codes</div><div class="app-sidebar-card__body" id="sRC"><div class="app-skel" style="height:36px;margin-bottom:6px"></div><div class="app-skel" style="height:36px"></div></div></div>
+      <div class="app-sidebar-card"><div class="app-sidebar-card__header">Links</div><div class="app-sidebar-card__body" style="display:flex;flex-direction:column;gap:8px" id="sLinks"></div></div>
+    </div>
+  </div>
+  <footer class="govuk-footer" role="contentinfo">
+    <div class="govuk-footer__inner">
+      <div class="govuk-footer__navigation">
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">API Catalogue</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a onclick="showHome();return false;" href="#" class="govuk-footer__link">Browse APIs</a></li><li class="govuk-footer__list-item"><a onclick="showMarketplace();return false;" href="#" class="govuk-footer__link">What is API Marketplace?</a></li><li class="govuk-footer__list-item"><a href="https://app.swaggerhub.com/organizations/HMCTS-DTS" target="_blank" rel="noopener" class="govuk-footer__link">SwaggerHub organisation</a></li></ul></div>
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:no-reply@hmcts.com" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a href="mailto:no-reply@hmcts.com" class="govuk-footer__link">Request a new API</a></li></ul></div>
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Policies</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Accessibility statement</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Cookies</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Privacy notice</a></li></ul></div>
+      </div>
+      <div class="govuk-footer__meta"><div class="govuk-footer__meta-item">Built by <a href="https://www.gov.uk/hmcts" class="govuk-footer__link">HMCTS Digital and Technology Solutions</a> &mdash; Common Platform Programme</div><div class="govuk-footer__copyright-logo">&copy; Crown copyright &mdash; MIT Licence</div></div>
+    </div>
+  </footer>
+</div>
+
+<!-- AUTH OVERLAY -->
+<div id="authOverlay" style="display:none" class="app-auth-overlay" role="dialog" aria-modal="true" aria-labelledby="auth-title" onclick="if(event.target===this)hideAuth()">
+  <div class="app-auth-card">
+    <div class="app-auth-header"><h2 class="app-auth-header__title" id="auth-title">HMCTS API Catalogue</h2><p class="app-auth-header__sub">Sign in to request API access and manage your integrations.</p></div>
+    <div class="app-auth-body">
+      <div class="app-auth-tabs" role="tablist">
+        <button class="app-auth-tab app-auth-tab--active" id="atLogin" role="tab" aria-selected="true"  onclick="authTab('login')">Sign in</button>
+        <button class="app-auth-tab"                      id="atReg"   role="tab" aria-selected="false" onclick="authTab('register')">Register</button>
+      </div>
+      <div id="aErr" class="app-auth-error" role="alert"></div>
+      <form id="fLogin" onsubmit="doLogin(event)" novalidate>
+        <div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="lEm">Email address</label><input class="govuk-input" id="lEm" type="email" autocomplete="email" spellcheck="false" required></div>
+        <div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="lPw">Password</label><input class="govuk-input" id="lPw" type="password" autocomplete="current-password" required></div>
+        <button type="submit" class="govuk-button" id="btnL">Sign in</button>
+        <p class="govuk-body-s">No account? <a class="govuk-link" onclick="authTab('register');return false;" href="#">Register here</a></p>
+      </form>
+      <form id="fReg" style="display:none" onsubmit="doRegister(event)" novalidate>
+        <div class="govuk-form-group">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="govuk-form-group" style="margin:0"><label class="govuk-label govuk-label--s" for="rFn">First name</label><input class="govuk-input" id="rFn" type="text" autocomplete="given-name" required></div>
+            <div class="govuk-form-group" style="margin:0"><label class="govuk-label govuk-label--s" for="rLn">Last name</label><input class="govuk-input" id="rLn" type="text" autocomplete="family-name" required></div>
+          </div>
+        </div>
+        <div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="rEm">Email address</label><input class="govuk-input" id="rEm" type="email" autocomplete="email" spellcheck="false" required></div>
+        <div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="rPw">Create a password</label><div class="govuk-hint">Must be at least 8 characters</div><input class="govuk-input" id="rPw" type="password" autocomplete="new-password" minlength="8" required></div>
+        <div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="rOrg">Organisation or team</label><input class="govuk-input" id="rOrg" type="text" placeholder="e.g. Case Admin Team" required></div>
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-label--s">I am registering as&hellip;</label>
+          <div class="app-role-grid">
+            <button type="button" class="app-role-card app-role-card--selected" id="rcC" onclick="pickRole('consumer')" aria-pressed="true"><div class="app-role-card__icon" aria-hidden="true">&#128105;&#8205;&#128187;</div><div class="app-role-card__name">Consumer</div><div class="app-role-card__desc">Find and use existing APIs</div></button>
+            <button type="button" class="app-role-card" id="rcP" onclick="pickRole('producer')" aria-pressed="false"><div class="app-role-card__icon" aria-hidden="true">&#127959;&#65039;</div><div class="app-role-card__name">Producer</div><div class="app-role-card__desc">List and manage my APIs</div></button>
+          </div>
+        </div>
+        <button type="submit" class="govuk-button" id="btnR">Create account</button>
+        <p class="govuk-body-s">Have an account? <a class="govuk-link" onclick="authTab('login');return false;" href="#">Sign in</a></p>
+      </form>
+    </div>
+  </div>
 </div>
 
 <!-- CONSUMER DASHBOARD -->
@@ -785,10 +650,9 @@ body, input, select, textarea, button {
           <div class="app-dash-sidebar__header"><div class="app-dash-sidebar__avatar" id="cAv" aria-hidden="true">?</div><div><div class="app-dash-sidebar__name" id="cNm">User</div><div class="app-dash-sidebar__role">Consumer</div></div></div>
           <button class="app-dash-nav__item app-dash-nav__item--active" onclick="dPanel('c','ov',this)">Overview</button>
           <button class="app-dash-nav__item" onclick="dPanel('c','browse',this)">Browse APIs</button>
-          <button class="app-dash-nav__item" onclick="dPanel('c','reqs',this);refreshCReqs()">My requests</button>
+          <button class="app-dash-nav__item" onclick="dPanel('c','reqs',this)">My requests</button>
           <button class="app-dash-nav__item" onclick="dPanel('c','access',this)">Request access</button>
           <button class="app-dash-nav__item" onclick="dPanel('c','prof',this)">My profile</button>
-          <button class="app-dash-nav__item" onclick="dPanel('c','newapi',this);renderNewApiHistory()">Request a new API</button>
           <button class="app-dash-nav__item app-dash-nav__item--danger" onclick="doLogout()">Sign out</button>
         </nav>
       </div>
@@ -854,31 +718,6 @@ body, input, select, textarea, button {
             <button class="govuk-button" onclick="submitReq()">Submit request</button>
             <button class="govuk-button govuk-button--secondary" onclick="showReqStep('tasklist')" style="margin-left:12px">Save and come back later</button>
           </div>
-        </div>
-        <div class="app-dash-panel" id="c-newapi">
-          <h1 class="govuk-heading-l">Request a new API</h1>
-          <p class="govuk-body">Can't find the data you need in the catalogue? Complete this form and the marketplace team will investigate and get back to you.</p>
-          <div class="govuk-inset-text">This is for requesting a <strong>new API to be created or listed</strong>. If the API already exists and you need access, use <a class="govuk-link" onclick="dPanel('c','access',document.querySelectorAll('#consDash .app-dash-nav__item')[3]);return false;" href="#">Request access</a> instead.</div>
-          <div id="c-newapi-form">
-            <div class="app-form-card">
-              <div class="govuk-form-group" id="fg-napiName"><label class="govuk-label govuk-label--m" for="napiName">What would you call this API?</label><div class="govuk-hint">A short descriptive name, for example: Defendant Address Lookup or Bail Status API.</div><input class="govuk-input" id="napiName" type="text" autocomplete="off" spellcheck="true"></div>
-              <div class="govuk-form-group" id="fg-napiDomain"><label class="govuk-label govuk-label--m" for="napiDomain">Which business domain does this relate to?</label><select class="govuk-select" id="napiDomain" style="width:100%"><option value="">Select a domain&hellip;</option><option>Case Administration</option><option>Reference Data</option><option>Case Management</option><option>Hearing Results</option><option>Scheduling and Listing</option><option>I am not sure</option><option>Other</option></select></div>
-              <div class="govuk-form-group" id="fg-napiData"><label class="govuk-label govuk-label--m" for="napiData">What data do you need?</label><div class="govuk-hint">Be as specific as you can — for example: "defendant name, date of birth and current bail status for a given case URN".</div><textarea class="govuk-textarea" id="napiData" rows="5" spellcheck="true"></textarea></div>
-              <div class="govuk-form-group" id="fg-napiWhy"><label class="govuk-label govuk-label--m" for="napiWhy">Why does your system need this data?</label><div class="govuk-hint">Describe the business use case — what decisions or actions will this data support?</div><textarea class="govuk-textarea" id="napiWhy" rows="4" spellcheck="true"></textarea></div>
-              <div class="govuk-form-group" id="fg-napiSystem"><label class="govuk-label govuk-label--m" for="napiSystem">Which system or service would consume this API?</label><input class="govuk-input" id="napiSystem" type="text" placeholder="e.g. Case Admin Portal" autocomplete="off"></div>
-              <div class="govuk-form-group" id="fg-napiVol"><label class="govuk-label govuk-label--m" for="napiVol">What is your expected request volume?</label><div class="govuk-hint">An approximate daily estimate helps us plan infrastructure.</div><select class="govuk-select" id="napiVol" style="width:100%"><option value="">Select an option&hellip;</option><option>Low — up to 1,000 requests per day</option><option>Medium — 1,000 to 10,000 requests per day</option><option>High — over 10,000 requests per day</option><option>Not sure yet</option></select></div>
-              <div class="govuk-form-group" id="fg-napiClass"><fieldset class="govuk-fieldset"><legend class="govuk-fieldset__legend govuk-fieldset__legend--m">What data classification do you expect this API to carry?</legend><div class="govuk-hint">If unsure, select Official.</div><div class="govuk-radios"><div class="govuk-radios__item"><input class="govuk-radios__input" id="napiClass-1" name="napiClass" type="radio" value="Official"><label class="govuk-label govuk-radios__label" for="napiClass-1">Official — general government business</label></div><div class="govuk-radios__item"><input class="govuk-radios__input" id="napiClass-2" name="napiClass" type="radio" value="Official-Sensitive"><label class="govuk-label govuk-radios__label" for="napiClass-2">Official-Sensitive — defendant personal data, judiciary information</label></div><div class="govuk-radios__item"><input class="govuk-radios__input" id="napiClass-3" name="napiClass" type="radio" value="Restricted"><label class="govuk-label govuk-radios__label" for="napiClass-3">Restricted — information whose disclosure could compromise personal safety</label></div></div></fieldset></div>
-              <div class="govuk-form-group" id="fg-napiKnown"><label class="govuk-label govuk-label--m" for="napiKnown">Do you know of an existing data source that provides this? (optional)</label><div class="govuk-hint">If you have seen this data elsewhere, tell us — it may already exist.</div><input class="govuk-input" id="napiKnown" type="text" placeholder="e.g. Internal XHIBIT feed, or not sure" autocomplete="off"></div>
-              <div class="govuk-form-group" id="fg-napiPriority"><label class="govuk-label govuk-label--m" for="napiPriority">How urgent is this request?</label><select class="govuk-select" id="napiPriority" style="width:100%"><option value="">Select an option&hellip;</option><option>Critical — blocking a live service</option><option>High — needed for an upcoming delivery</option><option>Medium — needed within the next quarter</option><option>Low — longer term planning</option></select></div>
-              <div id="napi-err" class="govuk-error-summary" style="display:none" role="alert"><h2 class="govuk-error-summary__title">There is a problem</h2><ul class="govuk-error-summary__list" id="napi-err-list"></ul></div>
-              <button class="govuk-button" onclick="submitNewApiRequest()">Submit request</button>
-            </div>
-          </div>
-          <div id="c-newapi-history" style="margin-top:32px">
-            <h2 class="govuk-heading-m">My previous requests</h2>
-            <div id="napiHistoryList"></div>
-          </div>
-        </div>
         <div class="app-dash-panel" id="c-prof"><h1 class="govuk-heading-l">My profile</h1><div class="app-form-card"><div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px"><div class="govuk-form-group" style="margin:0"><label class="govuk-label govuk-label--s" for="cPFn">First name</label><input class="govuk-input" id="cPFn" type="text"></div><div class="govuk-form-group" style="margin:0"><label class="govuk-label govuk-label--s" for="cPLn">Last name</label><input class="govuk-input" id="cPLn" type="text"></div></div><div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="cPEm">Email</label><input class="govuk-input" id="cPEm" type="email" readonly style="background:#f3f2f1;cursor:not-allowed"></div><div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="cPOrg">Organisation</label><input class="govuk-input" id="cPOrg" type="text"></div><button class="govuk-button govuk-button--secondary" onclick="saveProf('c')">Save changes</button></div></div>
       </div>
     </div>
@@ -894,7 +733,7 @@ body, input, select, textarea, button {
           <div class="app-dash-sidebar__header"><div class="app-dash-sidebar__avatar app-dash-sidebar__avatar--producer" id="pAv" aria-hidden="true">?</div><div><div class="app-dash-sidebar__name" id="pNm">User</div><div class="app-dash-sidebar__role">Producer</div></div></div>
           <button class="app-dash-nav__item app-dash-nav__item--active" onclick="dPanel('p','ov',this)">Overview</button>
           <button class="app-dash-nav__item" onclick="dPanel('p','myapis',this)">My APIs</button>
-          <button class="app-dash-nav__item" onclick="dPanel('p','incoming',this);renderIncomingRequests()">Access requests <span id='incomingBadge' style='display:none;background:#d4351c;color:#fff;border-radius:10px;padding:1px 7px;font-size:12px;font-weight:700;margin-left:4px'>0</span></button>
+          <button class="app-dash-nav__item" onclick="dPanel('p','incoming',this)">Access requests</button>
           <button class="app-dash-nav__item" onclick="dPanel('p','publish',this)">Publish API</button>
           <button class="app-dash-nav__item" onclick="dPanel('p','prof',this)">My profile</button>
           <button class="app-dash-nav__item app-dash-nav__item--danger" onclick="doLogout()">Sign out</button>
@@ -903,31 +742,7 @@ body, input, select, textarea, button {
       <div>
         <div class="app-dash-panel app-dash-panel--active" id="p-ov"><h1 class="govuk-heading-l" id="pGr">Welcome back</h1><div class="app-stat-grid"><div class="app-stat"><div class="app-stat__num" id="pNA">0</div><div class="app-stat__label">My APIs</div></div><div class="app-stat"><div class="app-stat__num" id="pNR">0</div><div class="app-stat__label">Pending requests</div></div><div class="app-stat"><div class="app-stat__num">0</div><div class="app-stat__label">Consumers</div></div></div><div class="app-panel app-panel--plain"><div class="app-panel__title">You are a producer</div><p class="app-panel__body">List your APIs to make them discoverable. Review access requests from consumer teams. You remain responsible for your API reliability and supporting your consumers.</p></div></div>
         <div class="app-dash-panel" id="p-myapis"><h1 class="govuk-heading-l">My APIs</h1><p class="govuk-body" style="color:#505a5f">APIs you have registered as a producer</p><div id="pAL"><div class="app-empty-state"><div class="app-empty-state__icon" aria-hidden="true">&#128225;</div><div class="app-empty-state__title">No APIs yet</div><div class="app-empty-state__desc">Register your first API to make it discoverable.</div></div></div></div>
-        <div class="app-dash-panel" id="p-incoming">
-          <h1 class="govuk-heading-l">Access requests</h1>
-          <p class="govuk-body" style="color:#505a5f">Requests from consumers for your APIs. Review each request and approve or reject with a reason.</p>
-
-          <!-- Tab buttons -->
-          <div style="display:flex;gap:0;border-bottom:2px solid #b1b4b6;margin-top:16px;margin-bottom:0">
-            <button id="tabBtnPending" onclick="switchIncomingTab('pending',this)" style="padding:10px 16px;border:none;border-bottom:4px solid #1d70b8;background:none;font-size:16px;font-weight:700;color:#1d70b8;cursor:pointer;margin-bottom:-2px">Pending <span id="incomingPendingCount" style="background:#1d70b8;color:#fff;border-radius:10px;padding:1px 7px;font-size:12px;margin-left:4px">0</span></button>
-            <button id="tabBtnActioned" onclick="switchIncomingTab('actioned',this)" style="padding:10px 16px;border:none;border-bottom:4px solid transparent;background:none;font-size:16px;color:#505a5f;cursor:pointer;margin-bottom:-2px">Actioned</button>
-          </div>
-
-          <div id="incomingPendingList" style="margin-top:16px"></div>
-          <div id="incomingActionedList" style="margin-top:16px;display:none"></div>
-
-          <!-- Inline review detail panel -->
-          <div id="incomingDetail" style="display:none;margin-top:16px">
-            <button class="govuk-back-link" onclick="closeIncomingDetail()">Back to requests</button>
-            <div id="incomingDetailBody"></div>
-          </div>
-
-          <!-- Approve/reject action panel -->
-          <div id="incomingAction" style="display:none;margin-top:16px">
-            <button class="govuk-back-link" onclick="closeIncomingAction()">Back to request</button>
-            <div id="incomingActionBody"></div>
-          </div>
-        </div>
+        <div class="app-dash-panel" id="p-incoming"><h1 class="govuk-heading-l">Access requests</h1><div class="app-empty-state"><div class="app-empty-state__icon" aria-hidden="true">&#128229;</div><div class="app-empty-state__title">No pending requests</div><div class="app-empty-state__desc">Access requests from consumers will appear here.</div></div></div>
         <div class="app-dash-panel" id="p-publish">
           <div id="pub-tasklist" class="app-step-form app-step-form--active">
             <h1 class="govuk-heading-l">Publish an API</h1>
@@ -997,9 +812,9 @@ body, input, select, textarea, button {
 </div>
 
 <script>
-const APIS = [{"id": "case-document-knowledge", "name": "Case Documents AI Responses", "shortName": "api-cp-crime-caseadmin-case-document-knowledge", "version": "0.0.8", "status": "Live", "domain": "Case Administration", "tags": ["AI / Knowledge", "Case Admin"], "icon": "🧠", "iconBg": "linear-gradient(135deg,#6366F1,#8B5CF6)", "description": "AI-generated answers to predefined queries about criminal case documents, with versioning, document ingestion tracking and pre-signed document download.", "plainEnglish": "This API lets systems ask AI-powered questions about a criminal case — such as 'summarise the case' or 'what is the defendant's position?' — and receive structured, versioned answers. Case documents must be ingested first. The API tracks the ingestion pipeline status and versions all answers so you can retrieve exactly what the AI said at any point in time.", "swaggerOrg": "HMCTS-DTS", "swaggerApi": "api-cp-crime-caseadmin-case-document-knowledge", "swaggerVer": "0.0.8", "auth": "Contact the HMCTS CP team for environment-specific auth requirements.", "authType": "Contact team", "owner": "HMCTS DTS", "contact": "no-reply@hmcts.com", "licence": "MIT", "endpointCount": 13, "notes": ["Poll GET /ingestions/status until phase = INGESTED before querying AI answers.", "Answer text may include ::SourcePage N citations linking to source document pages.", "The HMAC secret from POST /ingestions/start is shown once only — store immediately."], "changelog": [{"v": "0.0.8", "n": "Current — AI answers, query catalogue, ingestion pipeline, document download"}, {"v": "0.0.1", "n": "Initial release"}]}, {"id": "case-urn-mapper", "name": "Case URN Mapper", "shortName": "api-cp-caseadmin-case-urn-mapper", "version": "1.0.9", "status": "Live", "domain": "Case Administration", "tags": ["URN Lookup", "Case Admin"], "icon": "🔗", "iconBg": "linear-gradient(135deg,#3B82F6,#06B6D4)", "description": "Maps a criminal Case URN to its internal Case ID (UUID). Lightweight facade with in-memory caching and optional cache-bypass refresh flag.", "plainEnglish": "Criminal cases have two identifiers — a human-readable Case URN (like 'CIK1JQKECS') on documents, and an internal UUID used by backend systems. Give this API a URN and it returns the system Case ID instantly. Results are cached in memory for speed; use ?refresh=true to force a fresh backend lookup if you suspect the cache is stale.", "swaggerOrg": "HMCTS-DTS", "swaggerApi": "api-cp-caseadmin-case-urn-mapper", "swaggerVer": "1.0.9", "auth": "Requests carry a CJSCPPUID header — a system identity UUID provisioned by the CP team.", "authType": "CJSCPPUID header", "owner": "HMCTS DTS", "contact": "no-reply@hmcts.com", "licence": "MIT", "endpointCount": 1, "notes": ["Use ?refresh=true after a case URN reassignment to force cache update.", "All error responses include a traceId — quote this in all support requests."], "changelog": [{"v": "1.0.9", "n": "Current version"}, {"v": "1.0.0", "n": "Initial release"}]}, {"id": "court-houses", "name": "Reference Data Court Houses", "shortName": "api-cp-refdata-courthearing-courthouses", "version": "1.1.0", "status": "Live", "domain": "Reference Data", "tags": ["Reference Data", "Court Houses"], "icon": "🏛", "iconBg": "linear-gradient(135deg,#059669,#10B981)", "description": "Authoritative reference data for court houses and court rooms. Returns court name, type (Crown/Magistrate), full validated address and room details.", "plainEnglish": "The authoritative directory of court buildings and rooms in the HMCTS HMCTS. Give it a court house UUID and it returns the court name, type (Crown or Magistrates), full address and list of court rooms. Used by scheduling, listing and case management systems to display correct venue information.", "swaggerOrg": "HMCTS-DTS", "swaggerApi": "api-cp-refdata-courthearing-courthouses", "swaggerVer": "1.1.0", "auth": "JWT bearer token required on all requests. Requests without a valid token receive 401 Unauthorized.", "authType": "JWT Bearer", "owner": "HMCTS DTS", "contact": "no-reply@hmcts.com", "licence": "MIT", "endpointCount": 2, "notes": ["courtRoom array is only returned when using the /courthouses/{id}/courtrooms/{room_id} endpoint.", "UK postcode is validated against the full UK postcode regex pattern."], "changelog": [{"v": "1.1.0", "n": "Current — court room endpoint added"}, {"v": "1.0.0", "n": "Initial release"}]}, {"id": "prosecution-case-details", "name": "Prosecution Case Details", "shortName": "api-cp-crime-prosecution-case-details", "version": "1.0.1", "status": "Live", "domain": "Case Management", "tags": ["Case Management", "Prosecution"], "icon": "⚖", "iconBg": "linear-gradient(135deg,#DC2626,#F59E0B)", "description": "Returns key status information for a criminal prosecution case by Case URN — including active/inactive status and whether reporting restrictions are legally in force.", "plainEnglish": "Give this API a case reference number and it returns two critical pieces of information: whether the case is currently active, and whether reporting restrictions apply. Reporting restrictions are legal orders that prevent case information from being published or shared. Systems must check this flag before displaying or sharing any case data.", "swaggerOrg": "HMCTS-DTS", "swaggerApi": "api-cp-crime-prosecution-case-details", "swaggerVer": "1.0.1", "auth": "JWT bearer token required on all requests (bearerAuth).", "authType": "JWT Bearer", "owner": "HMCTS DTS", "contact": "no-reply@hmcts.com", "licence": "MIT", "endpointCount": 1, "notes": ["Always check reportingRestrictions before displaying or sharing any case information.", "A false value for reportingRestrictions does not imply all information is freely shareable."], "changelog": [{"v": "1.0.1", "n": "Current version"}, {"v": "1.0.0", "n": "Initial release"}]}, {"id": "hearing-results-subscription", "name": "Hearing Results Subscription", "shortName": "api-cp-crime-hearing-results-document-subscription", "version": "2.0.9", "status": "Live", "domain": "Hearing Results", "tags": ["Subscription", "Webhooks"], "icon": "📡", "iconBg": "linear-gradient(135deg,#7C3AED,#DB2777)", "description": "Webhook-based push notifications for hearing result documents. Subscribe with a callback URL to receive HMAC-signed notifications when warrants, sentencing records and court registers are generated.", "plainEnglish": "Instead of constantly polling for new documents, systems register a callback URL and the event types they care about. When HMCTS generates a hearing result document (warrant, sentencing record, prison court register), it sends a signed notification instantly. The subscriber then downloads the PDF. Callbacks are HMAC-SHA256 signed so recipients can verify authenticity.", "swaggerOrg": "HMCTS-DTS", "swaggerApi": "api-cp-crime-hearing-results-document-subscription", "swaggerVer": "2.0.9", "auth": "Dual auth: JWT bearer token AND Ocp-Apim-Subscription-Key header. Both required on every request.", "authType": "JWT + API Key", "owner": "HMCTS API Marketplace", "contact": "no-reply@hmcts.com", "licence": "MIT", "endpointCount": 7, "notes": ["SAVE the HMAC secret immediately at subscription creation — it is returned ONCE only.", "Verify X-Signature header on every callback to confirm authenticity.", "Your callback endpoint MUST return HTTP 202 Accepted — any other code = delivery failure."], "changelog": [{"v": "2.0.9", "n": "Current — secret rotation, PDF download, v2 answers endpoint"}, {"v": "2.0.0", "n": "Webhook model introduced"}, {"v": "1.0.0", "n": "Initial release"}]}, {"id": "court-schedule", "name": "Court Schedule", "shortName": "api-cp-crime-schedulingandlisting-courtschedule", "version": "1.1.0", "status": "Live", "domain": "Scheduling and Listing", "tags": ["Scheduling", "Listing"], "icon": "📅", "iconBg": "linear-gradient(135deg,#0891B2,#0284C7)", "description": "Returns the full court schedule for a criminal case by Case URN — hearing type, sitting times, assigned judiciary, court house and court room. Supports allocated and week-commencing hearing states.", "plainEnglish": "Give this API a case reference number and it returns the full court schedule — every hearing, when it is listed, which court room and judge are assigned, and the sitting start and end times. If a hearing has a proposed week window but is not yet fully scheduled, the API returns week-commencing dates instead. Used by listing tools, case management UIs and notification services.", "swaggerOrg": "HMCTS-DTS", "swaggerApi": "api-cp-crime-schedulingandlisting-courtschedule", "swaggerVer": "1.1.0", "auth": "No authentication defined in the public spec. Contact the HMCTS CP team for environment-specific requirements.", "authType": "Contact team", "owner": "HMCTS DTS", "contact": "no-reply@hmcts.com", "licence": "MIT", "endpointCount": 1, "notes": ["If courtSittings is empty, look for weekCommencing for the proposed scheduling window.", "All sitting times are ISO 8601 UTC (Z suffix). All reference IDs are UUIDs."], "changelog": [{"v": "1.1.0", "n": "Current — allocated and week-commencing hearing support"}, {"v": "1.0.0", "n": "Initial release"}]}];
+const APIS = [{"id": "case-document-knowledge", "name": "Case Documents AI Responses", "shortName": "api-cp-crime-caseadmin-case-document-knowledge", "version": "0.0.8", "status": "Live", "domain": "Case Administration", "tags": ["AI / Knowledge", "Case Admin"], "icon": "🧠", "iconBg": "linear-gradient(135deg,#6366F1,#8B5CF6)", "description": "AI-generated answers to predefined queries about criminal case documents, with versioning, document ingestion tracking and pre-signed document download.", "plainEnglish": "This API lets systems ask AI-powered questions about a criminal case — such as 'summarise the case' or 'what is the defendant's position?' — and receive structured, versioned answers. Case documents must be ingested first. The API tracks the ingestion pipeline status and versions all answers so you can retrieve exactly what the AI said at any point in time.", "swaggerOrg": "HMCTS-DTS", "swaggerApi": "api-cp-crime-caseadmin-case-document-knowledge", "swaggerVer": "0.0.8", "auth": "Contact the HMCTS CP team for environment-specific auth requirements.", "authType": "Contact team", "owner": "HMCTS DTS", "contact": "no-reply@hmcts.com", "licence": "MIT", "endpointCount": 13, "notes": ["Poll GET /ingestions/status until phase = INGESTED before querying AI answers.", "Answer text may include ::SourcePage N citations linking to source document pages.", "The HMAC secret from POST /ingestions/start is shown once only — store immediately."], "changelog": [{"v": "0.0.8", "n": "Current — AI answers, query catalogue, ingestion pipeline, document download"}, {"v": "0.0.1", "n": "Initial release"}]}, {"id": "case-urn-mapper", "name": "Case URN Mapper", "shortName": "api-cp-caseadmin-case-urn-mapper", "version": "1.0.9", "status": "Live", "domain": "Case Administration", "tags": ["URN Lookup", "Case Admin"], "icon": "🔗", "iconBg": "linear-gradient(135deg,#3B82F6,#06B6D4)", "description": "Maps a criminal Case URN to its internal Case ID (UUID). Lightweight facade with in-memory caching and optional cache-bypass refresh flag.", "plainEnglish": "Criminal cases have two identifiers — a human-readable Case URN (like 'CIK1JQKECS') on documents, and an internal UUID used by backend systems. Give this API a URN and it returns the system Case ID instantly. Results are cached in memory for speed; use ?refresh=true to force a fresh backend lookup if you suspect the cache is stale.", "swaggerOrg": "HMCTS-DTS", "swaggerApi": "api-cp-caseadmin-case-urn-mapper", "swaggerVer": "1.0.9", "auth": "Requests carry a CJSCPPUID header — a system identity UUID provisioned by the CP team.", "authType": "CJSCPPUID header", "owner": "HMCTS DTS", "contact": "no-reply@hmcts.com", "licence": "MIT", "endpointCount": 1, "notes": ["Use ?refresh=true after a case URN reassignment to force cache update.", "All error responses include a traceId — quote this in all support requests."], "changelog": [{"v": "1.0.9", "n": "Current version"}, {"v": "1.0.0", "n": "Initial release"}]}, {"id": "court-houses", "name": "Reference Data Court Houses", "shortName": "api-cp-refdata-courthearing-courthouses", "version": "1.1.0", "status": "Live", "domain": "Reference Data", "tags": ["Reference Data", "Court Houses"], "icon": "🏛", "iconBg": "linear-gradient(135deg,#059669,#10B981)", "description": "Authoritative reference data for court houses and court rooms. Returns court name, type (Crown/Magistrate), full validated address and room details.", "plainEnglish": "The authoritative directory of court buildings and rooms in the HMCTS Common Platform. Give it a court house UUID and it returns the court name, type (Crown or Magistrates), full address and list of court rooms. Used by scheduling, listing and case management systems to display correct venue information.", "swaggerOrg": "HMCTS-DTS", "swaggerApi": "api-cp-refdata-courthearing-courthouses", "swaggerVer": "1.1.0", "auth": "JWT bearer token required on all requests. Requests without a valid token receive 401 Unauthorized.", "authType": "JWT Bearer", "owner": "HMCTS DTS", "contact": "no-reply@hmcts.com", "licence": "MIT", "endpointCount": 2, "notes": ["courtRoom array is only returned when using the /courthouses/{id}/courtrooms/{room_id} endpoint.", "UK postcode is validated against the full UK postcode regex pattern."], "changelog": [{"v": "1.1.0", "n": "Current — court room endpoint added"}, {"v": "1.0.0", "n": "Initial release"}]}, {"id": "prosecution-case-details", "name": "Prosecution Case Details", "shortName": "api-cp-crime-prosecution-case-details", "version": "1.0.1", "status": "Live", "domain": "Case Management", "tags": ["Case Management", "Prosecution"], "icon": "⚖", "iconBg": "linear-gradient(135deg,#DC2626,#F59E0B)", "description": "Returns key status information for a criminal prosecution case by Case URN — including active/inactive status and whether reporting restrictions are legally in force.", "plainEnglish": "Give this API a case reference number and it returns two critical pieces of information: whether the case is currently active, and whether reporting restrictions apply. Reporting restrictions are legal orders that prevent case information from being published or shared. Systems must check this flag before displaying or sharing any case data.", "swaggerOrg": "HMCTS-DTS", "swaggerApi": "api-cp-crime-prosecution-case-details", "swaggerVer": "1.0.1", "auth": "JWT bearer token required on all requests (bearerAuth).", "authType": "JWT Bearer", "owner": "HMCTS DTS", "contact": "no-reply@hmcts.com", "licence": "MIT", "endpointCount": 1, "notes": ["Always check reportingRestrictions before displaying or sharing any case information.", "A false value for reportingRestrictions does not imply all information is freely shareable."], "changelog": [{"v": "1.0.1", "n": "Current version"}, {"v": "1.0.0", "n": "Initial release"}]}, {"id": "hearing-results-subscription", "name": "Hearing Results Subscription", "shortName": "api-cp-crime-hearing-results-document-subscription", "version": "2.0.9", "status": "Live", "domain": "Hearing Results", "tags": ["Subscription", "Webhooks"], "icon": "📡", "iconBg": "linear-gradient(135deg,#7C3AED,#DB2777)", "description": "Webhook-based push notifications for hearing result documents. Subscribe with a callback URL to receive HMAC-signed notifications when warrants, sentencing records and court registers are generated.", "plainEnglish": "Instead of constantly polling for new documents, systems register a callback URL and the event types they care about. When HMCTS generates a hearing result document (warrant, sentencing record, prison court register), it sends a signed notification instantly. The subscriber then downloads the PDF. Callbacks are HMAC-SHA256 signed so recipients can verify authenticity.", "swaggerOrg": "HMCTS-DTS", "swaggerApi": "api-cp-crime-hearing-results-document-subscription", "swaggerVer": "2.0.9", "auth": "Dual auth: JWT bearer token AND Ocp-Apim-Subscription-Key header. Both required on every request.", "authType": "JWT + API Key", "owner": "HMCTS API Marketplace", "contact": "no-reply@hmcts.com", "licence": "MIT", "endpointCount": 7, "notes": ["SAVE the HMAC secret immediately at subscription creation — it is returned ONCE only.", "Verify X-Signature header on every callback to confirm authenticity.", "Your callback endpoint MUST return HTTP 202 Accepted — any other code = delivery failure."], "changelog": [{"v": "2.0.9", "n": "Current — secret rotation, PDF download, v2 answers endpoint"}, {"v": "2.0.0", "n": "Webhook model introduced"}, {"v": "1.0.0", "n": "Initial release"}]}, {"id": "court-schedule", "name": "Court Schedule", "shortName": "api-cp-crime-schedulingandlisting-courtschedule", "version": "1.1.0", "status": "Live", "domain": "Scheduling and Listing", "tags": ["Scheduling", "Listing"], "icon": "📅", "iconBg": "linear-gradient(135deg,#0891B2,#0284C7)", "description": "Returns the full court schedule for a criminal case by Case URN — hearing type, sitting times, assigned judiciary, court house and court room. Supports allocated and week-commencing hearing states.", "plainEnglish": "Give this API a case reference number and it returns the full court schedule — every hearing, when it is listed, which court room and judge are assigned, and the sitting start and end times. If a hearing has a proposed week window but is not yet fully scheduled, the API returns week-commencing dates instead. Used by listing tools, case management UIs and notification services.", "swaggerOrg": "HMCTS-DTS", "swaggerApi": "api-cp-crime-schedulingandlisting-courtschedule", "swaggerVer": "1.1.0", "auth": "No authentication defined in the public spec. Contact the HMCTS CP team for environment-specific requirements.", "authType": "Contact team", "owner": "HMCTS DTS", "contact": "no-reply@hmcts.com", "licence": "MIT", "endpointCount": 1, "notes": ["If courtSittings is empty, look for weekCommencing for the proposed scheduling window.", "All sitting times are ISO 8601 UTC (Z suffix). All reference IDs are UUIDs."], "changelog": [{"v": "1.1.0", "n": "Current — allocated and week-commencing hearing support"}, {"v": "1.0.0", "n": "Initial release"}]}];
 
-const EMBEDDED_SPECS = {"case-urn-mapper":{"openapi":"3.0.0","info":{"title":"HMCTS API Case URN Mapper","description":"Maps a criminal Case URN to an internal Case ID (UUID). Lightweight facade with in-memory Spring Cache and optional refresh flag.","version":"1.0.9","contact":{"email":"no-reply@hmcts.com"},"license":{"name":"MIT"}},"servers":[{"url":"https://virtserver.swaggerhub.com/HMCTS-DTS/api-cp-caseadmin-case-urn-mapper/1.0.9","description":"SwaggerHub Auto Mock"}],"paths":{"/urnmapper/{case_urn}":{"get":{"tags":["CaseIdByCaseUrn"],"summary":"Resolve a Case URN to its internal Case ID","description":"Returns the Case ID for a given Case URN. Uses in-memory cache by default; use ?refresh=true to bypass cache and fetch fresh from backend.","operationId":"getCaseIdByCaseUrn","parameters":[{"name":"case_urn","in":"path","required":true,"description":"Case URN - alphanumeric, 10-40 characters. Pattern: ^[0-9a-zA-Z]{10,40}$","schema":{"type":"string","pattern":"^[0-9a-zA-Z]{10,40}$","example":"CIK1JQKECS"}},{"name":"refresh","in":"query","required":false,"description":"If true, bypasses cache and fetches fresh from backend. Default: false.","schema":{"type":"boolean","default":false}}],"responses":{"200":{"description":"Case URN resolved - caseId returned","content":{"application/json":{"schema":{"$ref":"#/components/schemas/CaseMapperResponse"},"example":{"caseUrn":"CIK1JQKECS","caseId":"8a759185-73cc-479f-a420-38db2aa54cf2"}}}},"400":{"description":"Bad input - case_urn is null, empty or fails regex validation","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ErrorResponse"},"example":{"error":"400","message":"Case urn must be between 10 and 40 alphanumerics","timestamp":"2026-04-30T10:00:00Z","traceId":"abc123def456"}}}}}}}},"components":{"schemas":{"CaseMapperResponse":{"type":"object","description":"Resolved mapping of a Case URN to its internal Case ID","required":["caseUrn"],"properties":{"caseUrn":{"type":"string","description":"The case URN echoed from the request","example":"CIK1JQKECS"},"caseId":{"type":"string","description":"Internal system UUID for the case","example":"8a759185-73cc-479f-a420-38db2aa54cf2"}}},"ErrorResponse":{"type":"object","properties":{"error":{"type":"string"},"message":{"type":"string"},"details":{"type":"object"},"timestamp":{"type":"string","format":"date-time"},"traceId":{"type":"string","description":"Include in all support requests"}}}}}},"court-houses":{"openapi":"3.0.0","info":{"title":"HMCTS API Refdata Court Hearing Court Houses","description":"Authoritative reference data for court houses and court rooms.","version":"1.1.0","contact":{"email":"no-reply@hmcts.com"},"license":{"name":"MIT"}},"servers":[{"url":"https://virtserver.swaggerhub.com/HMCTS-DTS/api-cp-refdata-courthearing-courthouses/1.1.0","description":"SwaggerHub Auto Mock"}],"paths":{"/courthouses/{court_id}":{"get":{"tags":["Court House"],"summary":"Get court house details by ID","description":"Returns the full details of a court house. Requires JWT bearer token.","operationId":"getCourtHouseById","parameters":[{"name":"court_id","in":"path","required":true,"description":"Unique identifier for the court house (UUID)","schema":{"type":"string","format":"uuid","example":"57323172-1083-454d-8ab7-2455a8b993e7"}}],"responses":{"200":{"description":"Court house found","content":{"application/json":{"schema":{"$ref":"#/components/schemas/CourtHouseResponse"},"example":{"courtHouseType":"crown","courtHouseCode":"LND001","courtHouseName":"Central London County Court","address":{"address1":"Thomas More Building","address2":"Royal Courts of Justice","address3":"Strand","address4":"London","postalCode":"WC2A 2LL","country":"UK"}}}}},"400":{"description":"Invalid path parameter"},"401":{"description":"Unauthorised - JWT token missing or invalid"}},"security":[{"bearerAuth":[]}]}},"/courthouses/{court_id}/courtrooms/{court_room_id}":{"get":{"tags":["Court Room"],"summary":"Get court house with specific court room","description":"Returns court house details plus the specific court room. Requires JWT bearer token.","operationId":"getCourtRoomById","parameters":[{"name":"court_id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"court_room_id","in":"path","required":true,"description":"Unique identifier for the court room (UUID)","schema":{"type":"string","format":"uuid","example":"aa12f3dd-4cc1-4da7-b9ea-552fa3b9bc44"}}],"responses":{"200":{"description":"Court house and room found","content":{"application/json":{"schema":{"$ref":"#/components/schemas/CourtHouseResponse"},"example":{"courtHouseType":"crown","courtHouseCode":"LND001","courtHouseName":"Central London County Court","address":{"address1":"Thomas More Building","postalCode":"WC2A 2LL","country":"UK"},"courtRoom":[{"courtRoomId":101,"courtRoomName":"Courtroom A"}]}}}},"401":{"description":"Unauthorised"}},"security":[{"bearerAuth":[]}]}}},"components":{"securitySchemes":{"bearerAuth":{"type":"http","scheme":"bearer","bearerFormat":"JWT"}},"schemas":{"CourtHouseResponse":{"type":"object","properties":{"courtHouseType":{"type":"string","enum":["crown","magistrate"],"description":"Type of court house"},"courtHouseCode":{"type":"string","example":"LND001"},"courtHouseName":{"type":"string","example":"Central London County Court"},"address":{"$ref":"#/components/schemas/Address"},"courtRoom":{"type":"array","description":"Court rooms - only present when fetched with a court room ID","items":{"$ref":"#/components/schemas/CourtRoom"}}}},"Address":{"type":"object","properties":{"address1":{"type":"string"},"address2":{"type":"string"},"address3":{"type":"string"},"address4":{"type":"string"},"postalCode":{"type":"string","description":"UK postcode - validated against full UK postcode regex","example":"WC2A 2LL"},"country":{"type":"string","default":"UK"}}},"CourtRoom":{"type":"object","properties":{"courtRoomId":{"type":"integer","example":101},"courtRoomName":{"type":"string","example":"Courtroom A"}}},"ErrorResponse":{"type":"object","properties":{"error":{"type":"string"},"message":{"type":"string"},"timestamp":{"type":"string","format":"date-time"},"traceId":{"type":"string"}}}}}},"prosecution-case-details":{"openapi":"3.1.0","info":{"title":"Crime Prosecution Case Details","description":"Returns case status and whether reporting restrictions are in force for a criminal prosecution case by Case URN.","version":"1.0.1","contact":{"email":"no-reply@hmcts.com"},"license":{"name":"MIT"}},"servers":[{"url":"https://virtserver.swaggerhub.com/HMCTS-DTS/api-cp-crime-prosecution-case-details/1.0.1","description":"SwaggerHub Auto Mock"}],"paths":{"/cases/{case_urn}":{"get":{"tags":["Case Details"],"summary":"Get case status and reporting restrictions by Case URN","description":"Returns whether the case is active and whether reporting restrictions are legally in force. Always check reportingRestrictions before displaying or sharing case data.","operationId":"getCaseDetailsByUrn","parameters":[{"name":"case_urn","in":"path","required":true,"description":"Unique reference number for the case","schema":{"type":"string","example":"CIK1JQKECS"}}],"responses":{"200":{"description":"Case found - status returned","content":{"application/json":{"schema":{"$ref":"#/components/schemas/CaseDetailResponse"},"example":{"caseStatus":"ACTIVE","reportingRestrictions":false}}}},"400":{"description":"Invalid or malformed case_urn"},"404":{"description":"No case found for given URN"}},"security":[{"bearerAuth":[]}]}}},"components":{"securitySchemes":{"bearerAuth":{"type":"http","scheme":"bearer","bearerFormat":"JWT"}},"schemas":{"CaseDetailResponse":{"type":"object","description":"Key status information for a criminal prosecution case","properties":{"caseStatus":{"type":"string","description":"Current status of the case (e.g. ACTIVE, CLOSED)","example":"ACTIVE"},"reportingRestrictions":{"type":"boolean","description":"True if reporting restrictions are legally in force. Always check before displaying or sharing case data.","example":false}}},"ErrorResponse":{"type":"object","properties":{"error":{"type":"string"},"message":{"type":"string"},"timestamp":{"type":"string","format":"date-time"},"traceId":{"type":"string"}}}}}},"court-schedule":{"openapi":"3.0.0","info":{"title":"HMCTS API Scheduling and Listing Court Schedule","description":"Provides the court schedule for a given case - hearing details, sitting times, judiciary, court house and court room. Supports allocated and week-commencing hearing types.","version":"1.1.0","contact":{"email":"no-reply@hmcts.com"},"license":{"name":"MIT"}},"servers":[{"url":"https://virtserver.swaggerhub.com/HMCTS-DTS/api-cp-crime-schedulingandlisting-courtschedule/1.1.0","description":"SwaggerHub Auto Mock"}],"paths":{"/case/{case_urn}/courtschedule":{"get":{"tags":["Court Schedule"],"summary":"Get court schedule for a case by Case URN","description":"Returns the full court schedule for a case. Check courtSittings first - if empty, look for weekCommencing for the proposed scheduling window. All times are ISO 8601 UTC.","operationId":"getCourtSchedule","parameters":[{"name":"case_urn","in":"path","required":true,"description":"Unique reference number for the case","schema":{"type":"string","example":"CIK1JQKECS"}}],"responses":{"200":{"description":"Court schedule returned","content":{"application/json":{"schema":{"$ref":"#/components/schemas/CourtScheduleResponse"},"examples":{"allocated":{"summary":"Allocated hearing - specific sitting times confirmed","value":{"courtSchedule":[{"hearings":[{"hearingId":"HRG-123410","hearingType":"Trial","hearingDescription":"Sentencing for theft case","listNote":"Requires interpreter","courtSittings":[{"sittingStart":"2025-03-18T09:00:00Z","sittingEnd":"2025-03-25T12:00:00Z","judiciaryId":"123e4567-e89b-12d3-a456-426614174000","courtHouse":"223e4567-e89b-12d3-a456-426614174111","courtRoom":"b7a9cb95-4f7c-4aba-b9a2-8cb1ad3330b2"}]}]}]}},"weekCommencing":{"summary":"Week-commencing - no specific times yet","value":{"courtSchedule":[{"hearings":[{"hearingId":"HRG-123906","hearingType":"Trial","listNote":"Requires interpreter","courtSittings":[],"weekCommencing":{"startDate":"2026-02-16","endDate":"2026-02-22","durationInWeeks":1,"courtHouse":"223e4567-e89b-12d3-a456-426614174111"}}]}]}}}}}},"400":{"description":"Invalid case_urn parameter"}}}}},"components":{"schemas":{"CourtScheduleResponse":{"type":"object","properties":{"courtSchedule":{"type":"array","items":{"$ref":"#/components/schemas/CourtSchedule"}}}},"CourtSchedule":{"type":"object","properties":{"hearings":{"type":"array","items":{"$ref":"#/components/schemas/Hearing"}}}},"Hearing":{"type":"object","description":"A hearing - contains populated courtSittings (allocated) or weekCommencing (week-commencing).","properties":{"hearingId":{"type":"string","example":"HRG-123456"},"hearingType":{"type":"string","example":"Trial"},"hearingDescription":{"type":"string"},"listNote":{"type":"string","nullable":true,"description":"Listing note - always present, may be null"},"courtSittings":{"type":"array","description":"Specific slots. Empty array if week-commencing.","items":{"$ref":"#/components/schemas/CourtSitting"}},"weekCommencing":{"$ref":"#/components/schemas/WeekCommencing","description":"Present when courtSittings is empty"}}},"CourtSitting":{"type":"object","description":"A specific court sitting with confirmed times, judge and room","properties":{"sittingStart":{"type":"string","format":"date-time","example":"2025-03-25T09:00:00Z"},"sittingEnd":{"type":"string","format":"date-time","example":"2025-03-25T12:00:00Z"},"judiciaryId":{"type":"string","format":"uuid","description":"Reference ID of the assigned judge"},"courtHouse":{"type":"string","format":"uuid","description":"Reference ID of the court house"},"courtRoom":{"type":"string","format":"uuid","description":"Reference ID of the court room"}}},"WeekCommencing":{"type":"object","description":"Proposed week window for a hearing not yet fully allocated","properties":{"startDate":{"type":"string","format":"date","example":"2026-02-16"},"endDate":{"type":"string","format":"date","example":"2026-02-22"},"durationInWeeks":{"type":"integer","example":1},"courtHouse":{"type":"string","format":"uuid"}}}}}},"hearing-results-subscription":{"openapi":"3.1.0","info":{"title":"API for Crime Hearing Results Document Subscription","description":"Webhook push notifications for criminal hearing result documents. Subscribe with a callback URL to receive HMAC-signed notifications when warrants, sentencing records and court registers are generated.","version":"2.0.9","contact":{"email":"no-reply@hmcts.com"},"license":{"name":"MIT"}},"servers":[{"url":"https://virtserver.swaggerhub.com/HMCTS-DTS/api-cp-crime-hearing-results-document-subscription/2.0.9","description":"SwaggerHub Auto Mock"}],"paths":{"/event-types":{"get":{"tags":["Event Types"],"summary":"List all valid event types available for subscription","description":"Returns 40+ event type names covering warrants, notices, orders and court registers.","operationId":"getEventTypes","responses":{"200":{"description":"Event types returned","content":{"application/json":{"example":{"events":[{"eventName":"PRISON_COURT_REGISTER_GENERATED","displayName":"Prison Court Register Generated"},{"eventName":"WEE_CustodialSentence","displayName":"Warrant - Custodial Sentence"},{"eventName":"WEE_CommittalToCrownCourtForSentence","displayName":"Warrant - Committal to Crown Court for Sentence"},{"eventName":"WEE_SendingToCrownCourtForTrial","displayName":"Warrant - Sending to Crown Court for Trial"},{"eventName":"WEE_Remand","displayName":"Warrant - Remand"},{"eventName":"NEE_FootballBanning","displayName":"Notice - Football Banning Order"},{"eventName":"WEE_Detention","displayName":"Warrant - Detention"},{"eventName":"WXE_RemandYouthDetentionAccommodation","displayName":"Warrant - Remand Youth Detention"},{"eventName":"OBE_TerminationOfFootballBanning","displayName":"Order - Termination of Football Banning"}]}}}}}}},"/client-subscriptions":{"post":{"tags":["Subscriptions"],"summary":"Create a new subscription","description":"Creates a subscription with a callback URL and event types. The HMAC secret is returned ONCE - store it securely immediately.","operationId":"createSubscription","requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/CreateSubscriptionRequest"},"example":{"notificationEndpoint":{"callbackUrl":"https://client.example.com/events"},"eventTypes":["PRISON_COURT_REGISTER_GENERATED","WEE_CustodialSentence"]}}}},"responses":{"201":{"description":"Subscription created - HMAC secret shown once only","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ClientSubscription"},"example":{"clientSubscriptionId":"aa12f3dd-4cc1-4da7-b9ea-552fa3b9bc44","notificationEndpoint":{"callbackUrl":"https://client.example.com/events"},"eventTypes":["PRISON_COURT_REGISTER_GENERATED"],"hmac":{"keyId":"kid-v1-b41a48b7-a2a1-45f1-b562-1358f141ddb2","secret":"example-base64-secret-STORE-IMMEDIATELY"},"createdAt":"2025-01-01T10:00:00Z"}}}},"400":{"description":"Invalid request"}}}},"/client-subscriptions/{clientSubscriptionId}":{"get":{"tags":["Subscriptions"],"summary":"Get a subscription by ID","description":"Returns subscription details. Note: HMAC secret is NOT returned - shown only at creation.","operationId":"getSubscription","parameters":[{"name":"clientSubscriptionId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"Subscription returned"},"404":{"description":"Not found"}}},"put":{"tags":["Subscriptions"],"summary":"Update a subscription (full replace)","description":"Full update - all updatable fields must be supplied.","operationId":"updateSubscription","parameters":[{"name":"clientSubscriptionId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/UpdateSubscriptionRequest"}}}},"responses":{"200":{"description":"Updated"},"404":{"description":"Not found"}}},"delete":{"tags":["Subscriptions"],"summary":"Delete a subscription permanently","description":"Deletes the subscription. Notifications stop immediately. Returns 204 on success.","operationId":"deleteSubscription","parameters":[{"name":"clientSubscriptionId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"204":{"description":"Deleted"},"404":{"description":"Not found"}}}},"/client-subscriptions/{clientSubscriptionId}/secret/rotate":{"post":{"tags":["Subscriptions"],"summary":"Rotate the HMAC signing secret","description":"Issues a new HMAC secret. Returned once only - store immediately.","operationId":"rotateSecret","parameters":[{"name":"clientSubscriptionId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"requestBody":{"required":true,"content":{"application/json":{"example":{"keyId":"kid-v1-b41a48b7-a2a1-45f1-b562-1358f141ddb2"}}}},"responses":{"200":{"description":"New secret issued - shown once only"},"404":{"description":"Not found"}}}},"/client-subscriptions/{clientSubscriptionId}/documents/{documentId}":{"get":{"tags":["Documents"],"summary":"Download a hearing result PDF document","description":"Retrieves the PDF published for a document ID from the event notification payload.","operationId":"getDocument","parameters":[{"name":"clientSubscriptionId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"documentId","in":"path","required":true,"description":"Document ID from the event notification payload","schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"PDF returned","content":{"application/pdf":{}}},"403":{"description":"No permission"},"404":{"description":"Not found"}}}}},"components":{"securitySchemes":{"bearerAuth":{"type":"http","scheme":"bearer","bearerFormat":"JWT"},"apiKeyAuth":{"type":"apiKey","in":"header","name":"Ocp-Apim-Subscription-Key"}},"schemas":{"CreateSubscriptionRequest":{"type":"object","required":["notificationEndpoint","eventTypes"],"properties":{"notificationEndpoint":{"type":"object","properties":{"callbackUrl":{"type":"string","format":"uri"}}},"eventTypes":{"type":"array","minItems":1,"items":{"type":"string"}}}},"UpdateSubscriptionRequest":{"type":"object","required":["notificationEndpoint","eventTypes"],"properties":{"notificationEndpoint":{"type":"object","properties":{"callbackUrl":{"type":"string"}}},"eventTypes":{"type":"array","items":{"type":"string"}}}},"ClientSubscription":{"type":"object","properties":{"clientSubscriptionId":{"type":"string","format":"uuid"},"notificationEndpoint":{"type":"object","properties":{"callbackUrl":{"type":"string"}}},"eventTypes":{"type":"array","items":{"type":"string"}},"hmac":{"type":"object","description":"HMAC credentials - secret is write-only, shown once only","properties":{"keyId":{"type":"string"},"secret":{"type":"string","description":"Base64 HMAC secret - shown once at creation or rotation only"}}},"createdAt":{"type":"string","format":"date-time"},"updatedAt":{"type":"string","format":"date-time","nullable":true}}}}}},"case-document-knowledge":{"openapi":"3.0.3","info":{"title":"Case Documents AI Responses API","description":"Versioned AI-generated answers to predefined queries about criminal case documents. Includes query catalogue, document ingestion tracking and pre-signed document download.","version":"0.0.8","contact":{"email":"no-reply@hmcts.com"},"license":{"name":"MIT"}},"servers":[{"url":"https://virtserver.swaggerhub.com/HMCTS-DTS/api-cp-crime-caseadmin-case-document-knowledge/0.0.8","description":"SwaggerHub Auto Mock"}],"paths":{"/query-catalogue":{"get":{"tags":["Query Catalogue"],"summary":"List all canonical queries","description":"Returns all predefined queries with their stable IDs and display labels.","operationId":"getQueryCatalogue","responses":{"200":{"description":"Query catalogue returned","content":{"application/json":{"example":{"items":[{"queryId":"1c9d3a9a-0b1e-4e62-9b4f-8b5e6c7d8e9f","label":"Case Summary (All Witnesses)","order":1,"isActive":true},{"queryId":"5b2a0aa4-1c2d-3e4f-5a6b-7c8d9e0f1a2b","label":"Defendant Position","order":2,"isActive":true},{"queryId":"7d4e1bb5-2d3e-4f5a-6b7c-8d9e0f1a2b3c","label":"Key Evidence Summary","order":3,"isActive":true}]}}}}}}},"/query-catalogue/{queryId}":{"get":{"tags":["Query Catalogue"],"summary":"Get a single canonical query","operationId":"getQueryCatalogueItem","parameters":[{"name":"queryId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"Query returned"},"404":{"description":"Not found"}}},"put":{"tags":["Query Catalogue"],"summary":"Update the display label for a canonical query","description":"Updates the label. Idempotent. Does not affect query definition or past answers.","operationId":"updateQueryLabel","parameters":[{"name":"queryId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"requestBody":{"required":true,"content":{"application/json":{"example":{"label":"Case Summary (All Witnesses)","order":1,"isActive":true}}}},"responses":{"200":{"description":"Updated"},"409":{"description":"Label conflict"}}}},"/queries":{"get":{"tags":["Queries"],"summary":"List queries for a case (as-of view)","description":"Returns queries for a case as of a specified timestamp. Omit 'at' for current state.","operationId":"getQueries","parameters":[{"name":"caseId","in":"query","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"at","in":"query","required":false,"description":"As-of timestamp - returns query state at this time. Omit for current.","schema":{"type":"string","format":"date-time"}}],"responses":{"200":{"description":"Queries returned"}}},"post":{"tags":["Queries"],"summary":"Upsert versioned query definitions (batch)","description":"Creates or updates versioned query definitions. Each submission creates a new version.","operationId":"upsertQueries","requestBody":{"required":true,"content":{"application/json":{"example":{"effectiveAt":"2025-01-01T00:00:00Z","queries":[{"queryId":"1c9d3a9a-0b1e-4e62-9b4f-8b5e6c7d8e9f","userQuery":"Summarise the case.","queryPrompt":"Provide a concise legal summary.","level":"CASE"}]}}}},"responses":{"202":{"description":"Accepted"}}}},"/queries/{queryId}":{"get":{"tags":["Queries"],"summary":"Get single query for a case with lifecycle status","operationId":"getQueryById","parameters":[{"name":"queryId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"caseId","in":"query","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"at","in":"query","required":false,"schema":{"type":"string","format":"date-time"}}],"responses":{"200":{"description":"Query returned"}}}},"/queries/{queryId}/versions":{"get":{"tags":["Queries"],"summary":"Get full version history of a query","description":"Returns complete version history ordered by effectiveAt. Useful for audit trails.","operationId":"getQueryVersions","parameters":[{"name":"queryId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"Version history returned"}}}},"/answers/{caseId}/{queryId}":{"get":{"tags":["Answers"],"summary":"Get AI-generated answer for a case and query","description":"Returns the AI answer. Three modes: latest (default), as-of a timestamp, or specific version. Answer text may include ::SourcePage N citations.","operationId":"getAnswer","parameters":[{"name":"caseId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"queryId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"version","in":"query","required":false,"description":"Specific version. Takes precedence over at.","schema":{"type":"integer","minimum":1}},{"name":"at","in":"query","required":false,"description":"Return latest answer at or before this timestamp.","schema":{"type":"string","format":"date-time"}}],"responses":{"200":{"description":"Answer returned","content":{"application/json":{"schema":{"$ref":"#/components/schemas/AnswerResponse"},"example":{"queryId":"046b6c7f-0b8a-43b9-b35d-6489e6daee91","userQuery":"Summarise the case.","answer":"The case involves charges of theft on 15 March 2025... ::SourcePage 3","version":1,"createdAt":"2025-01-01T11:11:11Z","status":"ANSWER_AVAILABLE"}}}},"404":{"description":"No answer found"}}}},"/v2/cases/{caseId}/queries/{queryId}/answers":{"get":{"tags":["Answers"],"summary":"V2 - Get AI answers list (recommended for new integrations)","description":"V2 endpoint with asOf response envelope. Recommended for new integrations.","operationId":"getAnswersV2","parameters":[{"name":"caseId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"queryId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"version","in":"query","required":false,"schema":{"type":"integer","minimum":1}},{"name":"at","in":"query","required":false,"schema":{"type":"string","format":"date-time"}}],"responses":{"200":{"description":"Answers returned"}}}},"/answers/{caseId}/{queryId}/with-llm":{"get":{"tags":["Answers"],"summary":"Get AI answer with captured LLM input (diagnostics)","description":"Returns the answer plus the full LLM prompt captured when the answer was generated. For diagnostics and audit.","operationId":"getAnswerWithLlm","parameters":[{"name":"caseId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"queryId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"Answer with LLM input returned"}}}},"/ingestions/status":{"get":{"tags":["Ingestion"],"summary":"Get document ingestion pipeline status for a case","description":"Returns current pipeline state. Poll this until phase = INGESTED before querying AI answers.","operationId":"getIngestionStatus","parameters":[{"name":"caseId","in":"query","required":true,"description":"The internal Case ID to check","schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"Status returned","content":{"application/json":{"example":{"scope":{"caseId":"7b1c6a7b-0b1e-4e62-9b4f-8b5e6c7d8e9f","isIdpcAvailable":true},"phase":"INGESTED","lastUpdated":"2025-05-01T12:00:00Z","message":null}}}}}}},"/ingestions/start":{"post":{"tags":["Ingestion"],"summary":"Trigger document ingestion for a court centre, room and date","description":"Triggers the ingestion pipeline for all allocated hearings matching the given court centre, room and date.","operationId":"startIngestion","requestBody":{"required":true,"content":{"application/json":{"example":{"courtCentreId":"57323172-1083-454d-8ab7-2455a8b993e7","roomId":"aa12f3dd-4cc1-4da7-b9ea-552fa3b9bc44","date":"2025-05-01"}}}},"responses":{"202":{"description":"Ingestion started","content":{"application/json":{"example":{"phase":"STARTED","lastUpdated":"2025-01-02T10:00:00Z","message":"Ingestion process started"}}}}}}},"/document/{documentId}/content":{"get":{"tags":["Document"],"summary":"Get pre-signed URL to download a case document","description":"Returns a time-limited pre-signed URL. Valid for ~45 minutes - use immediately, do not cache.","operationId":"getDocumentContent","parameters":[{"name":"documentId","in":"path","required":true,"description":"Unique document ID","schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"Pre-signed URL returned","content":{"application/json":{"example":{"url":"https://sasitlargefiles.blob.core.windows.net/largefiles-blob-container/case-doc.pdf?sig=abc&se=2025-10-30T11:43:25Z"}}}}}}}},"components":{"schemas":{"AnswerResponse":{"type":"object","required":["queryId","userQuery","answer","version","createdAt"],"properties":{"queryId":{"type":"string","format":"uuid"},"userQuery":{"type":"string"},"answer":{"type":"string","description":"AI-generated answer. May include ::SourcePage N citations."},"version":{"type":"integer","description":"Monotonically increasing version number"},"createdAt":{"type":"string","format":"date-time"},"defendantId":{"type":"string","format":"uuid","nullable":true},"status":{"type":"string","enum":["ANSWER_AVAILABLE","ANSWER_NOT_AVAILABLE","IDPC_NOT_FOUND"]}}},"ErrorResponse":{"type":"object","properties":{"error":{"type":"string"},"message":{"type":"string"},"timestamp":{"type":"string","format":"date-time"},"traceId":{"type":"string"}}}}}}};
+const EMBEDDED_SPECS = {"case-urn-mapper":{"openapi":"3.0.0","info":{"title":"Common Platform API Case URN Mapper","description":"Maps a criminal Case URN to an internal Case ID (UUID). Lightweight facade with in-memory Spring Cache and optional refresh flag.","version":"1.0.9","contact":{"email":"no-reply@hmcts.com"},"license":{"name":"MIT"}},"servers":[{"url":"https://virtserver.swaggerhub.com/HMCTS-DTS/api-cp-caseadmin-case-urn-mapper/1.0.9","description":"SwaggerHub Auto Mock"}],"paths":{"/urnmapper/{case_urn}":{"get":{"tags":["CaseIdByCaseUrn"],"summary":"Resolve a Case URN to its internal Case ID","description":"Returns the Case ID for a given Case URN. Uses in-memory cache by default; use ?refresh=true to bypass cache and fetch fresh from backend.","operationId":"getCaseIdByCaseUrn","parameters":[{"name":"case_urn","in":"path","required":true,"description":"Case URN - alphanumeric, 10-40 characters. Pattern: ^[0-9a-zA-Z]{10,40}$","schema":{"type":"string","pattern":"^[0-9a-zA-Z]{10,40}$","example":"CIK1JQKECS"}},{"name":"refresh","in":"query","required":false,"description":"If true, bypasses cache and fetches fresh from backend. Default: false.","schema":{"type":"boolean","default":false}}],"responses":{"200":{"description":"Case URN resolved - caseId returned","content":{"application/json":{"schema":{"$ref":"#/components/schemas/CaseMapperResponse"},"example":{"caseUrn":"CIK1JQKECS","caseId":"8a759185-73cc-479f-a420-38db2aa54cf2"}}}},"400":{"description":"Bad input - case_urn is null, empty or fails regex validation","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ErrorResponse"},"example":{"error":"400","message":"Case urn must be between 10 and 40 alphanumerics","timestamp":"2026-04-30T10:00:00Z","traceId":"abc123def456"}}}}}}}},"components":{"schemas":{"CaseMapperResponse":{"type":"object","description":"Resolved mapping of a Case URN to its internal Case ID","required":["caseUrn"],"properties":{"caseUrn":{"type":"string","description":"The case URN echoed from the request","example":"CIK1JQKECS"},"caseId":{"type":"string","description":"Internal system UUID for the case","example":"8a759185-73cc-479f-a420-38db2aa54cf2"}}},"ErrorResponse":{"type":"object","properties":{"error":{"type":"string"},"message":{"type":"string"},"details":{"type":"object"},"timestamp":{"type":"string","format":"date-time"},"traceId":{"type":"string","description":"Include in all support requests"}}}}}},"court-houses":{"openapi":"3.0.0","info":{"title":"Common Platform API Refdata Court Hearing Court Houses","description":"Authoritative reference data for court houses and court rooms.","version":"1.1.0","contact":{"email":"no-reply@hmcts.com"},"license":{"name":"MIT"}},"servers":[{"url":"https://virtserver.swaggerhub.com/HMCTS-DTS/api-cp-refdata-courthearing-courthouses/1.1.0","description":"SwaggerHub Auto Mock"}],"paths":{"/courthouses/{court_id}":{"get":{"tags":["Court House"],"summary":"Get court house details by ID","description":"Returns the full details of a court house. Requires JWT bearer token.","operationId":"getCourtHouseById","parameters":[{"name":"court_id","in":"path","required":true,"description":"Unique identifier for the court house (UUID)","schema":{"type":"string","format":"uuid","example":"57323172-1083-454d-8ab7-2455a8b993e7"}}],"responses":{"200":{"description":"Court house found","content":{"application/json":{"schema":{"$ref":"#/components/schemas/CourtHouseResponse"},"example":{"courtHouseType":"crown","courtHouseCode":"LND001","courtHouseName":"Central London County Court","address":{"address1":"Thomas More Building","address2":"Royal Courts of Justice","address3":"Strand","address4":"London","postalCode":"WC2A 2LL","country":"UK"}}}}},"400":{"description":"Invalid path parameter"},"401":{"description":"Unauthorised - JWT token missing or invalid"}},"security":[{"bearerAuth":[]}]}},"/courthouses/{court_id}/courtrooms/{court_room_id}":{"get":{"tags":["Court Room"],"summary":"Get court house with specific court room","description":"Returns court house details plus the specific court room. Requires JWT bearer token.","operationId":"getCourtRoomById","parameters":[{"name":"court_id","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"court_room_id","in":"path","required":true,"description":"Unique identifier for the court room (UUID)","schema":{"type":"string","format":"uuid","example":"aa12f3dd-4cc1-4da7-b9ea-552fa3b9bc44"}}],"responses":{"200":{"description":"Court house and room found","content":{"application/json":{"schema":{"$ref":"#/components/schemas/CourtHouseResponse"},"example":{"courtHouseType":"crown","courtHouseCode":"LND001","courtHouseName":"Central London County Court","address":{"address1":"Thomas More Building","postalCode":"WC2A 2LL","country":"UK"},"courtRoom":[{"courtRoomId":101,"courtRoomName":"Courtroom A"}]}}}},"401":{"description":"Unauthorised"}},"security":[{"bearerAuth":[]}]}}},"components":{"securitySchemes":{"bearerAuth":{"type":"http","scheme":"bearer","bearerFormat":"JWT"}},"schemas":{"CourtHouseResponse":{"type":"object","properties":{"courtHouseType":{"type":"string","enum":["crown","magistrate"],"description":"Type of court house"},"courtHouseCode":{"type":"string","example":"LND001"},"courtHouseName":{"type":"string","example":"Central London County Court"},"address":{"$ref":"#/components/schemas/Address"},"courtRoom":{"type":"array","description":"Court rooms - only present when fetched with a court room ID","items":{"$ref":"#/components/schemas/CourtRoom"}}}},"Address":{"type":"object","properties":{"address1":{"type":"string"},"address2":{"type":"string"},"address3":{"type":"string"},"address4":{"type":"string"},"postalCode":{"type":"string","description":"UK postcode - validated against full UK postcode regex","example":"WC2A 2LL"},"country":{"type":"string","default":"UK"}}},"CourtRoom":{"type":"object","properties":{"courtRoomId":{"type":"integer","example":101},"courtRoomName":{"type":"string","example":"Courtroom A"}}},"ErrorResponse":{"type":"object","properties":{"error":{"type":"string"},"message":{"type":"string"},"timestamp":{"type":"string","format":"date-time"},"traceId":{"type":"string"}}}}}},"prosecution-case-details":{"openapi":"3.1.0","info":{"title":"Crime Prosecution Case Details","description":"Returns case status and whether reporting restrictions are in force for a criminal prosecution case by Case URN.","version":"1.0.1","contact":{"email":"no-reply@hmcts.com"},"license":{"name":"MIT"}},"servers":[{"url":"https://virtserver.swaggerhub.com/HMCTS-DTS/api-cp-crime-prosecution-case-details/1.0.1","description":"SwaggerHub Auto Mock"}],"paths":{"/cases/{case_urn}":{"get":{"tags":["Case Details"],"summary":"Get case status and reporting restrictions by Case URN","description":"Returns whether the case is active and whether reporting restrictions are legally in force. Always check reportingRestrictions before displaying or sharing case data.","operationId":"getCaseDetailsByUrn","parameters":[{"name":"case_urn","in":"path","required":true,"description":"Unique reference number for the case","schema":{"type":"string","example":"CIK1JQKECS"}}],"responses":{"200":{"description":"Case found - status returned","content":{"application/json":{"schema":{"$ref":"#/components/schemas/CaseDetailResponse"},"example":{"caseStatus":"ACTIVE","reportingRestrictions":false}}}},"400":{"description":"Invalid or malformed case_urn"},"404":{"description":"No case found for given URN"}},"security":[{"bearerAuth":[]}]}}},"components":{"securitySchemes":{"bearerAuth":{"type":"http","scheme":"bearer","bearerFormat":"JWT"}},"schemas":{"CaseDetailResponse":{"type":"object","description":"Key status information for a criminal prosecution case","properties":{"caseStatus":{"type":"string","description":"Current status of the case (e.g. ACTIVE, CLOSED)","example":"ACTIVE"},"reportingRestrictions":{"type":"boolean","description":"True if reporting restrictions are legally in force. Always check before displaying or sharing case data.","example":false}}},"ErrorResponse":{"type":"object","properties":{"error":{"type":"string"},"message":{"type":"string"},"timestamp":{"type":"string","format":"date-time"},"traceId":{"type":"string"}}}}}},"court-schedule":{"openapi":"3.0.0","info":{"title":"Common Platform API Scheduling and Listing Court Schedule","description":"Provides the court schedule for a given case - hearing details, sitting times, judiciary, court house and court room. Supports allocated and week-commencing hearing types.","version":"1.1.0","contact":{"email":"no-reply@hmcts.com"},"license":{"name":"MIT"}},"servers":[{"url":"https://virtserver.swaggerhub.com/HMCTS-DTS/api-cp-crime-schedulingandlisting-courtschedule/1.1.0","description":"SwaggerHub Auto Mock"}],"paths":{"/case/{case_urn}/courtschedule":{"get":{"tags":["Court Schedule"],"summary":"Get court schedule for a case by Case URN","description":"Returns the full court schedule for a case. Check courtSittings first - if empty, look for weekCommencing for the proposed scheduling window. All times are ISO 8601 UTC.","operationId":"getCourtSchedule","parameters":[{"name":"case_urn","in":"path","required":true,"description":"Unique reference number for the case","schema":{"type":"string","example":"CIK1JQKECS"}}],"responses":{"200":{"description":"Court schedule returned","content":{"application/json":{"schema":{"$ref":"#/components/schemas/CourtScheduleResponse"},"examples":{"allocated":{"summary":"Allocated hearing - specific sitting times confirmed","value":{"courtSchedule":[{"hearings":[{"hearingId":"HRG-123410","hearingType":"Trial","hearingDescription":"Sentencing for theft case","listNote":"Requires interpreter","courtSittings":[{"sittingStart":"2025-03-18T09:00:00Z","sittingEnd":"2025-03-25T12:00:00Z","judiciaryId":"123e4567-e89b-12d3-a456-426614174000","courtHouse":"223e4567-e89b-12d3-a456-426614174111","courtRoom":"b7a9cb95-4f7c-4aba-b9a2-8cb1ad3330b2"}]}]}]}},"weekCommencing":{"summary":"Week-commencing - no specific times yet","value":{"courtSchedule":[{"hearings":[{"hearingId":"HRG-123906","hearingType":"Trial","listNote":"Requires interpreter","courtSittings":[],"weekCommencing":{"startDate":"2026-02-16","endDate":"2026-02-22","durationInWeeks":1,"courtHouse":"223e4567-e89b-12d3-a456-426614174111"}}]}]}}}}}},"400":{"description":"Invalid case_urn parameter"}}}}},"components":{"schemas":{"CourtScheduleResponse":{"type":"object","properties":{"courtSchedule":{"type":"array","items":{"$ref":"#/components/schemas/CourtSchedule"}}}},"CourtSchedule":{"type":"object","properties":{"hearings":{"type":"array","items":{"$ref":"#/components/schemas/Hearing"}}}},"Hearing":{"type":"object","description":"A hearing - contains populated courtSittings (allocated) or weekCommencing (week-commencing).","properties":{"hearingId":{"type":"string","example":"HRG-123456"},"hearingType":{"type":"string","example":"Trial"},"hearingDescription":{"type":"string"},"listNote":{"type":"string","nullable":true,"description":"Listing note - always present, may be null"},"courtSittings":{"type":"array","description":"Specific slots. Empty array if week-commencing.","items":{"$ref":"#/components/schemas/CourtSitting"}},"weekCommencing":{"$ref":"#/components/schemas/WeekCommencing","description":"Present when courtSittings is empty"}}},"CourtSitting":{"type":"object","description":"A specific court sitting with confirmed times, judge and room","properties":{"sittingStart":{"type":"string","format":"date-time","example":"2025-03-25T09:00:00Z"},"sittingEnd":{"type":"string","format":"date-time","example":"2025-03-25T12:00:00Z"},"judiciaryId":{"type":"string","format":"uuid","description":"Reference ID of the assigned judge"},"courtHouse":{"type":"string","format":"uuid","description":"Reference ID of the court house"},"courtRoom":{"type":"string","format":"uuid","description":"Reference ID of the court room"}}},"WeekCommencing":{"type":"object","description":"Proposed week window for a hearing not yet fully allocated","properties":{"startDate":{"type":"string","format":"date","example":"2026-02-16"},"endDate":{"type":"string","format":"date","example":"2026-02-22"},"durationInWeeks":{"type":"integer","example":1},"courtHouse":{"type":"string","format":"uuid"}}}}}},"hearing-results-subscription":{"openapi":"3.1.0","info":{"title":"API for Crime Hearing Results Document Subscription","description":"Webhook push notifications for criminal hearing result documents. Subscribe with a callback URL to receive HMAC-signed notifications when warrants, sentencing records and court registers are generated.","version":"2.0.9","contact":{"email":"no-reply@hmcts.com"},"license":{"name":"MIT"}},"servers":[{"url":"https://virtserver.swaggerhub.com/HMCTS-DTS/api-cp-crime-hearing-results-document-subscription/2.0.9","description":"SwaggerHub Auto Mock"}],"paths":{"/event-types":{"get":{"tags":["Event Types"],"summary":"List all valid event types available for subscription","description":"Returns 40+ event type names covering warrants, notices, orders and court registers.","operationId":"getEventTypes","responses":{"200":{"description":"Event types returned","content":{"application/json":{"example":{"events":[{"eventName":"PRISON_COURT_REGISTER_GENERATED","displayName":"Prison Court Register Generated"},{"eventName":"WEE_CustodialSentence","displayName":"Warrant - Custodial Sentence"},{"eventName":"WEE_CommittalToCrownCourtForSentence","displayName":"Warrant - Committal to Crown Court for Sentence"},{"eventName":"WEE_SendingToCrownCourtForTrial","displayName":"Warrant - Sending to Crown Court for Trial"},{"eventName":"WEE_Remand","displayName":"Warrant - Remand"},{"eventName":"NEE_FootballBanning","displayName":"Notice - Football Banning Order"},{"eventName":"WEE_Detention","displayName":"Warrant - Detention"},{"eventName":"WXE_RemandYouthDetentionAccommodation","displayName":"Warrant - Remand Youth Detention"},{"eventName":"OBE_TerminationOfFootballBanning","displayName":"Order - Termination of Football Banning"}]}}}}}}},"/client-subscriptions":{"post":{"tags":["Subscriptions"],"summary":"Create a new subscription","description":"Creates a subscription with a callback URL and event types. The HMAC secret is returned ONCE - store it securely immediately.","operationId":"createSubscription","requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/CreateSubscriptionRequest"},"example":{"notificationEndpoint":{"callbackUrl":"https://client.example.com/events"},"eventTypes":["PRISON_COURT_REGISTER_GENERATED","WEE_CustodialSentence"]}}}},"responses":{"201":{"description":"Subscription created - HMAC secret shown once only","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ClientSubscription"},"example":{"clientSubscriptionId":"aa12f3dd-4cc1-4da7-b9ea-552fa3b9bc44","notificationEndpoint":{"callbackUrl":"https://client.example.com/events"},"eventTypes":["PRISON_COURT_REGISTER_GENERATED"],"hmac":{"keyId":"kid-v1-b41a48b7-a2a1-45f1-b562-1358f141ddb2","secret":"example-base64-secret-STORE-IMMEDIATELY"},"createdAt":"2025-01-01T10:00:00Z"}}}},"400":{"description":"Invalid request"}}}},"/client-subscriptions/{clientSubscriptionId}":{"get":{"tags":["Subscriptions"],"summary":"Get a subscription by ID","description":"Returns subscription details. Note: HMAC secret is NOT returned - shown only at creation.","operationId":"getSubscription","parameters":[{"name":"clientSubscriptionId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"Subscription returned"},"404":{"description":"Not found"}}},"put":{"tags":["Subscriptions"],"summary":"Update a subscription (full replace)","description":"Full update - all updatable fields must be supplied.","operationId":"updateSubscription","parameters":[{"name":"clientSubscriptionId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/UpdateSubscriptionRequest"}}}},"responses":{"200":{"description":"Updated"},"404":{"description":"Not found"}}},"delete":{"tags":["Subscriptions"],"summary":"Delete a subscription permanently","description":"Deletes the subscription. Notifications stop immediately. Returns 204 on success.","operationId":"deleteSubscription","parameters":[{"name":"clientSubscriptionId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"204":{"description":"Deleted"},"404":{"description":"Not found"}}}},"/client-subscriptions/{clientSubscriptionId}/secret/rotate":{"post":{"tags":["Subscriptions"],"summary":"Rotate the HMAC signing secret","description":"Issues a new HMAC secret. Returned once only - store immediately.","operationId":"rotateSecret","parameters":[{"name":"clientSubscriptionId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"requestBody":{"required":true,"content":{"application/json":{"example":{"keyId":"kid-v1-b41a48b7-a2a1-45f1-b562-1358f141ddb2"}}}},"responses":{"200":{"description":"New secret issued - shown once only"},"404":{"description":"Not found"}}}},"/client-subscriptions/{clientSubscriptionId}/documents/{documentId}":{"get":{"tags":["Documents"],"summary":"Download a hearing result PDF document","description":"Retrieves the PDF published for a document ID from the event notification payload.","operationId":"getDocument","parameters":[{"name":"clientSubscriptionId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"documentId","in":"path","required":true,"description":"Document ID from the event notification payload","schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"PDF returned","content":{"application/pdf":{}}},"403":{"description":"No permission"},"404":{"description":"Not found"}}}}},"components":{"securitySchemes":{"bearerAuth":{"type":"http","scheme":"bearer","bearerFormat":"JWT"},"apiKeyAuth":{"type":"apiKey","in":"header","name":"Ocp-Apim-Subscription-Key"}},"schemas":{"CreateSubscriptionRequest":{"type":"object","required":["notificationEndpoint","eventTypes"],"properties":{"notificationEndpoint":{"type":"object","properties":{"callbackUrl":{"type":"string","format":"uri"}}},"eventTypes":{"type":"array","minItems":1,"items":{"type":"string"}}}},"UpdateSubscriptionRequest":{"type":"object","required":["notificationEndpoint","eventTypes"],"properties":{"notificationEndpoint":{"type":"object","properties":{"callbackUrl":{"type":"string"}}},"eventTypes":{"type":"array","items":{"type":"string"}}}},"ClientSubscription":{"type":"object","properties":{"clientSubscriptionId":{"type":"string","format":"uuid"},"notificationEndpoint":{"type":"object","properties":{"callbackUrl":{"type":"string"}}},"eventTypes":{"type":"array","items":{"type":"string"}},"hmac":{"type":"object","description":"HMAC credentials - secret is write-only, shown once only","properties":{"keyId":{"type":"string"},"secret":{"type":"string","description":"Base64 HMAC secret - shown once at creation or rotation only"}}},"createdAt":{"type":"string","format":"date-time"},"updatedAt":{"type":"string","format":"date-time","nullable":true}}}}}},"case-document-knowledge":{"openapi":"3.0.3","info":{"title":"Case Documents AI Responses API","description":"Versioned AI-generated answers to predefined queries about criminal case documents. Includes query catalogue, document ingestion tracking and pre-signed document download.","version":"0.0.8","contact":{"email":"no-reply@hmcts.com"},"license":{"name":"MIT"}},"servers":[{"url":"https://virtserver.swaggerhub.com/HMCTS-DTS/api-cp-crime-caseadmin-case-document-knowledge/0.0.8","description":"SwaggerHub Auto Mock"}],"paths":{"/query-catalogue":{"get":{"tags":["Query Catalogue"],"summary":"List all canonical queries","description":"Returns all predefined queries with their stable IDs and display labels.","operationId":"getQueryCatalogue","responses":{"200":{"description":"Query catalogue returned","content":{"application/json":{"example":{"items":[{"queryId":"1c9d3a9a-0b1e-4e62-9b4f-8b5e6c7d8e9f","label":"Case Summary (All Witnesses)","order":1,"isActive":true},{"queryId":"5b2a0aa4-1c2d-3e4f-5a6b-7c8d9e0f1a2b","label":"Defendant Position","order":2,"isActive":true},{"queryId":"7d4e1bb5-2d3e-4f5a-6b7c-8d9e0f1a2b3c","label":"Key Evidence Summary","order":3,"isActive":true}]}}}}}}},"/query-catalogue/{queryId}":{"get":{"tags":["Query Catalogue"],"summary":"Get a single canonical query","operationId":"getQueryCatalogueItem","parameters":[{"name":"queryId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"Query returned"},"404":{"description":"Not found"}}},"put":{"tags":["Query Catalogue"],"summary":"Update the display label for a canonical query","description":"Updates the label. Idempotent. Does not affect query definition or past answers.","operationId":"updateQueryLabel","parameters":[{"name":"queryId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"requestBody":{"required":true,"content":{"application/json":{"example":{"label":"Case Summary (All Witnesses)","order":1,"isActive":true}}}},"responses":{"200":{"description":"Updated"},"409":{"description":"Label conflict"}}}},"/queries":{"get":{"tags":["Queries"],"summary":"List queries for a case (as-of view)","description":"Returns queries for a case as of a specified timestamp. Omit 'at' for current state.","operationId":"getQueries","parameters":[{"name":"caseId","in":"query","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"at","in":"query","required":false,"description":"As-of timestamp - returns query state at this time. Omit for current.","schema":{"type":"string","format":"date-time"}}],"responses":{"200":{"description":"Queries returned"}}},"post":{"tags":["Queries"],"summary":"Upsert versioned query definitions (batch)","description":"Creates or updates versioned query definitions. Each submission creates a new version.","operationId":"upsertQueries","requestBody":{"required":true,"content":{"application/json":{"example":{"effectiveAt":"2025-01-01T00:00:00Z","queries":[{"queryId":"1c9d3a9a-0b1e-4e62-9b4f-8b5e6c7d8e9f","userQuery":"Summarise the case.","queryPrompt":"Provide a concise legal summary.","level":"CASE"}]}}}},"responses":{"202":{"description":"Accepted"}}}},"/queries/{queryId}":{"get":{"tags":["Queries"],"summary":"Get single query for a case with lifecycle status","operationId":"getQueryById","parameters":[{"name":"queryId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"caseId","in":"query","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"at","in":"query","required":false,"schema":{"type":"string","format":"date-time"}}],"responses":{"200":{"description":"Query returned"}}}},"/queries/{queryId}/versions":{"get":{"tags":["Queries"],"summary":"Get full version history of a query","description":"Returns complete version history ordered by effectiveAt. Useful for audit trails.","operationId":"getQueryVersions","parameters":[{"name":"queryId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"Version history returned"}}}},"/answers/{caseId}/{queryId}":{"get":{"tags":["Answers"],"summary":"Get AI-generated answer for a case and query","description":"Returns the AI answer. Three modes: latest (default), as-of a timestamp, or specific version. Answer text may include ::SourcePage N citations.","operationId":"getAnswer","parameters":[{"name":"caseId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"queryId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"version","in":"query","required":false,"description":"Specific version. Takes precedence over at.","schema":{"type":"integer","minimum":1}},{"name":"at","in":"query","required":false,"description":"Return latest answer at or before this timestamp.","schema":{"type":"string","format":"date-time"}}],"responses":{"200":{"description":"Answer returned","content":{"application/json":{"schema":{"$ref":"#/components/schemas/AnswerResponse"},"example":{"queryId":"046b6c7f-0b8a-43b9-b35d-6489e6daee91","userQuery":"Summarise the case.","answer":"The case involves charges of theft on 15 March 2025... ::SourcePage 3","version":1,"createdAt":"2025-01-01T11:11:11Z","status":"ANSWER_AVAILABLE"}}}},"404":{"description":"No answer found"}}}},"/v2/cases/{caseId}/queries/{queryId}/answers":{"get":{"tags":["Answers"],"summary":"V2 - Get AI answers list (recommended for new integrations)","description":"V2 endpoint with asOf response envelope. Recommended for new integrations.","operationId":"getAnswersV2","parameters":[{"name":"caseId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"queryId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"version","in":"query","required":false,"schema":{"type":"integer","minimum":1}},{"name":"at","in":"query","required":false,"schema":{"type":"string","format":"date-time"}}],"responses":{"200":{"description":"Answers returned"}}}},"/answers/{caseId}/{queryId}/with-llm":{"get":{"tags":["Answers"],"summary":"Get AI answer with captured LLM input (diagnostics)","description":"Returns the answer plus the full LLM prompt captured when the answer was generated. For diagnostics and audit.","operationId":"getAnswerWithLlm","parameters":[{"name":"caseId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"queryId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"Answer with LLM input returned"}}}},"/ingestions/status":{"get":{"tags":["Ingestion"],"summary":"Get document ingestion pipeline status for a case","description":"Returns current pipeline state. Poll this until phase = INGESTED before querying AI answers.","operationId":"getIngestionStatus","parameters":[{"name":"caseId","in":"query","required":true,"description":"The internal Case ID to check","schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"Status returned","content":{"application/json":{"example":{"scope":{"caseId":"7b1c6a7b-0b1e-4e62-9b4f-8b5e6c7d8e9f","isIdpcAvailable":true},"phase":"INGESTED","lastUpdated":"2025-05-01T12:00:00Z","message":null}}}}}}},"/ingestions/start":{"post":{"tags":["Ingestion"],"summary":"Trigger document ingestion for a court centre, room and date","description":"Triggers the ingestion pipeline for all allocated hearings matching the given court centre, room and date.","operationId":"startIngestion","requestBody":{"required":true,"content":{"application/json":{"example":{"courtCentreId":"57323172-1083-454d-8ab7-2455a8b993e7","roomId":"aa12f3dd-4cc1-4da7-b9ea-552fa3b9bc44","date":"2025-05-01"}}}},"responses":{"202":{"description":"Ingestion started","content":{"application/json":{"example":{"phase":"STARTED","lastUpdated":"2025-01-02T10:00:00Z","message":"Ingestion process started"}}}}}}},"/document/{documentId}/content":{"get":{"tags":["Document"],"summary":"Get pre-signed URL to download a case document","description":"Returns a time-limited pre-signed URL. Valid for ~45 minutes - use immediately, do not cache.","operationId":"getDocumentContent","parameters":[{"name":"documentId","in":"path","required":true,"description":"Unique document ID","schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"Pre-signed URL returned","content":{"application/json":{"example":{"url":"https://sasitlargefiles.blob.core.windows.net/largefiles-blob-container/case-doc.pdf?sig=abc&se=2025-10-30T11:43:25Z"}}}}}}}},"components":{"schemas":{"AnswerResponse":{"type":"object","required":["queryId","userQuery","answer","version","createdAt"],"properties":{"queryId":{"type":"string","format":"uuid"},"userQuery":{"type":"string"},"answer":{"type":"string","description":"AI-generated answer. May include ::SourcePage N citations."},"version":{"type":"integer","description":"Monotonically increasing version number"},"createdAt":{"type":"string","format":"date-time"},"defendantId":{"type":"string","format":"uuid","nullable":true},"status":{"type":"string","enum":["ANSWER_AVAILABLE","ANSWER_NOT_AVAILABLE","IDPC_NOT_FOUND"]}}},"ErrorResponse":{"type":"object","properties":{"error":{"type":"string"},"message":{"type":"string"},"timestamp":{"type":"string","format":"date-time"},"traceId":{"type":"string"}}}}}}};
 
 var specCache = {};
 var currentApi = null;
@@ -1049,7 +864,7 @@ function filterCards(q) {
   if (!filtered.length) {
     grid.innerHTML = '<div style="grid-column:1/-1;padding:40px;text-align:center;color:#505a5f;border:1px solid #b1b4b6;background:#f3f2f1">' +
       '<p class="govuk-body">No APIs match your search.</p>' +
-      '<p class="govuk-body-s">Can\'t find what you need? <a onclick="requestNewApi()" class="govuk-link" style="cursor:pointer">Request a new API to be listed</a>.</p></div>';
+      '<p class="govuk-body-s">Can\'t find what you need? <a href="mailto:no-reply@hmcts.com" class="govuk-link">Request a new API to be listed</a>.</p></div>';
   } else {
     grid.innerHTML = filtered.map(function(api) {
       return '<div class="app-api-card" onclick="showDetail(\'' + api.id + '\')" role="listitem" tabindex="0"' +
@@ -1084,37 +899,36 @@ function setFilter(domain, btn) {
 }
 
 function hideAll() {
-  ['homePage','detailPage','marketplacePage','consDash','prodDash','signInPage'].forEach(function(id) {
+  ['homePage','detailPage','marketplacePage','consDash','prodDash'].forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.classList.remove('app-page--active');
   });
 }
 
-function setActiveNav(id) {
-  document.querySelectorAll('.app-subnav__link').forEach(function(el) {
-    el.classList.remove('app-subnav__link--active');
+function setActiveNav(activeId) {
+  ['navBrowse','navMarket','navDash'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.classList.remove('app-nav-link--active');
   });
-  var el = document.getElementById(id);
-  if (el) el.classList.add('app-subnav__link--active');
-  var si = document.getElementById('navSignIn');
-  if (si) si.style.display = (AU && AP) ? 'none' : 'block';
+  if (activeId) {
+    var a = document.getElementById(activeId);
+    if (a) a.classList.add('app-nav-link--active');
+  }
 }
 
 function showHome() {
   hideAll();
-  document.getElementById('marketplacePage').classList.add('app-page--active');
-  setActiveNav('navMarket');
+  document.getElementById('homePage').classList.add('app-page--active');
+  setActiveNav('navBrowse');
   window.scrollTo(0, 0);
+  currentApi = null;
 }
 
 function showMarketplace() {
   hideAll();
-  document.getElementById('homePage').classList.add('app-page--active');
-  setActiveNav('navBrowse');
-  renderHome();
-  mergeApprovedIntoHome();
+  document.getElementById('marketplacePage').classList.add('app-page--active');
+  setActiveNav('navMarket');
   window.scrollTo(0, 0);
-  currentApi = null;
 }
 
 function showDetail(apiId) {
@@ -1416,7 +1230,7 @@ function lsSaveReqs(r)  { localStorage.setItem('_cat_reqs', JSON.stringify(r)); 
 function lsPApis(id)    { try { return JSON.parse(localStorage.getItem('_cat_papis_' + id) || '[]'); } catch(e) { return []; } }
 function lsSPApis(id,a) { localStorage.setItem('_cat_papis_' + id, JSON.stringify(a)); }
 
-function showAuth(tab)   { showSignInPage(tab || 'login'); }
+function showAuth(tab)   { document.getElementById('authOverlay').style.display = 'flex'; authTab(tab || 'login'); }
 function hideAuth()      { document.getElementById('authOverlay').style.display = 'none'; }
 function showSignIn()    { showAuth('login'); }
 function showRegister()  { showAuth('register'); }
@@ -1439,29 +1253,10 @@ function setAErr(m) {
 
 function pickRole(r) {
   AR = r;
-  ['rcC','rcP','rcR'].forEach(function(id) {
-    var el = document.getElementById(id); if (!el) return;
-    var val = id === 'rcC' ? 'consumer' : id === 'rcP' ? 'producer' : 'reviewer';
-    el.classList.toggle('app-role-card--selected', r === val);
-    el.setAttribute('aria-pressed', r === val ? 'true' : 'false');
-  });
-}
-
-
-/* ── Permission model ────────────────────────────────────── */
-function defaultPermissions(role) {
-  return {
-    canBrowse:        true,
-    canRequestAccess: role === 'consumer' || role === 'producer',
-    canRequestNewApi: role === 'consumer' || role === 'producer',
-    canPublish:       role === 'producer',
-    canReview:        role === 'reviewer',
-    canAdmin:         false
-  };
-}
-
-function hasPermission(perm) {
-  return AP && AP.permissions && AP.permissions[perm] === true;
+  document.getElementById('rcC').classList.toggle('app-role-card--selected', r === 'consumer');
+  document.getElementById('rcC').setAttribute('aria-pressed', r === 'consumer' ? 'true' : 'false');
+  document.getElementById('rcP').classList.toggle('app-role-card--selected', r === 'producer');
+  document.getElementById('rcP').setAttribute('aria-pressed', r === 'producer' ? 'true' : 'false');
 }
 
 function doLogin(e) {
@@ -1475,9 +1270,7 @@ function doLogin(e) {
       setAErr('Incorrect email address or password.');
       btn.disabled = false; btn.textContent = 'Sign in'; return;
     }
-    /* Back-fill permissions for accounts registered before this update */
-    if (!u.permissions) { u.permissions = defaultPermissions(u.role); lsSU(Object.assign(lsU(), {[email]: u})); }
-    AU = u; AP = { firstName: u.fn, lastName: u.ln, email: u.email, org: u.org, role: u.role, permissions: u.permissions };
+    AU = u; AP = { firstName: u.fn, lastName: u.ln, email: u.email, org: u.org, role: u.role };
     lsSess(u); hideAuth(); renderNav(); showDash();
     btn.disabled = false; btn.textContent = 'Sign in';
   }, 350);
@@ -1498,10 +1291,9 @@ function doRegister(e) {
       btn.disabled = false; btn.textContent = 'Create account'; return;
     }
     var id = Date.now().toString(36) + Math.random().toString(36).slice(2);
-    var perms = defaultPermissions(AR);
-    var u = { id: id, fn: fn, ln: ln, email: em, pw: btoa(pw), org: org, role: AR, permissions: perms };
+    var u = { id: id, fn: fn, ln: ln, email: em, pw: btoa(pw), org: org, role: AR };
     users[em] = u; lsSU(users);
-    AU = u; AP = { firstName: fn, lastName: ln, email: em, org: org, role: AR, permissions: perms };
+    AU = u; AP = { firstName: fn, lastName: ln, email: em, org: org, role: AR };
     lsSess(u); hideAuth(); renderNav(); showDash();
     btn.disabled = false; btn.textContent = 'Create account';
   }, 350);
@@ -1511,14 +1303,14 @@ function doLogout() { lsClear(); AU = null; AP = null; renderNav(); showHome(); 
 
 function restoreSession() {
   var u = lsGetSess();
-  if (u) { if (!u.permissions) u.permissions = defaultPermissions(u.role); AU = u; AP = { firstName: u.fn, lastName: u.ln, email: u.email, org: u.org, role: u.role, permissions: u.permissions }; }
+  if (u) { AU = u; AP = { firstName: u.fn, lastName: u.ln, email: u.email, org: u.org, role: u.role }; }
 }
 
 function renderNav() {
   var el = document.getElementById('navRight'); if (!el) return;
   if (AU && AP) {
     var ini = (AP.firstName ? AP.firstName[0] : '') + (AP.lastName ? AP.lastName[0] : '');
-    var cls = hasPermission('canPublish') ? 'app-user-chip__avatar--producer' : hasPermission('canReview') ? 'app-user-chip__avatar--reviewer' : '';
+    var cls = AP.role === 'producer' ? 'app-user-chip__avatar--producer' : '';
     el.innerHTML =
       '<div class="app-user-chip" tabindex="0">' +
         '<div class="app-user-chip__avatar ' + cls + '">' + ini + '</div>' +
@@ -1531,31 +1323,22 @@ function renderNav() {
         '</div>' +
       '</div>';
   } else {
-    el.innerHTML = '';
-    var navSi = document.getElementById('navSignIn');
-    if (navSi) navSi.style.display = 'block';
+    el.innerHTML =
+      '<button class="govuk-button govuk-button--secondary" style="margin:0 8px 0 0;font-size:14px;padding:6px 14px" onclick="showSignIn()">Sign in</button>' +
+      '<button class="govuk-button" style="margin:0;font-size:14px;padding:6px 14px" onclick="showRegister()">Register</button>';
   }
 }
 
 /* ── Dashboards ──────────────────────────────────────────── */
 function showDash() {
   if (!AU || !AP) { showAuth('login'); return; }
-  if (hasPermission('canReview')) showRvDash();
-  else if (hasPermission('canPublish')) showPDash();
-  else showCDash();
+  if (AP.role === 'producer') showPDash(); else showCDash();
 }
 
 function showCDash() {
   hideAll();
   document.getElementById('consDash').classList.add('app-page--active');
   setActiveNav('navDash');
-  /* Reset to overview panel */
-  document.querySelectorAll('#consDash .app-dash-panel').forEach(function(p){ p.classList.remove('app-dash-panel--active'); });
-  document.querySelectorAll('#consDash .app-dash-nav__item').forEach(function(n){ n.classList.remove('app-dash-nav__item--active'); });
-  var ovPanel = document.getElementById('c-ov');
-  if (ovPanel) ovPanel.classList.add('app-dash-panel--active');
-  var ovBtn = document.querySelector('#consDash .app-dash-nav__item');
-  if (ovBtn) ovBtn.classList.add('app-dash-nav__item--active');
   window.scrollTo(0, 0);
   document.getElementById('cGr').textContent = 'Welcome back, ' + (AP.firstName || 'there');
   document.getElementById('cNm').textContent  = (AP.firstName || '') + ' ' + (AP.lastName || '');
@@ -1573,36 +1356,19 @@ function showCDash() {
 }
 
 function refreshCReqs() {
-  var list = document.getElementById('cRL');
-  if (!list) { console.warn('refreshCReqs: cRL element not found'); return; }
-  if (!AU) { list.innerHTML = '<p class="govuk-body" style="color:#505a5f">Sign in to see your requests.</p>'; return; }
-  /* Read from per-user store (always written) and merge with global for status updates */
-  var perUser = lsAllReqs().filter(function(r){ return r.uid === AU.id; });
-  var global  = lsAllReqsGlobal().filter(function(r){ return r.uid === AU.id; });
-  console.log('[refreshCReqs] AU.id:', AU.id, '| perUser:', perUser.length, '| global:', global.length);
-  console.log('[refreshCReqs] _cat_reqs raw:', localStorage.getItem('_cat_reqs'));
-  console.log('[refreshCReqs] _cat_all_reqs raw:', localStorage.getItem('_cat_all_reqs'));
-  /* Merge: global has latest status/notes; per-user has original submissions */
-  var merged = {};
-  perUser.forEach(function(r){ merged[r.id] = r; });
-  global.forEach(function(r){ if (merged[r.id]) { merged[r.id].status = r.status; merged[r.id].producerNotes = r.producerNotes || ''; } else { merged[r.id] = r; } });
-  var mine = Object.values(merged);
-  if (!mine.length) {
-    list.innerHTML = '<div class="app-empty-state"><div class="app-empty-state__icon" aria-hidden="true">&#128203;</div><div class="app-empty-state__title">No requests yet</div><div class="app-empty-state__desc">Submit your first access request to get started.</div></div>';
-    return;
+  var reqs = lsAllReqs().filter(function(r) { return AU && r.uid === AU.id; });
+  var cNR = document.getElementById('cNR'); if (cNR) cNR.textContent = reqs.length;
+  var cNA = document.getElementById('cNA'); if (cNA) cNA.textContent = reqs.filter(function(r) { return r.status === 'approved'; }).length;
+  if (reqs.length) {
+    document.getElementById('cRL').innerHTML = reqs.map(function(r) {
+      var api = APIS.find(function(a) { return a.id === r.apiId; });
+      return '<div class="app-req-card">' +
+        '<div class="app-req-icon" style="background:#f3f2f1;border:1px solid #b1b4b6">' + (api ? api.icon : '?') + '</div>' +
+        '<div style="flex:1"><div class="app-req-name">' + r.apiName + '</div><div class="app-req-meta">' + r.sys + ' \u00b7 ' + r.env + '</div></div>' +
+        '<span class="app-tag ' + (r.status === 'approved' ? 'app-tag--green' : r.status === 'rejected' ? 'app-tag--red' : 'app-tag--yellow') + '">' + r.status + '</span>' +
+      '</div>';
+    }).join('');
   }
-  list.innerHTML = mine.sort(function(a,b){ return a.created < b.created ? 1 : -1; }).map(function(r) {
-    var tagClass = r.status === 'approved' ? 'app-tag--green' : r.status === 'rejected' ? 'app-tag--red' : 'app-tag--yellow';
-    var tagLabel = r.status === 'approved' ? '&#10003; Approved' : r.status === 'rejected' ? '&#10007; Rejected' : 'Pending review';
-    return '<div class="app-submission-card">' +
-      '<div class="app-submission-card__header">' +
-        '<div><div class="app-submission-card__name">' + r.apiName + '</div>' +
-        '<div class="app-submission-card__meta">' + r.env + ' &middot; ' + r.sys + ' &middot; ' + (function(d){var s=Math.floor((new Date()-new Date(d))/1000);if(s<60)return 'just now';if(s<3600)return Math.floor(s/60)+'m ago';if(s<86400)return Math.floor(s/3600)+'h ago';return Math.floor(s/86400)+'d ago';})(r.created) + '</div></div>' +
-        '<span class="app-tag ' + tagClass + '">' + tagLabel + '</span>' +
-      '</div>' +
-      (r.producerNotes && r.status !== 'pending' ? '<div class="app-notes-box"><strong>Decision note:</strong> ' + r.producerNotes + '</div>' : '') +
-    '</div>';
-  }).join('');
 }
 
 function showPDash() {
@@ -1821,19 +1587,14 @@ function submitReq() {
   }
   var savedName = reqData.apiName || '';
   var reqs = lsAllReqs();
-  var reqId = Date.now().toString(36) + Math.random().toString(36).slice(2,4);
-  var reqRecord = { id: reqId, uid: AU.id, submitterName: (AU.fn + ' ' + AU.ln), submitterOrg: (AU.org || ''), apiId: reqData.apiId, apiName: reqData.apiName, sys: reqData.sys, env: reqData.env, vol: reqData.vol, just: reqData.just, status: 'pending', producerNotes: '', created: new Date().toISOString() };
-  reqs.push(reqRecord);
+  reqs.push({ id: Date.now().toString(36), uid: AU.id, apiId: reqData.apiId, apiName: reqData.apiName, sys: reqData.sys, env: reqData.env, vol: reqData.vol, just: reqData.just, status: 'pending', created: new Date().toISOString() });
   lsSaveReqs(reqs);
-  /* Also write to shared global store so producers can see it */
-  var allReqs = lsAllReqsGlobal(); allReqs.push(reqRecord); lsSaveAllReqsGlobal(allReqs);
-  console.log('[submitReq] Written to _cat_reqs and _cat_all_reqs. reqRecord:', JSON.stringify(reqRecord));
   reqData = {}; reqStepsDone = [false,false,false,false];
   document.getElementById('c-access').innerHTML =
     '<h1 class="govuk-heading-l">Request submitted</h1>' +
     '<div class="govuk-panel govuk-panel--confirmation" style="margin-bottom:24px"><h2 class="govuk-panel__title">Request sent</h2><div class="govuk-panel__body">For: ' + savedName + '</div></div>' +
     '<p class="govuk-body">The API owner will review your request within 2 business days. You will be contacted at your registered email address.</p>' +
-    '<p class="govuk-body"><a class="govuk-link" onclick="var _rb=null;document.querySelectorAll(\'#consDash .app-dash-nav__item\').forEach(function(b){if(b.textContent.trim()===\'My requests\')_rb=b;});dPanel(\'c\',\'reqs\',_rb);refreshCReqs();return false;" href="#">View your requests</a></p>';
+    '<p class="govuk-body"><a class="govuk-link" onclick="dPanel(\'c\',\'reqs\',document.querySelectorAll(\'#consDash .app-dash-nav__item\')[2]);refreshCReqs();return false;" href="#">View your requests</a></p>';
   refreshCReqs();
 }
 
@@ -2150,576 +1911,12 @@ dPanel = function(role, panel, el) {
     var hasDraft = loadPubDraft();
     var notice = document.getElementById('pubDraftNotice');
     if (notice) notice.style.display = hasDraft ? 'block' : 'none';
-    if (hasDraft) { updatePubTaskList(); }
-  }
-  if (role === 'c' && panel === 'access') {
-    showReqStep('tasklist');
-  }
-  if (role === 'c' && panel === 'reqs') {
-    refreshCReqs();
-  }
-  if (role === 'p' && panel === 'incoming') {
-    renderIncomingRequests();
+    if (hasDraft) {
+      updatePubTaskList();
+    }
   }
 };
 
-/* ════════════════════════════════════════════════════════════
-   Request a New API — consumer flow
-   ════════════════════════════════════════════════════════════ */
-function lsNewApiReqs()     { try { return JSON.parse(localStorage.getItem('_cat_new_api_reqs') || '[]'); } catch(e) { return []; } }
-function lsSaveNewApiReqs(a){ localStorage.setItem('_cat_new_api_reqs', JSON.stringify(a)); }
-
-function requestNewApi() {
-  if (AU && AP && (hasPermission('canRequestNewApi') || hasPermission('canRequestAccess'))) {
-    /* If not on consumer dashboard, navigate there first */
-    var consDash = document.getElementById('consDash');
-    if (!consDash || !consDash.classList.contains('app-page--active')) {
-      showCDash();
-    }
-    /* Now activate the c-newapi panel */
-    dPanel('c', 'newapi', null);
-    /* Highlight the correct nav item */
-    document.querySelectorAll('#consDash .app-dash-nav__item').forEach(function(b){
-      if (b.textContent.trim() === 'Request a new API') b.classList.add('app-dash-nav__item--active');
-    });
-    renderNewApiHistory();
-    window.scrollTo(0, 0);
-  } else if (AU && AP) {
-    alert('Please sign in with a consumer account to request a new API.');
-  } else {
-    showAuth('login');
-  }
-}
-
-function submitNewApiRequest() {
-  var name     = document.getElementById('napiName')     ? document.getElementById('napiName').value.trim()  : '';
-  var domain   = document.getElementById('napiDomain')   ? document.getElementById('napiDomain').value        : '';
-  var data     = document.getElementById('napiData')     ? document.getElementById('napiData').value.trim()   : '';
-  var why      = document.getElementById('napiWhy')      ? document.getElementById('napiWhy').value.trim()    : '';
-  var system   = document.getElementById('napiSystem')   ? document.getElementById('napiSystem').value.trim() : '';
-  var vol      = document.getElementById('napiVol')      ? document.getElementById('napiVol').value            : '';
-  var priority = document.getElementById('napiPriority') ? document.getElementById('napiPriority').value       : '';
-  var known    = document.getElementById('napiKnown')    ? document.getElementById('napiKnown').value.trim()   : '';
-  var classEl  = document.querySelector('input[name="napiClass"]:checked');
-  var classification = classEl ? classEl.value : '';
-
-  var errors = [];
-  if (!name)           errors.push({ id:'napiName',     msg:'Enter a name for the API you need' });
-  if (!domain)         errors.push({ id:'napiDomain',   msg:'Select a business domain' });
-  if (!data)           errors.push({ id:'napiData',     msg:'Describe the data you need' });
-  if (!why)            errors.push({ id:'napiWhy',      msg:'Explain why your system needs this data' });
-  if (!system)         errors.push({ id:'napiSystem',   msg:'Enter the name of your system or service' });
-  if (!vol)            errors.push({ id:'napiVol',      msg:'Select an expected request volume' });
-  if (!classification) errors.push({ id:'napiClass',    msg:'Select a data classification' });
-  if (!priority)       errors.push({ id:'napiPriority', msg:'Select how urgent this request is' });
-
-  ['napiName','napiDomain','napiData','napiWhy','napiSystem','napiVol','napiPriority'].forEach(function(id) {
-    var fg = document.getElementById('fg-' + id);
-    var inp = document.getElementById(id);
-    if (fg) { fg.classList.remove('govuk-form-group--error'); var em = fg.querySelector('.govuk-error-message'); if (em) em.remove(); }
-    if (inp) inp.classList.remove('govuk-input--error','govuk-select--error','govuk-textarea--error');
-  });
-  var fgClass = document.getElementById('fg-napiClass');
-  if (fgClass) { fgClass.classList.remove('govuk-form-group--error'); var em2 = fgClass.querySelector('.govuk-error-message'); if (em2) em2.remove(); }
-
-  var errBox = document.getElementById('napi-err');
-  var errList = document.getElementById('napi-err-list');
-  if (errors.length) {
-    if (errBox) errBox.style.display = 'block';
-    if (errList) errList.innerHTML = errors.map(function(e){ return '<li><a href="#' + e.id + '">' + e.msg + '</a></li>'; }).join('');
-    errors.forEach(function(e) {
-      var fg = document.getElementById('fg-' + e.id);
-      var inp = document.getElementById(e.id);
-      if (fg) { fg.classList.add('govuk-form-group--error'); var em = document.createElement('span'); em.className = 'govuk-error-message'; em.innerHTML = '<span class="govuk-visually-hidden">Error:</span> ' + e.msg; var lbl = fg.querySelector('label')||fg.querySelector('legend'); if (lbl) lbl.insertAdjacentElement('afterend', em); }
-      if (inp) inp.classList.add(inp.tagName==='TEXTAREA'?'govuk-textarea--error':inp.tagName==='SELECT'?'govuk-select--error':'govuk-input--error');
-    });
-    if (errBox) errBox.scrollIntoView({ behavior:'smooth' }); return;
-  }
-  if (errBox) errBox.style.display = 'none';
-
-  var id = Date.now().toString(36) + Math.random().toString(36).slice(2,5);
-  var req = { id:id, name:name, domain:domain, dataNeed:data, why:why, system:system,
-    volume:vol, classification:classification, knownSource:known, priority:priority,
-    submittedBy: AU?AU.id:'', submitterName: AU?(AU.fn+' '+AU.ln):'',
-    submittedAt: new Date().toISOString(), status:'Received' };
-  var reqs = lsNewApiReqs(); reqs.push(req); lsSaveNewApiReqs(reqs);
-
-  var formEl = document.getElementById('c-newapi-form');
-  if (formEl) formEl.innerHTML =
-    '<div class="govuk-panel govuk-panel--confirmation" style="margin-bottom:24px">' +
-      '<h2 class="govuk-panel__title">Request submitted</h2>' +
-      '<div class="govuk-panel__body">' + name + '</div>' +
-    '</div>' +
-    '<dl class="govuk-summary-list" style="margin-bottom:24px">' +
-      '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Domain</dt><dd class="govuk-summary-list__value">' + domain + '</dd></div>' +
-      '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Classification</dt><dd class="govuk-summary-list__value">' + classification + '</dd></div>' +
-      '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Priority</dt><dd class="govuk-summary-list__value">' + priority + '</dd></div>' +
-      '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Reference</dt><dd class="govuk-summary-list__value"><strong>' + id + '</strong></dd></div>' +
-    '</dl>' +
-    '<p class="govuk-body">Thank you. The marketplace team will review your request and contact you if they need more information.</p>' +
-    '<p class="govuk-body"><a class="govuk-link" onclick="resetNewApiForm();return false;" href="#">Submit another request</a></p>';
-  renderNewApiHistory();
-}
-
-function resetNewApiForm() {
-  var formEl = document.getElementById('c-newapi-form');
-  if (!formEl) return;
-  formEl.innerHTML =
-    '<div class="app-form-card">' +
-    '<div class="govuk-form-group" id="fg-napiName"><label class="govuk-label govuk-label--m" for="napiName">What would you call this API?</label><div class="govuk-hint">A short descriptive name.</div><input class="govuk-input" id="napiName" type="text" autocomplete="off"></div>' +
-    '<div class="govuk-form-group" id="fg-napiDomain"><label class="govuk-label govuk-label--m" for="napiDomain">Which business domain?</label><select class="govuk-select" id="napiDomain" style="width:100%"><option value="">Select a domain&hellip;</option><option>Case Administration</option><option>Reference Data</option><option>Case Management</option><option>Hearing Results</option><option>Scheduling and Listing</option><option>I am not sure</option><option>Other</option></select></div>' +
-    '<div class="govuk-form-group" id="fg-napiData"><label class="govuk-label govuk-label--m" for="napiData">What data do you need?</label><textarea class="govuk-textarea" id="napiData" rows="5"></textarea></div>' +
-    '<div class="govuk-form-group" id="fg-napiWhy"><label class="govuk-label govuk-label--m" for="napiWhy">Why does your system need this data?</label><textarea class="govuk-textarea" id="napiWhy" rows="4"></textarea></div>' +
-    '<div class="govuk-form-group" id="fg-napiSystem"><label class="govuk-label govuk-label--m" for="napiSystem">Which system would consume this API?</label><input class="govuk-input" id="napiSystem" type="text" autocomplete="off"></div>' +
-    '<div class="govuk-form-group" id="fg-napiVol"><label class="govuk-label govuk-label--m" for="napiVol">Expected request volume?</label><select class="govuk-select" id="napiVol" style="width:100%"><option value="">Select&hellip;</option><option>Low — up to 1,000 requests per day</option><option>Medium — 1,000 to 10,000 requests per day</option><option>High — over 10,000 requests per day</option><option>Not sure yet</option></select></div>' +
-    '<div class="govuk-form-group" id="fg-napiClass"><fieldset class="govuk-fieldset"><legend class="govuk-fieldset__legend govuk-fieldset__legend--m">Expected data classification?</legend><div class="govuk-radios"><div class="govuk-radios__item"><input class="govuk-radios__input" id="napiClass-1" name="napiClass" type="radio" value="Official"><label class="govuk-label govuk-radios__label" for="napiClass-1">Official</label></div><div class="govuk-radios__item"><input class="govuk-radios__input" id="napiClass-2" name="napiClass" type="radio" value="Official-Sensitive"><label class="govuk-label govuk-radios__label" for="napiClass-2">Official-Sensitive</label></div><div class="govuk-radios__item"><input class="govuk-radios__input" id="napiClass-3" name="napiClass" type="radio" value="Restricted"><label class="govuk-label govuk-radios__label" for="napiClass-3">Restricted</label></div></div></fieldset></div>' +
-    '<div class="govuk-form-group" id="fg-napiKnown"><label class="govuk-label govuk-label--m" for="napiKnown">Known existing source? (optional)</label><input class="govuk-input" id="napiKnown" type="text" autocomplete="off"></div>' +
-    '<div class="govuk-form-group" id="fg-napiPriority"><label class="govuk-label govuk-label--m" for="napiPriority">How urgent is this?</label><select class="govuk-select" id="napiPriority" style="width:100%"><option value="">Select&hellip;</option><option>Critical — blocking a live service</option><option>High — needed for an upcoming delivery</option><option>Medium — needed within the next quarter</option><option>Low — longer term planning</option></select></div>' +
-    '<div id="napi-err" class="govuk-error-summary" style="display:none" role="alert"><h2 class="govuk-error-summary__title">There is a problem</h2><ul class="govuk-error-summary__list" id="napi-err-list"></ul></div>' +
-    '<button class="govuk-button" onclick="submitNewApiRequest()">Submit request</button>' +
-    '</div>';
-}
-
-function renderNewApiHistory() {
-  var list = document.getElementById('napiHistoryList');
-  if (!list) return;
-  var mine = lsNewApiReqs().filter(function(r){ return AU && r.submittedBy === AU.id; });
-  if (!mine.length) { list.innerHTML = '<p class="govuk-body" style="color:#505a5f">Your submitted requests will appear here.</p>'; return; }
-  list.innerHTML = mine.sort(function(a,b){ return a.submittedAt < b.submittedAt ? 1 : -1; })
-    .map(function(r) {
-      return '<div class="app-submission-card"><div class="app-submission-card__header">' +
-        '<div><div class="app-submission-card__name">' + r.name + '</div>' +
-        '<div class="app-submission-card__meta">' + (r.domain||'') + ' &middot; ' + (r.priority||'') + ' &middot; Ref: ' + r.id + ' &middot; ' + (function(d){var s=Math.floor((new Date()-new Date(d))/1000);if(s<60)return 'just now';if(s<3600)return Math.floor(s/60)+'m ago';if(s<86400)return Math.floor(s/3600)+'h ago';return Math.floor(s/86400)+'d ago';})(r.submittedAt) + '</div></div>' +
-        '<span class="app-tag app-tag--blue">' + r.status + '</span></div>' +
-        '<p class="app-submission-card__body">' + (r.dataNeed||'').substring(0,120) + (r.dataNeed&&r.dataNeed.length>120?'&hellip;':'') + '</p></div>';
-    }).join('');
-}
-
-
-
-/* ── Utility: human-readable time since ─────────────────── */
-function timeSince(dateStr) {
-  var s = Math.floor((new Date() - new Date(dateStr)) / 1000);
-  if (s < 60)    return 'just now';
-  if (s < 3600)  return Math.floor(s / 60) + 'm ago';
-  if (s < 86400) return Math.floor(s / 3600) + 'h ago';
-  return Math.floor(s / 86400) + 'd ago';
-}
-/* ════════════════════════════════════════════════════════════
-   CAP-06  Access Request Approval Workflow
-   ════════════════════════════════════════════════════════════ */
-
-/* ── Shared global request store ─────────────────────────── */
-function lsAllReqsGlobal()    { try { return JSON.parse(localStorage.getItem('_cat_all_reqs') || '[]'); } catch(e) { return []; } }
-function lsAllSubs()           { try { return JSON.parse(localStorage.getItem('_cat_submissions') || '[]'); } catch(e) { return []; } }
-function lsSaveAllReqsGlobal(a){ localStorage.setItem('_cat_all_reqs', JSON.stringify(a)); }
-
-/* ── Migrate existing per-user reqs into global store ─────── */
-function migrateReqsToGlobal() {
-  var existing = lsAllReqsGlobal();
-  if (existing.length) return; /* already migrated */
-  var perUser = lsAllReqs();
-  if (!perUser.length) return;
-  /* Back-fill submitter info if missing */
-  perUser.forEach(function(r) {
-    if (!r.submitterName) r.submitterName = r.uid || 'Unknown';
-    if (!r.submitterOrg)  r.submitterOrg  = '';
-    if (!r.producerNotes) r.producerNotes = '';
-  });
-  lsSaveAllReqsGlobal(perUser);
-}
-
-/* ── Get requests for producer's APIs ─────────────────────── */
-function getIncomingForProducer() {
-  var myApiIds = [];
-  /* Built-in APIS owned by this producer (by apiId match or all if no submissions) */
-  APIS.forEach(function(a) { myApiIds.push(a.id); });
-  /* Also submitted APIs */
-  var subs = lsAllSubs ? lsAllSubs() : [];
-  subs.filter(function(s){ return s.submittedBy === AU.id; })
-      .forEach(function(s){ myApiIds.push(s.id || s.api); });
-  /* In prototype: producer sees requests for their submitted APIs OR all requests if no submissions */
-  var mySubmissions = lsAllSubs ? lsAllSubs().filter(function(s){ return s.submittedBy === AU.id; }) : [];
-  var allReqs = lsAllReqsGlobal();
-  if (mySubmissions.length === 0) {
-    /* No submitted APIs yet — show all requests (demo mode) */
-    return allReqs;
-  }
-  var mySubApiIds = mySubmissions.map(function(s){ return s.api; });
-  return allReqs.filter(function(r){
-    return mySubApiIds.indexOf(r.apiId) >= 0 || mySubApiIds.indexOf(r.apiName) >= 0;
-  });
-}
-
-/* ── Render producer incoming requests ─────────────────────── */
-var _currentIncomingTab = 'pending';
-var _currentReviewReqId = null;
-
-function renderIncomingRequests() {
-  migrateReqsToGlobal();
-  var all      = getIncomingForProducer();
-  var pending  = all.filter(function(r){ return r.status === 'pending'; });
-  var actioned = all.filter(function(r){ return r.status !== 'pending'; });
-
-  /* Badge count */
-  var badge = document.getElementById('incomingBadge');
-  if (badge) { badge.style.display = pending.length ? 'inline' : 'none'; badge.textContent = pending.length; }
-  var countEl = document.getElementById('incomingPendingCount');
-  if (countEl) countEl.textContent = pending.length;
-
-  /* Pending list */
-  var pList = document.getElementById('incomingPendingList');
-  if (pList) {
-    if (!pending.length) {
-      pList.innerHTML =
-        '<div class="app-empty-state">' +
-          '<div class="app-empty-state__icon" aria-hidden="true">&#128229;</div>' +
-          '<div class="app-empty-state__title">No pending requests</div>' +
-          '<div class="app-empty-state__desc">Access requests submitted by consumers in this browser session will appear here.</div>' +
-          '<div class="govuk-inset-text" style="margin-top:16px;text-align:left">' +
-            '<p class="govuk-body-s" style="margin-bottom:8px"><strong>Prototype note:</strong> Because this prototype uses browser storage, consumer and producer accounts must use the <strong>same browser window</strong> to share data. Open a second tab, register as a consumer, submit a request, then come back here.</p>' +
-            '<button class="govuk-button govuk-button--secondary" style="font-size:13px;margin:0" onclick="loadDemoRequest()">Load a demo request to test this flow</button>' +
-          '</div>' +
-        '</div>';
-    } else {
-      pList.innerHTML = pending.sort(function(a,b){ return a.created < b.created ? -1 : 1; })
-        .map(function(r){ return renderIncomingCard(r, true); }).join('');
-    }
-  }
-
-  /* Actioned list */
-  var aList = document.getElementById('incomingActionedList');
-  if (aList) {
-    if (!actioned.length) {
-      aList.innerHTML = '<p class="govuk-body" style="color:#505a5f">Requests you have approved or rejected will appear here.</p>';
-    } else {
-      aList.innerHTML = actioned.sort(function(a,b){ return a.decidedAt < b.decidedAt ? 1 : -1; })
-        .map(function(r){ return renderIncomingCard(r, false); }).join('');
-    }
-  }
-}
-
-function renderIncomingCard(r, isPending) {
-  var tagClass = r.status === 'approved' ? 'app-tag--green' : r.status === 'rejected' ? 'app-tag--red' : 'app-tag--yellow';
-  var tagLabel = r.status === 'approved' ? '&#10003; Approved' : r.status === 'rejected' ? '&#10007; Rejected' : 'Pending review';
-  return '<div class="app-submission-card">' +
-    '<div class="app-submission-card__header">' +
-      '<div>' +
-        '<div class="app-submission-card__name">' + r.apiName + '</div>' +
-        '<div class="app-submission-card__meta">From: ' + (r.submitterName || 'Consumer') + (r.submitterOrg ? ' &mdash; ' + r.submitterOrg : '') + ' &middot; ' + (function(d){var s=Math.floor((new Date()-new Date(d))/1000);if(s<60)return 'just now';if(s<3600)return Math.floor(s/60)+'m ago';if(s<86400)return Math.floor(s/3600)+'h ago';return Math.floor(s/86400)+'d ago';})(r.created) + '</div>' +
-      '</div>' +
-      '<span class="app-tag ' + tagClass + '">' + tagLabel + '</span>' +
-    '</div>' +
-    '<div class="app-submission-card__footer" style="margin-top:8px">' +
-      '<span class="app-tag app-tag--grey">' + r.env + '</span>' +
-      '<span class="app-tag app-tag--grey">' + r.vol + '</span>' +
-      '<span class="app-tag app-tag--grey">' + r.sys + '</span>' +
-    '</div>' +
-    (r.producerNotes && !isPending ? '<div class="app-notes-box" style="margin-top:8px"><strong>Your note:</strong> ' + r.producerNotes + '</div>' : '') +
-    '<div style="margin-top:12px">' +
-      '<button class="govuk-button govuk-button--secondary" style="margin:0;font-size:14px" onclick="showIncomingDetail(\'' + r.id + '\')">' +
-        (isPending ? 'Review request' : 'View detail') +
-      '</button>' +
-    '</div>' +
-  '</div>';
-}
-
-function switchIncomingTab(tab, el) {
-  _currentIncomingTab = tab;
-  var pList = document.getElementById('incomingPendingList');
-  var aList = document.getElementById('incomingActionedList');
-  if (pList) pList.style.display = tab === 'pending'  ? 'block' : 'none';
-  if (aList) aList.style.display = tab === 'actioned' ? 'block' : 'none';
-  var btnP = document.getElementById('tabBtnPending');
-  var btnA = document.getElementById('tabBtnActioned');
-  if (btnP) { btnP.style.borderBottomColor = tab === 'pending'  ? '#1d70b8' : 'transparent'; btnP.style.color = tab === 'pending'  ? '#1d70b8' : '#505a5f'; btnP.style.fontWeight = tab === 'pending'  ? '700' : '400'; }
-  if (btnA) { btnA.style.borderBottomColor = tab === 'actioned' ? '#1d70b8' : 'transparent'; btnA.style.color = tab === 'actioned' ? '#1d70b8' : '#505a5f'; btnA.style.fontWeight = tab === 'actioned' ? '700' : '400'; }
-}
-
-/* ── Review detail ────────────────────────────────────────── */
-function showIncomingDetail(reqId) {
-  _currentReviewReqId = reqId;
-  var r = lsAllReqsGlobal().find(function(x){ return x.id === reqId; });
-  if (!r) return;
-
-  /* Hide lists, show detail */
-  document.getElementById('incomingPendingList').style.display  = 'none';
-  document.getElementById('incomingActionedList').style.display = 'none';
-  document.getElementById('incomingDetail').style.display = 'block';
-  document.getElementById('incomingAction').style.display = 'none';
-
-  var isPending = r.status === 'pending';
-  var html =
-    '<h1 class="govuk-heading-l">Access request — ' + r.apiName + '</h1>' +
-    '<dl class="govuk-summary-list">' +
-      '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">API requested</dt><dd class="govuk-summary-list__value">' + r.apiName + '</dd></div>' +
-      '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Submitted by</dt><dd class="govuk-summary-list__value">' + (r.submitterName || 'Unknown') + (r.submitterOrg ? ' &mdash; ' + r.submitterOrg : '') + '</dd></div>' +
-      '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">System / application</dt><dd class="govuk-summary-list__value">' + r.sys + '</dd></div>' +
-      '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Environment</dt><dd class="govuk-summary-list__value">' + r.env + '</dd></div>' +
-      '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Expected volume</dt><dd class="govuk-summary-list__value">' + r.vol + '</dd></div>' +
-      '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Business justification</dt><dd class="govuk-summary-list__value">' + r.just + '</dd></div>' +
-      '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Submitted</dt><dd class="govuk-summary-list__value">' + new Date(r.created).toLocaleString() + '</dd></div>' +
-    '</dl>';
-
-  if (r.producerNotes && !isPending) {
-    html += '<div class="app-notes-box"><strong>Your decision note:</strong> ' + r.producerNotes + '</div>';
-  }
-
-  if (isPending) {
-    html +=
-      '<h2 class="govuk-heading-m" style="margin-top:24px">Make a decision</h2>' +
-      '<div style="display:flex;gap:12px;flex-wrap:wrap">' +
-        '<button class="govuk-button" onclick="showIncomingAction(\'' + reqId + '\',\'approve\')">Approve access</button>' +
-        '<button class="govuk-button govuk-button--warning" onclick="showIncomingAction(\'' + reqId + '\',\'reject\')">Reject request</button>' +
-      '</div>';
-  }
-
-  document.getElementById('incomingDetailBody').innerHTML = html;
-}
-
-function closeIncomingDetail() {
-  document.getElementById('incomingDetail').style.display = 'none';
-  document.getElementById('incomingAction').style.display = 'none';
-  document.getElementById('incomingPendingList').style.display  = _currentIncomingTab === 'pending'  ? 'block' : 'none';
-  document.getElementById('incomingActionedList').style.display = _currentIncomingTab === 'actioned' ? 'block' : 'none';
-}
-
-/* ── Approve / reject action ──────────────────────────────── */
-function showIncomingAction(reqId, action) {
-  _currentReviewReqId = reqId;
-  var r = lsAllReqsGlobal().find(function(x){ return x.id === reqId; });
-  if (!r) return;
-
-  var isApprove = action === 'approve';
-  document.getElementById('incomingDetail').style.display = 'none';
-  document.getElementById('incomingAction').style.display = 'block';
-
-  var html =
-    '<h1 class="govuk-heading-l">' + (isApprove ? 'Approve' : 'Reject') + ' access request</h1>' +
-    '<div class="govuk-summary-card" style="margin-bottom:20px">' +
-      '<div class="govuk-summary-card__title-wrapper"><h2 class="govuk-summary-card__title">' + r.apiName + '</h2></div>' +
-      '<div class="govuk-summary-card__content"><dl class="govuk-summary-list">' +
-        '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Consumer</dt><dd class="govuk-summary-list__value">' + (r.submitterName || 'Unknown') + '</dd></div>' +
-        '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">System</dt><dd class="govuk-summary-list__value">' + r.sys + '</dd></div>' +
-        '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Environment</dt><dd class="govuk-summary-list__value">' + r.env + '</dd></div>' +
-      '</dl></div>' +
-    '</div>' +
-    (isApprove
-      ? '<div class="govuk-inset-text">Approving this request grants the consumer access to <strong>' + r.apiName + '</strong>. They will see the decision in their My requests panel.</div>'
-      : '<div class="govuk-inset-text">Rejecting this request will notify the consumer with your reason. They can resubmit after addressing your concerns.</div>') +
-    '<div class="govuk-form-group" id="fg-incomingNotes">' +
-      '<label class="govuk-label govuk-label--m" for="incomingNotes">' + (isApprove ? 'Note for the consumer (optional)' : 'Reason for rejection (required)') + '</label>' +
-      '<div class="govuk-hint">' + (isApprove ? 'Any conditions, usage guidance or next steps.' : 'Be specific so the consumer knows what to address.') + '</div>' +
-      '<textarea class="govuk-textarea" id="incomingNotes" rows="4"></textarea>' +
-    '</div>' +
-    '<div style="display:flex;gap:12px;flex-wrap:wrap">' +
-      '<button class="govuk-button' + (isApprove ? '' : ' govuk-button--warning') + '" onclick="confirmIncomingAction(\'' + reqId + '\',\'' + action + '\')">' +
-        (isApprove ? 'Confirm: approve access' : 'Confirm: reject request') +
-      '</button>' +
-      '<button class="govuk-button govuk-button--secondary" onclick="showIncomingDetail(\'' + reqId + '\')">Cancel</button>' +
-    '</div>';
-
-  document.getElementById('incomingActionBody').innerHTML = html;
-}
-
-function closeIncomingAction() {
-  showIncomingDetail(_currentReviewReqId);
-}
-
-function confirmIncomingAction(reqId, action) {
-  var notes = document.getElementById('incomingNotes') ? document.getElementById('incomingNotes').value.trim() : '';
-  if (action === 'reject' && !notes) {
-    var fg = document.getElementById('fg-incomingNotes');
-    if (fg) {
-      fg.classList.add('govuk-form-group--error');
-      var existing = fg.querySelector('.govuk-error-message');
-      if (!existing) {
-        var em = document.createElement('span');
-        em.className = 'govuk-error-message';
-        em.innerHTML = '<span class="govuk-visually-hidden">Error:</span> Enter a reason for rejection';
-        var label = fg.querySelector('label');
-        if (label) label.insertAdjacentElement('afterend', em);
-      }
-    }
-    return;
-  }
-
-  var allReqs = lsAllReqsGlobal();
-  var idx = allReqs.findIndex(function(x){ return x.id === reqId; });
-  if (idx < 0) return;
-
-  allReqs[idx].status       = action === 'approve' ? 'approved' : 'rejected';
-  allReqs[idx].producerNotes = notes;
-  allReqs[idx].decidedAt    = new Date().toISOString();
-  allReqs[idx].decidedBy    = AU ? (AU.fn + ' ' + AU.ln) : '';
-  lsSaveAllReqsGlobal(allReqs);
-
-  /* Also update the per-user _cat_reqs for the consumer */
-  var perUserReqs = JSON.parse(localStorage.getItem('_cat_reqs') || '[]');
-  perUserReqs.forEach(function(r, i) {
-    if (r.id === reqId) {
-      perUserReqs[i].status        = allReqs[idx].status;
-      perUserReqs[i].producerNotes = notes;
-    }
-  });
-  localStorage.setItem('_cat_reqs', JSON.stringify(perUserReqs));
-
-  /* Show confirmation */
-  var isApprove = action === 'approve';
-  var r = allReqs[idx];
-  document.getElementById('incomingActionBody').innerHTML =
-    '<h1 class="govuk-heading-l">Decision recorded</h1>' +
-    '<div class="govuk-panel govuk-panel--confirmation" style="margin-bottom:24px">' +
-      '<h2 class="govuk-panel__title">' + (isApprove ? 'Access approved' : 'Request rejected') + '</h2>' +
-      '<div class="govuk-panel__body">' + r.apiName + '</div>' +
-    '</div>' +
-    (isApprove
-      ? '<p class="govuk-body">The consumer has been notified. Their request status has been updated to <strong>Approved</strong>.</p>'
-      : '<p class="govuk-body">The consumer has been notified with your reason. Their request status has been updated to <strong>Rejected</strong>.</p>') +
-    '<p class="govuk-body"><a class="govuk-link" onclick="closeIncomingDetail();renderIncomingRequests();return false;" href="#">Back to access requests</a></p>';
-
-  renderIncomingRequests();
-}
-
-/* ── Patch showPDash to also render incoming badge ─────────── */
-var _cap06OrigShowPDash = showPDash;
-showPDash = function() {
-  _cap06OrigShowPDash();
-  migrateReqsToGlobal();
-  var pending = getIncomingForProducer().filter(function(r){ return r.status === 'pending'; });
-  var badge = document.getElementById('incomingBadge');
-  if (badge) { badge.style.display = pending.length ? 'inline' : 'none'; badge.textContent = pending.length; }
-};
-
-/* ── On page load: migrate old requests ───────────────────── */
-document.addEventListener('DOMContentLoaded', function() {
-  migrateReqsToGlobal();
-});
-
-/* ── Demo request loader for prototype testing ─────────────── */
-function loadDemoRequest() {
-  var demo = {
-    id: 'demo-' + Date.now().toString(36),
-    uid: 'demo-consumer-001',
-    submitterName: 'Demo Consumer',
-    submitterOrg: 'HMCTS Test Team',
-    apiId: 'prosecution-case-details',
-    apiName: 'Prosecution Case Details',
-    sys: 'Case Management Portal',
-    env: 'Production',
-    vol: 'Medium \u2014 100 to 10,000 requests per day',
-    just: 'Our case management portal needs to retrieve prosecution case details to display defendant information to court clerks. This data is currently retrieved manually which causes delays during hearings.',
-    status: 'pending',
-    producerNotes: '',
-    created: new Date(Date.now() - 3600000).toISOString()
-  };
-  var allReqs = lsAllReqsGlobal();
-  /* Only add if not already there */
-  if (!allReqs.find(function(r){ return r.id === demo.id || r.uid === 'demo-consumer-001'; })) {
-    allReqs.push(demo);
-    lsSaveAllReqsGlobal(allReqs);
-  }
-  renderIncomingRequests();
-}
-
-/* ── Sign in / Register page ─────────────────────────────────*/
-function showSignInPage(tab) {
-  hideAll();
-  document.getElementById('signInPage').classList.add('app-page--active');
-  setActiveNav('');
-  var si = document.getElementById('navSignIn');
-  if (si) si.style.display = 'none';
-  showSignInCard(tab || 'login');
-  window.scrollTo(0, 0);
-}
-
-function showSignInCard(tab) {
-  var siCard  = document.getElementById('signInCard');
-  var regCard = document.getElementById('registerCard');
-  if (siCard)  siCard.style.display  = tab === 'login'    ? 'block' : 'none';
-  if (regCard) regCard.style.display = tab === 'register' ? 'block' : 'none';
-}
-
-function togglePwdVisibility(inputId, btn) {
-  var inp = document.getElementById(inputId);
-  if (!inp) return;
-  if (inp.type === 'password') { inp.type = 'text';     btn.textContent = 'Hide'; }
-  else                         { inp.type = 'password'; btn.textContent = 'Show'; }
-}
-
-function showForgotPassword() {
-  alert('Password reset is not available in this prototype. In production this would send a reset link to your email.');
-}
-
-function doSignInPage() {
-  var email = document.getElementById('signInEmail') ? document.getElementById('signInEmail').value.trim() : '';
-  var pwd   = document.getElementById('signInPwd')   ? document.getElementById('signInPwd').value           : '';
-  var errBox = document.getElementById('signInError');
-
-  if (!email || !pwd) {
-    if (errBox) { errBox.style.display = 'block'; document.getElementById('signInErrorMsg').textContent = 'Enter your email address and password'; }
-    return;
-  }
-
-  var users = lsU();
-  var user  = users[email.toLowerCase()];
-  if (!user || atob(user.pw) !== pwd) {
-    if (errBox) { errBox.style.display = 'block'; document.getElementById('signInErrorMsg').textContent = 'Email address or password is incorrect'; }
-    return;
-  }
-
-  if (errBox) errBox.style.display = 'none';
-  if (!user.permissions) user.permissions = defaultPermissions(user.role);
-  AU = user;
-  AP = { firstName: user.fn, lastName: user.ln, email: user.email, org: user.org, role: user.role, permissions: user.permissions };
-  lsSess(user);
-  renderNav();
-  showDash();
-}
-
-function doRegisterPage() {
-  var fn    = document.getElementById('regFn')    ? document.getElementById('regFn').value.trim()    : '';
-  var ln    = document.getElementById('regLn')    ? document.getElementById('regLn').value.trim()    : '';
-  var email = document.getElementById('regEmail') ? document.getElementById('regEmail').value.trim().toLowerCase() : '';
-  var org   = document.getElementById('regOrg')   ? document.getElementById('regOrg').value.trim()   : '';
-  var pwd   = document.getElementById('regPwd')   ? document.getElementById('regPwd').value           : '';
-  var roleEl = document.querySelector('input[name="regRole"]:checked');
-  var role  = roleEl ? roleEl.value : 'consumer';
-
-  var errors = [];
-  if (!fn)              errors.push('Enter your first name');
-  if (!ln)              errors.push('Enter your last name');
-  if (!email)           errors.push('Enter your email address');
-  if (!org)             errors.push('Enter your organisation');
-  if (!pwd || pwd.length < 8) errors.push('Password must be at least 8 characters');
-
-  var errBox  = document.getElementById('registerError');
-  var errList = document.getElementById('registerErrorList');
-  if (errors.length) {
-    if (errBox)  errBox.style.display = 'block';
-    if (errList) errList.innerHTML = errors.map(function(e){ return '<li>' + e + '</li>'; }).join('');
-    return;
-  }
-  if (errBox) errBox.style.display = 'none';
-
-  var users = lsU();
-  if (users[email]) {
-    if (errBox)  errBox.style.display = 'block';
-    if (errList) errList.innerHTML = '<li>An account with this email address already exists. <a href="#" onclick="showSignInCard(\'login\');return false;" style="color:#1d70b8">Sign in instead</a></li>';
-    return;
-  }
-
-  var id    = Date.now().toString(36) + Math.random().toString(36).slice(2,5);
-  var perms = defaultPermissions(role);
-  var user  = { id:id, fn:fn, ln:ln, email:email, pw:btoa(pwd), org:org, role:role, permissions:perms };
-  users[email] = user;
-  lsSU(users);
-  AU = user;
-  AP = { firstName:fn, lastName:ln, email:email, org:org, role:role, permissions:perms };
-  lsSess(user);
-  renderNav();
-  showDash();
-}
 </script>
 </body>
 </html>

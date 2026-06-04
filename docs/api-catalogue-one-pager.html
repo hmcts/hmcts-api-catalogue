@@ -1,189 +1,252 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="govuk-template">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HMCTS API Catalogue — What is it?</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/govuk-frontend@5.4.0/dist/govuk/govuk-frontend.min.css">
 <style>
-  body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
-  .standalone-header { background: #0b0c0c; padding: 10px 15px; border-bottom: 10px solid #1d70b8; display: flex; align-items: center; gap: 12px; }
-  .standalone-header .logo { color: white; font-size: 28px; font-weight: 700; letter-spacing: -1px; }
-  .standalone-header .service { color: white; font-size: 16px; font-weight: 700; border-left: 1px solid #6f777b; padding-left: 12px; }
-  .standalone-footer { background: #f3f2f1; border-top: 1px solid #b1b4b6; padding: 20px 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-  .standalone-footer p { font-size: 14px; color: #505a5f; margin: 0; }
-  .standalone-footer a { font-size: 14px; color: #1d70b8; text-decoration: underline; margin-left: 12px; }
+  .app-header-crown { display:inline-block; width:32px; height:32px; margin-right:8px; vertical-align:middle; }
+  .app-one-pager-hero { background:#f3f2f1; padding:40px 0; border-bottom:2px solid #b1b4b6; }
+  .app-inset-quote { border-left:6px solid #1d70b8; padding:16px 20px; background:white; margin-bottom:20px; }
+  .app-inset-quote p { font-size:19px; font-style:italic; color:#0b0c0c; margin:0; line-height:1.5; }
+  .app-section-rule { border:none; border-top:3px solid #1d70b8; margin-bottom:20px; }
+  .app-does-table { width:100%; border-collapse:collapse; margin-bottom:30px; }
+  .app-does-table th { padding:12px 16px; text-align:left; font-family:GDS Transport,Arial,sans-serif; font-size:16px; font-weight:700; color:white; }
+  .app-does-table th.app-does-yes { background:#00703c; }
+  .app-does-table th.app-does-no  { background:#d4351c; }
+  .app-does-table td { padding:10px 16px; border-bottom:1px solid #b1b4b6; font-family:GDS Transport,Arial,sans-serif; font-size:16px; color:#0b0c0c; vertical-align:top; }
+  .app-does-table tr:nth-child(even) td { background:#f3f2f1; }
+  .app-tick { color:#00703c; font-weight:700; margin-right:6px; }
+  .app-cross { color:#d4351c; font-weight:700; margin-right:6px; }
+  .app-role-card { border:1px solid #b1b4b6; padding:20px; border-top:5px solid #1d70b8; background:white; }
+  .app-role-card--producer { border-top-color:#00703c; }
+  .app-role-card--reviewer { border-top-color:#f47738; }
+  .app-role-tag { display:inline-block; background:#e8f1f8; color:#003078; font-size:13px; font-weight:700; padding:3px 8px; margin:2px 2px 0 0; }
+  .app-role-tag--green  { background:#e3f3e3; color:#005a30; }
+  .app-role-tag--orange { background:#fef2e4; color:#6e3a0a; }
+  .app-how-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:8px; margin-bottom:40px; }
+  .app-how-step { text-align:center; padding:0 8px; }
+  .app-how-step__num { width:56px; height:56px; background:#1d70b8; color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:700; margin:0 auto 12px; border:3px solid white; outline:3px solid #1d70b8; }
+  .app-how-step__title { font-family:GDS Transport,Arial,sans-serif; font-size:16px; font-weight:700; color:#0b0c0c; margin-bottom:4px; }
+  .app-how-step__body  { font-family:GDS Transport,Arial,sans-serif; font-size:14px; color:#505a5f; line-height:1.4; }
+  .app-benefit-card { border-left:5px solid #1d70b8; border:1px solid #b1b4b6; border-left:5px solid #1d70b8; padding:16px 20px; background:white; }
+  .app-benefit-card__title { font-family:GDS Transport,Arial,sans-serif; font-size:17px; font-weight:700; color:#0b0c0c; margin-bottom:6px; }
+  .app-benefit-card__body  { font-family:GDS Transport,Arial,sans-serif; font-size:15px; color:#505a5f; line-height:1.5; margin:0; }
+  .app-misconception { padding:14px 16px; background:white; border:1px solid #b1b4b6; border-left:5px solid #b1b4b6; margin-bottom:10px; }
+  .app-misconception__q { font-family:GDS Transport,Arial,sans-serif; font-size:15px; color:#d4351c; font-style:italic; margin-bottom:4px; }
+  .app-misconception__a { font-family:GDS Transport,Arial,sans-serif; font-size:15px; color:#0b0c0c; margin:0; }
 </style>
 </head>
-<body>
+<body class="govuk-template__body">
 
-<header class="standalone-header">
-  <span class="logo">HMCTS</span>
-  <span class="service">API Catalogue</span>
-</header>
+<a href="#main-content" class="govuk-skip-link">Skip to main content</a>
 
-<h2 class="sr-only">HMCTS API Catalogue one-pager designed using GOV.UK Frontend design patterns</h2>
-
-<style>
-.op-wrap *{box-sizing:border-box}
-.op-wrap{font-family:"GDS Transport",Arial,sans-serif;color:#0b0c0c}
-.op-phase{background:#1d70b8;padding:6px 15px;display:flex;align-items:center;gap:10px}
-.op-phase-tag{background:#ffdd00;color:#0b0c0c;font-size:14px;font-weight:700;padding:2px 8px;letter-spacing:1px}
-.op-phase-text{font-size:14px;color:white}
-.op-phase-text a{color:#fff;text-decoration:underline}
-.op-hero{background:#f3f2f1;padding:40px 15px;border-bottom:1px solid #b1b4b6}
-.op-hero h1{font-size:32px;font-weight:700;color:#0b0c0c;margin-bottom:16px;line-height:1.1}
-.op-hero-quote{border-left:5px solid #1d70b8;padding:12px 16px;margin-bottom:16px;background:white}
-.op-hero-quote p{font-size:18px;font-style:italic;color:#0b0c0c;margin-bottom:4px}
-.op-hero-body{font-size:18px;color:#0b0c0c;line-height:1.5;max-width:620px;margin-bottom:24px}
-.op-hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-.op-btn-start{background:#00703c;color:white;border:2px solid #00703c;padding:10px 20px;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
-.op-btn-start:hover{background:#005a30;border-color:#005a30;color:white;text-decoration:none}
-.op-btn-sec{background:white;color:#0b0c0c;border:2px solid #0b0c0c;padding:10px 20px;font-size:16px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
-.op-btn-sec:hover{background:#f3f2f1;text-decoration:none}
-.op-main{padding:32px 15px}
-.op-sec-h{font-size:22px;font-weight:700;color:#0b0c0c;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid #1d70b8}
-.op-does-table{width:100%;border-collapse:collapse;margin-bottom:32px;font-size:15px}
-.op-does-table th{padding:10px 14px;text-align:left;font-size:15px;font-weight:700;color:white}
-.op-does-table th.op-does{background:#00703c}
-.op-does-table th.op-not{background:#d4351c}
-.op-does-table td{padding:9px 14px;border-bottom:1px solid #b1b4b6;color:#0b0c0c;vertical-align:top}
-.op-does-table tr:nth-child(even) td{background:#f3f2f1}
-.op-ck{color:#00703c;font-weight:700;margin-right:5px}
-.op-cx{color:#d4351c;font-weight:700;margin-right:5px}
-.op-3col{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:32px}
-.op-2col{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:32px}
-.op-role{background:white;border:1px solid #b1b4b6;padding:16px;border-top:5px solid #1d70b8}
-.op-role.op-prod{border-top-color:#00703c}
-.op-role.op-rev{border-top-color:#f47738}
-.op-role h3{font-size:17px;font-weight:700;color:#0b0c0c;margin-bottom:8px}
-.op-role p{font-size:14px;color:#505a5f;line-height:1.5;margin-bottom:10px}
-.op-tag{display:inline-block;background:#e8f1f8;color:#003078;font-size:12px;padding:2px 7px;margin:2px;font-weight:700}
-.op-tag.g{background:#e3f3e3;color:#005a30}
-.op-tag.o{background:#fef2e4;color:#6e3a0a}
-.op-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0;margin-bottom:32px;position:relative}
-.op-step{text-align:center;padding:0 8px}
-.op-step-num{width:52px;height:52px;background:#1d70b8;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;margin:0 auto 10px;border:3px solid #f3f2f1}
-.op-step h3{font-size:15px;font-weight:700;color:#0b0c0c;margin-bottom:5px}
-.op-step p{font-size:13px;color:#505a5f;line-height:1.4}
-.op-benefit{background:white;border:1px solid #b1b4b6;border-left:5px solid #1d70b8;padding:14px 16px}
-.op-benefit h3{font-size:16px;font-weight:700;color:#0b0c0c;margin-bottom:5px}
-.op-benefit p{font-size:14px;color:#505a5f;line-height:1.5}
-.op-misc{margin-bottom:10px;padding:12px 14px;background:white;border:1px solid #b1b4b6;border-left:4px solid #b1b4b6}
-.op-misc-q{font-size:14px;color:#d4351c;font-style:italic;margin-bottom:3px}
-.op-misc-a{font-size:14px;color:#0b0c0c}
-.op-inset{border-left:10px solid #b1b4b6;padding:14px;margin-bottom:24px;background:white}
-.op-inset p{font-size:17px;color:#0b0c0c;font-style:italic;margin:0}
-</style>
-
-<div class="op-wrap">
-  <div class="op-phase">
-    <span class="op-phase-tag">ALPHA</span>
-    <span class="op-phase-text">This is a new service — <a href="#">give your feedback</a> to help us improve it.</span>
-  </div>
-
-  <div class="op-hero">
-    <h1>HMCTS API Catalogue</h1>
-    <div class="op-inset">
-      <p>"We don't build APIs — we connect you to them. Like a library — we don't write the books, we organise them so you can find and borrow what you need."</p>
+<!-- Phase banner -->
+<div class="govuk-width-container" style="background:#1d70b8; max-width:100%; padding:0">
+  <div class="govuk-width-container">
+    <div class="govuk-phase-banner" style="border-bottom:none">
+      <p class="govuk-phase-banner__content">
+        <strong class="govuk-tag govuk-phase-banner__content__tag">Alpha</strong>
+        <span class="govuk-phase-banner__text">This is a new service — <a class="govuk-link govuk-link--inverse" href="#">give your feedback</a> to help us improve it.</span>
+      </p>
     </div>
-    <p class="op-hero-body">A discovery, publication and access management platform for APIs across HMCTS Digital and Technology Solutions. One place to find what data exists, understand how it works, and request access.</p>
-    <div class="op-hero-actions">
-      <a href="#" class="op-btn-start" onclick="showHome();return false;">Browse the catalogue</a>
-      <a href="#" class="op-btn-sec" onclick="showAuth('register');return false;">Register to get started</a>
-    </div>
-  </div>
-
-  <div class="op-main">
-
-    <h2 class="op-sec-h">What the API Catalogue does and doesn't do</h2>
-    <table class="op-does-table">
-      <thead>
-        <tr>
-          <th class="op-does">✓ The API Catalogue does</th>
-          <th class="op-not">✗ The API Catalogue does not</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td><span class="op-ck">✓</span>Catalogue and curate APIs across the programme</td><td><span class="op-cx">✗</span>Build, own or develop APIs</td></tr>
-        <tr><td><span class="op-ck">✓</span>Provide a single point of discovery</td><td><span class="op-cx">✗</span>Host data or run backend services</td></tr>
-        <tr><td><span class="op-ck">✓</span>Document what each API does in plain English</td><td><span class="op-cx">✗</span>Support the API — that stays with the owner</td></tr>
-        <tr><td><span class="op-ck">✓</span>Manage access requests and the approval workflow</td><td><span class="op-cx">✗</span>Make architectural decisions for API teams</td></tr>
-        <tr><td><span class="op-ck">✓</span>Enforce naming conventions and data classification standards</td><td><span class="op-cx">✗</span>Guarantee uptime or SLAs for listed APIs</td></tr>
-        <tr><td><span class="op-ck">✓</span>Capture demand signals when consumers need data not yet available</td><td><span class="op-cx">✗</span>Replace any team's responsibility for their APIs</td></tr>
-      </tbody>
-    </table>
-
-    <h2 class="op-sec-h">Who it's for</h2>
-    <div class="op-3col">
-      <div class="op-role">
-        <h3>API Consumers</h3>
-        <p>Teams and developers who need to use an existing API rather than build one from scratch.</p>
-        <span class="op-tag">Browse APIs</span><span class="op-tag">Read docs</span><span class="op-tag">Request access</span><span class="op-tag">Track requests</span>
-      </div>
-      <div class="op-role op-prod">
-        <h3>API Producers</h3>
-        <p>Teams that build and own APIs and want them discoverable and usable by others.</p>
-        <span class="op-tag g">Publish APIs</span><span class="op-tag g">Manage access</span><span class="op-tag g">Review requests</span>
-      </div>
-      <div class="op-role op-rev">
-        <h3>Reviewers</h3>
-        <p>Marketplace team members responsible for governance and quality standards.</p>
-        <span class="op-tag o">Review submissions</span><span class="op-tag o">Approve APIs</span><span class="op-tag o">Triage requests</span>
-      </div>
-    </div>
-
-    <h2 class="op-sec-h">How it works</h2>
-    <div class="op-steps">
-      <div class="op-step">
-        <div class="op-step-num">1</div>
-        <h3>Browse</h3>
-        <p>Search by keyword or domain — no login required</p>
-      </div>
-      <div class="op-step">
-        <div class="op-step-num">2</div>
-        <h3>Discover</h3>
-        <p>Read plain-English summaries and full technical docs</p>
-      </div>
-      <div class="op-step">
-        <div class="op-step-num">3</div>
-        <h3>Request access</h3>
-        <p>Submit a formal request with your business justification</p>
-      </div>
-      <div class="op-step">
-        <div class="op-step-num">4</div>
-        <h3>Integrate</h3>
-        <p>Use your credentials to connect via the API</p>
-      </div>
-    </div>
-
-    <h2 class="op-sec-h">Key benefits</h2>
-    <div class="op-2col">
-      <div class="op-benefit"><h3>Stops duplication</h3><p>Check whether an API already exists before building one. The catalogue makes invisible work visible.</p></div>
-      <div class="op-benefit"><h3>Faster integration</h3><p>Documentation, specs, mock servers and access requests in one place. Weeks to days.</p></div>
-      <div class="op-benefit"><h3>Governance and standards</h3><p>The approval workflow ensures only APIs that meet quality and classification standards appear in the catalogue.</p></div>
-      <div class="op-benefit"><h3>Controlled access</h3><p>Formal justifications mean sensitive data is only shared with authorised teams who have stated their use case.</p></div>
-      <div class="op-benefit"><h3>Visibility for leadership</h3><p>Leadership and programme management get a clear picture of the API landscape — what exists, who owns it, and what demand looks like.</p></div>
-      <div class="op-benefit"><h3>Captures demand signals</h3><p>When consumers can't find the data they need, they can request a new API — giving teams visibility of what the organisation actually needs.</p></div>
-    </div>
-
-    <h2 class="op-sec-h">Common misconceptions</h2>
-    <div class="op-misc"><div class="op-misc-q">"The marketplace team builds the APIs"</div><div class="op-misc-a">We list them. Your team builds and owns the API. The catalogue makes it discoverable.</div></div>
-    <div class="op-misc"><div class="op-misc-q">"If it's in the catalogue, the marketplace team supports it"</div><div class="op-misc-a">Support stays with the API owner. The catalogue is a directory, not a support desk.</div></div>
-    <div class="op-misc"><div class="op-misc-q">"It's only for developers"</div><div class="op-misc-a">Product managers, architects, delivery managers and business analysts should all use it.</div></div>
-    <div class="op-misc"><div class="op-misc-q">"Listing my API means giving up ownership"</div><div class="op-misc-a">You remain the owner. Listing makes your API discoverable — nothing more.</div></div>
-
   </div>
 </div>
 
+<!-- Header -->
+<header class="govuk-header" role="banner">
+  <div class="govuk-header__container govuk-width-container">
+    <div class="govuk-header__logo">
+      <a href="#" class="govuk-header__link govuk-header__link--homepage">
+        <svg aria-hidden="true" focusable="false" class="govuk-header__logotype" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 148 30" height="30" width="148"><title>GOV.UK</title><path d="M22.6 10.4c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4m-5.9 6.7c-.9.4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4m17.8 2.8c-.9.4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4m-9.1 8.4c-.9.4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4m-9.5-3.4c-.9.4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4m15.4 1.4c-.9.4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4"/><path d="M17.3 4.7c.1-.4.3-.7.6-1l-2-1.5c-1.6 1.5-2.3 3.7-1.8 5.9L15 9c.1-.3.2-.5.3-.8.4-1.4 1-2.8 2-3.5"/><path d="M22.4 2.2c.5.5.7 1.2.5 1.9-.1.5-.5.9-.9 1.1l-1.3-2.7c.6 0 1.2.2 1.7.7"/><path d="M19.9 4.1c.4-.9 1.5-1.3 2.4-1 .9.4 1.3 1.5 1 2.4-.4.9-1.5 1.3-2.4 1-.9-.4-1.3-1.5-1-2.4"/><path d="M6 26.4c1.5.4 3.2-.2 4.3-1.5L8.9 22c-.4.5-.9.9-1.5 1.1-1.3.4-2.7-.2-3.5-1.2l-.4.2c.6 1.9 1.1 3.2 2.5 4.3"/><path d="M4.6 22.6l.4-.2C3.8 21.1 3 19.7 3 18c0-2 1.3-3.8 3.1-4.5L4.6 11c-2.9 1.2-4.7 4.1-4.4 7.2.1 1.7.9 3.3 2.1 4.4H2c.3.4.6.7 1 1 .5.3 1.1.5 1.6.4"/><path d="M22.6 15.7c.6-1.2.8-2.6.4-3.9l-1.5 1.5c0 .2.1.3.1.5 0 1.3-.8 2.5-2 3l.2.9c1.2-.4 2.1-1.1 2.8-2"/><path d="M20.5 13.1l1.5-1.5c-.7-1.3-2-2.2-3.5-2.3l-.2.9c1 .2 1.8.9 2.2 1.9"/><path d="M4.8 11.7c.4-1.2 1.2-2.2 2.3-2.8-.5-.6-1.2-.9-1.9-1L4.5 10c.2.6.3 1.1.3 1.7"/><path d="M3.4 6.8c.5.2 1 .5 1.4.9.4.4.7.9.9 1.4l1.1-1.8C5.8 6.3 4.9 5.7 3.9 5.4L3.4 6.8"/><path d="M29.5 17.5c.5.3 1.3.5 2 .4l-.1-2c-.5.1-1 0-1.3-.3l-.6 1.9"/><path d="M22.9 17.3c-.1.9-.6 1.6-1.3 2.1l.8 1.8c1.3-.7 2.2-2 2.4-3.4l-1.9-.5"/><path d="M25.9 8c0-.4.2-.7.5-1L24.3 5.6c-1.2 1.3-1.6 3.1-1 4.8l1.1-.2c0-.4 0-.8.1-1.2.1-.4.2-.7.4-1"/><path d="M39.1 26.2h4.2l4.2-11.6h-3.2l-2.5 7.6-2.5-7.6h-3.3l4.1 11.6zm7.8-8.4c0-1.8 1.2-3.2 3-3.2s2.9 1.3 2.9 3.1c0 1.8-1.1 3.3-2.9 3.3s-3-1.4-3-3.2zm-3.1.1c0 3.4 2.6 6 6.1 6s6.1-2.6 6.1-6c0-3.4-2.5-6-6.1-6s-6.1 2.5-6.1 6zm16.5 2.6c0 1.9 1.3 3.4 3.8 3.4 1.9 0 3-.7 3.7-1.8v1.5h2.9v-7.3c0-3-1.6-4.6-4.9-4.6-2.9 0-4.5 1.6-4.7 3.4h3c.1-.7.7-1.2 1.7-1.2 1.2 0 1.8.6 1.8 1.7v.3h-1.4c-3.1 0-5.9.6-5.9 3.6zm7.5-.9v.5c0 1.2-.8 2-2.2 2-.9 0-1.5-.4-1.5-1.3 0-.9.8-1.3 2.2-1.3h1.5v.1zm14.9-6.4v-2.5h-3v-3.5l-3 .9V11h-2.3v2.5h2.3v6.5c0 2.8 1.4 3.7 3.7 3.7 1 0 1.7-.2 2.3-.5V21c-.5.2-1 .3-1.6.3-.8 0-1.4-.3-1.4-1.5v-6.7h3zm8.6 3.5c0-1.3.8-2.2 1.9-2.2 1.1 0 1.8.9 1.8 2.1s-.7 2.1-1.8 2.1c-1.2 0-1.9-.8-1.9-2zm-3.1 5c0 2.9 1.9 4.3 4.9 4.3 2.2 0 3.6-.8 4.4-2v1.7h2.9v-16.5h-3.1v5.3c-.8-1.1-1.9-1.8-3.8-1.8-2.8 0-5.3 2.3-5.3 6v2.5c0 .2 0 .4.1.5h-.1zm18.6 2.6c3.3 0 5.1-1.8 5.1-4.2 0-2.3-1.4-3.4-4.2-4l-1-.2c-1.4-.3-2-.7-2-1.4 0-.8.7-1.3 1.8-1.3 1.2 0 2 .6 2.1 1.5h2.9c-.3-2.4-2.1-3.8-5-3.8-2.8 0-4.7 1.5-4.7 3.8 0 2.3 1.5 3.5 4.1 4l1 .2c1.4.3 2 .7 2 1.5 0 .8-.7 1.3-2 1.3-1.3 0-2.2-.7-2.3-1.8h-3c.2 2.6 2.2 4.4 5.2 4.4zm-74.1-4.3h-3.4v5.3h3.4v-5.3zm0-7.2h-3.4v5.3h3.4v-5.3z"/></svg>
+        <span class="govuk-header__product-name">HMCTS API Catalogue</span>
+      </a>
+    </div>
+    <nav aria-label="Menu" class="govuk-header__content">
+      <ul class="govuk-header__navigation-list">
+        <li class="govuk-header__navigation-item"><a class="govuk-header__link" href="#">Browse APIs</a></li>
+        <li class="govuk-header__navigation-item"><a class="govuk-header__link" href="#">Get started</a></li>
+        <li class="govuk-header__navigation-item"><a class="govuk-header__link" href="#">Publish an API</a></li>
+        <li class="govuk-header__navigation-item"><a class="govuk-header__link" href="#">Sign in</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-<footer class="standalone-footer">
-  <p>© Crown copyright — HMCTS Digital and Technology Solutions — MIT Licence</p>
-  <div>
-    <a href="#">Accessibility statement</a>
-    <a href="#">Cookies</a>
-    <a href="#">Contact</a>
+<!-- Breadcrumb -->
+<div class="govuk-width-container">
+  <div class="govuk-breadcrumbs govuk-!-margin-top-3">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="#">Home</a></li>
+      <li class="govuk-breadcrumbs__list-item">What is the HMCTS API Catalogue?</li>
+    </ol>
+  </div>
+</div>
+
+<main class="govuk-main-wrapper" id="main-content" role="main">
+  <div class="govuk-width-container">
+
+    <!-- Hero -->
+    <div class="app-one-pager-hero govuk-!-padding-left-0 govuk-!-padding-right-0 govuk-!-margin-bottom-6" style="margin-left:-15px;margin-right:-15px;padding-left:15px;padding-right:15px">
+      <h1 class="govuk-heading-xl">HMCTS API Catalogue</h1>
+      <div class="app-inset-quote govuk-!-margin-bottom-4">
+        <p>"We don't build APIs — we connect you to them. Like a library — we don't write the books, we organise them so you can find and borrow what you need."</p>
+      </div>
+      <p class="govuk-body-l" style="max-width:640px">A discovery, publication and access management platform for APIs across HMCTS Digital and Technology Solutions. One place to find what data exists, understand how it works, and request access.</p>
+      <a href="#" class="govuk-button govuk-button--start govuk-!-margin-right-3">Browse the catalogue <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false"><path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"/></svg></a>
+      <a href="#" class="govuk-button govuk-button--secondary">Register to get started</a>
+    </div>
+
+    <!-- Does / doesn't do -->
+    <h2 class="govuk-heading-l">What the API Catalogue does and doesn't do</h2>
+    <hr class="app-section-rule">
+    <table class="app-does-table govuk-!-margin-bottom-8">
+      <thead>
+        <tr>
+          <th class="app-does-yes">✓&nbsp; The API Catalogue does</th>
+          <th class="app-does-no">✗&nbsp; The API Catalogue does not</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="app-tick">✓</span>Catalogue and curate APIs across the programme</td><td><span class="app-cross">✗</span>Build, own or develop APIs</td></tr>
+        <tr><td><span class="app-tick">✓</span>Provide a single point of discovery</td><td><span class="app-cross">✗</span>Host data or run backend services</td></tr>
+        <tr><td><span class="app-tick">✓</span>Document what each API does in plain English</td><td><span class="app-cross">✗</span>Support the API — that stays with the owner</td></tr>
+        <tr><td><span class="app-tick">✓</span>Manage access requests and the approval workflow</td><td><span class="app-cross">✗</span>Make architectural decisions for API teams</td></tr>
+        <tr><td><span class="app-tick">✓</span>Enforce naming conventions and data classification standards</td><td><span class="app-cross">✗</span>Guarantee uptime or SLAs for listed APIs</td></tr>
+        <tr><td><span class="app-tick">✓</span>Capture demand signals when consumers need data not yet available</td><td><span class="app-cross">✗</span>Replace any team's responsibility for their APIs</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Who it's for -->
+    <h2 class="govuk-heading-l">Who it's for</h2>
+    <hr class="app-section-rule">
+    <div class="govuk-grid-row govuk-!-margin-bottom-8">
+      <div class="govuk-grid-column-one-third">
+        <div class="app-role-card">
+          <h3 class="govuk-heading-m">API Consumers</h3>
+          <p class="govuk-body">Teams and developers who need to use an existing API rather than build one from scratch.</p>
+          <span class="app-role-tag">Browse APIs</span>
+          <span class="app-role-tag">Read docs</span>
+          <span class="app-role-tag">Request access</span>
+          <span class="app-role-tag">Track requests</span>
+        </div>
+      </div>
+      <div class="govuk-grid-column-one-third">
+        <div class="app-role-card app-role-card--producer">
+          <h3 class="govuk-heading-m">API Producers</h3>
+          <p class="govuk-body">Teams that build and own APIs and want them discoverable and usable by others.</p>
+          <span class="app-role-tag app-role-tag--green">Publish APIs</span>
+          <span class="app-role-tag app-role-tag--green">Manage access</span>
+          <span class="app-role-tag app-role-tag--green">Review requests</span>
+        </div>
+      </div>
+      <div class="govuk-grid-column-one-third">
+        <div class="app-role-card app-role-card--reviewer">
+          <h3 class="govuk-heading-m">Reviewers</h3>
+          <p class="govuk-body">Marketplace team members responsible for governance and quality standards.</p>
+          <span class="app-role-tag app-role-tag--orange">Review submissions</span>
+          <span class="app-role-tag app-role-tag--orange">Approve APIs</span>
+          <span class="app-role-tag app-role-tag--orange">Triage requests</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- How it works -->
+    <h2 class="govuk-heading-l">How it works</h2>
+    <hr class="app-section-rule">
+    <div class="app-how-grid govuk-!-margin-bottom-8">
+      <div class="app-how-step">
+        <div class="app-how-step__num">1</div>
+        <p class="app-how-step__title">Browse</p>
+        <p class="app-how-step__body">Search by keyword or domain — no login required</p>
+      </div>
+      <div class="app-how-step">
+        <div class="app-how-step__num">2</div>
+        <p class="app-how-step__title">Discover</p>
+        <p class="app-how-step__body">Read plain-English summaries and full technical documentation</p>
+      </div>
+      <div class="app-how-step">
+        <div class="app-how-step__num">3</div>
+        <p class="app-how-step__title">Request access</p>
+        <p class="app-how-step__body">Submit a formal request with your business justification</p>
+      </div>
+      <div class="app-how-step">
+        <div class="app-how-step__num">4</div>
+        <p class="app-how-step__title">Integrate</p>
+        <p class="app-how-step__body">Use your credentials to connect via the API</p>
+      </div>
+    </div>
+
+    <!-- Key benefits -->
+    <h2 class="govuk-heading-l">Key benefits</h2>
+    <hr class="app-section-rule">
+    <div class="govuk-grid-row govuk-!-margin-bottom-8">
+      <div class="govuk-grid-column-one-half govuk-!-margin-bottom-4">
+        <div class="app-benefit-card">
+          <p class="app-benefit-card__title">Stops duplication</p>
+          <p class="app-benefit-card__body">Check whether an API already exists before building one. The catalogue makes invisible work visible.</p>
+        </div>
+      </div>
+      <div class="govuk-grid-column-one-half govuk-!-margin-bottom-4">
+        <div class="app-benefit-card">
+          <p class="app-benefit-card__title">Faster integration</p>
+          <p class="app-benefit-card__body">Documentation, specs, mock servers and access requests in one place. Integration time reduces from weeks to days.</p>
+        </div>
+      </div>
+      <div class="govuk-grid-column-one-half govuk-!-margin-bottom-4">
+        <div class="app-benefit-card">
+          <p class="app-benefit-card__title">Governance and standards</p>
+          <p class="app-benefit-card__body">The approval workflow ensures only APIs that meet quality and classification standards appear in the catalogue.</p>
+        </div>
+      </div>
+      <div class="govuk-grid-column-one-half govuk-!-margin-bottom-4">
+        <div class="app-benefit-card">
+          <p class="app-benefit-card__title">Controlled access</p>
+          <p class="app-benefit-card__body">Formal justifications mean sensitive data is only shared with authorised teams who have stated their use case.</p>
+        </div>
+      </div>
+      <div class="govuk-grid-column-one-half govuk-!-margin-bottom-4">
+        <div class="app-benefit-card">
+          <p class="app-benefit-card__title">Visibility for leadership</p>
+          <p class="app-benefit-card__body">Leadership and programme management get a clear picture of the API landscape — what exists, who owns it, and what demand looks like.</p>
+        </div>
+      </div>
+      <div class="govuk-grid-column-one-half govuk-!-margin-bottom-4">
+        <div class="app-benefit-card">
+          <p class="app-benefit-card__title">Captures demand signals</p>
+          <p class="app-benefit-card__body">When consumers can't find the data they need, they can request a new API — giving teams visibility of what the organisation actually needs.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Common misconceptions -->
+    <h2 class="govuk-heading-l">Common misconceptions</h2>
+    <hr class="app-section-rule">
+    <div class="govuk-!-margin-bottom-8">
+      <div class="app-misconception"><p class="app-misconception__q">"The marketplace team builds the APIs"</p><p class="app-misconception__a">We list them. Your team builds and owns the API. The catalogue makes it discoverable.</p></div>
+      <div class="app-misconception"><p class="app-misconception__q">"If it's in the catalogue, the marketplace team supports it"</p><p class="app-misconception__a">Support stays with the API owner. The catalogue is a directory, not a support desk.</p></div>
+      <div class="app-misconception"><p class="app-misconception__q">"It's only for developers"</p><p class="app-misconception__a">Product managers, architects, delivery managers and business analysts should all use it.</p></div>
+      <div class="app-misconception"><p class="app-misconception__q">"Listing my API means giving up ownership"</p><p class="app-misconception__a">You remain the owner. Listing makes your API discoverable — nothing more.</p></div>
+    </div>
+
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="govuk-footer" role="contentinfo">
+  <div class="govuk-width-container">
+    <div class="govuk-footer__meta">
+      <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+        <ul class="govuk-footer__inline-list">
+          <li class="govuk-footer__inline-list-item"><a class="govuk-footer__link" href="#">Accessibility statement</a></li>
+          <li class="govuk-footer__inline-list-item"><a class="govuk-footer__link" href="#">Cookies</a></li>
+          <li class="govuk-footer__inline-list-item"><a class="govuk-footer__link" href="#">Contact support</a></li>
+          <li class="govuk-footer__inline-list-item"><a class="govuk-footer__link" href="#">Privacy policy</a></li>
+        </ul>
+        <p class="govuk-footer__body">© Crown copyright — HMCTS Digital and Technology Solutions</p>
+      </div>
+    </div>
   </div>
 </footer>
 

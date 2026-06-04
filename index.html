@@ -978,6 +978,8 @@ function showMarketplace() {
   hideAll();
   document.getElementById('homePage').classList.add('app-page--active');
   setActiveNav('navBrowse');
+  renderHome();
+  mergeApprovedIntoHome();
   window.scrollTo(0, 0);
   currentApi = null;
 }

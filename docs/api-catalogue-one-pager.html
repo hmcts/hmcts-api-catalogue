@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HMCTS API Catalogue — What is it?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css" rel="stylesheet">
+<style>
+  body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
+  .standalone-header { background: #0b0c0c; padding: 10px 15px; border-bottom: 10px solid #1d70b8; display: flex; align-items: center; gap: 12px; }
+  .standalone-header .logo { color: white; font-size: 28px; font-weight: 700; letter-spacing: -1px; }
+  .standalone-header .service { color: white; font-size: 16px; font-weight: 700; border-left: 1px solid #6f777b; padding-left: 12px; }
+  .standalone-footer { background: #f3f2f1; border-top: 1px solid #b1b4b6; padding: 20px 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+  .standalone-footer p { font-size: 14px; color: #505a5f; margin: 0; }
+  .standalone-footer a { font-size: 14px; color: #1d70b8; text-decoration: underline; margin-left: 12px; }
+</style>
+</head>
+<body>
+
+<header class="standalone-header">
+  <span class="logo">HMCTS</span>
+  <span class="service">API Catalogue</span>
+</header>
+
+<h2 class="sr-only">HMCTS API Catalogue one-pager designed using GOV.UK Frontend design patterns</h2>
+
+<style>
+.op-wrap *{box-sizing:border-box}
+.op-wrap{font-family:"GDS Transport",Arial,sans-serif;color:#0b0c0c}
+.op-phase{background:#1d70b8;padding:6px 15px;display:flex;align-items:center;gap:10px}
+.op-phase-tag{background:#ffdd00;color:#0b0c0c;font-size:14px;font-weight:700;padding:2px 8px;letter-spacing:1px}
+.op-phase-text{font-size:14px;color:white}
+.op-phase-text a{color:#fff;text-decoration:underline}
+.op-hero{background:#f3f2f1;padding:40px 15px;border-bottom:1px solid #b1b4b6}
+.op-hero h1{font-size:32px;font-weight:700;color:#0b0c0c;margin-bottom:16px;line-height:1.1}
+.op-hero-quote{border-left:5px solid #1d70b8;padding:12px 16px;margin-bottom:16px;background:white}
+.op-hero-quote p{font-size:18px;font-style:italic;color:#0b0c0c;margin-bottom:4px}
+.op-hero-body{font-size:18px;color:#0b0c0c;line-height:1.5;max-width:620px;margin-bottom:24px}
+.op-hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.op-btn-start{background:#00703c;color:white;border:2px solid #00703c;padding:10px 20px;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.op-btn-start:hover{background:#005a30;border-color:#005a30;color:white;text-decoration:none}
+.op-btn-sec{background:white;color:#0b0c0c;border:2px solid #0b0c0c;padding:10px 20px;font-size:16px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.op-btn-sec:hover{background:#f3f2f1;text-decoration:none}
+.op-main{padding:32px 15px}
+.op-sec-h{font-size:22px;font-weight:700;color:#0b0c0c;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid #1d70b8}
+.op-does-table{width:100%;border-collapse:collapse;margin-bottom:32px;font-size:15px}
+.op-does-table th{padding:10px 14px;text-align:left;font-size:15px;font-weight:700;color:white}
+.op-does-table th.op-does{background:#00703c}
+.op-does-table th.op-not{background:#d4351c}
+.op-does-table td{padding:9px 14px;border-bottom:1px solid #b1b4b6;color:#0b0c0c;vertical-align:top}
+.op-does-table tr:nth-child(even) td{background:#f3f2f1}
+.op-ck{color:#00703c;font-weight:700;margin-right:5px}
+.op-cx{color:#d4351c;font-weight:700;margin-right:5px}
+.op-3col{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:32px}
+.op-2col{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:32px}
+.op-role{background:white;border:1px solid #b1b4b6;padding:16px;border-top:5px solid #1d70b8}
+.op-role.op-prod{border-top-color:#00703c}
+.op-role.op-rev{border-top-color:#f47738}
+.op-role h3{font-size:17px;font-weight:700;color:#0b0c0c;margin-bottom:8px}
+.op-role p{font-size:14px;color:#505a5f;line-height:1.5;margin-bottom:10px}
+.op-tag{display:inline-block;background:#e8f1f8;color:#003078;font-size:12px;padding:2px 7px;margin:2px;font-weight:700}
+.op-tag.g{background:#e3f3e3;color:#005a30}
+.op-tag.o{background:#fef2e4;color:#6e3a0a}
+.op-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0;margin-bottom:32px;position:relative}
+.op-step{text-align:center;padding:0 8px}
+.op-step-num{width:52px;height:52px;background:#1d70b8;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;margin:0 auto 10px;border:3px solid #f3f2f1}
+.op-step h3{font-size:15px;font-weight:700;color:#0b0c0c;margin-bottom:5px}
+.op-step p{font-size:13px;color:#505a5f;line-height:1.4}
+.op-benefit{background:white;border:1px solid #b1b4b6;border-left:5px solid #1d70b8;padding:14px 16px}
+.op-benefit h3{font-size:16px;font-weight:700;color:#0b0c0c;margin-bottom:5px}
+.op-benefit p{font-size:14px;color:#505a5f;line-height:1.5}
+.op-misc{margin-bottom:10px;padding:12px 14px;background:white;border:1px solid #b1b4b6;border-left:4px solid #b1b4b6}
+.op-misc-q{font-size:14px;color:#d4351c;font-style:italic;margin-bottom:3px}
+.op-misc-a{font-size:14px;color:#0b0c0c}
+.op-inset{border-left:10px solid #b1b4b6;padding:14px;margin-bottom:24px;background:white}
+.op-inset p{font-size:17px;color:#0b0c0c;font-style:italic;margin:0}
+</style>
+
+<div class="op-wrap">
+  <div class="op-phase">
+    <span class="op-phase-tag">ALPHA</span>
+    <span class="op-phase-text">This is a new service — <a href="#">give your feedback</a> to help us improve it.</span>
+  </div>
+
+  <div class="op-hero">
+    <h1>HMCTS API Catalogue</h1>
+    <div class="op-inset">
+      <p>"We don't build APIs — we connect you to them. Like a library — we don't write the books, we organise them so you can find and borrow what you need."</p>
+    </div>
+    <p class="op-hero-body">A discovery, publication and access management platform for APIs across HMCTS Digital and Technology Solutions. One place to find what data exists, understand how it works, and request access.</p>
+    <div class="op-hero-actions">
+      <a href="#" class="op-btn-start" onclick="showHome();return false;">Browse the catalogue</a>
+      <a href="#" class="op-btn-sec" onclick="showAuth('register');return false;">Register to get started</a>
+    </div>
+  </div>
+
+  <div class="op-main">
+
+    <h2 class="op-sec-h">What the API Catalogue does and doesn't do</h2>
+    <table class="op-does-table">
+      <thead>
+        <tr>
+          <th class="op-does">✓ The API Catalogue does</th>
+          <th class="op-not">✗ The API Catalogue does not</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="op-ck">✓</span>Catalogue and curate APIs across the programme</td><td><span class="op-cx">✗</span>Build, own or develop APIs</td></tr>
+        <tr><td><span class="op-ck">✓</span>Provide a single point of discovery</td><td><span class="op-cx">✗</span>Host data or run backend services</td></tr>
+        <tr><td><span class="op-ck">✓</span>Document what each API does in plain English</td><td><span class="op-cx">✗</span>Support the API — that stays with the owner</td></tr>
+        <tr><td><span class="op-ck">✓</span>Manage access requests and the approval workflow</td><td><span class="op-cx">✗</span>Make architectural decisions for API teams</td></tr>
+        <tr><td><span class="op-ck">✓</span>Enforce naming conventions and data classification standards</td><td><span class="op-cx">✗</span>Guarantee uptime or SLAs for listed APIs</td></tr>
+        <tr><td><span class="op-ck">✓</span>Capture demand signals when consumers need data not yet available</td><td><span class="op-cx">✗</span>Replace any team's responsibility for their APIs</td></tr>
+      </tbody>
+    </table>
+
+    <h2 class="op-sec-h">Who it's for</h2>
+    <div class="op-3col">
+      <div class="op-role">
+        <h3>API Consumers</h3>
+        <p>Teams and developers who need to use an existing API rather than build one from scratch.</p>
+        <span class="op-tag">Browse APIs</span><span class="op-tag">Read docs</span><span class="op-tag">Request access</span><span class="op-tag">Track requests</span>
+      </div>
+      <div class="op-role op-prod">
+        <h3>API Producers</h3>
+        <p>Teams that build and own APIs and want them discoverable and usable by others.</p>
+        <span class="op-tag g">Publish APIs</span><span class="op-tag g">Manage access</span><span class="op-tag g">Review requests</span>
+      </div>
+      <div class="op-role op-rev">
+        <h3>Reviewers</h3>
+        <p>Marketplace team members responsible for governance and quality standards.</p>
+        <span class="op-tag o">Review submissions</span><span class="op-tag o">Approve APIs</span><span class="op-tag o">Triage requests</span>
+      </div>
+    </div>
+
+    <h2 class="op-sec-h">How it works</h2>
+    <div class="op-steps">
+      <div class="op-step">
+        <div class="op-step-num">1</div>
+        <h3>Browse</h3>
+        <p>Search by keyword or domain — no login required</p>
+      </div>
+      <div class="op-step">
+        <div class="op-step-num">2</div>
+        <h3>Discover</h3>
+        <p>Read plain-English summaries and full technical docs</p>
+      </div>
+      <div class="op-step">
+        <div class="op-step-num">3</div>
+        <h3>Request access</h3>
+        <p>Submit a formal request with your business justification</p>
+      </div>
+      <div class="op-step">
+        <div class="op-step-num">4</div>
+        <h3>Integrate</h3>
+        <p>Use your credentials to connect via the API</p>
+      </div>
+    </div>
+
+    <h2 class="op-sec-h">Key benefits</h2>
+    <div class="op-2col">
+      <div class="op-benefit"><h3>Stops duplication</h3><p>Check whether an API already exists before building one. The catalogue makes invisible work visible.</p></div>
+      <div class="op-benefit"><h3>Faster integration</h3><p>Documentation, specs, mock servers and access requests in one place. Weeks to days.</p></div>
+      <div class="op-benefit"><h3>Governance and standards</h3><p>The approval workflow ensures only APIs that meet quality and classification standards appear in the catalogue.</p></div>
+      <div class="op-benefit"><h3>Controlled access</h3><p>Formal justifications mean sensitive data is only shared with authorised teams who have stated their use case.</p></div>
+      <div class="op-benefit"><h3>Visibility for leadership</h3><p>Leadership and programme management get a clear picture of the API landscape — what exists, who owns it, and what demand looks like.</p></div>
+      <div class="op-benefit"><h3>Captures demand signals</h3><p>When consumers can't find the data they need, they can request a new API — giving teams visibility of what the organisation actually needs.</p></div>
+    </div>
+
+    <h2 class="op-sec-h">Common misconceptions</h2>
+    <div class="op-misc"><div class="op-misc-q">"The marketplace team builds the APIs"</div><div class="op-misc-a">We list them. Your team builds and owns the API. The catalogue makes it discoverable.</div></div>
+    <div class="op-misc"><div class="op-misc-q">"If it's in the catalogue, the marketplace team supports it"</div><div class="op-misc-a">Support stays with the API owner. The catalogue is a directory, not a support desk.</div></div>
+    <div class="op-misc"><div class="op-misc-q">"It's only for developers"</div><div class="op-misc-a">Product managers, architects, delivery managers and business analysts should all use it.</div></div>
+    <div class="op-misc"><div class="op-misc-q">"Listing my API means giving up ownership"</div><div class="op-misc-a">You remain the owner. Listing makes your API discoverable — nothing more.</div></div>
+
+  </div>
+</div>
+
+
+<footer class="standalone-footer">
+  <p>© Crown copyright — HMCTS Digital and Technology Solutions — MIT Licence</p>
+  <div>
+    <a href="#">Accessibility statement</a>
+    <a href="#">Cookies</a>
+    <a href="#">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>

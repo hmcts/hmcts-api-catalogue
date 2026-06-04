@@ -450,191 +450,160 @@ body, input, select, textarea, button {
 
 <!-- MARKETPLACE PAGE -->
 <div id="marketplacePage" class="app-page">
-  <div class="app-mp-hero" role="banner">
-    <div class="app-mp-hero__inner">
-      <span class="app-mp-hero__tag">HMCTS Digital and Technology Solutions</span>
-      <h1 class="app-mp-hero__title">What is the API Marketplace?</h1>
-      <p class="app-mp-hero__lead">A plain-English guide for technical and non-technical audiences &mdash; what the API Marketplace is, who it is for, how it works, and what it is not.</p>
-      <blockquote style="border-left:4px solid #fff;padding:10px 16px;margin:0;color:#fff;font-size:18px;font-style:italic">&ldquo;We don&rsquo;t build APIs &mdash; we connect you to them.&rdquo;</blockquote>
+<h2 class="sr-only">HMCTS API Catalogue one-pager designed using GOV.UK Frontend design patterns</h2>
+
+<style>
+.op-wrap *{box-sizing:border-box}
+.op-wrap{font-family:"GDS Transport",Arial,sans-serif;color:#0b0c0c}
+.op-phase{background:#1d70b8;padding:6px 15px;display:flex;align-items:center;gap:10px}
+.op-phase-tag{background:#ffdd00;color:#0b0c0c;font-size:14px;font-weight:700;padding:2px 8px;letter-spacing:1px}
+.op-phase-text{font-size:14px;color:white}
+.op-phase-text a{color:#fff;text-decoration:underline}
+.op-hero{background:#f3f2f1;padding:40px 15px;border-bottom:1px solid #b1b4b6}
+.op-hero h1{font-size:32px;font-weight:700;color:#0b0c0c;margin-bottom:16px;line-height:1.1}
+.op-hero-quote{border-left:5px solid #1d70b8;padding:12px 16px;margin-bottom:16px;background:white}
+.op-hero-quote p{font-size:18px;font-style:italic;color:#0b0c0c;margin-bottom:4px}
+.op-hero-body{font-size:18px;color:#0b0c0c;line-height:1.5;max-width:620px;margin-bottom:24px}
+.op-hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.op-btn-start{background:#00703c;color:white;border:2px solid #00703c;padding:10px 20px;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.op-btn-start:hover{background:#005a30;border-color:#005a30;color:white;text-decoration:none}
+.op-btn-sec{background:white;color:#0b0c0c;border:2px solid #0b0c0c;padding:10px 20px;font-size:16px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.op-btn-sec:hover{background:#f3f2f1;text-decoration:none}
+.op-main{padding:32px 15px}
+.op-sec-h{font-size:22px;font-weight:700;color:#0b0c0c;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid #1d70b8}
+.op-does-table{width:100%;border-collapse:collapse;margin-bottom:32px;font-size:15px}
+.op-does-table th{padding:10px 14px;text-align:left;font-size:15px;font-weight:700;color:white}
+.op-does-table th.op-does{background:#00703c}
+.op-does-table th.op-not{background:#d4351c}
+.op-does-table td{padding:9px 14px;border-bottom:1px solid #b1b4b6;color:#0b0c0c;vertical-align:top}
+.op-does-table tr:nth-child(even) td{background:#f3f2f1}
+.op-ck{color:#00703c;font-weight:700;margin-right:5px}
+.op-cx{color:#d4351c;font-weight:700;margin-right:5px}
+.op-3col{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:32px}
+.op-2col{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:32px}
+.op-role{background:white;border:1px solid #b1b4b6;padding:16px;border-top:5px solid #1d70b8}
+.op-role.op-prod{border-top-color:#00703c}
+.op-role.op-rev{border-top-color:#f47738}
+.op-role h3{font-size:17px;font-weight:700;color:#0b0c0c;margin-bottom:8px}
+.op-role p{font-size:14px;color:#505a5f;line-height:1.5;margin-bottom:10px}
+.op-tag{display:inline-block;background:#e8f1f8;color:#003078;font-size:12px;padding:2px 7px;margin:2px;font-weight:700}
+.op-tag.g{background:#e3f3e3;color:#005a30}
+.op-tag.o{background:#fef2e4;color:#6e3a0a}
+.op-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0;margin-bottom:32px;position:relative}
+.op-step{text-align:center;padding:0 8px}
+.op-step-num{width:52px;height:52px;background:#1d70b8;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;margin:0 auto 10px;border:3px solid #f3f2f1}
+.op-step h3{font-size:15px;font-weight:700;color:#0b0c0c;margin-bottom:5px}
+.op-step p{font-size:13px;color:#505a5f;line-height:1.4}
+.op-benefit{background:white;border:1px solid #b1b4b6;border-left:5px solid #1d70b8;padding:14px 16px}
+.op-benefit h3{font-size:16px;font-weight:700;color:#0b0c0c;margin-bottom:5px}
+.op-benefit p{font-size:14px;color:#505a5f;line-height:1.5}
+.op-misc{margin-bottom:10px;padding:12px 14px;background:white;border:1px solid #b1b4b6;border-left:4px solid #b1b4b6}
+.op-misc-q{font-size:14px;color:#d4351c;font-style:italic;margin-bottom:3px}
+.op-misc-a{font-size:14px;color:#0b0c0c}
+.op-inset{border-left:10px solid #b1b4b6;padding:14px;margin-bottom:24px;background:white}
+.op-inset p{font-size:17px;color:#0b0c0c;font-style:italic;margin:0}
+</style>
+
+<div class="op-wrap">
+  <div class="op-phase">
+    <span class="op-phase-tag">ALPHA</span>
+    <span class="op-phase-text">This is a new service — <a href="#">give your feedback</a> to help us improve it.</span>
+  </div>
+
+  <div class="op-hero">
+    <h1>HMCTS API Catalogue</h1>
+    <div class="op-inset">
+      <p>"We don't build APIs — we connect you to them. Like a library — we don't write the books, we organise them so you can find and borrow what you need."</p>
+    </div>
+    <p class="op-hero-body">A discovery, publication and access management platform for APIs across HMCTS Digital and Technology Solutions. One place to find what data exists, understand how it works, and request access.</p>
+    <div class="op-hero-actions">
+      <a href="#" class="op-btn-start" onclick="showHome();return false;">Browse the catalogue</a>
+      <a href="#" class="op-btn-sec" onclick="showAuth('register');return false;">Register to get started</a>
     </div>
   </div>
-  <main>
-    <section class="app-mp-section"><div class="app-mp-section__eyebrow">The simple answer</div><h2 class="app-mp-section__title">Think of it like an App Store for APIs</h2><p class="app-mp-section__body">Just as an App Store curates and gives you a single place to discover and access apps, the API Marketplace does the same for APIs. We are the catalogue and access layer. The APIs belong to their respective teams; we make them <strong>discoverable, documented, and accessible</strong>.</p></section>
-    <section class="app-mp-section" style="padding-top:0"><div class="app-mp-section__eyebrow">What we do and don&rsquo;t do</div><h2 class="app-mp-section__title">Let&rsquo;s be crystal clear</h2>
-      <div class="app-mp-does">
-        <div class="app-mp-yes"><div class="app-mp-panel-title">What the marketplace does</div><div class="app-mp-item"><span aria-hidden="true">&#10003;</span><span>Discovers, catalogues and curates APIs across the organisation</span></div><div class="app-mp-item"><span aria-hidden="true">&#10003;</span><span>Single place to find, understand and compare APIs</span></div><div class="app-mp-item"><span aria-hidden="true">&#10003;</span><span>Manages access requests so teams can be approved to use APIs</span></div><div class="app-mp-item"><span aria-hidden="true">&#10003;</span><span>Hosts documentation so consumers know how to integrate</span></div><div class="app-mp-item"><span aria-hidden="true">&#10003;</span><span>Connects API providers with the consumers who need them</span></div><div class="app-mp-item"><span aria-hidden="true">&#10003;</span><span>Provides visibility into what APIs exist and who is using them</span></div></div>
-        <div class="app-mp-no"><div class="app-mp-panel-title">What the marketplace does NOT do</div><div class="app-mp-item"><span aria-hidden="true">&#10007;</span><span>Build, own or develop APIs &mdash; that stays with each product team</span></div><div class="app-mp-item"><span aria-hidden="true">&#10007;</span><span>Host your data or run your backend services</span></div><div class="app-mp-item"><span aria-hidden="true">&#10007;</span><span>Support the API itself &mdash; support stays with the API owner</span></div><div class="app-mp-item"><span aria-hidden="true">&#10007;</span><span>Make architectural decisions for your API</span></div><div class="app-mp-item"><span aria-hidden="true">&#10007;</span><span>Guarantee uptime or SLAs for listed APIs</span></div><div class="app-mp-item"><span aria-hidden="true">&#10007;</span><span>Replace your team&rsquo;s responsibility for maintaining their APIs</span></div></div>
+
+  <div class="op-main">
+
+    <h2 class="op-sec-h">What the API Catalogue does and doesn't do</h2>
+    <table class="op-does-table">
+      <thead>
+        <tr>
+          <th class="op-does">✓ The API Catalogue does</th>
+          <th class="op-not">✗ The API Catalogue does not</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="op-ck">✓</span>Catalogue and curate APIs across the programme</td><td><span class="op-cx">✗</span>Build, own or develop APIs</td></tr>
+        <tr><td><span class="op-ck">✓</span>Provide a single point of discovery</td><td><span class="op-cx">✗</span>Host data or run backend services</td></tr>
+        <tr><td><span class="op-ck">✓</span>Document what each API does in plain English</td><td><span class="op-cx">✗</span>Support the API — that stays with the owner</td></tr>
+        <tr><td><span class="op-ck">✓</span>Manage access requests and the approval workflow</td><td><span class="op-cx">✗</span>Make architectural decisions for API teams</td></tr>
+        <tr><td><span class="op-ck">✓</span>Enforce naming conventions and data classification standards</td><td><span class="op-cx">✗</span>Guarantee uptime or SLAs for listed APIs</td></tr>
+        <tr><td><span class="op-ck">✓</span>Capture demand signals when consumers need data not yet available</td><td><span class="op-cx">✗</span>Replace any team's responsibility for their APIs</td></tr>
+      </tbody>
+    </table>
+
+    <h2 class="op-sec-h">Who it's for</h2>
+    <div class="op-3col">
+      <div class="op-role">
+        <h3>API Consumers</h3>
+        <p>Teams and developers who need to use an existing API rather than build one from scratch.</p>
+        <span class="op-tag">Browse APIs</span><span class="op-tag">Read docs</span><span class="op-tag">Request access</span><span class="op-tag">Track requests</span>
       </div>
-    </section>
-    <hr class="app-divider">
-    <section class="app-mp-section"><div class="app-mp-section__eyebrow">Who it&rsquo;s for</div><h2 class="app-mp-section__title">Two audiences, one marketplace</h2>
-      <div class="app-mp-aud">
-        <div class="app-mp-aud-card"><div class="app-mp-aud-icon" aria-hidden="true">&#128105;&#8205;&#128187;</div><div class="app-mp-aud-title">API Consumers</div><p class="app-mp-aud-desc">Teams and developers who need to use an existing API rather than build one from scratch.</p><ul class="app-mp-aud-list"><li>Browse the catalogue to find APIs that meet your needs</li><li>Read docs to understand how to integrate</li><li>Submit an access request to be approved</li><li>Try the mock server before connecting to production</li></ul></div>
-        <div class="app-mp-aud-card"><div class="app-mp-aud-icon" aria-hidden="true">&#127959;&#65039;</div><div class="app-mp-aud-title">API Producers</div><p class="app-mp-aud-desc">Teams that build and own APIs and want them discoverable and usable by others.</p><ul class="app-mp-aud-list"><li>List your API with a spec and documentation</li><li>Manage who can access your API</li><li>Keep your spec up to date in SwaggerHub</li><li>Support the consumers of your API</li></ul></div>
+      <div class="op-role op-prod">
+        <h3>API Producers</h3>
+        <p>Teams that build and own APIs and want them discoverable and usable by others.</p>
+        <span class="op-tag g">Publish APIs</span><span class="op-tag g">Manage access</span><span class="op-tag g">Review requests</span>
       </div>
-    </section>
-    <hr class="app-divider">
-    <section class="app-mp-section"><div class="app-mp-section__eyebrow">How it works</div><h2 class="app-mp-section__title">Four steps from discovery to integration</h2>
-      <div class="app-mp-flow">
-        <div class="app-mp-step"><div class="app-mp-step__num" aria-hidden="true">1</div><div class="app-mp-step__title">Browse</div><p class="app-mp-step__desc">Search or filter the catalogue by domain or keyword.</p></div>
-        <div class="app-mp-step"><div class="app-mp-step__num" aria-hidden="true">2</div><div class="app-mp-step__title">Discover</div><p class="app-mp-step__desc">Read the plain-English summary and full technical docs. Try the mock server.</p></div>
-        <div class="app-mp-step"><div class="app-mp-step__num" aria-hidden="true">3</div><div class="app-mp-step__title">Request access</div><p class="app-mp-step__desc">Submit a request. The API owner reviews and approves or declines.</p></div>
-        <div class="app-mp-step"><div class="app-mp-step__num" aria-hidden="true">4</div><div class="app-mp-step__title">Integrate</div><p class="app-mp-step__desc">Use the documentation and spec to connect your system.</p></div>
+      <div class="op-role op-rev">
+        <h3>Reviewers</h3>
+        <p>Marketplace team members responsible for governance and quality standards.</p>
+        <span class="op-tag o">Review submissions</span><span class="op-tag o">Approve APIs</span><span class="op-tag o">Triage requests</span>
       </div>
-    </section>
-    <hr class="app-divider">
-    <section class="app-mp-section"><div class="app-mp-section__eyebrow">Why it matters</div><h2 class="app-mp-section__title">Key benefits</h2>
-      <div class="app-mp-ben">
-        <div class="app-mp-ben-card"><div class="app-mp-ben-icon" aria-hidden="true">&#128269;</div><div class="app-mp-ben-title">Stops duplication</div><p class="app-mp-ben-desc">Teams can check whether an API already exists before building a new one.</p></div>
-        <div class="app-mp-ben-card"><div class="app-mp-ben-icon" aria-hidden="true">&#9889;</div><div class="app-mp-ben-title">Faster integration</div><p class="app-mp-ben-desc">Consumers get docs, specs, mock servers and access requests in one place.</p></div>
-        <div class="app-mp-ben-card"><div class="app-mp-ben-icon" aria-hidden="true">&#127963;&#65039;</div><div class="app-mp-ben-title">Governance and standards</div><p class="app-mp-ben-desc">Enforces naming conventions and documentation standards across all APIs.</p></div>
-        <div class="app-mp-ben-card"><div class="app-mp-ben-icon" aria-hidden="true">&#127760;</div><div class="app-mp-ben-title">Wider discoverability</div><p class="app-mp-ben-desc">APIs that are hard to find go unused. Listing gets them in front of the right consumers.</p></div>
-        <div class="app-mp-ben-card"><div class="app-mp-ben-icon" aria-hidden="true">&#128274;</div><div class="app-mp-ben-title">Controlled access</div><p class="app-mp-ben-desc">The approval workflow ensures only authorised teams access sensitive APIs.</p></div>
-        <div class="app-mp-ben-card"><div class="app-mp-ben-icon" aria-hidden="true">&#128065;&#65039;</div><div class="app-mp-ben-title">Visibility</div><p class="app-mp-ben-desc">Leadership gets a clear picture of all APIs &mdash; what exists, who owns it, how widely it is used.</p></div>
-      </div>
-    </section>
-    <hr class="app-divider">
-    <section class="app-mp-section"><div class="app-mp-section__eyebrow">Setting the record straight</div><h2 class="app-mp-section__title">Common misconceptions</h2>
-      <div class="app-mp-myth"><span class="app-mp-myth__x" aria-hidden="true">&#10007;</span><p class="app-mp-myth__text"><strong>&ldquo;The marketplace team builds the APIs.&rdquo;</strong> We don&rsquo;t build APIs &mdash; we list them. Your team builds and owns the API; we make it findable.</p></div>
-      <div class="app-mp-myth"><span class="app-mp-myth__x" aria-hidden="true">&#10007;</span><p class="app-mp-myth__text"><strong>&ldquo;If it&rsquo;s in the catalogue, the marketplace team supports it.&rdquo;</strong> Support stays with the API owner. We connect you to them.</p></div>
-      <div class="app-mp-myth"><span class="app-mp-myth__x" aria-hidden="true">&#10007;</span><p class="app-mp-myth__text"><strong>&ldquo;It&rsquo;s only for developers.&rdquo;</strong> Anyone can browse &mdash; product managers, architects and delivery managers should use it too.</p></div>
-      <div class="app-mp-myth"><span class="app-mp-myth__x" aria-hidden="true">&#10007;</span><p class="app-mp-myth__text"><strong>&ldquo;Listing my API means giving up ownership.&rdquo;</strong> You remain the owner. Listing simply makes your API discoverable; you control who gets access.</p></div>
-      <div class="app-mp-myth"><span class="app-mp-myth__x" aria-hidden="true">&#10007;</span><p class="app-mp-myth__text"><strong>&ldquo;The marketplace hosts our data.&rdquo;</strong> We host documentation and metadata about your API &mdash; not your data, not your service.</p></div>
-    </section>
-    <section class="app-mp-section" style="padding-top:0">
-      <div class="app-mp-cta">
-        <h2 class="app-mp-cta__title">Ready to get involved?</h2>
-        <p class="app-mp-cta__body">Whether you have an API to list or are looking for one to integrate with, get in touch with the marketplace team.</p>
-        <div class="app-mp-cta__btns">
-          <button class="govuk-button" onclick="showHome()">Browse the catalogue</button>
-          <a class="govuk-button govuk-button--secondary" href="mailto:no-reply@hmcts.com">Contact the team</a>
-        </div>
-      </div>
-    </section>
-  </main>
-  <footer class="govuk-footer" role="contentinfo">
-    <div class="govuk-footer__inner">
-      <div class="govuk-footer__navigation">
-        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">API Catalogue</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a onclick="showHome();return false;" href="#" class="govuk-footer__link">Browse APIs</a></li><li class="govuk-footer__list-item"><a onclick="showMarketplace();return false;" href="#" class="govuk-footer__link">What is API Marketplace?</a></li><li class="govuk-footer__list-item"><a href="https://app.swaggerhub.com/organizations/HMCTS-DTS" target="_blank" rel="noopener" class="govuk-footer__link">SwaggerHub organisation</a></li></ul></div>
-        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:no-reply@hmcts.com" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a href="mailto:no-reply@hmcts.com" class="govuk-footer__link">Request a new API</a></li></ul></div>
-        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Policies</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Accessibility statement</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Cookies</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Privacy notice</a></li></ul></div>
-      </div>
-      <div class="govuk-footer__meta"><div class="govuk-footer__meta-item">Built by <a href="https://www.gov.uk/hmcts" class="govuk-footer__link">HMCTS Digital and Technology Solutions</a> &mdash; HMCTS Digital and Technology Solutions</div><div class="govuk-footer__copyright-logo">&copy; Crown copyright &mdash; MIT Licence</div></div>
     </div>
-  </footer>
+
+    <h2 class="op-sec-h">How it works</h2>
+    <div class="op-steps">
+      <div class="op-step">
+        <div class="op-step-num">1</div>
+        <h3>Browse</h3>
+        <p>Search by keyword or domain — no login required</p>
+      </div>
+      <div class="op-step">
+        <div class="op-step-num">2</div>
+        <h3>Discover</h3>
+        <p>Read plain-English summaries and full technical docs</p>
+      </div>
+      <div class="op-step">
+        <div class="op-step-num">3</div>
+        <h3>Request access</h3>
+        <p>Submit a formal request with your business justification</p>
+      </div>
+      <div class="op-step">
+        <div class="op-step-num">4</div>
+        <h3>Integrate</h3>
+        <p>Use your credentials to connect via the API</p>
+      </div>
+    </div>
+
+    <h2 class="op-sec-h">Key benefits</h2>
+    <div class="op-2col">
+      <div class="op-benefit"><h3>Stops duplication</h3><p>Check whether an API already exists before building one. The catalogue makes invisible work visible.</p></div>
+      <div class="op-benefit"><h3>Faster integration</h3><p>Documentation, specs, mock servers and access requests in one place. Weeks to days.</p></div>
+      <div class="op-benefit"><h3>Governance and standards</h3><p>The approval workflow ensures only APIs that meet quality and classification standards appear in the catalogue.</p></div>
+      <div class="op-benefit"><h3>Controlled access</h3><p>Formal justifications mean sensitive data is only shared with authorised teams who have stated their use case.</p></div>
+      <div class="op-benefit"><h3>Visibility for leadership</h3><p>Leadership and programme management get a clear picture of the API landscape — what exists, who owns it, and what demand looks like.</p></div>
+      <div class="op-benefit"><h3>Captures demand signals</h3><p>When consumers can't find the data they need, they can request a new API — giving teams visibility of what the organisation actually needs.</p></div>
+    </div>
+
+    <h2 class="op-sec-h">Common misconceptions</h2>
+    <div class="op-misc"><div class="op-misc-q">"The marketplace team builds the APIs"</div><div class="op-misc-a">We list them. Your team builds and owns the API. The catalogue makes it discoverable.</div></div>
+    <div class="op-misc"><div class="op-misc-q">"If it's in the catalogue, the marketplace team supports it"</div><div class="op-misc-a">Support stays with the API owner. The catalogue is a directory, not a support desk.</div></div>
+    <div class="op-misc"><div class="op-misc-q">"It's only for developers"</div><div class="op-misc-a">Product managers, architects, delivery managers and business analysts should all use it.</div></div>
+    <div class="op-misc"><div class="op-misc-q">"Listing my API means giving up ownership"</div><div class="op-misc-a">You remain the owner. Listing makes your API discoverable — nothing more.</div></div>
+
+  </div>
 </div>
 
-<!-- DETAIL PAGE -->
-<div id="detailPage" class="app-page">
-  <div class="app-detail-header">
-    <div class="app-detail-header__inner">
-      <nav aria-label="Breadcrumb">
-        <ol style="list-style:none;padding:0;margin:0 0 16px;display:flex;gap:8px;flex-wrap:wrap;font-size:14px">
-          <li><a onclick="showHome();return false;" href="#" class="govuk-link">API Catalogue</a></li>
-          <li style="color:#505a5f">&rsaquo;</li>
-          <li style="color:#505a5f" aria-current="page" id="breadcrumbApi">API Detail</li>
-        </ol>
-      </nav>
-      <div id="dBadges" style="margin-bottom:12px"></div>
-      <h1 class="app-detail-header__name" id="dName"></h1>
-      <div class="app-detail-header__id" id="dId"></div>
-      <p class="app-detail-header__desc" id="dDesc"></p>
-      <div class="app-detail-header__meta" id="dMeta"></div>
-      <div class="app-detail-header__actions" id="dActions"></div>
-    </div>
-  </div>
-  <div class="app-sync-bar" role="status" aria-live="polite">
-    <div class="app-sync-bar__inner" id="syncBar">
-      <div class="app-sync-bar__status">
-        <div class="app-sync-bar__dot" id="syncDot"></div>
-        <span id="syncMsg">Loading&hellip;</span>
-        <span id="syncTime" style="color:#505a5f;font-size:13px;margin-left:6px"></span>
-      </div>
-      <button class="govuk-link" style="background:none;border:none;cursor:pointer;font-size:14px;padding:0" onclick="refreshCurrentSpec()">&#8635; Refresh</button>
-    </div>
-  </div>
-  <div style="background:#fff;border-bottom:1px solid #b1b4b6">
-    <div style="max-width:1200px;margin:0 auto;padding:0 30px">
-      <nav class="app-tabs" aria-label="API documentation sections">
-        <ul class="app-tabs__list" role="tablist">
-          <li role="presentation"><button class="app-tabs__tab app-tabs__tab--active" role="tab" aria-selected="true"  id="tab-btn-overview"  onclick="switchTab('overview',this)">Overview</button></li>
-          <li role="presentation"><button class="app-tabs__tab" role="tab" aria-selected="false" id="tab-btn-endpoints" onclick="switchTab('endpoints',this)">Endpoints</button></li>
-          <li role="presentation"><button class="app-tabs__tab" role="tab" aria-selected="false" id="tab-btn-schemas"   onclick="switchTab('schemas',this)">Data model</button></li>
-          <li role="presentation"><button class="app-tabs__tab" role="tab" aria-selected="false" id="tab-btn-changelog" onclick="switchTab('changelog',this)">Changelog</button></li>
-          <li role="presentation"><button class="app-tabs__tab" role="tab" aria-selected="false" id="tab-btn-tryit"     onclick="switchTab('tryit',this)">Try it out</button></li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-  <div class="app-detail-body">
-    <div>
-      <div id="tab-overview" class="app-tab-panel app-tab-panel--active" role="tabpanel">
-        <div class="app-panel"><div class="app-panel__title">What does this API do? <span class="govuk-tag govuk-tag--blue" style="font-size:11px;vertical-align:middle;margin-left:8px">Non-technical summary</span></div><p class="app-panel__body" id="dPlain"></p></div>
-        <div class="app-sidebar-card"><div class="app-sidebar-card__header">Endpoints at a glance <span class="app-spinner" id="epSpin" style="display:none" aria-label="Loading"></span></div><div class="app-sidebar-card__body" id="epGlance"><div class="app-skel" style="height:40px;margin-bottom:8px"></div><div class="app-skel" style="height:40px;margin-bottom:8px"></div><div class="app-skel" style="height:40px"></div></div></div>
-        <div id="notesCard" style="display:none"><div class="govuk-warning-text"><span class="govuk-warning-text__icon" aria-hidden="true">!</span><strong class="govuk-warning-text__text"><span class="govuk-visually-hidden">Warning</span>Consumer guidance</strong></div><div id="notesBody"></div></div>
-      </div>
-      <div id="tab-endpoints" class="app-tab-panel" role="tabpanel"><div class="app-sidebar-card"><div class="app-sidebar-card__header">All endpoints <span id="epCount" style="font-size:13px;color:#505a5f;font-weight:400;margin-left:8px"></span></div><div class="app-sidebar-card__body" id="epList"><div class="app-skel" style="height:44px;margin-bottom:8px"></div><div class="app-skel" style="height:44px;margin-bottom:8px"></div><div class="app-skel" style="height:44px"></div></div></div></div>
-      <div id="tab-schemas" class="app-tab-panel" role="tabpanel"><div class="app-sidebar-card"><div class="app-sidebar-card__header">Data model</div><div class="app-sidebar-card__body" id="schemaList"><div class="app-skel" style="height:120px"></div></div></div></div>
-      <div id="tab-changelog" class="app-tab-panel" role="tabpanel"><div class="app-sidebar-card"><div class="app-sidebar-card__header">Changelog</div><div class="app-sidebar-card__body" id="changelogBody"></div></div></div>
-      <div id="tab-tryit" class="app-tab-panel" role="tabpanel"><div class="app-sidebar-card"><div class="app-sidebar-card__header">Try it out &mdash; mock server</div><div class="app-sidebar-card__body" id="tryItBody"><div class="app-skel" style="height:60px"></div></div></div></div>
-    </div>
-    <div>
-      <div class="app-sidebar-card"><div class="app-sidebar-card__header">API information</div><div class="app-sidebar-card__body" id="sInfo"><div class="app-skel" style="height:14px;width:80%;margin-bottom:8px"></div><div class="app-skel" style="height:14px;width:60%"></div></div></div>
-      <div class="app-sidebar-card"><div class="app-sidebar-card__header">Authentication</div><div class="app-sidebar-card__body" id="sAuth"></div></div>
-      <div class="app-sidebar-card"><div class="app-sidebar-card__header">Response codes</div><div class="app-sidebar-card__body" id="sRC"><div class="app-skel" style="height:36px;margin-bottom:6px"></div><div class="app-skel" style="height:36px"></div></div></div>
-      <div class="app-sidebar-card"><div class="app-sidebar-card__header">Links</div><div class="app-sidebar-card__body" style="display:flex;flex-direction:column;gap:8px" id="sLinks"></div></div>
-    </div>
-  </div>
-  <footer class="govuk-footer" role="contentinfo">
-    <div class="govuk-footer__inner">
-      <div class="govuk-footer__navigation">
-        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">API Catalogue</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a onclick="showHome();return false;" href="#" class="govuk-footer__link">Browse APIs</a></li><li class="govuk-footer__list-item"><a onclick="showMarketplace();return false;" href="#" class="govuk-footer__link">What is API Marketplace?</a></li><li class="govuk-footer__list-item"><a href="https://app.swaggerhub.com/organizations/HMCTS-DTS" target="_blank" rel="noopener" class="govuk-footer__link">SwaggerHub organisation</a></li></ul></div>
-        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:no-reply@hmcts.com" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a href="mailto:no-reply@hmcts.com" class="govuk-footer__link">Request a new API</a></li></ul></div>
-        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Policies</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Accessibility statement</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Cookies</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Privacy notice</a></li></ul></div>
-      </div>
-      <div class="govuk-footer__meta"><div class="govuk-footer__meta-item">Built by <a href="https://www.gov.uk/hmcts" class="govuk-footer__link">HMCTS Digital and Technology Solutions</a> &mdash; HMCTS Digital and Technology Solutions</div><div class="govuk-footer__copyright-logo">&copy; Crown copyright &mdash; MIT Licence</div></div>
-    </div>
-  </footer>
-</div>
-
-<!-- AUTH OVERLAY -->
-<div id="authOverlay" style="display:none" class="app-auth-overlay" role="dialog" aria-modal="true" aria-labelledby="auth-title" onclick="if(event.target===this)hideAuth()">
-  <div class="app-auth-card">
-    <div class="app-auth-header"><h2 class="app-auth-header__title" id="auth-title">HMCTS API Catalogue</h2><p class="app-auth-header__sub">Sign in to request API access and manage your integrations.</p></div>
-    <div class="app-auth-body">
-      <div class="app-auth-tabs" role="tablist">
-        <button class="app-auth-tab app-auth-tab--active" id="atLogin" role="tab" aria-selected="true"  onclick="authTab('login')">Sign in</button>
-        <button class="app-auth-tab"                      id="atReg"   role="tab" aria-selected="false" onclick="authTab('register')">Register</button>
-      </div>
-      <div id="aErr" class="app-auth-error" role="alert"></div>
-      <form id="fLogin" onsubmit="doLogin(event)" novalidate>
-        <div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="lEm">Email address</label><input class="govuk-input" id="lEm" type="email" autocomplete="email" spellcheck="false" required></div>
-        <div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="lPw">Password</label><input class="govuk-input" id="lPw" type="password" autocomplete="current-password" required></div>
-        <button type="submit" class="govuk-button" id="btnL">Sign in</button>
-        <p class="govuk-body-s">No account? <a class="govuk-link" onclick="authTab('register');return false;" href="#">Register here</a></p>
-      </form>
-      <form id="fReg" style="display:none" onsubmit="doRegister(event)" novalidate>
-        <div class="govuk-form-group">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-            <div class="govuk-form-group" style="margin:0"><label class="govuk-label govuk-label--s" for="rFn">First name</label><input class="govuk-input" id="rFn" type="text" autocomplete="given-name" required></div>
-            <div class="govuk-form-group" style="margin:0"><label class="govuk-label govuk-label--s" for="rLn">Last name</label><input class="govuk-input" id="rLn" type="text" autocomplete="family-name" required></div>
-          </div>
-        </div>
-        <div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="rEm">Email address</label><input class="govuk-input" id="rEm" type="email" autocomplete="email" spellcheck="false" required></div>
-        <div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="rPw">Create a password</label><div class="govuk-hint">Must be at least 8 characters</div><input class="govuk-input" id="rPw" type="password" autocomplete="new-password" minlength="8" required></div>
-        <div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="rOrg">Organisation or team</label><input class="govuk-input" id="rOrg" type="text" placeholder="e.g. Case Admin Team" required></div>
-        <div class="govuk-form-group">
-          <label class="govuk-label govuk-label--s">I am registering as&hellip;</label>
-          <div class="app-role-grid">
-            <button type="button" class="app-role-card app-role-card--selected" id="rcC" onclick="pickRole('consumer')" aria-pressed="true"><div class="app-role-card__icon" aria-hidden="true">&#128105;&#8205;&#128187;</div><div class="app-role-card__name">Consumer</div><div class="app-role-card__desc">Find and use existing APIs</div></button>
-            <button type="button" class="app-role-card" id="rcP" onclick="pickRole('producer')" aria-pressed="false"><div class="app-role-card__icon" aria-hidden="true">&#127959;&#65039;</div><div class="app-role-card__name">Producer</div><div class="app-role-card__desc">List and manage my APIs</div></button>
-          </div>
-        </div>
-        <button type="submit" class="govuk-button" id="btnR">Create account</button>
-        <p class="govuk-body-s">Have an account? <a class="govuk-link" onclick="authTab('login');return false;" href="#">Sign in</a></p>
-      </form>
-    </div>
-  </div>
 </div>
 
 <!-- CONSUMER DASHBOARD -->

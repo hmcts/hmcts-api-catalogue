@@ -30,7 +30,21 @@ body, input, select, textarea, button {
 </style>
 <style>
 .app-page{display:none}.app-page--active{display:block}
-.app-header{background:#0b0c0c;border-bottom:4px solid #1d70b8}
+.app-header{background:#0b0c0c;border-bottom:none}
+.app-subnav{background:#f3f2f1;border-bottom:1px solid #b1b4b6;padding:0 16px}
+.app-subnav__inner{max-width:1200px;margin:0 auto;display:flex;align-items:center}
+.app-subnav__link{display:block;padding:12px 16px;font-size:15px;color:#0b0c0c;text-decoration:none;border-bottom:4px solid transparent;white-space:nowrap;font-family:GDS Transport,arial,sans-serif}
+.app-subnav__link:hover{background:#e8e8e8}
+.app-subnav__link--active{border-bottom-color:#1d70b8 !important;font-weight:700 !important;color:#1d70b8 !important}
+.app-subnav__signin{display:block;padding:12px 16px;font-size:15px;color:#1d70b8;text-decoration:underline;white-space:nowrap;font-family:GDS Transport,arial,sans-serif}
+.app-subnav__signin:hover{background:#e8e8e8}
+.app-hero-band{background:#1d70b8;padding:8px 16px 40px;width:100%}
+.app-hero-band__inner{max-width:1200px;margin:0 auto}
+.app-hero-band__quote{border-left:5px solid rgba(255,255,255,0.5);padding:14px 18px;background:rgba(0,0,0,0.15);margin-bottom:18px}
+.app-hero-band__quote p{font-size:17px;font-style:italic;color:white;margin:0;line-height:1.5}
+.app-hero-band__body{font-size:17px;color:rgba(255,255,255,0.9);line-height:1.5;max-width:640px;margin-bottom:24px}
+.app-btn-start{display:inline-flex;align-items:center;gap:10px;background:#00703c;color:white;border:2px solid transparent;padding:10px 20px;font-size:18px;font-weight:700;cursor:pointer;box-shadow:0 2px 0 #002d18;text-decoration:none;font-family:GDS Transport,arial,sans-serif}
+.app-btn-start:hover{background:#005a30;box-shadow:0 2px 0 #00140b;color:white;text-decoration:none}
 .app-header__inner{max-width:1200px;margin:0 auto;padding:0 30px;display:flex;align-items:center;justify-content:space-between;min-height:60px}
 .app-header__logo-link{display:flex;align-items:center;gap:10px;text-decoration:none}
 .app-header__logo-link:focus{outline:3px solid #fd0;outline-offset:0}
@@ -355,15 +369,17 @@ body, input, select, textarea, button {
       <div class="app-header__logo-icon" aria-hidden="true">&#9889;</div>
       <span class="app-header__logo-text">HMCTS <span>API Catalogue</span></span>
     </a>
-    <nav class="app-header__nav" aria-label="Primary navigation">
-      <a class="app-nav-link app-nav-link--active" id="navMarket" onclick="showHome();setActiveNav('navMarket');return false;" href="#">What is the API Catalogue?</a>
-      <a class="app-nav-link" id="navBrowse" onclick="showMarketplace();setActiveNav('navBrowse');return false;" href="#">Browse APIs</a>
-      <a class="app-nav-link" id="navDash" onclick="showDash();setActiveNav('navDash');return false;" href="#">My dashboard</a>
-      <a class="app-nav-link" onclick="document.getElementById('gettingStarted').scrollIntoView({behavior:'smooth'});return false;" href="#">Getting started</a>
-    </nav>
-    <div class="app-header__right" id="navRight"></div>
   </div>
 </header>
+<nav class="app-subnav" aria-label="Primary navigation">
+  <div class="app-subnav__inner">
+    <a class="app-subnav__link app-subnav__link--active" id="navMarket" onclick="showHome();setActiveNav('navMarket');return false;" href="#">What is the API Catalogue?</a>
+    <a class="app-subnav__link" id="navBrowse" onclick="showMarketplace();setActiveNav('navBrowse');return false;" href="#">Browse APIs</a>
+    <a class="app-subnav__link" id="navDash" onclick="showDash();setActiveNav('navDash');return false;" href="#">My dashboard</a>
+    <div style="flex:1"></div>
+    <a class="app-subnav__signin" id="navSignIn" onclick="showAuth('login');return false;" href="#">Sign in</a>
+  </div>
+</nav>
 
 <!-- HOME PAGE -->
 <div id="homePage" class="app-page">
@@ -482,20 +498,25 @@ body, input, select, textarea, button {
   .app-misconception__q { font-family:GDS Transport,Arial,sans-serif; font-size:15px; color:#d4351c; font-style:italic; margin-bottom:4px; }
   .app-misconception__a { font-family:GDS Transport,Arial,sans-serif; font-size:15px; color:#0b0c0c; margin:0; }
 </style>
+
+<div class="app-hero-band">
+  <div class="app-hero-band__inner">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:28px;padding-top:8px">
+      <strong class="govuk-tag">Alpha</strong>
+      <span style="font-size:13px;color:white">This is a new service &mdash; <a href="#" style="color:white">give your feedback</a> to help us improve it.</span>
+    </div>
+    <h1 class="govuk-heading-xl" style="color:white;margin-bottom:16px">HMCTS API Catalogue</h1>
+    <div class="app-hero-band__quote">
+      <p>&ldquo;We don&rsquo;t build APIs &mdash; we connect you to them. Like a library &mdash; we don&rsquo;t write the books, we organise them so you can find and borrow what you need.&rdquo;</p>
+    </div>
+    <p class="app-hero-band__body">A discovery, publication and access management platform for APIs across HMCTS Digital and Technology Solutions. One place to find what data exists, understand how it works, and request access.</p>
+    <a href="#" class="app-btn-start" onclick="showMarketplace();setActiveNav('navBrowse');return false;">Browse the catalogue <svg xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false"><path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"/></svg></a>
+  </div>
+</div>
+
 <div class="govuk-width-container">
 
-    <!-- Hero -->
-    <div class="app-one-pager-hero govuk-!-padding-left-0 govuk-!-padding-right-0 govuk-!-margin-bottom-6" style="margin-left:-15px;margin-right:-15px;padding-left:15px;padding-right:15px">
-      <h1 class="govuk-heading-xl">HMCTS API Catalogue</h1>
-      <div class="app-inset-quote govuk-!-margin-bottom-4">
-        <p>"We don't build APIs — we connect you to them. Like a library — we don't write the books, we organise them so you can find and borrow what you need."</p>
-      </div>
-      <p class="govuk-body-l" style="max-width:640px">A discovery, publication and access management platform for APIs across HMCTS Digital and Technology Solutions. One place to find what data exists, understand how it works, and request access.</p>
-      <a href="#" onclick="showMarketplace();return false;" class="govuk-button govuk-button--start govuk-!-margin-right-3">Browse the catalogue <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false"><path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"/></svg></a>
-      <a href="#" onclick="showAuth('register');return false;" class="govuk-button govuk-button--secondary">Register to get started</a>
-    </div>
-
-    <!-- Does / doesn't do -->
+<!-- Does / doesn't do -->
     <h2 class="govuk-heading-l">What the API Catalogue does and doesn't do</h2>
     <hr class="app-section-rule">
     <table class="app-does-table govuk-!-margin-bottom-8">
@@ -956,15 +977,14 @@ function hideAll() {
   });
 }
 
-function setActiveNav(activeId) {
-  ['navBrowse','navMarket','navDash'].forEach(function(id) {
-    var el = document.getElementById(id);
-    if (el) el.classList.remove('app-nav-link--active');
+function setActiveNav(id) {
+  document.querySelectorAll('.app-subnav__link').forEach(function(el) {
+    el.classList.remove('app-subnav__link--active');
   });
-  if (activeId) {
-    var a = document.getElementById(activeId);
-    if (a) a.classList.add('app-nav-link--active');
-  }
+  var el = document.getElementById(id);
+  if (el) el.classList.add('app-subnav__link--active');
+  var si = document.getElementById('navSignIn');
+  if (si) si.style.display = (AU && AP) ? 'none' : 'block';
 }
 
 function showHome() {
@@ -1398,9 +1418,9 @@ function renderNav() {
         '</div>' +
       '</div>';
   } else {
-    el.innerHTML =
-      '<button class="govuk-button govuk-button--secondary" style="margin:0 8px 0 0;font-size:14px;padding:6px 14px" onclick="showSignIn()">Sign in</button>' +
-      '<button class="govuk-button" style="margin:0;font-size:14px;padding:6px 14px" onclick="showRegister()">Register</button>';
+    el.innerHTML = '';
+    var navSi = document.getElementById('navSignIn');
+    if (navSi) navSi.style.display = 'block';
   }
 }
 

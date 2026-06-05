@@ -1237,6 +1237,22 @@ function renderHome() {
   var countEl = document.getElementById('cardCount');
   if (countEl) countEl.textContent = 'Showing ' + filtered.length + ' API' + (filtered.length !== 1 ? 's' : '');
 
+  /* Empty state */
+  if (filtered.length === 0) {
+    var noResults =
+      '<div style="padding:40px 0;text-align:center">' +
+        '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#b1b4b6" stroke-width="1.5" style="margin-bottom:16px"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
+        '<h2 class="govuk-heading-m" style="color:#0b0c0c;margin-bottom:8px">No APIs found</h2>' +
+        '<p class="govuk-body" style="color:#505a5f;margin-bottom:24px">There are no APIs matching your search or filters.</p>' +
+        '<p class="govuk-body" style="color:#505a5f;margin-bottom:8px">Can&#39;t find the API you need?</p>' +
+        '<a class="govuk-button" onclick="showReqNew();return false;" href="#">Request a new API</a>' +
+        '<p class="govuk-body-s" style="color:#505a5f;margin-top:12px">Or <a class="govuk-link" href="#" onclick="resetFilters();return false;">clear your filters</a> to see all APIs</p>' +
+      '</div>';
+    grid.innerHTML = noResults;
+    buildAzBar([]);
+    return;
+  }
+
   /* Build list */
   var lastLetter = '';
   grid.innerHTML = filtered.map(function(api) {

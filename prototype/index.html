@@ -1305,44 +1305,38 @@ function showDetail(apiId) {
   document.getElementById('breadcrumbApi').textContent = api.name;
   document.getElementById('dBadges').innerHTML =
     '<span class="app-tag app-tag--green">&#9679; ' + api.status + '</span> ' +
-    '<span class="app-tag app-tag--grey">v' + api.version + '</span> ' +
+    '<span class="app-tag app-tag--grey">v' + (api.version || 'latest') + '</span> ' +
     '<span class="app-tag app-tag--blue">' + api.domain + '</span> ' +
-    api.tags.map(function(t) { return '<span class="app-tag app-tag--grey">' + t + '</span>'; }).join(' ') + ' ' +
-    '<span class="app-tag app-tag--purple">' + api.authType + '</span>';
+    (api.tags || []).map(function(t) { return '<span class="app-tag app-tag--grey">' + t + '</span>'; }).join(' ') + ' ' +
+    '<span class="app-tag app-tag--purple">' + (api.authType || 'OAuth 2.0') + '</span>';
   document.getElementById('dName').textContent = api.name;
-  document.getElementById('dId').textContent = api.shortName;
+  document.getElementById('dId').textContent = api.shortName || api.id;
   document.getElementById('dDesc').textContent = api.description;
   document.getElementById('dMeta').innerHTML =
-    '<span><strong>' + api.owner + '</strong></span>' +
-    '<span>Contact: <a href="mailto:' + api.contact + '" class="govuk-link">' + api.contact + '</a></span>' +
-    '<span>Licence: ' + api.licence + '</span>';
+    '<span><strong>Team: ' + (api.team || 'AMP') + '</strong></span>' +
+    '<span>Classification: ' + (api.classification || 'Official') + '</span>' +
+    (api.repoUrl ? '<span><a href="' + api.repoUrl + '" target="_blank" rel="noopener" class="govuk-link">Source repository</a></span>' : '');
   document.getElementById('dActions').innerHTML =
-    '<a class="govuk-button" href="https://app.swaggerhub.com/apis/' + api.swaggerOrg + '/' + api.swaggerApi + '/' + api.swaggerVer + '" target="_blank" rel="noopener">View on SwaggerHub</a>' +
-    '<a class="govuk-button govuk-button--secondary" href="https://virtserver.swaggerhub.com/' + api.swaggerOrg + '/' + api.swaggerApi + '/' + api.swaggerVer + '" target="_blank" rel="noopener">Try mock server</a>';
-  document.getElementById('dPlain').textContent = api.plainEnglish;
+    (api.docsUrl ? '<a class="govuk-button" href="' + api.docsUrl + '" target="_blank" rel="noopener">View API documentation</a>' : '') +
+    (api.repoUrl ? ' <a class="govuk-button govuk-button--secondary" href="' + api.repoUrl + '" target="_blank" rel="noopener">Source repository</a>' : '');
+  document.getElementById('dPlain').textContent = api.plainEnglish || api.description;
 
-  if (api.notes && api.notes.length) {
-    document.getElementById('notesCard').style.display = 'block';
-    document.getElementById('notesBody').innerHTML = api.notes.map(function(n) {
-      return '<div class="app-warning"><strong>!</strong> ' + n + '</div>';
-    }).join('');
-  } else {
-    document.getElementById('notesCard').style.display = 'none';
-  }
+  var notesCard = document.getElementById('notesCard');
+  if (notesCard) notesCard.style.display = 'none';
 
-  document.getElementById('changelogBody').innerHTML = api.changelog.map(function(cl, i) {
+  document.getElementById('changelogBody').innerHTML = (api.changelog || []).map(function(cl, i) {
     return '<div style="display:flex;gap:14px;padding:10px 0;' + (i > 0 ? 'border-top:1px solid #b1b4b6' : '') + '">' +
-      '<span class="app-tag app-tag--blue" style="align-self:flex-start;flex-shrink:0">v' + cl.v + '</span>' +
-      '<span style="font-size:15px;color:#0b0c0c">' + cl.n + '</span></div>';
+      '<span class="app-tag app-tag--blue" style="align-self:flex-start;flex-shrink:0">v' + (cl.version || cl.v || 'latest') + '</span>' +
+      '<span style="font-size:15px;color:#0b0c0c">' + (cl.notes || cl.n || '') + '</span></div>';
   }).join('');
 
-  document.getElementById('sAuth').innerHTML = '<p class="govuk-body" style="margin:0;font-size:14px">' + api.auth + '</p>';
+  document.getElementById('sAuth').innerHTML = '<p class="govuk-body" style="margin:0;font-size:14px">' + (api.authType || 'OAuth 2.0') + '</p>';
   document.getElementById('sLinks').innerHTML =
-    '<a class="govuk-button" style="width:100%;text-align:center;margin:0" href="https://app.swaggerhub.com/apis/' + api.swaggerOrg + '/' + api.swaggerApi + '/' + api.swaggerVer + '" target="_blank" rel="noopener">SwaggerHub</a>' +
-    '<a class="govuk-button govuk-button--secondary" style="width:100%;text-align:center;margin:0" href="https://virtserver.swaggerhub.com/' + api.swaggerOrg + '/' + api.swaggerApi + '/' + api.swaggerVer + '" target="_blank" rel="noopener">Mock server</a>';
-  var fsl=document.getElementById('footSwaggerLink'); if(fsl) fsl.innerHTML =
-    '<a href="https://app.swaggerhub.com/apis/' + api.swaggerOrg + '/' + api.swaggerApi + '/' + api.swaggerVer + '" target="_blank" rel="noopener" class="govuk-link">SwaggerHub</a>';
-  document.title = api.name + ' - HMCTS API Catalogue';
+    (api.docsUrl ? '<a class="govuk-button" style="width:100%;text-align:center;margin:0 0 8px" href="' + api.docsUrl + '" target="_blank" rel="noopener">API Documentation</a>' : '') +
+    (api.repoUrl ? '<a class="govuk-button govuk-button--secondary" style="width:100%;text-align:center;margin:0" href="' + api.repoUrl + '" target="_blank" rel="noopener">Source repository</a>' : '');
+  var fsl = document.getElementById('footSwaggerLink');
+  if (fsl) fsl.innerHTML = api.docsUrl ? '<a href="' + api.docsUrl + '" target="_blank" rel="noopener" class="govuk-link">API Documentation</a>' : '';
+  document.title = api.name + ' - HMCTS API Marketplace';
   loadSpec(api);
 }
 
@@ -1365,54 +1359,15 @@ function toggleEp(i) {
 
 
 async function loadSpec(api) {
-  var embedded = EMBEDDED_SPECS[api.id];
-
-  // Always render embedded spec immediately so content is visible right away
-  if (embedded) {
-    renderSpec(api, embedded);
-    updateSyncBar('blue', 'Loaded from embedded spec \u00b7 Connecting to SwaggerHub\u2026', '');
+  var specPanel = document.getElementById('tab-spec');
+  if (!specPanel) return;
+  if (api.docsUrl) {
+    specPanel.innerHTML = '<div style="padding:16px">' +
+      '<p class="govuk-body">Full API documentation and specification is available at:</p>' +
+      '<a class="govuk-button" href="' + api.docsUrl + '" target="_blank" rel="noopener">Open API documentation</a>' +
+      '</div>';
   } else {
-    updateSyncBar('blue', 'Fetching from SwaggerHub\u2026', '');
-  }
-
-  var key = api.swaggerOrg + '/' + api.swaggerApi + '/' + api.swaggerVer;
-
-  // Try SwaggerHub — two URL patterns for resilience
-  var urls = [
-    'https://api.swaggerhub.com/apis/' + key,
-    'https://app.swaggerhub.com/apiproxy/registry/' + key,
-  ];
-
-  if (specCache[key]) {
-    renderSpec(api, specCache[key]);
-    updateSyncBar('green', 'Live data from SwaggerHub', '\u00b7 Updated ' + new Date().toLocaleTimeString());
-    return;
-  }
-
-  for (var u = 0; u < urls.length; u++) {
-    try {
-      var res = await fetch(urls[u], {
-        headers: { Accept: 'application/json' },
-        mode: 'cors'
-      });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      var liveSpec = await res.json();
-      if (!liveSpec || !liveSpec.paths) throw new Error('No paths in spec');
-      specCache[key] = liveSpec;
-      renderSpec(api, liveSpec);
-      updateSyncBar('green', 'Live data from SwaggerHub', '\u00b7 Updated ' + new Date().toLocaleTimeString());
-      return;
-    } catch(e) {
-      console.info('SwaggerHub fetch failed (' + urls[u] + '):', e.message);
-    }
-  }
-
-  // Both URLs failed — embedded spec is already rendered, just update status
-  if (embedded) {
-    updateSyncBar('blue', 'Showing embedded spec \u00b7 SwaggerHub not reachable from this browser', '');
-  } else {
-    updateSyncBar('red', 'Could not load spec from SwaggerHub', '');
-    renderFallback(api);
+    specPanel.innerHTML = '<p class="govuk-body" style="padding:16px;color:#505a5f">No documentation URL available for this API.</p>';
   }
 }
 

@@ -27,6 +27,42 @@
 body, input, select, textarea, button {
   font-family: "GDS Transport", arial, sans-serif !important;
 }
+
+.app-az-bar{background:#f3f2f1;border-bottom:1px solid #b1b4b6;padding:10px 16px}
+.app-az-inner{max-width:1200px;margin:0 auto}
+.app-az-label{font-size:13px;font-weight:700;color:#505a5f;margin-bottom:6px}
+.app-az-letters{display:flex;gap:3px;flex-wrap:wrap}
+.app-az-btn{min-width:30px;height:30px;border-radius:3px;border:1px solid #aeb7bd;background:#e8edee;font-size:13px;font-weight:700;color:#1d70b8;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0 4px}
+.app-az-btn.inactive{color:#aeb7bd;border-color:#d8dde0;background:#f3f2f1;cursor:default}
+.app-az-btn.active{background:#1d70b8;color:white;border-color:#1d70b8}
+.app-catalogue-body{display:flex;max-width:1200px;margin:0 auto;padding:0 16px}
+.app-cat-sidebar{width:220px;flex-shrink:0;padding:16px 16px 16px 0;border-right:1px solid #b1b4b6}
+.app-cat-sidebar__header{font-size:16px;font-weight:700;color:#0b0c0c;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.app-cat-sidebar__header a{font-size:13px;font-weight:400;color:#1d70b8;text-decoration:underline}
+.app-cat-filter-group{border-bottom:1px solid #b1b4b6;padding-bottom:12px;margin-bottom:12px}
+.app-cat-filter-head{background:none;border:none;font-size:14px;font-weight:700;color:#0b0c0c;cursor:pointer;display:flex;align-items:center;gap:6px;padding:0;font-family:inherit;width:100%;text-align:left;margin-bottom:8px}
+.app-cat-filter-item{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.app-cat-filter-item input[type=checkbox]{width:17px;height:17px;cursor:pointer;accent-color:#1d70b8;flex-shrink:0}
+.app-cat-filter-item label{font-size:14px;color:#505a5f;cursor:pointer;line-height:1.3}
+.app-cat-main{flex:1;padding:16px 0 16px 20px;min-width:0}
+.app-cat-count{font-size:16px;font-weight:700;color:#0b0c0c;margin-bottom:16px}
+.app-api-entry{padding:16px 0;border-bottom:1px solid #b1b4b6;display:flex;gap:14px}
+.app-api-entry:last-child{border-bottom:none}
+.app-api-letter-col{width:44px;flex-shrink:0}
+.app-api-letter-box{width:44px;height:44px;background:#e8edee;border:1px solid #aeb7bd;border-radius:3px;font-size:22px;font-weight:700;color:#003078;display:flex;align-items:center;justify-content:center}
+.app-api-entry-content{flex:1;min-width:0}
+.app-api-status-row{display:flex;gap:6px;margin-bottom:5px;flex-wrap:wrap}
+.app-api-status-pill{font-size:11px;font-weight:700;padding:3px 8px;border-radius:2px;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+.app-api-status-pill--live{background:#cce2d8;color:#005a30}
+.app-api-status-pill--beta{background:#d1e8fa;color:#003d6a}
+.app-api-entry-name{font-size:18px;font-weight:700;color:#1d70b8;text-decoration:underline;margin-bottom:6px;display:block;cursor:pointer;line-height:1.3;background:none;border:none;padding:0;font-family:inherit;text-align:left}
+.app-api-entry-name:hover{color:#003078}
+.app-api-entry-desc{font-size:15px;color:#505a5f;line-height:1.55;margin-bottom:10px}
+.app-api-entry-tags{display:flex;gap:4px;flex-wrap:wrap}
+.app-api-entry-tag{font-size:11px;font-weight:600;padding:3px 8px;border-radius:2px;background:#e8edee;color:#505a5f;text-transform:uppercase;letter-spacing:.02em;white-space:nowrap}
+.app-api-entry-tag--domain{background:#d1e8fa;color:#003d6a}
+.app-api-entry-tag--os{background:#f6d7d2;color:#6a0c04}
+.app-api-entry-tag--team{background:#cce2d8;color:#005a30}
 </style>
 <style>
 .app-page{display:none}.app-page--active{display:block}
@@ -519,20 +555,59 @@ body, input, select, textarea, button {
     </div>
   </div>
   <main class="app-main" id="main-content">
-    <div class="app-filter-bar" role="group" aria-label="Filter by domain">
-      <span class="app-filter-bar__label">Filter by domain:</span>
-      <button class="app-filter-btn app-filter-btn--active" onclick="setFilter('all',this)">All</button>
-      <button class="app-filter-btn" onclick="setFilter('Case Administration',this)">Case Administration</button>
-      <button class="app-filter-btn" onclick="setFilter('Reference Data',this)">Reference Data</button>
-      <button class="app-filter-btn" onclick="setFilter('Case Management',this)">Case Management</button>
-      <button class="app-filter-btn" onclick="setFilter('Hearing Results',this)">Hearing Results</button>
-      <button class="app-filter-btn" onclick="setFilter('Scheduling and Listing',this)">Scheduling and Listing</button>
+    <!-- A-Z navigation bar -->
+    <div class="app-az-bar">
+      <div class="app-az-inner">
+        <div class="app-az-label">Quick navigation</div>
+        <div class="app-az-letters" id="azLetters"></div>
+      </div>
     </div>
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-      <h2 class="govuk-heading-m" style="margin:0">Available APIs</h2>
-      <span class="govuk-body-s" id="cardCount" aria-live="polite" aria-atomic="true">Showing 6 APIs</span>
+
+    <!-- Body: sidebar + list -->
+    <div class="app-catalogue-body">
+
+      <!-- Sidebar filters -->
+      <aside class="app-cat-sidebar" aria-label="Filter APIs">
+        <div class="app-cat-sidebar__header">
+          Filters <a href="#" onclick="resetFilters();return false;">Reset</a>
+        </div>
+
+        <div class="app-cat-filter-group" id="fg-domain">
+          <button class="app-cat-filter-head" onclick="toggleFilterGroup('fg-domain',this)" aria-expanded="true">
+            <i class="ti ti-chevron-up" aria-hidden="true"></i> Domain
+          </button>
+          <div class="app-cat-filter-items" id="fg-domain-items"></div>
+        </div>
+
+        <div class="app-cat-filter-group" id="fg-status">
+          <button class="app-cat-filter-head" onclick="toggleFilterGroup('fg-status',this)" aria-expanded="true">
+            <i class="ti ti-chevron-up" aria-hidden="true"></i> Status
+          </button>
+          <div class="app-cat-filter-items" id="fg-status-items"></div>
+        </div>
+
+        <div class="app-cat-filter-group" id="fg-class">
+          <button class="app-cat-filter-head" onclick="toggleFilterGroup('fg-class',this)" aria-expanded="false">
+            <i class="ti ti-chevron-down" aria-hidden="true"></i> Classification
+          </button>
+          <div class="app-cat-filter-items" id="fg-class-items" style="display:none"></div>
+        </div>
+
+        <div class="app-cat-filter-group" style="border-bottom:none">
+          <button class="app-cat-filter-head" onclick="toggleFilterGroup('fg-team',this)" aria-expanded="false">
+            <i class="ti ti-chevron-down" aria-hidden="true"></i> Team
+          </button>
+          <div class="app-cat-filter-items" id="fg-team-items" style="display:none"></div>
+        </div>
+      </aside>
+
+      <!-- API list -->
+      <div class="app-cat-main">
+        <p class="app-cat-count" id="cardCount" aria-live="polite" aria-atomic="true">Showing 6 APIs</p>
+        <div id="apiGrid" role="list"></div>
+      </div>
+
     </div>
-    <div class="app-grid" id="apiGrid" role="list"></div>
     <section id="gettingStarted" aria-labelledby="gs-heading" style="padding:32px 0 0;border-top:1px solid #b1b4b6;margin-top:8px">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
         <div>
@@ -968,38 +1043,7 @@ body, input, select, textarea, button {
               <div style="display:flex;align-items:flex-start;gap:12px"><input class="govuk-checkboxes__input" id="pubClass-3" name="pubClass" type="radio" value="Restricted" style="width:40px;height:40px;margin:0;cursor:pointer;flex-shrink:0"><label class="govuk-label" for="pubClass-3" style="padding-top:8px;cursor:pointer"><strong>Restricted</strong><br><span style="font-size:14px;color:#505a5f">Information whose disclosure could compromise personal safety.</span></label></div>
               </fieldset>
             </div>
-            <div class="govuk-form-group" id="fg-pubAuth"><label class="govuk-label govuk-label--m" for="pubAuth">Authentication type</label><select class="govuk-select" id="pubAuth"><option value="">Select&hellip;</option><option>JWT Bearer</option><option>API Key</option><option>JWT + API Key</option><option>CJSCPPUID header</option><option>Contact team</option><option>None</option></select></div>
-            <button class="govuk-button" onclick="savePubStep(2)">Save and continue</button>
-          </div>
-          <div id="pub-step3" class="app-step-form">
-            <button class="govuk-back-link" onclick="showPubStep('step2')">Back</button>
-            <div id="pub-err-3" class="govuk-error-summary" style="display:none" role="alert"><h2 class="govuk-error-summary__title">There is a problem</h2><ul class="govuk-error-summary__list" id="pub-err-3-list"></ul></div>
-            <div class="app-step-header"><span class="app-step-header__caption">Publish an API &mdash; Step 3 of 3</span><h1 class="govuk-heading-l">Plain-English description</h1></div>
-            <div class="govuk-inset-text">Write this for a non-technical reader. Avoid acronyms and technical jargon.</div>
-            <div class="govuk-form-group" id="fg-pubDesc"><label class="govuk-label govuk-label--m" for="pubDesc">What does this API do?</label><div class="govuk-hint">Describe what problem it solves, who uses it, and what data it handles. Minimum 50 characters.</div><textarea class="govuk-textarea" id="pubDesc" rows="6" spellcheck="true"></textarea><div id="pubDescCount" style="font-size:14px;color:#505a5f;margin-top:4px">0 characters</div></div>
-            <button class="govuk-button" onclick="savePubStep(3)">Save and continue</button>
-          </div>
-          <div id="pub-check" class="app-step-form">
-            <button class="govuk-back-link" onclick="showPubStep('tasklist')">Back</button>
-            <h1 class="govuk-heading-l">Check your answers before submitting</h1>
-            <div class="govuk-inset-text">Once submitted, the marketplace team will review your API. You cannot edit this submission once sent.</div>
-            <div class="govuk-summary-card"><div class="govuk-summary-card__title-wrapper"><h2 class="govuk-summary-card__title">API details</h2></div><div class="govuk-summary-card__content"><dl class="govuk-summary-list" id="pub-check-answers"></dl></div></div>
-            <h2 class="govuk-heading-m">Declaration</h2>
-            <p class="govuk-body">By submitting this API you confirm that:</p>
-            <div class="govuk-checkboxes__item"><input class="govuk-checkboxes__input" id="pubDecl1" type="checkbox"><label class="govuk-checkboxes__label" for="pubDecl1">I am authorised to publish this API on behalf of my team</label></div>
-            <div class="govuk-checkboxes__item"><input class="govuk-checkboxes__input" id="pubDecl2" type="checkbox"><label class="govuk-checkboxes__label" for="pubDecl2">The SwaggerHub spec is up to date and accurate</label></div>
-            <div class="govuk-checkboxes__item" style="margin-bottom:24px"><input class="govuk-checkboxes__input" id="pubDecl3" type="checkbox"><label class="govuk-checkboxes__label" for="pubDecl3">I understand my team remains responsible for supporting consumers of this API</label></div>
-            <button class="govuk-button" onclick="submitPub()">Submit for review</button>
-            <button class="govuk-button govuk-button--secondary" onclick="showPubStep('tasklist')" style="margin-left:12px">Save and come back later</button>
-          </div>
-        <div class="app-dash-panel" id="p-prof"><h1 class="govuk-heading-l">My profile</h1><div class="app-form-card"><div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px"><div class="govuk-form-group" style="margin:0"><label class="govuk-label govuk-label--s" for="pPFn">First name</label><input class="govuk-input" id="pPFn" type="text"></div><div class="govuk-form-group" style="margin:0"><label class="govuk-label govuk-label--s" for="pPLn">Last name</label><input class="govuk-input" id="pPLn" type="text"></div></div><div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="pPEm">Email</label><input class="govuk-input" id="pPEm" type="email" readonly style="background:#f3f2f1;cursor:not-allowed"></div><div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="pPOrg">Organisation</label><input class="govuk-input" id="pPOrg" type="text"></div><button class="govuk-button govuk-button--secondary" onclick="saveProf('p')">Save changes</button></div></div>
-        </div>
-      </div>
-    </div>
-  </main>
-</div>
-
-<script>
+            <div class="govuk-form-group" id="fg-pubAuth"><label class="govuk-label govuk-label--m" for="pubAuth">Authentication type</label><select class="govuk-select" id="pubA
 var APIS = [{"id":"cpp-case-aggregator-poc","name":"CPP Case Aggregator API","shortName":"cpp-case-aggregator-poc","version":"latest","status":"Live","domain":"Case Administration","classification":"Official","authType":"OAuth 2.0","description":"Aggregates data from CPP downstream services and exposes shaped responses per domain.","plainEnglish":"Fetches and combines case data from multiple CPP backend services into a single, clean response.","docsUrl":"https://hmcts.github.io/cpp-case-aggregator-poc/","repoUrl":"https://github.com/hmcts/cpp-case-aggregator-poc","team":"AMP","changelog":[{"version":"latest","date":"2025","notes":"Latest release"}],"tags":["case","aggregator","CPP"]},{"id":"api-cp-crime-hearing-results-document-subscription","name":"Crime Hearing Results Document Subscription","shortName":"api-cp-crime-hearing-results-document-subscription","version":"latest","status":"Live","domain":"Hearing Results","classification":"Official","authType":"OAuth 2.0","description":"Subscription API for crime hearing-results documents.","plainEnglish":"Allows services to subscribe to hearing result documents as they are published.","docsUrl":"https://hmcts.github.io/api-cp-crime-hearing-results-document-subscription/","repoUrl":"https://github.com/hmcts/api-cp-crime-hearing-results-document-subscription","team":"AMP","changelog":[{"version":"latest","date":"2025","notes":"Latest release"}],"tags":["hearing","results","documents","subscription"]},{"id":"api-cp-crime-prosecution-case-details","name":"Crime Prosecution Case Details","shortName":"api-cp-crime-prosecution-case-details","version":"latest","status":"Live","domain":"Case Administration","classification":"Official-Sensitive","authType":"OAuth 2.0","description":"API for retrieving crime prosecution case details by URN.","plainEnglish":"Retrieves the full details of a prosecution case using its Unique Reference Number.","docsUrl":"https://hmcts.github.io/api-cp-crime-prosecution-case-details/","repoUrl":"https://github.com/hmcts/api-cp-crime-prosecution-case-details","team":"AMP","changelog":[{"version":"latest","date":"2025","notes":"Latest release"}],"tags":["prosecution","case","URN","crime"]},{"id":"api-cp-refdata-courthearing-courthouses","name":"Refdata Court Hearing Court Houses","shortName":"api-cp-refdata-courthearing-courthouses","version":"latest","status":"Live","domain":"Reference Data","classification":"Official","authType":"OAuth 2.0","description":"Reference data API providing court houses associated with a court hearing.","plainEnglish":"Returns a list of court houses linked to a given court hearing.","docsUrl":"https://hmcts.github.io/api-cp-refdata-courthearing-courthouses/","repoUrl":"https://github.com/hmcts/api-cp-refdata-courthearing-courthouses","team":"AMP","changelog":[{"version":"latest","date":"2025","notes":"Latest release"}],"tags":["reference data","court houses","venues"]},{"id":"api-cp-crime-hearing-results-validator","name":"Results Validation Service API","shortName":"api-cp-crime-hearing-results-validator","version":"latest","status":"Live","domain":"Hearing Results","classification":"Official","authType":"OAuth 2.0","description":"API for validating draft hearing results against declarative, programmatic, and LLM-assisted rules.","plainEnglish":"Validates draft hearing result records before they are published.","docsUrl":"https://hmcts.github.io/api-cp-crime-hearing-results-validator/","repoUrl":"https://github.com/hmcts/api-cp-crime-hearing-results-validator","team":"AMP","changelog":[{"version":"latest","date":"2025","notes":"Latest release"}],"tags":["validation","hearing results","rules"]},{"id":"api-cp-crime-schedulingandlisting-courtschedule","name":"Scheduling and Listing Court Schedule","shortName":"api-cp-crime-schedulingandlisting-courtschedule","version":"latest","status":"Live","domain":"Scheduling and Listing","classification":"Official","authType":"OAuth 2.0","description":"Scheduling and Listing API providing the court schedule.","plainEnglish":"Returns the court hearing schedule for a given court and date range.","docsUrl":"https://hmcts.github.io/api-cp-crime-schedulingandlisting-courtschedule/","repoUrl":"https://github.com/hmcts/api-cp-crime-schedulingandlisting-courtschedule","team":"AMP","changelog":[{"version":"latest","date":"2025","notes":"Latest release"}],"tags":["scheduling","listing","court schedule"]}];
 
 var EMBEDDED_SPECS = {};
@@ -1010,27 +1054,151 @@ var AU = null, AP = null, AR = 'consumer';
 
 function renderHome() {
   var grid = document.getElementById('apiGrid');
-  grid.innerHTML = APIS.map(function(api) {
-    return '<div class="app-api-card" onclick="showDetail(\'' + api.id + '\')" role="listitem" tabindex="0"' +
-      ' onkeydown="if(event.key===\'Enter\'||event.key===\' \')showDetail(\'' + api.id + '\')">' +
-      '<div class="app-api-card__top">' +
-        '<div style="display:flex;gap:6px;flex-wrap:wrap">' +
-          '<span class="app-tag app-tag--green">&#9679; ' + api.status + '</span>' +
-          '<span class="app-tag app-tag--grey">v' + api.version + '</span>' +
-          '<span class="app-tag app-tag--blue">' + api.domain + '</span>' +
+  if (!grid) return;
+
+  var search  = document.getElementById('searchBox') ? document.getElementById('searchBox').value.toLowerCase() : '';
+  var filtered = APIS.filter(function(api) {
+    /* Domain filter */
+    var domainChecks = document.querySelectorAll('#fg-domain-items input:checked');
+    if (domainChecks.length) {
+      var domains = Array.from(domainChecks).map(function(c){ return c.value; });
+      if (domains.indexOf(api.domain) < 0) return false;
+    }
+    /* Status filter */
+    var statusChecks = document.querySelectorAll('#fg-status-items input:checked');
+    if (statusChecks.length) {
+      var statuses = Array.from(statusChecks).map(function(c){ return c.value; });
+      if (statuses.indexOf(api.status) < 0) return false;
+    }
+    /* Classification filter */
+    var classChecks = document.querySelectorAll('#fg-class-items input:checked');
+    if (classChecks.length) {
+      var classes = Array.from(classChecks).map(function(c){ return c.value; });
+      if (classes.indexOf(api.classification) < 0) return false;
+    }
+    /* Team filter */
+    var teamChecks = document.querySelectorAll('#fg-team-items input:checked');
+    if (teamChecks.length) {
+      var teams = Array.from(teamChecks).map(function(c){ return c.value; });
+      if (teams.indexOf(api.team) < 0) return false;
+    }
+    /* Search */
+    if (search) {
+      var hay = (api.name + ' ' + api.description + ' ' + api.domain + ' ' + (api.tags||[]).join(' ')).toLowerCase();
+      if (hay.indexOf(search) < 0) return false;
+    }
+    return true;
+  });
+
+  /* Sort alphabetically */
+  filtered.sort(function(a,b){ return a.name.localeCompare(b.name); });
+
+  /* Update count */
+  var countEl = document.getElementById('cardCount');
+  if (countEl) countEl.textContent = 'Showing ' + filtered.length + ' API' + (filtered.length !== 1 ? 's' : '');
+
+  /* Build list */
+  var lastLetter = '';
+  grid.innerHTML = filtered.map(function(api) {
+    var letter = api.name.charAt(0).toUpperCase();
+    var showLetter = letter !== lastLetter;
+    lastLetter = letter;
+    var statusClass = api.status === 'Live' ? 'app-api-status-pill--live' : 'app-api-status-pill--beta';
+    var classTag = api.classification === 'Official-Sensitive'
+      ? '<span class="app-api-entry-tag app-api-entry-tag--os">' + api.classification + '</span>'
+      : '<span class="app-api-entry-tag">' + (api.classification || 'Official') + '</span>';
+    return '<div class="app-api-entry" role="listitem">' +
+      '<div class="app-api-letter-col"><div class="app-api-letter-box' + (showLetter ? '' : ' invisible') + '" aria-hidden="true" style="' + (showLetter ? '' : 'opacity:0') + '">' + letter + '</div></div>' +
+      '<div class="app-api-entry-content">' +
+        '<div class="app-api-status-row"><span class="app-api-status-pill ' + statusClass + '">' + api.status + '</span></div>' +
+        '<button class="app-api-entry-name" onclick="showDetail(\'' + api.id + '\')">' + api.name + '</button>' +
+        '<p class="app-api-entry-desc">' + api.description + '</p>' +
+        '<div class="app-api-entry-tags">' +
+          '<span class="app-api-entry-tag app-api-entry-tag--domain">' + api.domain + '</span>' +
+          classTag +
+          '<span class="app-api-entry-tag">' + (api.authType || 'OAuth 2.0') + '</span>' +
+          (api.team ? '<span class="app-api-entry-tag app-api-entry-tag--team">' + api.team + '</span>' : '') +
         '</div>' +
-        '<span class="app-tag app-tag--purple">' + api.authType + '</span>' +
-      '</div>' +
-      '<div class="app-api-card__name">' + api.name + '</div>' +
-      '<div class="app-api-card__id">' + api.shortName + '</div>' +
-      '<p class="app-api-card__desc">' + api.description + '</p>' +
-      '<div class="app-api-card__footer">' +
-        '<span class="app-api-card__meta">' + api.endpointCount + ' endpoint' + (api.endpointCount !== 1 ? 's' : '') + '</span>' +
-        '<span class="app-tag app-tag--blue">View details \u2192</span>' +
       '</div>' +
     '</div>';
   }).join('');
-  updateCount(APIS.length);
+
+  /* Update A-Z bar */
+  buildAzBar(filtered);
+
+  /* Update sidebar filter counts */
+  buildSidebarFilters(filtered);
+}
+
+function buildAzBar(filtered) {
+  var el = document.getElementById('azLetters');
+  if (!el) return;
+  var active = {};
+  filtered.forEach(function(a){ active[a.name.charAt(0).toUpperCase()] = true; });
+  var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  el.innerHTML = letters.map(function(l) {
+    var cls = active[l] ? 'app-az-btn' : 'app-az-btn inactive';
+    return '<span class="' + cls + '" onclick="' + (active[l] ? 'jumpToLetter(\'' + l + '\')' : '') + '">' + l + '</span>';
+  }).join('');
+}
+
+function jumpToLetter(letter) {
+  var entries = document.querySelectorAll('.app-api-entry');
+  for (var i = 0; i < entries.length; i++) {
+    var box = entries[i].querySelector('.app-api-letter-box');
+    if (box && box.textContent.trim() === letter && box.style.opacity !== '0') {
+      entries[i].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+  }
+}
+
+function buildSidebarFilters(allApis) {
+  buildFilterGroup('fg-domain-items', allApis, 'domain');
+  buildFilterGroup('fg-status-items', allApis, 'status');
+  buildFilterGroup('fg-class-items',  allApis, 'classification');
+  buildFilterGroup('fg-team-items',   allApis, 'team');
+}
+
+function buildFilterGroup(elId, apis, field) {
+  var el = document.getElementById(elId);
+  if (!el) return;
+  /* Count all APIs (not just filtered) for totals */
+  var counts = {};
+  APIS.forEach(function(a) {
+    var val = a[field] || 'Unknown';
+    counts[val] = (counts[val] || 0) + 1;
+  });
+  /* Preserve checked state */
+  var checked = {};
+  el.querySelectorAll('input:checked').forEach(function(c){ checked[c.value] = true; });
+  el.innerHTML = Object.keys(counts).sort().map(function(val) {
+    var id = elId + '-' + val.replace(/\s+/g,'-');
+    var isChecked = checked[val] ? ' checked' : '';
+    return '<div class="app-cat-filter-item">' +
+      '<input type="checkbox" id="' + id + '" value="' + val + '"' + isChecked + ' onchange="renderHome()">' +
+      '<label for="' + id + '">' + val + ' (' + counts[val] + ')</label>' +
+      '</div>';
+  }).join('');
+}
+
+function toggleFilterGroup(groupId, btn) {
+  var itemsEl = document.getElementById(groupId + '-items');
+  if (!itemsEl) return;
+  var isOpen = itemsEl.style.display !== 'none';
+  itemsEl.style.display = isOpen ? 'none' : 'block';
+  btn.setAttribute('aria-expanded', !isOpen);
+  var icon = btn.querySelector('i');
+  if (icon) {
+    icon.className = isOpen ? 'ti ti-chevron-down' : 'ti ti-chevron-up';
+  }
+}
+
+function resetFilters() {
+  document.querySelectorAll('.app-cat-filter-item input').forEach(function(c){ c.checked = false; });
+  var search = document.getElementById('searchBox');
+  if (search) search.value = '';
+  renderHome();
 }
 
 function updateCount(n) {
@@ -1040,43 +1208,7 @@ function updateCount(n) {
 
 var activeFilter = 'all';
 
-function filterCards(q) {
-  var lq = q.toLowerCase();
-  var filtered = APIS.filter(function(a) {
-    return (activeFilter === 'all' || a.domain === activeFilter) &&
-      (!lq || a.name.toLowerCase().includes(lq) || a.shortName.toLowerCase().includes(lq) ||
-       a.domain.toLowerCase().includes(lq) || a.description.toLowerCase().includes(lq) ||
-       a.tags.some(function(t) { return t.toLowerCase().includes(lq); }));
-  });
-  var grid = document.getElementById('apiGrid');
-  if (!filtered.length) {
-    grid.innerHTML = '<div style="grid-column:1/-1;padding:40px;text-align:center;color:#505a5f;border:1px solid #b1b4b6;background:#f3f2f1">' +
-      '<p class="govuk-body">No APIs match your search.</p>' +
-      '<p class="govuk-body-s">Can\'t find what you need? <a onclick="requestNewApi()" class="govuk-link" style="cursor:pointer">Request a new API to be listed</a>.</p></div>';
-  } else {
-    grid.innerHTML = filtered.map(function(api) {
-      return '<div class="app-api-card" onclick="showDetail(\'' + api.id + '\')" role="listitem" tabindex="0"' +
-        ' onkeydown="if(event.key===\'Enter\'||event.key===\' \')showDetail(\'' + api.id + '\')">' +
-        '<div class="app-api-card__top">' +
-          '<div style="display:flex;gap:6px;flex-wrap:wrap">' +
-            '<span class="app-tag app-tag--green">&#9679; ' + api.status + '</span>' +
-            '<span class="app-tag app-tag--grey">v' + api.version + '</span>' +
-            '<span class="app-tag app-tag--blue">' + api.domain + '</span>' +
-          '</div>' +
-          '<span class="app-tag app-tag--purple">' + api.authType + '</span>' +
-        '</div>' +
-        '<div class="app-api-card__name">' + api.name + '</div>' +
-        '<div class="app-api-card__id">' + api.shortName + '</div>' +
-        '<p class="app-api-card__desc">' + api.description + '</p>' +
-        '<div class="app-api-card__footer">' +
-          '<span class="app-api-card__meta">' + api.endpointCount + ' endpoint' + (api.endpointCount !== 1 ? 's' : '') + '</span>' +
-          '<span class="app-tag app-tag--blue">View details \u2192</span>' +
-        '</div>' +
-      '</div>';
-    }).join('');
-  }
-  updateCount(filtered.length);
-}
+function filterCards(q) { var s = document.getElementById("searchBox"); if(s) s.value = q||""; renderHome(); }
 
 function setFilter(domain, btn) {
   activeFilter = domain;
@@ -2694,6 +2826,126 @@ function doRegisterPage() {
   if (!ln)              errors.push('Enter your last name');
   if (!email)           errors.push('Enter your email address');
   if (!org)             errors.push('Enter your organisation');
+  if (!pwd || pwd.length < 8) errors.push('Password must be at least 8 characters');
+
+  var errBox  = document.getElementById('registerError');
+  var errList = document.getElementById('registerErrorList');
+  if (errors.length) {
+    if (errBox)  errBox.style.display = 'block';
+    if (errList) errList.innerHTML = errors.map(function(e){ return '<li>' + e + '</li>'; }).join('');
+    return;
+  }
+  if (errBox) errBox.style.display = 'none';
+
+  var users = lsU();
+  if (users[email]) {
+    if (errBox)  errBox.style.display = 'block';
+    if (errList) errList.innerHTML = '<li>An account with this email address already exists. <a href="#" onclick="showSignInCard(\'login\');return false;" style="color:#1d70b8">Sign in instead</a></li>';
+    return;
+  }
+
+  var id    = Date.now().toString(36) + Math.random().toString(36).slice(2,5);
+  var perms = defaultPermissions(role);
+  var user  = { id:id, fn:fn, ln:ln, email:email, pw:btoa(pwd), org:org, role:role, permissions:perms };
+  users[email] = user;
+  lsSU(users);
+  AU = user;
+  AP = { firstName:fn, lastName:ln, email:email, org:org, role:role, permissions:perms };
+  lsSess(user);
+  renderNav();
+  showDash();
+}
+
+/* ════════════════════════════════════════════════════════════
+   Live API catalogue sync from hmcts.github.io/amp-catalog
+   ════════════════════════════════════════════════════════════ */
+
+var AMP_CATALOG_URL = 'https://hmcts.github.io/amp-catalog/apis.json';
+
+function mapAmpApiToLocal(api) {
+  /* Map amp-catalog shape to prototype APIS shape */
+  var name = api.name || '';
+  var id   = api.id || name;
+  /* Derive domain from name heuristics */
+  var domain = 'General';
+  if (/scheduling|listing/i.test(name))      domain = 'Scheduling and Listing';
+  else if (/refdata|reference/i.test(name))  domain = 'Reference Data';
+  else if (/hearing.*result|subscription/i.test(name)) domain = 'Hearing Results';
+  else if (/validator|validation/i.test(name)) domain = 'Hearing Results';
+  else if (/prosecution|case|aggregator/i.test(name)) domain = 'Case Administration';
+
+  /* Classification heuristic */
+  var classification = /prosecution|crime.*case/i.test(name) ? 'Official-Sensitive' : 'Official';
+
+  return {
+    id:             id,
+    name:           api.title || name,
+    shortName:      name,
+    version:        api.version || 'latest',
+    status:         'Live',
+    domain:         domain,
+    classification: classification,
+    authType:       'OAuth 2.0',
+    description:    api.description || '',
+    plainEnglish:   api.description || '',
+    docsUrl:        'https://hmcts.github.io/' + name + '/',
+    repoUrl:        'https://github.com/hmcts/' + name,
+    team:           api.team || 'AMP',
+    changelog:      [{ version: api.version || 'latest', date: '2025', notes: 'Latest release' }],
+    tags:           api.tags || []
+  };
+}
+
+function fetchLiveCatalogue() {
+  var catalogBanner = document.getElementById('catalogSyncBanner');
+
+  fetch(AMP_CATALOG_URL)
+    .then(function(res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    })
+    .then(function(data) {
+      if (!data.apis || !data.apis.length) return;
+
+      /* Replace global APIS with live data */
+      APIS = data.apis.map(mapAmpApiToLocal);
+
+      /* Update domain filter list */
+      var domains = [];
+      APIS.forEach(function(a) {
+        if (domains.indexOf(a.domain) < 0) domains.push(a.domain);
+      });
+      DOMAINS = domains.sort();
+
+      /* Re-render if catalogue page is currently visible */
+      var homePage = document.getElementById('homePage');
+      if (homePage && homePage.classList.contains('app-page--active')) {
+        renderHome();
+        mergeApprovedIntoHome();
+      }
+
+      /* Show sync badge */
+      if (catalogBanner) {
+        catalogBanner.textContent = '\u2714 Synced from amp-catalog \u2014 ' + APIS.length + ' APIs';
+        catalogBanner.style.display = 'inline-block';
+      }
+
+      console.log('[amp-catalog] Loaded ' + APIS.length + ' APIs from live catalogue');
+    })
+    .catch(function(err) {
+      console.warn('[amp-catalog] Could not fetch live catalogue, using cached data:', err.message);
+      if (catalogBanner) {
+        catalogBanner.textContent = 'Using cached data';
+        catalogBanner.style.display = 'inline-block';
+      }
+    });
+}
+
+/* Fetch on page load */
+document.addEventListener('DOMContentLoaded', function() {
+  fetchLiveCatalogue();
+});
+(!org)             errors.push('Enter your organisation');
   if (!pwd || pwd.length < 8) errors.push('Password must be at least 8 characters');
 
   var errBox  = document.getElementById('registerError');

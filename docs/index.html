@@ -2723,6 +2723,96 @@ function doRegisterPage() {
   renderNav();
   showDash();
 }
+
+/* ════════════════════════════════════════════════════════════
+   Live API catalogue sync from hmcts.github.io/amp-catalog
+   ════════════════════════════════════════════════════════════ */
+
+var AMP_CATALOG_URL = 'https://hmcts.github.io/amp-catalog/apis.json';
+
+function mapAmpApiToLocal(api) {
+  /* Map amp-catalog shape to prototype APIS shape */
+  var name = api.name || '';
+  var id   = api.id || name;
+  /* Derive domain from name heuristics */
+  var domain = 'General';
+  if (/scheduling|listing/i.test(name))      domain = 'Scheduling and Listing';
+  else if (/refdata|reference/i.test(name))  domain = 'Reference Data';
+  else if (/hearing.*result|subscription/i.test(name)) domain = 'Hearing Results';
+  else if (/validator|validation/i.test(name)) domain = 'Hearing Results';
+  else if (/prosecution|case|aggregator/i.test(name)) domain = 'Case Administration';
+
+  /* Classification heuristic */
+  var classification = /prosecution|crime.*case/i.test(name) ? 'Official-Sensitive' : 'Official';
+
+  return {
+    id:             id,
+    name:           api.title || name,
+    shortName:      name,
+    version:        api.version || 'latest',
+    status:         'Live',
+    domain:         domain,
+    classification: classification,
+    authType:       'OAuth 2.0',
+    description:    api.description || '',
+    plainEnglish:   api.description || '',
+    docsUrl:        'https://hmcts.github.io/' + name + '/',
+    repoUrl:        'https://github.com/hmcts/' + name,
+    team:           api.team || 'AMP',
+    changelog:      [{ version: api.version || 'latest', date: '2025', notes: 'Latest release' }],
+    tags:           api.tags || []
+  };
+}
+
+function fetchLiveCatalogue() {
+  var catalogBanner = document.getElementById('catalogSyncBanner');
+
+  fetch(AMP_CATALOG_URL)
+    .then(function(res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    })
+    .then(function(data) {
+      if (!data.apis || !data.apis.length) return;
+
+      /* Replace global APIS with live data */
+      APIS = data.apis.map(mapAmpApiToLocal);
+
+      /* Update domain filter list */
+      var domains = [];
+      APIS.forEach(function(a) {
+        if (domains.indexOf(a.domain) < 0) domains.push(a.domain);
+      });
+      DOMAINS = domains.sort();
+
+      /* Re-render if catalogue page is currently visible */
+      var homePage = document.getElementById('homePage');
+      if (homePage && homePage.classList.contains('app-page--active')) {
+        renderHome();
+        mergeApprovedIntoHome();
+      }
+
+      /* Show sync badge */
+      if (catalogBanner) {
+        catalogBanner.textContent = '\u2714 Synced from amp-catalog \u2014 ' + APIS.length + ' APIs';
+        catalogBanner.style.display = 'inline-block';
+      }
+
+      console.log('[amp-catalog] Loaded ' + APIS.length + ' APIs from live catalogue');
+    })
+    .catch(function(err) {
+      console.warn('[amp-catalog] Could not fetch live catalogue, using cached data:', err.message);
+      if (catalogBanner) {
+        catalogBanner.textContent = 'Using cached data';
+        catalogBanner.style.display = 'inline-block';
+      }
+    });
+}
+
+/* Fetch on page load */
+document.addEventListener('DOMContentLoaded', function() {
+  fetchLiveCatalogue();
+});
 </script>
 </body>
 </html>

@@ -2972,11 +2972,7 @@ function fetchLiveCatalogue() {
     });
 }
 
-/* Fetch on page load */
-document.addEventListener('DOMContentLoaded', function() {
-  fetchLiveCatalogue();
-});
-(!org)             errors.push('Enter your organisation');
+  if (!org)             errors.push('Enter your organisation');
   if (!pwd || pwd.length < 8) errors.push('Password must be at least 8 characters');
 
   var errBox  = document.getElementById('registerError');

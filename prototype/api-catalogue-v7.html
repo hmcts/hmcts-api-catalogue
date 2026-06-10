@@ -1409,8 +1409,11 @@ function showMarketplace() {
 }
 
 function showDetail(apiId) {
+  console.log('[showDetail] called with id:', apiId);
+  console.log('[showDetail] APIS count:', APIS.length);
   var api = APIS.find(function(a) { return a.id === apiId; });
-  if (!api) return;
+  console.log('[showDetail] api found:', !!api, api ? JSON.stringify({id:api.id,name:api.name,desc:api.description&&api.description.slice(0,40)}) : 'null');
+  if (!api) { console.error('[showDetail] API not found in APIS array!'); return; }
   currentApi = api;
   hideAll();
   document.getElementById('detailPage').classList.add('app-page--active');

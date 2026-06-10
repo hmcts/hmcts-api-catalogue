@@ -1600,8 +1600,9 @@ function showDetail(apiId) {
     '<span>Classification: ' + (api.classification || 'Official') + '</span>' +
     (api.repoUrl ? '<span><a href="' + api.repoUrl + '" target="_blank" rel="noopener" class="govuk-link">Source repository</a></span>' : '');
   document.getElementById('dActions').innerHTML =
-    (api.docsUrl ? '<a class="govuk-button" href="' + api.docsUrl + '" target="_blank" rel="noopener">View API documentation</a>' : '') +
-    (api.repoUrl ? ' <a class="govuk-button govuk-button--secondary" href="' + api.repoUrl + '" target="_blank" rel="noopener">Source repository</a>' : '');
+    '<button class="govuk-button" onclick="showReqNew();return false;" style="margin-right:8px">Request access</button>' +
+    (api.docsUrl ? '<a class="govuk-button govuk-button--secondary" href="' + api.docsUrl + '" target="_blank" rel="noopener" style="margin-right:8px">View documentation</a>' : '') +
+    (api.repoUrl ? '<a class="govuk-button govuk-button--secondary" href="' + api.repoUrl + '" target="_blank" rel="noopener">Source repository</a>' : '');
   document.getElementById('dPlain').textContent = api.plainEnglish || api.description;
 
   var notesCard = document.getElementById('notesCard');

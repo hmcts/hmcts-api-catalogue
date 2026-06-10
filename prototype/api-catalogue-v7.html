@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>HMCTS API Catalogue</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/govuk-frontend@5.4.0/dist/govuk/govuk-frontend.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/govuk-frontend@5.4.0/dist/govuk/govuk-frontend.min.css">
 <style>
 /* ── GOV.UK Transport font (self-hosted via CDN) ──────────── */
 @font-face {
@@ -1409,11 +1410,8 @@ function showMarketplace() {
 }
 
 function showDetail(apiId) {
-  console.log('[showDetail] called with id:', apiId);
-  console.log('[showDetail] APIS count:', APIS.length);
   var api = APIS.find(function(a) { return a.id === apiId; });
-  console.log('[showDetail] api found:', !!api, api ? JSON.stringify({id:api.id,name:api.name,desc:api.description&&api.description.slice(0,40)}) : 'null');
-  if (!api) { console.error('[showDetail] API not found in APIS array!'); return; }
+  if (!api) return;
   currentApi = api;
   hideAll();
   document.getElementById('detailPage').classList.add('app-page--active');
@@ -1648,92 +1646,16 @@ async function loadSpec(api) {
     });
 }
 
-/* Minimal YAML parser for OpenAPI specs */
+/* YAML parser using js-yaml CDN */
 function parseYamlSpec(yamlText) {
   try {
-    /* Use js-yaml if available, otherwise fall back to basic line parser */
-    if (typeof jsyaml !== 'undefined') return jsyaml.load(yamlText);
-
-    /* Basic structural parser - handles the OpenAPI spec format */
-    var lines = yamlText.split('\n');
-    var result = {};
-    var currentPath = [];
-    var currentIndent = 0;
-    var stack = [{ obj: result, indent: -1 }];
-
-    /* Simple approach: JSON-parse the parts we need via regex */
-    var titleMatch   = yamlText.match(/^\s*title:\s*(.+)$/m);
-    var descMatch    = yamlText.match(/^\s*description:\s*\|?\n([\s\S]*?)(?=\n\S|\ninfo:|\nversion:|$)/m);
-    var versionMatch = yamlText.match(/^info:[\s\S]*?version:\s*([^\n]+)/m);
-
-    /* Extract paths */
-    var pathsSection = yamlText.match(/^paths:([\s\S]*?)(?=^\w|^components:|$)/m);
-    var paths = {};
-    if (pathsSection) {
-      var pathMatches = pathsSection[1].matchAll(/^  (\/[^:]+):/gm);
-      for (var pm of pathMatches) {
-        var pathKey = pm[1].trim();
-        paths[pathKey] = {};
-        var methods = ['get','post','put','patch','delete','head','options'];
-        var pathBlock = yamlText.slice(yamlText.indexOf('\n  ' + pathKey + ':') + 1);
-        var nextPath = pathBlock.match(/^  \/[^:]+:/m);
-        var pathContent = nextPath ? pathBlock.slice(0, nextPath.index) : pathBlock.slice(0, 2000);
-        methods.forEach(function(m) {
-          var mMatch = pathContent.match(new RegExp('^    ' + m + ':', 'm'));
-          if (mMatch) {
-            paths[pathKey][m] = {};
-            var sumMatch  = pathContent.slice(pathContent.indexOf('    ' + m + ':')).match(/summary:\s*(.+)/);
-            var descMatch2 = pathContent.slice(pathContent.indexOf('    ' + m + ':')).match(/description:\s*(.+)/);
-            var paramsSection = pathContent.slice(pathContent.indexOf('    ' + m + ':')).match(/parameters:([\s\S]*?)(?=      \w|    \w|$)/);
-            if (sumMatch)   paths[pathKey][m].summary     = sumMatch[1].trim();
-            if (descMatch2) paths[pathKey][m].description = descMatch2[1].trim();
-            if (paramsSection) {
-              var paramMatches = paramsSection[1].matchAll(/- in:\s*(\w+)[\s\S]*?name:\s*(\S+)/g);
-              paths[pathKey][m].parameters = [];
-              for (var p of paramMatches) {
-                paths[pathKey][m].parameters.push({ in: p[1], name: p[2] });
-              }
-            }
-          }
-        });
-      }
+    if (typeof jsyaml !== 'undefined') {
+      return jsyaml.load(yamlText);
     }
-
-    /* Extract schemas */
-    var schemas = {};
-    var schemasSection = yamlText.match(/^  schemas:([\s\S]*?)(?=^  \w(?!\s)|^\w|$)/m);
-    if (schemasSection) {
-      var schemaMatches = schemasSection[1].matchAll(/^    (\w[\w]+):/gm);
-      for (var sm of schemaMatches) {
-        var sName = sm[1];
-        schemas[sName] = { properties: {} };
-        var sBlock = yamlText.slice(yamlText.indexOf('\n    ' + sName + ':') + 1);
-        var nextSchema = sBlock.match(/^    \w[\w]+:/m);
-        var sContent = nextSchema ? sBlock.slice(0, nextSchema.index) : sBlock.slice(0, 2000);
-        var propMatches = sContent.matchAll(/^        (\w[\w]+):/gm);
-        for (var prop of propMatches) {
-          var pName = prop[1];
-          schemas[sName].properties[pName] = {};
-          var pBlock = sContent.slice(sContent.indexOf('\n        ' + pName + ':'));
-          var typeMatch = pBlock.match(/^          type:\s*(\S+)/m);
-          var pDescMatch = pBlock.match(/^          description:\s*(.+)/m);
-          if (typeMatch) schemas[sName].properties[pName].type = typeMatch[1];
-          if (pDescMatch) schemas[sName].properties[pName].description = pDescMatch[1].trim();
-        }
-      }
-    }
-
-    return {
-      info: {
-        title:       titleMatch   ? titleMatch[1].trim()   : '',
-        description: descMatch    ? descMatch[1].replace(/^    /gm, '').trim() : '',
-        version:     versionMatch ? versionMatch[1].trim() : 'latest'
-      },
-      paths: paths,
-      components: { schemas: schemas }
-    };
+    console.warn('[parseYamlSpec] js-yaml not available, returning null');
+    return null;
   } catch(e) {
-    console.error('[parseYamlSpec] Error:', e);
+    console.error('[parseYamlSpec] Error:', e.message);
     return null;
   }
 }
@@ -3297,6 +3219,8 @@ function fetchLiveCatalogue() {
 document.addEventListener('DOMContentLoaded', function() {
   fetchLiveCatalogue();
 });
+
+function mergeApprovedIntoHome() { /* stub */ }
 </script>
 </body>
 </html>

@@ -1083,6 +1083,7 @@ body, input, select, textarea, button {
           <button class="app-dash-nav__item app-dash-nav__item--active" onclick="dPanel('p','ov',this)">Overview</button>
           <button class="app-dash-nav__item" onclick="dPanel('p','myapis',this)">My APIs</button>
           <button class="app-dash-nav__item" onclick="dPanel('p','incoming',this);renderIncomingRequests()">Access requests <span id='incomingBadge' style='display:none;background:#d4351c;color:#fff;border-radius:10px;padding:1px 7px;font-size:12px;font-weight:700;margin-left:4px'>0</span></button>
+          <button class="app-dash-nav__item" onclick="dPanel('p','standards',this)">API Standards</button>
           <button class="app-dash-nav__item" onclick="dPanel('p','publish',this)">Publish API</button>
           <button class="app-dash-nav__item" onclick="dPanel('p','prof',this)">My profile</button>
           <button class="app-dash-nav__item app-dash-nav__item--danger" onclick="doLogout()">Sign out</button>
@@ -1119,6 +1120,24 @@ body, input, select, textarea, button {
         <div class="app-dash-panel" id="p-publish">
           <div id="pub-tasklist" class="app-step-form app-step-form--active">
             <h1 class="govuk-heading-l">Publish an API</h1>
+            <details class="govuk-details" style="margin-bottom:16px">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">Check you meet the API Standards before submitting</span>
+              </summary>
+              <div class="govuk-details__text">
+                <p class="govuk-body govuk-!-margin-bottom-8">Before submitting, confirm your API meets these requirements:</p>
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>Valid OpenAPI 3.x spec at <code>src/main/resources/openapi/openapi-spec.yml</code></li>
+                  <li>Correct <code>servers</code> block — no SwaggerHub URLs</li>
+                  <li>Spectral OAS3 linting passes with no errors</li>
+                  <li>GitHub Actions <code>publish-api-docs.yml</code> workflow added to your repo</li>
+                  <li>Swagger UI site live at <code>https://hmcts.github.io/&lt;repo-name&gt;/</code></li>
+                  <li>API is external and safe to expose publicly</li>
+                  <li>Description is plain English and tells consumers what the API does</li>
+                </ul>
+                <a class="govuk-link" href="#" onclick="dPanel('p','standards',document.querySelectorAll('.app-dash-nav__item')[3]);return false;">View full API Standards &rarr;</a>
+              </div>
+            </details>
             <div id="pubDraftNotice" style="display:none" class="govuk-inset-text">You have a saved draft. Your progress has been restored. <a class="govuk-link" href="#" onclick="discardPubDraft();return false;">Discard draft and start again</a></div>
             <p class="govuk-body">Complete all sections before submitting your API for review. The marketplace team will add it to the catalogue once approved.</p>
             <p class="app-task-progress" id="pub-task-progress">0 of 3 sections completed</p>
@@ -1178,6 +1197,121 @@ body, input, select, textarea, button {
             <button class="govuk-button govuk-button--secondary" onclick="showPubStep('tasklist')" style="margin-left:12px">Save and come back later</button>
           </div>
         <div class="app-dash-panel" id="p-prof"><h1 class="govuk-heading-l">My profile</h1><div class="app-form-card"><div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px"><div class="govuk-form-group" style="margin:0"><label class="govuk-label govuk-label--s" for="pPFn">First name</label><input class="govuk-input" id="pPFn" type="text"></div><div class="govuk-form-group" style="margin:0"><label class="govuk-label govuk-label--s" for="pPLn">Last name</label><input class="govuk-input" id="pPLn" type="text"></div></div><div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="pPEm">Email</label><input class="govuk-input" id="pPEm" type="email" readonly style="background:#f3f2f1;cursor:not-allowed"></div><div class="govuk-form-group"><label class="govuk-label govuk-label--s" for="pPOrg">Organisation</label><input class="govuk-input" id="pPOrg" type="text"></div><button class="govuk-button govuk-button--secondary" onclick="saveProf('p')">Save changes</button></div></div>
+        <div class="app-dash-panel" id="p-standards" style="display:none">
+            <h1 class="govuk-heading-l">API Standards</h1>
+            <p class="govuk-body">Before listing an API on the HMCTS API Marketplace, producers must meet the following standards. Use this checklist to assess your API&rsquo;s readiness.</p>
+
+            <div class="govuk-inset-text">
+              These standards are based on the <a class="govuk-link" href="https://hmcts.github.io/restful-api-standards/" target="_blank" rel="noopener">HMCTS RESTful API Standards</a> and the <a class="govuk-link" href="https://github.com/hmcts/amp-catalog" target="_blank" rel="noopener">AMP Catalogue onboarding process</a>.
+            </div>
+
+            <h2 class="govuk-heading-m" style="border-top:2px solid #1d70b8;padding-top:16px">1. Technical requirements</h2>
+
+            <dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">OpenAPI 3.x spec</dt>
+                <dd class="govuk-summary-list__value">Must exist at <code>src/main/resources/openapi/openapi-spec.yml</code> with <code>info.title</code>, <code>info.description</code> and <code>info.version</code> populated</dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Servers block</dt>
+                <dd class="govuk-summary-list__value">Must follow <code>https://&lt;repo-name&gt;.net/{version}</code> — no SwaggerHub URLs. Version is stamped automatically from the GitHub release tag.</dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Spectral linting</dt>
+                <dd class="govuk-summary-list__value">Spec must pass the standard Spectral OAS3 ruleset with no errors</dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">GitHub Actions workflow</dt>
+                <dd class="govuk-summary-list__value">Add <code>.github/workflows/publish-api-docs.yml</code> referencing the amp-catalog shared workflow at <code>@v1</code></dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Published docs site</dt>
+                <dd class="govuk-summary-list__value">Swagger UI must be live at <code>https://hmcts.github.io/&lt;repo-name&gt;/</code> before submitting to the catalogue</dd>
+              </div>
+            </dl>
+
+            <h2 class="govuk-heading-m" style="border-top:2px solid #1d70b8;padding-top:16px;margin-top:24px">2. Eligibility</h2>
+
+            <div class="govuk-warning-text">
+              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+              <strong class="govuk-warning-text__text"><span class="govuk-visually-hidden">Warning</span>Only external APIs may be listed. Internal APIs must not be exposed publicly via GitHub Pages.</strong>
+            </div>
+
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__header">API type</th>
+                  <th class="govuk-table__header">Eligible?</th>
+                  <th class="govuk-table__header">Notes</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">External, documentation-only</td>
+                  <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Eligible</strong></td>
+                  <td class="govuk-table__cell">Spec is world-readable via GitHub Pages</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">External, with mock execution</td>
+                  <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Eligible</strong></td>
+                  <td class="govuk-table__cell">Try-It disabled; documentation only</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Internal / developers only</td>
+                  <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Not eligible</strong></td>
+                  <td class="govuk-table__cell">Must wait for the APIM Developer Portal</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h2 class="govuk-heading-m" style="border-top:2px solid #1d70b8;padding-top:16px;margin-top:24px">3. Specification quality</h2>
+            <p class="govuk-body">Your OpenAPI spec should meet the following quality standards to ensure a good experience for consumers browsing the marketplace:</p>
+            <dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Title</dt>
+                <dd class="govuk-summary-list__value">Clear, human-readable name (not the repo slug)</dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Description</dt>
+                <dd class="govuk-summary-list__value">Plain-English summary of what the API does and who it is for &mdash; minimum one sentence</dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Contact email</dt>
+                <dd class="govuk-summary-list__value">A real team inbox (not <code>no-reply@hmcts.com</code>)</dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Endpoint summaries</dt>
+                <dd class="govuk-summary-list__value">Every operation must have a <code>summary</code> and <code>description</code></dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Schema definitions</dt>
+                <dd class="govuk-summary-list__value">All request and response bodies defined as named schemas in <code>components/schemas</code></dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Security scheme</dt>
+                <dd class="govuk-summary-list__value">Authentication method declared (e.g. <code>bearerAuth</code>) and applied to all protected operations</dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Error responses</dt>
+                <dd class="govuk-summary-list__value">400, 401, 404 and 500 responses documented for each operation</dd>
+              </div>
+            </dl>
+
+            <h2 class="govuk-heading-m" style="border-top:2px solid #1d70b8;padding-top:16px;margin-top:24px">4. Process</h2>
+            <ol class="govuk-list govuk-list--number">
+              <li>Ensure your API repo is <strong>public</strong> on GitHub</li>
+              <li>Add the <code>publish-api-docs.yml</code> workflow and raise a PR</li>
+              <li>Once merged, trigger the workflow manually or cut a release</li>
+              <li>Confirm the Swagger UI site is live at <code>https://hmcts.github.io/&lt;repo-name&gt;/</code></li>
+              <li>Submit via the <a class="govuk-link" href="#" onclick="dPanel('p','publish',document.querySelectorAll('.app-dash-nav__item')[4]);return false;">Publish API</a> form in this dashboard</li>
+              <li>The marketplace team will review and approve within 2 working days</li>
+            </ol>
+
+            <div class="govuk-inset-text" style="border-left-color:#00703c">
+              Ready to submit? Go to <a class="govuk-link" href="#" onclick="dPanel('p','publish',document.querySelectorAll('.app-dash-nav__item')[4]);return false;">Publish API &rarr;</a>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

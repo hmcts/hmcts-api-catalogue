@@ -541,10 +541,10 @@ body, input, select, textarea, button {
         <button class="app-hero__search-btn" type="button">Search</button>
       </div>
       <div class="app-hero__stats" role="list" aria-label="Catalogue statistics">
-        <div role="listitem"><div class="app-hero__stat-num">6</div><div class="app-hero__stat-label">APIs available</div></div>
-        <div role="listitem"><div class="app-hero__stat-num">6</div><div class="app-hero__stat-label">Live in production</div></div>
-        <div role="listitem"><div class="app-hero__stat-num">5</div><div class="app-hero__stat-label">Domains covered</div></div>
-        <div role="listitem"><div class="app-hero__stat-num">25+</div><div class="app-hero__stat-label">Endpoints documented</div></div>
+        <div role="listitem"><div class="app-hero__stat-num" id="statApiCount">6</div><div class="app-hero__stat-label">APIs available</div></div>
+        <div role="listitem"><div class="app-hero__stat-num" id="statLiveCount">6</div><div class="app-hero__stat-label">Live in production</div></div>
+        <div role="listitem"><div class="app-hero__stat-num" id="statDomainCount">5</div><div class="app-hero__stat-label">Domains covered</div></div>
+        <div role="listitem"><div class="app-hero__stat-num" id="statEndpointCount">25+</div><div class="app-hero__stat-label">Endpoints documented</div></div>
       </div>
     </div>
   </div>
@@ -1237,6 +1237,29 @@ function renderHome() {
   /* Update count */
   var countEl = document.getElementById('cardCount');
   if (countEl) countEl.textContent = 'Showing ' + filtered.length + ' API' + (filtered.length !== 1 ? 's' : '');
+
+  /* Update hero stats from live APIS array */
+  var statApi    = document.getElementById('statApiCount');
+  var statLive   = document.getElementById('statLiveCount');
+  var statDomain = document.getElementById('statDomainCount');
+  var domains    = [];
+  APIS.forEach(function(a) { if (a.domain && domains.indexOf(a.domain) < 0) domains.push(a.domain); });
+  var liveCount  = APIS.filter(function(a) { return a.status === 'Live'; }).length;
+  if (statApi)    statApi.textContent    = APIS.length;
+  if (statLive)   statLive.textContent   = liveCount;
+  if (statDomain) statDomain.textContent = domains.length;
+  /* Endpoint count updated async by loadSpec calls — leave statEndpointCount alone here */
+
+  /* Update hero stats dynamically from live APIS array */
+  var statApi    = document.getElementById('statApiCount');
+  var statLive   = document.getElementById('statLiveCount');
+  var statDomain = document.getElementById('statDomainCount');
+  var domains    = [];
+  APIS.forEach(function(a) { if (a.domain && domains.indexOf(a.domain) < 0) domains.push(a.domain); });
+  var liveCount  = APIS.filter(function(a) { return a.status === 'Live'; }).length;
+  if (statApi)    statApi.textContent    = APIS.length;
+  if (statLive)   statLive.textContent   = liveCount;
+  if (statDomain) statDomain.textContent = domains.length;
 
   /* Empty state */
   if (filtered.length === 0) {

@@ -413,11 +413,217 @@ body, input, select, textarea, button {
     <a class="app-subnav__link app-subnav__link--active" id="navMarket" onclick="showHome();setActiveNav('navMarket');return false;" href="#">What is the API Marketplace?</a>
     <a class="app-subnav__link" id="navBrowse" onclick="showMarketplace();setActiveNav('navBrowse');return false;" href="#">API Catalogue</a>
     <a class="app-subnav__link" id="navDash" onclick="showDash();setActiveNav('navDash');return false;" href="#">My dashboard</a>
+    <a class="app-subnav__link" id="navStandards" onclick="showProducerStandards();setActiveNav('navStandards');return false;" href="#">Producer standards</a>
     <a class="app-subnav__link" id="navGuide" onclick="showGuidance();setActiveNav('navGuide');return false;" href="#">Consumer guidance</a>
     <div style="flex:1"></div>
     <a class="app-subnav__signin" id="navSignIn" onclick="showAuth('login');return false;" href="#">Sign in</a>
   </div>
 </nav>
+
+<!-- PRODUCER STANDARDS PAGE -->
+<div id="producerStandardsPage" class="app-page">
+  <div class="app-hero">
+    <div class="app-hero__inner">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:24px;padding-top:8px">
+        <strong class="govuk-tag">Alpha</strong>
+        <span style="font-size:13px;color:white">This is a new service &mdash; <a href="#" style="color:white">give your feedback</a> to help us improve it.</span>
+      </div>
+      <h1 class="govuk-heading-xl" style="color:white;margin-bottom:8px">API Producer Standards</h1>
+      <p class="app-hero__lead">Standards and requirements for listing an API on the HMCTS API Marketplace.</p>
+    </div>
+  </div>
+
+  <div class="govuk-width-container" style="padding-top:40px;padding-bottom:60px">
+    <div class="govuk-grid-row">
+
+      <div class="govuk-grid-column-one-quarter">
+        <nav aria-label="Page contents" style="position:sticky;top:24px">
+          <p class="govuk-body-s" style="font-weight:700;margin-bottom:8px;color:#505a5f;text-transform:uppercase;letter-spacing:.05em;font-size:12px">Contents</p>
+          <ol class="govuk-list" style="border-left:4px solid #b1b4b6;padding-left:12px;margin:0">
+            <li style="margin-bottom:8px"><a class="govuk-link" href="#ps-s1">Technical requirements</a></li>
+            <li style="margin-bottom:8px"><a class="govuk-link" href="#ps-s2">Eligibility criteria</a></li>
+            <li style="margin-bottom:8px"><a class="govuk-link" href="#ps-s3">Specification quality</a></li>
+            <li style="margin-bottom:8px"><a class="govuk-link" href="#ps-s4">Onboarding process</a></li>
+            <li style="margin-bottom:8px"><a class="govuk-link" href="#ps-s5">Ongoing responsibilities</a></li>
+          </ol>
+        </nav>
+      </div>
+
+      <div class="govuk-grid-column-three-quarters">
+
+        <div class="govuk-inset-text">
+          These standards are based on the <a class="govuk-link" href="https://hmcts.github.io/restful-api-standards/" target="_blank" rel="noopener">HMCTS RESTful API Standards</a> and the <a class="govuk-link" href="https://github.com/hmcts/amp-catalog" target="_blank" rel="noopener">AMP Catalogue onboarding process</a>. If you have questions, <a class="govuk-link" href="mailto:no-reply@hmcts.com">contact the marketplace team</a>.
+        </div>
+
+        <!-- Section 1 -->
+        <section id="ps-s1">
+          <h2 class="govuk-heading-l" style="border-top:2px solid #1d70b8;padding-top:16px">1. Technical requirements</h2>
+          <p class="govuk-body">Your API must meet the following technical requirements before it can be listed on the marketplace.</p>
+
+          <h3 class="govuk-heading-m">OpenAPI 3.x specification</h3>
+          <p class="govuk-body">Your API must have a valid OpenAPI 3.x specification file at the following path in your repository:</p>
+          <pre style="background:#f3f2f1;padding:12px 16px;font-size:14px;overflow-x:auto;margin-bottom:16px;border-left:4px solid #1d70b8">src/main/resources/openapi/openapi-spec.yml</pre>
+          <p class="govuk-body">The specification must include:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li><code>info.title</code> &mdash; a clear, human-readable API name</li>
+            <li><code>info.description</code> &mdash; a plain-English summary of what the API does</li>
+            <li><code>info.version</code> &mdash; the current version (stamped automatically from the GitHub release tag)</li>
+            <li>At least one path with at least one operation</li>
+          </ul>
+
+          <h3 class="govuk-heading-m">Servers block</h3>
+          <p class="govuk-body">The <code>servers</code> block must follow the standard HMCTS pattern. Do not use SwaggerHub virtual server URLs.</p>
+          <pre style="background:#f3f2f1;padding:12px 16px;font-size:14px;overflow-x:auto;margin-bottom:16px;border-left:4px solid #1d70b8">servers:
+  - description: &lt;API title&gt;
+    url: https://&lt;repo-name&gt;.net/{version}
+    variables:
+      version:
+        default: &lt;info.version&gt;</pre>
+          <div class="govuk-warning-text">
+            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+            <strong class="govuk-warning-text__text"><span class="govuk-visually-hidden">Warning</span>Do not hand-bump the version. It is stamped automatically when you cut a GitHub release.</strong>
+          </div>
+
+          <h3 class="govuk-heading-m">Spectral linting</h3>
+          <p class="govuk-body">Your specification must pass the standard <a class="govuk-link" href="https://stoplight.io/open-source/spectral" target="_blank" rel="noopener">Spectral OAS3 ruleset</a> with no errors. Run locally before submitting:</p>
+          <pre style="background:#f3f2f1;padding:12px 16px;font-size:14px;overflow-x:auto;margin-bottom:16px;border-left:4px solid #1d70b8">spectral lint src/main/resources/openapi/openapi-spec.yml</pre>
+
+          <h3 class="govuk-heading-m">GitHub Actions workflow</h3>
+          <p class="govuk-body">Add the following file to your repository to publish documentation automatically on each release:</p>
+          <pre style="background:#f3f2f1;padding:12px 16px;font-size:14px;overflow-x:auto;margin-bottom:16px;border-left:4px solid #1d70b8">.github/workflows/publish-api-docs.yml</pre>
+          <p class="govuk-body">This triggers the shared <code>amp-catalog</code> workflow pinned to <code>@v1</code>. See the <a class="govuk-link" href="https://github.com/hmcts/amp-catalog" target="_blank" rel="noopener">amp-catalog repository</a> for the full workflow template.</p>
+        </section>
+
+        <!-- Section 2 -->
+        <section id="ps-s2" style="margin-top:40px">
+          <h2 class="govuk-heading-l" style="border-top:2px solid #1d70b8;padding-top:16px">2. Eligibility criteria</h2>
+
+          <div class="govuk-warning-text">
+            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+            <strong class="govuk-warning-text__text"><span class="govuk-visually-hidden">Warning</span>Only external APIs may be listed. Internal APIs must not be exposed publicly via GitHub Pages.</strong>
+          </div>
+
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header">API type</th>
+                <th class="govuk-table__header">Eligible?</th>
+                <th class="govuk-table__header">Notes</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">External, documentation-only</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Eligible</strong></td>
+                <td class="govuk-table__cell">Spec is world-readable via GitHub Pages</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">External, with mock execution</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Eligible</strong></td>
+                <td class="govuk-table__cell">Try-It disabled; documentation only in marketplace</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Internal / developers only</td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Not eligible</strong></td>
+                <td class="govuk-table__cell">Must wait for the APIM Developer Portal</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="govuk-body">Your API repository must also be <strong>public on GitHub</strong>. The documentation site is served via GitHub Pages and must return HTTP 200 at <code>https://hmcts.github.io/&lt;repo-name&gt;/</code> before your listing goes live.</p>
+        </section>
+
+        <!-- Section 3 -->
+        <section id="ps-s3" style="margin-top:40px">
+          <h2 class="govuk-heading-l" style="border-top:2px solid #1d70b8;padding-top:16px">3. Specification quality</h2>
+          <p class="govuk-body">Your OpenAPI specification should meet the following quality standards. These ensure a good experience for consumers browsing the marketplace and directly power the information shown on each API&rsquo;s detail page.</p>
+
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Title</dt>
+              <dd class="govuk-summary-list__value">Clear, human-readable name &mdash; not the repository slug</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Plain-English description</dt>
+              <dd class="govuk-summary-list__value">A consumer-focused summary of what the API does, who it is for, and what data it returns. This is shown directly in the marketplace under &ldquo;What does this API do?&rdquo;</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Contact email</dt>
+              <dd class="govuk-summary-list__value">A real team inbox &mdash; not <code>no-reply@hmcts.com</code></dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Endpoint summaries</dt>
+              <dd class="govuk-summary-list__value">Every operation must have a <code>summary</code> and a <code>description</code></dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Schema definitions</dt>
+              <dd class="govuk-summary-list__value">All request and response bodies defined as named schemas in <code>components/schemas</code> with property descriptions</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Security scheme</dt>
+              <dd class="govuk-summary-list__value">Authentication method declared (e.g. <code>bearerAuth</code>) and applied to all protected operations</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Error responses</dt>
+              <dd class="govuk-summary-list__value">400, 401, 404 and 500 responses documented for each operation</dd>
+            </div>
+          </dl>
+        </section>
+
+        <!-- Section 4 -->
+        <section id="ps-s4" style="margin-top:40px">
+          <h2 class="govuk-heading-l" style="border-top:2px solid #1d70b8;padding-top:16px">4. Onboarding process</h2>
+          <ol class="govuk-list govuk-list--number">
+            <li style="margin-bottom:12px">Ensure your API repository is <strong>public</strong> on GitHub under the HMCTS organisation</li>
+            <li style="margin-bottom:12px">Add the <code>publish-api-docs.yml</code> workflow to <code>.github/workflows/</code> and raise a PR</li>
+            <li style="margin-bottom:12px">Once merged, trigger the workflow manually or cut a GitHub release &mdash; the version is stamped from the release tag</li>
+            <li style="margin-bottom:12px">Confirm the Swagger UI documentation site is live at <code>https://hmcts.github.io/&lt;repo-name&gt;/</code></li>
+            <li style="margin-bottom:12px">Register as a Producer and submit your API via the <a class="govuk-link" href="#" onclick="showAuth('login');return false;">Publish API</a> form in your producer dashboard</li>
+            <li style="margin-bottom:12px">The marketplace team will review and approve your submission within 2 working days</li>
+            <li style="margin-bottom:12px">Once approved, your API will appear in the catalogue and be automatically kept in sync with your specification</li>
+          </ol>
+
+          <div class="govuk-inset-text" style="border-left-color:#00703c">
+            Ready to publish? <a class="govuk-link" href="#" onclick="showAuth('login');return false;">Sign in or register</a> and go to the Publish API section of your producer dashboard.
+          </div>
+        </section>
+
+        <!-- Section 5 -->
+        <section id="ps-s5" style="margin-top:40px">
+          <h2 class="govuk-heading-l" style="border-top:2px solid #1d70b8;padding-top:16px">5. Ongoing responsibilities</h2>
+          <p class="govuk-body">Once your API is listed, you are responsible for:</p>
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Keeping the spec current</dt>
+              <dd class="govuk-summary-list__value">Update your OpenAPI specification whenever you make changes to the API. Cut a new GitHub release to publish the updated documentation.</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Notifying consumers of breaking changes</dt>
+              <dd class="govuk-summary-list__value">Inform consumers of breaking changes with sufficient notice. Use the access requests in your producer dashboard to contact affected consumers.</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Reviewing access requests promptly</dt>
+              <dd class="govuk-summary-list__value">Respond to consumer access requests within 2 working days. Provide a clear reason if rejecting.</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Maintaining contact details</dt>
+              <dd class="govuk-summary-list__value">Keep the <code>info.contact.email</code> field in your spec pointing to an active team inbox</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Deprecation and removal</dt>
+              <dd class="govuk-summary-list__value">If you need to remove an API, notify all consumers and the marketplace team at least 30 days in advance</dd>
+            </div>
+          </dl>
+
+          <div class="govuk-inset-text">
+            Questions about your listing? <a class="govuk-link" href="mailto:no-reply@hmcts.com">Contact the marketplace team</a> or manage your APIs from your <a class="govuk-link" href="#" onclick="showAuth('login');return false;">producer dashboard</a>.
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- CONSUMER GUIDANCE PAGE -->
 <div id="guidancePage" class="app-page">
@@ -1101,7 +1307,7 @@ body, input, select, textarea, button {
   <footer class="govuk-footer" role="contentinfo">
     <div class="govuk-footer__inner">
       <div class="govuk-footer__navigation">
-        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">API Catalogue</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a onclick="showHome();return false;" href="#" class="govuk-footer__link">API Catalogue</a></li><li class="govuk-footer__list-item"><a onclick="showMarketplace();return false;" href="#" class="govuk-footer__link">What is API Catalogue?</a></li><li class="govuk-footer__list-item"><a onclick="showGuidance();return false;" href="#" class="govuk-footer__link">Consumer guidance</a></li><li class="govuk-footer__list-item"><a href="https://hmcts.github.io/amp-catalog/" target="_blank" rel="noopener" class="govuk-footer__link">AMP Catalogue</a></li></ul></div>
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">API Catalogue</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a onclick="showHome();return false;" href="#" class="govuk-footer__link">API Catalogue</a></li><li class="govuk-footer__list-item"><a onclick="showMarketplace();return false;" href="#" class="govuk-footer__link">What is API Catalogue?</a></li><li class="govuk-footer__list-item"><a onclick="showGuidance();return false;" href="#" class="govuk-footer__link">Consumer guidance</a></li><li class="govuk-footer__list-item"><a onclick="showProducerStandards();return false;" href="#" class="govuk-footer__link">Producer standards</a></li><li class="govuk-footer__list-item"><a href="https://hmcts.github.io/amp-catalog/" target="_blank" rel="noopener" class="govuk-footer__link">AMP Catalogue</a></li></ul></div>
         <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:no-reply@hmcts.com" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a onclick="requestNewApi();return false;" href="#" class="govuk-footer__link">Request a new API</a></li></ul></div>
         <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Policies</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Accessibility statement</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Cookies</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Privacy notice</a></li></ul></div>
       </div>
@@ -1679,7 +1885,7 @@ function setFilter(domain, btn) {
 }
 
 function hideAll() {
-  ['homePage','detailPage','marketplacePage','consDash','prodDash','signInPage','guidancePage'].forEach(function(id) {
+  ['homePage','detailPage','marketplacePage','consDash','prodDash','signInPage','guidancePage','producerStandardsPage'].forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.classList.remove('app-page--active');
   });
@@ -3587,6 +3793,13 @@ function showGuidance() {
   hideAll();
   document.getElementById('guidancePage').classList.add('app-page--active');
   setActiveNav('navGuide');
+  window.scrollTo(0, 0);
+}
+
+function showProducerStandards() {
+  hideAll();
+  document.getElementById('producerStandardsPage').classList.add('app-page--active');
+  setActiveNav('navStandards');
   window.scrollTo(0, 0);
 }
 </script>

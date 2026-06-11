@@ -3391,6 +3391,33 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function mergeApprovedIntoHome() { /* stub */ }
+
+function showReqNew() {
+  if (!AU || !AP) {
+    /* Not logged in — go to sign in page */
+    showAuth('login');
+    return;
+  }
+  /* Logged in — go to consumer dashboard, open Request access panel */
+  showCDash();
+  /* Navigate to the access request panel */
+  var accessBtn = document.querySelector('#consDash .app-dash-nav__item[onclick*="access"]');
+  if (accessBtn) accessBtn.click();
+  /* Pre-fill the API name if we came from a detail page */
+  if (currentApi) {
+    var apiField = document.getElementById('reqApiName');
+    if (apiField) apiField.value = currentApi.name;
+    var apiSelect = document.getElementById('reqApi');
+    if (apiSelect) {
+      for (var i = 0; i < apiSelect.options.length; i++) {
+        if (apiSelect.options[i].value === currentApi.id) {
+          apiSelect.selectedIndex = i;
+          break;
+        }
+      }
+    }
+  }
+}
 </script>
 </body>
 </html>

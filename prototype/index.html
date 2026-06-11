@@ -413,10 +413,226 @@ body, input, select, textarea, button {
     <a class="app-subnav__link app-subnav__link--active" id="navMarket" onclick="showHome();setActiveNav('navMarket');return false;" href="#">What is the API Marketplace?</a>
     <a class="app-subnav__link" id="navBrowse" onclick="showMarketplace();setActiveNav('navBrowse');return false;" href="#">API Catalogue</a>
     <a class="app-subnav__link" id="navDash" onclick="showDash();setActiveNav('navDash');return false;" href="#">My dashboard</a>
+    <a class="app-subnav__link" id="navGuide" onclick="showGuidance();setActiveNav('navGuide');return false;" href="#">Consumer guidance</a>
     <div style="flex:1"></div>
     <a class="app-subnav__signin" id="navSignIn" onclick="showAuth('login');return false;" href="#">Sign in</a>
   </div>
 </nav>
+
+<!-- CONSUMER GUIDANCE PAGE -->
+<div id="guidancePage" class="app-page">
+  <div class="app-hero">
+    <div class="app-hero__inner">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:24px;padding-top:8px">
+        <strong class="govuk-tag">Alpha</strong>
+        <span style="font-size:13px;color:white">This is a new service &mdash; <a href="#" style="color:white">give your feedback</a> to help us improve it.</span>
+      </div>
+      <h1 class="govuk-heading-xl" style="color:white;margin-bottom:8px">Consumer Guidance</h1>
+      <p class="app-hero__lead">How to find, request and use HMCTS APIs responsibly.</p>
+    </div>
+  </div>
+
+  <div class="govuk-width-container" style="padding-top:40px;padding-bottom:60px">
+
+    <!-- Contents -->
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-quarter">
+        <nav class="app-contents-nav" aria-label="Page contents" style="position:sticky;top:24px">
+          <p class="govuk-body-s" style="font-weight:700;margin-bottom:8px;color:#505a5f;text-transform:uppercase;letter-spacing:.05em;font-size:12px">Contents</p>
+          <ol class="govuk-list" style="border-left:4px solid #b1b4b6;padding-left:12px;margin:0">
+            <li style="margin-bottom:8px"><a class="govuk-link" href="#before-you-request">Before you request access</a></li>
+            <li style="margin-bottom:8px"><a class="govuk-link" href="#making-a-request">Making an access request</a></li>
+            <li style="margin-bottom:8px"><a class="govuk-link" href="#using-responsibly">Using the API responsibly</a></li>
+            <li style="margin-bottom:8px"><a class="govuk-link" href="#error-handling">Error handling and resilience</a></li>
+            <li style="margin-bottom:8px"><a class="govuk-link" href="#keeping-access-current">Keeping access current</a></li>
+            <li style="margin-bottom:8px"><a class="govuk-link" href="#getting-help">Getting help</a></li>
+          </ol>
+        </nav>
+      </div>
+
+      <div class="govuk-grid-column-three-quarters">
+
+        <!-- Section 1 -->
+        <section id="before-you-request">
+          <h2 class="govuk-heading-l" style="border-top:2px solid #1d70b8;padding-top:16px">Before you request access</h2>
+
+          <h3 class="govuk-heading-m">Understand what you need</h3>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>Read the API&rsquo;s plain-English description and understand what data it returns and what it does not return</li>
+            <li>Check the classification &mdash; <strong>Official-Sensitive</strong> APIs require additional justification and may have longer approval times</li>
+            <li>Confirm your service or use case is within the intended scope of the API. Do not request access speculatively.</li>
+          </ul>
+
+          <h3 class="govuk-heading-m">Check your organisation is eligible</h3>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>You must be part of HMCTS Digital and Technology Solutions, a justice sector partner, or an approved third party</li>
+            <li>You need a valid work email address to register</li>
+            <li>Your organisation must have a data sharing agreement in place where required &mdash; check with the API owner</li>
+          </ul>
+
+          <div class="govuk-inset-text">
+            Not sure if your use case is appropriate? <a class="govuk-link" href="#" onclick="showAuth('login');return false;">Sign in</a> and raise a question via your consumer dashboard, or <a class="govuk-link" href="mailto:no-reply@hmcts.com">contact the marketplace team</a>.
+          </div>
+        </section>
+
+        <!-- Section 2 -->
+        <section id="making-a-request" style="margin-top:40px">
+          <h2 class="govuk-heading-l" style="border-top:2px solid #1d70b8;padding-top:16px">Making an access request</h2>
+
+          <h3 class="govuk-heading-m">What you&rsquo;ll need to provide</h3>
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Use case description</dt>
+              <dd class="govuk-summary-list__value">What you are building and why you need this API</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Environment</dt>
+              <dd class="govuk-summary-list__value">Whether you need sandbox, production, or both</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Expected call volume</dt>
+              <dd class="govuk-summary-list__value">Low, medium or high &mdash; this helps the producer plan capacity</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Authentication readiness</dt>
+              <dd class="govuk-summary-list__value">Confirmation that your system can implement OAuth 2.0 with JWT bearer tokens</dd>
+            </div>
+          </dl>
+
+          <h3 class="govuk-heading-m">What happens next</h3>
+          <ol class="govuk-list govuk-list--number">
+            <li>The API owner reviews your request within 2 working days</li>
+            <li>You&rsquo;ll be notified in your dashboard if approved or rejected</li>
+            <li>If rejected, a reason will be given and you may resubmit with additional information</li>
+            <li>Once approved, your credentials will be issued via a secure channel</li>
+          </ol>
+
+          <div class="govuk-warning-text">
+            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+            <strong class="govuk-warning-text__text"><span class="govuk-visually-hidden">Warning</span>Do not attempt to access an API before your request has been approved. Unauthorised access attempts are logged and may affect future requests.</strong>
+          </div>
+        </section>
+
+        <!-- Section 3 -->
+        <section id="using-responsibly" style="margin-top:40px">
+          <h2 class="govuk-heading-l" style="border-top:2px solid #1d70b8;padding-top:16px">Using the API responsibly</h2>
+
+          <h3 class="govuk-heading-m">Rate limits and fair use</h3>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>Do not exceed the rate limits defined in the API specification</li>
+            <li>Cache responses where appropriate &mdash; do not poll repeatedly for data that does not change frequently</li>
+            <li>Use the sandbox environment for development and testing. Never test against production.</li>
+          </ul>
+
+          <h3 class="govuk-heading-m">Authentication</h3>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>All APIs use OAuth 2.0 with JWT bearer tokens</li>
+            <li>Tokens expire &mdash; implement token refresh correctly and do not hard-code credentials</li>
+            <li>Do not share credentials between services or teams. Each consuming service should have its own client credentials.</li>
+          </ul>
+
+          <h3 class="govuk-heading-m">Data handling</h3>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>Data returned by HMCTS APIs is subject to GDPR and the Data Protection Act 2018</li>
+            <li>Official-Sensitive data must be handled in accordance with the <a class="govuk-link" href="https://www.gov.uk/government/publications/government-security-classifications" target="_blank" rel="noopener">Government Security Classifications policy</a></li>
+            <li>Do not store API responses longer than necessary for your use case</li>
+            <li>Do not expose raw API responses to end users without appropriate data processing</li>
+          </ul>
+        </section>
+
+        <!-- Section 4 -->
+        <section id="error-handling" style="margin-top:40px">
+          <h2 class="govuk-heading-l" style="border-top:2px solid #1d70b8;padding-top:16px">Error handling and resilience</h2>
+
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header">HTTP status</th>
+                <th class="govuk-table__header">Meaning</th>
+                <th class="govuk-table__header">What to do</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell"><code>400</code></td>
+                <td class="govuk-table__cell">Bad request</td>
+                <td class="govuk-table__cell">Check your request parameters against the API spec</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell"><code>401</code></td>
+                <td class="govuk-table__cell">Unauthorised</td>
+                <td class="govuk-table__cell">Refresh your token. Do not loop on auth failures.</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell"><code>403</code></td>
+                <td class="govuk-table__cell">Forbidden</td>
+                <td class="govuk-table__cell">Your credentials do not have access to this resource</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell"><code>404</code></td>
+                <td class="govuk-table__cell">Not found</td>
+                <td class="govuk-table__cell">Handle gracefully &mdash; the resource may legitimately not exist</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell"><code>429</code></td>
+                <td class="govuk-table__cell">Too many requests</td>
+                <td class="govuk-table__cell">Back off and retry after the period in the <code>Retry-After</code> header</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell"><code>5xx</code></td>
+                <td class="govuk-table__cell">Server error</td>
+                <td class="govuk-table__cell">Implement exponential backoff. Use circuit breakers in your service.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="govuk-inset-text">
+            Do not treat the API as guaranteed to be available. Implement circuit breakers and fallbacks in your service architecture.
+          </div>
+        </section>
+
+        <!-- Section 5 -->
+        <section id="keeping-access-current" style="margin-top:40px">
+          <h2 class="govuk-heading-l" style="border-top:2px solid #1d70b8;padding-top:16px">Keeping access current</h2>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>If your use case changes significantly, notify the API owner and resubmit your access request with updated details</li>
+            <li>If your service is decommissioned, revoke your credentials and notify the marketplace team</li>
+            <li>Access may be reviewed periodically &mdash; you may be asked to re-confirm your use case</li>
+            <li>Keep your contact details up to date in your dashboard so the API owner can reach you if there are breaking changes</li>
+          </ul>
+        </section>
+
+        <!-- Section 6 -->
+        <section id="getting-help" style="margin-top:40px">
+          <h2 class="govuk-heading-l" style="border-top:2px solid #1d70b8;padding-top:16px">Getting help</h2>
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">API-specific questions</dt>
+              <dd class="govuk-summary-list__value">Use the API detail page to find the owning team&rsquo;s contact details</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Access request support</dt>
+              <dd class="govuk-summary-list__value">Raise a support request via your <a class="govuk-link" href="#" onclick="showDash();return false;">consumer dashboard</a></dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Urgent production issues</dt>
+              <dd class="govuk-summary-list__value">Contact the HMCTS DTS service desk</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Marketplace feedback</dt>
+              <dd class="govuk-summary-list__value"><a class="govuk-link" href="mailto:no-reply@hmcts.com">Contact the marketplace team</a></dd>
+            </div>
+          </dl>
+
+          <div class="govuk-inset-text" style="border-left-color:#00703c">
+            Ready to find an API? <a class="govuk-link" href="#" onclick="showMarketplace();setActiveNav('navBrowse');return false;">Browse the API Catalogue &rarr;</a>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- SIGN IN PAGE -->
 <div id="signInPage" class="app-page">
@@ -955,7 +1171,7 @@ body, input, select, textarea, button {
   <footer class="govuk-footer" role="contentinfo">
     <div class="govuk-footer__inner">
       <div class="govuk-footer__navigation">
-        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">API Catalogue</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a onclick="showHome();return false;" href="#" class="govuk-footer__link">API Catalogue</a></li><li class="govuk-footer__list-item"><a onclick="showMarketplace();return false;" href="#" class="govuk-footer__link">What is API Catalogue?</a></li><li class="govuk-footer__list-item"><a href="https://hmcts.github.io/amp-catalog/" target="_blank" rel="noopener" class="govuk-footer__link">AMP Catalogue</a></li></ul></div>
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">API Catalogue</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a onclick="showHome();return false;" href="#" class="govuk-footer__link">API Catalogue</a></li><li class="govuk-footer__list-item"><a onclick="showMarketplace();return false;" href="#" class="govuk-footer__link">What is API Catalogue?</a></li><li class="govuk-footer__list-item"><a onclick="showGuidance();return false;" href="#" class="govuk-footer__link">Consumer guidance</a></li><li class="govuk-footer__list-item"><a href="https://hmcts.github.io/amp-catalog/" target="_blank" rel="noopener" class="govuk-footer__link">AMP Catalogue</a></li></ul></div>
         <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:no-reply@hmcts.com" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a onclick="requestNewApi();return false;" href="#" class="govuk-footer__link">Request a new API</a></li></ul></div>
         <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Policies</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Accessibility statement</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Cookies</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Privacy notice</a></li></ul></div>
       </div>
@@ -1308,17 +1524,7 @@ body, input, select, textarea, button {
             </ol>
 
             <div class="govuk-inset-text" style="border-left-color:#00703c">
-              Ready to submit? Go to <a class="govuk-link" href="#" onclick="dPanel('p','publish',document.querySelectorAll('.app-dash-nav__item')[4]);return false;">Publish API &rarr;</a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </main>
-</div>
-
-<script>
+              Ready to submit? Go to <a class="govuk-link" href="#" onclick="dPanel('p','publish',document.querySelectorAll('.app-dash-nav__item')[4]);
 var APIS = [{"id":"cpp-case-aggregator-poc","name":"CPP Case Aggregator API","shortName":"cpp-case-aggregator-poc","version":"latest","status":"Live","domain":"Case Administration","classification":"Official","authType":"OAuth 2.0","description":"Aggregates data from CPP downstream services and exposes shaped responses per domain.","plainEnglish":"Aggregates data from multiple CPP downstream services (system-id-mapper, prosecution-casefile, hearing, results, hearing-nows) and exposes shaped responses per domain.","docsUrl":"https://hmcts.github.io/cpp-case-aggregator-poc/","specUrl":"https://raw.githubusercontent.com/hmcts/cpp-case-aggregator-poc/main/src/main/resources/openapi/openapi-spec.yml","repoUrl":"https://github.com/hmcts/cpp-case-aggregator-poc","team":"AMP","changelog":[{"version":"latest","date":"2025","notes":"Latest release"}],"tags":["case","aggregator","CPP"]},{"id":"api-cp-crime-hearing-results-document-subscription","name":"Crime Hearing Results Document Subscription","shortName":"api-cp-crime-hearing-results-document-subscription","version":"latest","status":"Live","domain":"Hearing Results","classification":"Official","authType":"OAuth 2.0","description":"Allows organisations to be automatically notified when crime hearing result documents become available.","plainEnglish":"Allows organisations to be automatically notified when crime hearing result documents become available, such as when a verdict is recorded or sentencing notes are published. Organisations register the types of hearing events they are interested in and provide an address to receive notifications.","docsUrl":"https://hmcts.github.io/api-cp-crime-hearing-results-document-subscription/","specUrl":"https://raw.githubusercontent.com/hmcts/api-cp-crime-hearing-results-document-subscription/main/src/main/resources/openapi/openapi-spec.yml","repoUrl":"https://github.com/hmcts/api-cp-crime-hearing-results-document-subscription","team":"AMP","changelog":[{"version":"latest","date":"2025","notes":"Latest release"}],"tags":["hearing","results","documents","subscription"]},{"id":"api-cp-crime-prosecution-case-details","name":"Crime Prosecution Case Details","shortName":"api-cp-crime-prosecution-case-details","version":"latest","status":"Live","domain":"Case Administration","classification":"Official-Sensitive","authType":"OAuth 2.0","description":"Returns a summary of a criminal prosecution case for a given case reference number.","plainEnglish":"Returns a summary of a criminal prosecution case for a given case reference number. Provides the current status of the case, any reporting restrictions in place, defendant details, and associated hearing information. Used by prosecutors, defence solicitors, and court staff who need an up-to-date view of a case as it progresses through the courts.","docsUrl":"https://hmcts.github.io/api-cp-crime-prosecution-case-details/","specUrl":"https://raw.githubusercontent.com/hmcts/api-cp-crime-prosecution-case-details/main/src/main/resources/openapi/openapi-spec.yml","repoUrl":"https://github.com/hmcts/api-cp-crime-prosecution-case-details","team":"AMP","changelog":[{"version":"latest","date":"2025","notes":"Latest release"}],"tags":["prosecution","case","URN","crime"]},{"id":"api-cp-refdata-courthearing-courthouses","name":"Refdata Court Hearing Court Houses","shortName":"api-cp-refdata-courthearing-courthouses","version":"latest","status":"Live","domain":"Reference Data","classification":"Official","authType":"OAuth 2.0","description":"Provides information about court buildings and the rooms within them.","plainEnglish":"Provides information about court buildings and the rooms within them. Returns the building name, postal address, and room details for a given court. Used by listing officers and court diary systems to show where a hearing is taking place.","docsUrl":"https://hmcts.github.io/api-cp-refdata-courthearing-courthouses/","specUrl":"https://raw.githubusercontent.com/hmcts/api-cp-refdata-courthearing-courthouses/main/src/main/resources/openapi/openapi-spec.yml","repoUrl":"https://github.com/hmcts/api-cp-refdata-courthearing-courthouses","team":"AMP","changelog":[{"version":"latest","date":"2025","notes":"Latest release"}],"tags":["reference data","court houses","venues"]},{"id":"api-cp-crime-hearing-results-validator","name":"Results Validation Service API","shortName":"api-cp-crime-hearing-results-validator","version":"latest","status":"Live","domain":"Hearing Results","classification":"Official","authType":"OAuth 2.0","description":"API for validating draft hearing results against declarative, programmatic, and LLM-assisted rules.","plainEnglish":"Validates draft hearing result records before they are published.","docsUrl":"https://hmcts.github.io/api-cp-crime-hearing-results-validator/","specUrl":"https://raw.githubusercontent.com/hmcts/api-cp-crime-hearing-results-validator/main/src/main/resources/openapi/openapi-spec.yml","repoUrl":"https://github.com/hmcts/api-cp-crime-hearing-results-validator","team":"AMP","changelog":[{"version":"latest","date":"2025","notes":"Latest release"}],"tags":["validation","hearing results","rules"]},{"id":"api-cp-crime-schedulingandlisting-courtschedule","name":"Scheduling and Listing Court Schedule","shortName":"api-cp-crime-schedulingandlisting-courtschedule","version":"latest","status":"Live","domain":"Scheduling and Listing","classification":"Official","authType":"OAuth 2.0","description":"Returns the court hearing schedule for a given case, showing when and where hearings are listed.","plainEnglish":"Returns the court hearing schedule for a given case, showing when and where hearings are listed to take place. For each hearing the response includes the court building, court room, sitting times, type of hearing, and the judge assigned. Used by listing officers who manage court diaries and by legal teams who need to see upcoming hearing dates for a case.","docsUrl":"https://hmcts.github.io/api-cp-crime-schedulingandlisting-courtschedule/","specUrl":"https://raw.githubusercontent.com/hmcts/api-cp-crime-schedulingandlisting-courtschedule/main/src/main/resources/openapi/openapi-spec.yml","repoUrl":"https://github.com/hmcts/api-cp-crime-schedulingandlisting-courtschedule","team":"AMP","changelog":[{"version":"latest","date":"2025","notes":"Latest release"}],"tags":["scheduling","listing","court schedule"]}];
 
 var EMBEDDED_SPECS = {};
@@ -1533,7 +1739,7 @@ function setFilter(domain, btn) {
 }
 
 function hideAll() {
-  ['homePage','detailPage','marketplacePage','consDash','prodDash','signInPage'].forEach(function(id) {
+  ['homePage','detailPage','marketplacePage','consDash','prodDash','signInPage','guidancePage'].forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.classList.remove('app-page--active');
   });
@@ -3427,6 +3633,23 @@ var pendingAction = null;
 
 function setPendingAction(fn) {
   pendingAction = fn;
+}
+
+function resolvePendingAction() {
+  if (pendingAction) {
+    var fn = pendingAction;
+    pendingAction = null;
+    fn();
+  }
+}
+
+function showGuidance() {
+  hideAll();
+  document.getElementById('guidancePage').classList.add('app-page--active');
+  setActiveNav('navGuide');
+  window.scrollTo(0, 0);
+}
+ion = fn;
 }
 
 function resolvePendingAction() {

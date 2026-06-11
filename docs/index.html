@@ -412,11 +412,10 @@ body, input, select, textarea, button {
   <div class="app-subnav__inner">
     <a class="app-subnav__link app-subnav__link--active" id="navMarket" onclick="showHome();setActiveNav('navMarket');return false;" href="#">What is the API Marketplace?</a>
     <a class="app-subnav__link" id="navBrowse" onclick="showMarketplace();setActiveNav('navBrowse');return false;" href="#">API Catalogue</a>
-    <a class="app-subnav__link" id="navDash" onclick="showDash();setActiveNav('navDash');return false;" href="#">My dashboard</a>
     <a class="app-subnav__link" id="navStandards" onclick="showProducerStandards();setActiveNav('navStandards');return false;" href="#">Producer standards</a>
     <a class="app-subnav__link" id="navGuide" onclick="showGuidance();setActiveNav('navGuide');return false;" href="#">Consumer guidance</a>
     <div style="flex:1"></div>
-    <a class="app-subnav__signin" id="navSignIn" onclick="showAuth('login');return false;" href="#">Sign in</a>
+    <a class="app-subnav__signin" id="navAuthLink" href="#" onclick="navAuthClick();return false;">Sign in</a>
   </div>
 </nav>
 
@@ -2499,26 +2498,19 @@ function restoreSession() {
 }
 
 function renderNav() {
-  var el = document.getElementById('navRight'); if (!el) return;
+  var link = document.getElementById('navAuthLink');
+  if (!link) return;
   if (AU && AP) {
-    var ini = (AP.firstName ? AP.firstName[0] : '') + (AP.lastName ? AP.lastName[0] : '');
-    var cls = hasPermission('canPublish') ? 'app-user-chip__avatar--producer' : hasPermission('canReview') ? 'app-user-chip__avatar--reviewer' : '';
-    el.innerHTML =
-      '<div class="app-user-chip" tabindex="0">' +
-        '<div class="app-user-chip__avatar ' + cls + '">' + ini + '</div>' +
-        '<div><div class="app-user-chip__name">' + AP.firstName + ' ' + AP.lastName + '</div>' +
-        '<div class="app-user-chip__role">' + AP.role + '</div></div>' +
-        '<div class="app-user-chip__dropdown">' +
-          '<span class="app-user-chip__dd-item" onclick="showDash()">My dashboard</span>' +
-          '<span class="app-user-chip__dd-item" onclick="showHome()">API Catalogue</span>' +
-          '<span class="app-user-chip__dd-item app-user-chip__dd-item--danger" onclick="doLogout()">Sign out</span>' +
-        '</div>' +
-      '</div>';
+    link.textContent = AP.firstName ? AP.firstName + ' ' + AP.lastName : 'My dashboard';
+    link.onclick = function() { showDash(); return false; };
   } else {
-    el.innerHTML = '';
-    var navSi = document.getElementById('navSignIn');
-    if (navSi) navSi.style.display = 'block';
+    link.textContent = 'Sign in';
+    link.onclick = function() { showAuth('login'); return false; };
   }
+}
+
+function navAuthClick() {
+  if (AU && AP) { showDash(); } else { showAuth('login'); }
 }
 
 /* ── Dashboards ──────────────────────────────────────────── */

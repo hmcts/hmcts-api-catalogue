@@ -3255,6 +3255,7 @@ function doSignInPage() {
   lsSess(user);
   renderNav();
   showDash();
+  resolvePendingAction();
 }
 
 function doRegisterPage() {
@@ -3299,6 +3300,7 @@ function doRegisterPage() {
   lsSess(user);
   renderNav();
   showDash();
+  resolvePendingAction();
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -3394,7 +3396,8 @@ function mergeApprovedIntoHome() { /* stub */ }
 
 function showReqNew() {
   if (!AU || !AP) {
-    /* Not logged in — go to sign in page */
+    /* Not logged in — store pending action then go to sign in */
+    setPendingAction(function() { showReqNew(); });
     showAuth('login');
     return;
   }
@@ -3416,6 +3419,21 @@ function showReqNew() {
         }
       }
     }
+  }
+}
+
+/* ── Post-login pending action ───────────────────────────── */
+var pendingAction = null;
+
+function setPendingAction(fn) {
+  pendingAction = fn;
+}
+
+function resolvePendingAction() {
+  if (pendingAction) {
+    var fn = pendingAction;
+    pendingAction = null;
+    fn();
   }
 }
 </script>

@@ -1789,7 +1789,8 @@ function renderHome() {
   if (statApi)    statApi.textContent    = APIS.length;
   if (statLive)   statLive.textContent   = liveCount;
   if (statDomain) statDomain.textContent = domains.length;
-  /* Endpoint count updated async by loadSpec calls — leave statEndpointCount alone here */
+  /* Endpoint count — kick off async fetch of all specs */
+  updateEndpointCount();
 
   /* Update hero stats dynamically from live APIS array */
   var statApi    = document.getElementById('statApiCount');
@@ -3872,6 +3873,65 @@ function showProducerStandards() {
   document.getElementById('producerStandardsPage').classList.add('app-page--active');
   setActiveNav('navStandards');
   window.scrollTo(0, 0);
+}
+
+/* ── Dynamic endpoint count ─────────────────────────────────
+   Fetches all API specs in parallel after catalogue loads,
+   counts total endpoints and updates the hero stat.
+   Runs once per page load and caches the result.           */
+var _epCountDone = false;
+
+function updateEndpointCount() {
+  if (_epCountDone) return;
+  if (!APIS || !APIS.length) return;
+
+  var apis = APIS.filter(function(a) { return a.specUrl; });
+  if (!apis.length) return;
+
+  var methods = ['get','post','put','patch','delete','head','options'];
+
+  /* Show a loading indicator */
+  var el = document.getElementById('statEndpointCount');
+  if (el) el.textContent = '...';
+
+  /* Fetch all specs with a 5-second per-spec timeout */
+  var fetches = apis.map(function(api) {
+    var controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    var timer = controller ? setTimeout(function(){ controller.abort(); }, 5000) : null;
+    return fetch(api.specUrl, controller ? { signal: controller.signal } : {})
+      .then(function(res) {
+        if (timer) clearTimeout(timer);
+        if (!res.ok) return 0;
+        return res.text();
+      })
+      .then(function(text) {
+        if (!text || typeof text !== 'string') return 0;
+        var spec = parseYamlSpec(text);
+        if (!spec || !spec.paths) return 0;
+        var count = 0;
+        Object.keys(spec.paths).forEach(function(path) {
+          methods.forEach(function(m) {
+            if (spec.paths[path][m]) count++;
+          });
+        });
+        return count;
+      })
+      .catch(function() { return 0; });
+  });
+
+  Promise.all(fetches).then(function(counts) {
+    var total = counts.reduce(function(sum, n) { return sum + n; }, 0);
+    var el = document.getElementById('statEndpointCount');
+    if (el && total > 0) {
+      el.textContent = total;
+      _epCountDone = true;
+    } else if (el) {
+      el.textContent = '25+';
+    }
+  }).catch(function() {
+    var el = document.getElementById('statEndpointCount');
+    if (el) el.textContent = '25+';
+  });
 }
 </script>
 </body>

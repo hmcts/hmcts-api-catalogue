@@ -1535,7 +1535,7 @@ body, input, select, textarea, button {
             <p class="govuk-body">Complete all sections before submitting your API for review. The marketplace team will add it to the catalogue once approved.</p>
             <p class="app-task-progress" id="pub-task-progress">0 of 3 sections completed</p>
             <ul class="govuk-task-list" aria-label="Publish API steps">
-              <li class="govuk-task-list__item"><div class="govuk-task-list__name-and-hint"><button class="govuk-task-list__link" onclick="showPubStep('step1')">API identification</button><div class="govuk-task-list__hint">Name, SwaggerHub location and version</div></div><div class="govuk-task-list__status govuk-task-list__status--not-started" id="pub-status-1"><span class="govuk-tag govuk-tag--grey">Not yet started</span></div></li>
+              <li class="govuk-task-list__item"><div class="govuk-task-list__name-and-hint"><button class="govuk-task-list__link" onclick="showPubStep('step1')">API identification</button><div class="govuk-task-list__hint">API name, GitHub repository and version</div></div><div class="govuk-task-list__status govuk-task-list__status--not-started" id="pub-status-1"><span class="govuk-tag govuk-tag--grey">Not yet started</span></div></li>
               <li class="govuk-task-list__item"><div class="govuk-task-list__name-and-hint"><button class="govuk-task-list__link" onclick="showPubStep('step2')">Classification and domain</button><div class="govuk-task-list__hint">Domain, data classification and authentication type</div></div><div class="govuk-task-list__status govuk-task-list__status--not-started" id="pub-status-2"><span class="govuk-tag govuk-tag--grey">Not yet started</span></div></li>
               <li class="govuk-task-list__item"><div class="govuk-task-list__name-and-hint"><button class="govuk-task-list__link" onclick="showPubStep('step3')">Plain-English description</button><div class="govuk-task-list__hint">What this API does, for non-technical readers</div></div><div class="govuk-task-list__status govuk-task-list__status--not-started" id="pub-status-3"><span class="govuk-tag govuk-tag--grey">Not yet started</span></div></li>
             </ul>
@@ -1546,10 +1546,14 @@ body, input, select, textarea, button {
             <div id="pub-err-1" class="govuk-error-summary" style="display:none" role="alert"><h2 class="govuk-error-summary__title">There is a problem</h2><ul class="govuk-error-summary__list" id="pub-err-1-list"></ul></div>
             <div class="app-step-header"><span class="app-step-header__caption">Publish an API &mdash; Step 1 of 3</span><h1 class="govuk-heading-l">API identification</h1></div>
             <div class="govuk-form-group" id="fg-pubN"><label class="govuk-label govuk-label--m" for="pubN">API display name</label><div class="govuk-hint">The name shown in the catalogue. Use sentence case.</div><input class="govuk-input" id="pubN" type="text" spellcheck="false"></div>
-            <div class="govuk-form-group" id="fg-pubO"><label class="govuk-label govuk-label--m" for="pubO">SwaggerHub organisation</label><div class="govuk-hint">For example: HMCTS-DTS</div><input class="govuk-input govuk-input--width-20" id="pubO" type="text" value="HMCTS-DTS" spellcheck="false"></div>
-            <div class="govuk-form-group" id="fg-pubA"><label class="govuk-label govuk-label--m" for="pubA">SwaggerHub API name</label><div class="govuk-hint">For example: api-cp-crime-prosecution-case-details</div><input class="govuk-input" id="pubA" type="text" spellcheck="false"></div>
-            <div class="govuk-form-group" id="fg-pubV"><label class="govuk-label govuk-label--m" for="pubV">Version number</label><div class="govuk-hint">For example: 1.0.0</div><input class="govuk-input govuk-input--width-10" id="pubV" type="text" spellcheck="false" onblur="validateSwaggerSpec()"></div>
-            <div id="specValidationStatus" style="display:none;margin-bottom:16px"></div>
+            <div class="govuk-form-group" id="fg-pubO"><label class="govuk-label govuk-label--m" for="pubO">GitHub repository name</label><div class="govuk-hint">The repository name under the HMCTS organisation. For example: <code>api-cp-crime-prosecution-case-details</code></div><input class="govuk-input" id="pubO" type="text" placeholder="api-cp-..." spellcheck="false"></div>
+            <div class="govuk-form-group" id="fg-pubA"><label class="govuk-label govuk-label--m" for="pubA">API display name in catalogue</label><div class="govuk-hint">The human-readable name shown to consumers. For example: <em>Crime Prosecution Case Details API</em></div><input class="govuk-input" id="pubA" type="text" spellcheck="false"></div>
+            <div class="govuk-form-group" id="fg-pubV"><label class="govuk-label govuk-label--m" for="pubV">Current version</label><div class="govuk-hint">The version in your <code>info.version</code> field. For example: <code>1.0.0</code>. This is stamped automatically from your GitHub release tag.</div><input class="govuk-input govuk-input--width-10" id="pubV" type="text" spellcheck="false" onblur="validateGitHubSpec()"></div>
+            <div class="govuk-inset-text" style="margin-bottom:16px">
+                The spec will be fetched from:<br>
+                <code id="specUrlPreview" style="font-size:13px;color:#505a5f">https://raw.githubusercontent.com/hmcts/<em>&lt;repo-name&gt;</em>/main/src/main/resources/openapi/openapi-spec.yml</code>
+              </div>
+              <div id="specValidationStatus" style="display:none;margin-bottom:16px"></div>
             <button class="govuk-button" onclick="savePubStep(1)">Save and continue</button>
           </div>
           <div id="pub-step2" class="app-step-form">
@@ -1584,7 +1588,7 @@ body, input, select, textarea, button {
             <h2 class="govuk-heading-m">Declaration</h2>
             <p class="govuk-body">By submitting this API you confirm that:</p>
             <div class="govuk-checkboxes__item"><input class="govuk-checkboxes__input" id="pubDecl1" type="checkbox"><label class="govuk-checkboxes__label" for="pubDecl1">I am authorised to publish this API on behalf of my team</label></div>
-            <div class="govuk-checkboxes__item"><input class="govuk-checkboxes__input" id="pubDecl2" type="checkbox"><label class="govuk-checkboxes__label" for="pubDecl2">The SwaggerHub spec is up to date and accurate</label></div>
+            <div class="govuk-checkboxes__item"><input class="govuk-checkboxes__input" id="pubDecl2" type="checkbox"><label class="govuk-checkboxes__label" for="pubDecl2">The OpenAPI spec in the GitHub repository is up to date and accurate</label></div>
             <div class="govuk-checkboxes__item" style="margin-bottom:24px"><input class="govuk-checkboxes__input" id="pubDecl3" type="checkbox"><label class="govuk-checkboxes__label" for="pubDecl3">I understand my team remains responsible for supporting consumers of this API</label></div>
             <button class="govuk-button" onclick="submitPub()">Submit for review</button>
             <button class="govuk-button govuk-button--secondary" onclick="showPubStep('tasklist')" style="margin-left:12px">Save and come back later</button>
@@ -2927,6 +2931,18 @@ function submitPub() {
 }
 
 document.addEventListener('input', function(e) {
+  if (e.target && e.target.id === 'pubO') {
+    var repo = e.target.value.trim();
+    var preview = document.getElementById('specUrlPreview');
+    if (preview) {
+      if (repo) {
+        var url = 'https://raw.githubusercontent.com/hmcts/' + repo + '/main/src/main/resources/openapi/openapi-spec.yml';
+        preview.innerHTML = '<a href="' + url + '" target="_blank" rel="noopener" class="govuk-link">' + url + '</a>';
+      } else {
+        preview.innerHTML = 'https://raw.githubusercontent.com/hmcts/<em>&lt;repo-name&gt;</em>/main/src/main/resources/openapi/openapi-spec.yml';
+      }
+    }
+  }
   if (e.target && e.target.id === 'pubDesc') {
     var counter = document.getElementById('pubDescCount');
     var len = e.target.value.length;
@@ -2940,34 +2956,45 @@ document.addEventListener('input', function(e) {
 
 /* ── CAP-03: SwaggerHub spec validation ───────────────────── */
 var specValidating = false;
-async function validateSwaggerSpec() {
-  var org = document.getElementById('pubO') ? document.getElementById('pubO').value.trim() : '';
-  var api = document.getElementById('pubA') ? document.getElementById('pubA').value.trim() : '';
-  var ver = document.getElementById('pubV') ? document.getElementById('pubV').value.trim() : '';
+function validateGitHubSpec() {
+  var repo     = document.getElementById('pubO') ? document.getElementById('pubO').value.trim() : '';
   var statusEl = document.getElementById('specValidationStatus');
+  var preview  = document.getElementById('specUrlPreview');
   if (!statusEl) return;
-  if (!org || !api || !ver) { statusEl.style.display = 'none'; return; }
-  if (specValidating) return;
-  specValidating = true;
-  statusEl.style.display = 'block';
-  statusEl.innerHTML = '<span style="color:#505a5f;font-size:14px">&#8635; Checking SwaggerHub&hellip;</span>';
-  var url = 'https://api.swaggerhub.com/apis/' + org + '/' + api + '/' + ver;
-  try {
-    var res = await fetch(url, { headers: { Accept: 'application/json' }, mode: 'cors' });
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    var spec = await res.json();
-    if (!spec || !spec.paths) throw new Error('No paths in spec');
-    var epCount = Object.values(spec.paths).reduce(function(n, p) {
-      return n + ['get','post','put','delete','patch'].filter(function(m){ return p[m]; }).length;
-    }, 0);
-    statusEl.innerHTML = '<div style="border-left:4px solid #00703c;background:#cce2d8;padding:10px 14px;font-size:14px">' +
-      '<strong style="color:#005a30">&#10003; Spec found on SwaggerHub</strong> &mdash; ' +
-      (spec.info && spec.info.title ? spec.info.title : api) + ' &middot; ' + epCount + ' endpoint' + (epCount !== 1 ? 's' : '') + '</div>';
-  } catch(e) {
-    statusEl.innerHTML = '<div style="border-left:4px solid #d4351c;background:#f6d7d2;padding:10px 14px;font-size:14px">' +
-      '<strong style="color:#942514">&#10007; Spec not found on SwaggerHub</strong> &mdash; check your organisation, API name and version are correct.</div>';
+  if (!repo) {
+    statusEl.style.display = 'none';
+    if (preview) preview.innerHTML = 'https://raw.githubusercontent.com/hmcts/<em>&lt;repo-name&gt;</em>/main/src/main/resources/openapi/openapi-spec.yml';
+    return;
   }
-  specValidating = false;
+  var specUrl = 'https://raw.githubusercontent.com/hmcts/' + repo + '/main/src/main/resources/openapi/openapi-spec.yml';
+  if (preview) preview.innerHTML = '<a href="' + specUrl + '" target="_blank" rel="noopener" class="govuk-link">' + specUrl + '</a>';
+  statusEl.style.display = 'block';
+  statusEl.innerHTML = '<span style="color:#505a5f;font-size:14px">&#8635; Checking GitHub&hellip;</span>';
+  fetch(specUrl)
+    .then(function(res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.text();
+    })
+    .then(function(text) {
+      var spec = parseYamlSpec(text);
+      if (!spec || !spec.info) throw new Error('Could not parse spec');
+      var epCount = 0;
+      if (spec.paths) {
+        Object.values(spec.paths).forEach(function(p) {
+          ['get','post','put','delete','patch'].forEach(function(m) { if (p[m]) epCount++; });
+        });
+      }
+      statusEl.innerHTML = '<div style="border-left:4px solid #00703c;background:#cce2d8;padding:10px 14px;font-size:14px">' +
+        '<strong style="color:#005a30">&#10003; Spec found</strong> &mdash; ' +
+        (spec.info.title || repo) + ' &middot; v' + (spec.info.version || '?') + ' &middot; ' + epCount + ' endpoint' + (epCount !== 1 ? 's' : '') +
+        '</div>';
+    })
+    .catch(function(err) {
+      statusEl.innerHTML = '<div style="border-left:4px solid #d4351c;background:#f6d7d2;padding:10px 14px;font-size:14px">' +
+        '<strong style="color:#942514">&#10007; Spec not found</strong> &mdash; check the repository name is correct and the workflow has run. ' +
+        '<a class="govuk-link" href="https://github.com/hmcts/' + (document.getElementById('pubO') ? document.getElementById('pubO').value.trim() : '') + '" target="_blank" rel="noopener">View repository &rarr;</a>' +
+        '</div>';
+    });
 }
 
 /* ── CAP-03: Draft save / restore ─────────────────────────── */

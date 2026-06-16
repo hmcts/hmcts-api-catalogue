@@ -67,6 +67,8 @@ body, input, select, textarea, button {
 .app-api-entry-tag--domain{background:#d1e8fa;color:#003d6a}
 .app-api-entry-tag--os{background:#f6d7d2;color:#6a0c04}
 .app-api-entry-tag--team{background:#cce2d8;color:#005a30}
+
+.app-dash-sidebar__avatar--reviewer{background:#005a30}
 </style>
 <style>
 .app-page{display:none}.app-page--active{display:block}
@@ -1470,6 +1472,51 @@ body, input, select, textarea, button {
 </div>
 
 <!-- PRODUCER DASHBOARD -->
+<!-- REVIEWER DASHBOARD -->
+<div id="revDash" class="app-page">
+  <main><div class="app-dash-layout"><div>
+    <nav class="app-dash-sidebar" aria-label="Reviewer dashboard navigation">
+      <div class="app-dash-sidebar__header"><div class="app-dash-sidebar__avatar app-dash-sidebar__avatar--reviewer" id="rvAv">?</div><div><div class="app-dash-sidebar__name" id="rvNm">Reviewer</div><div class="app-dash-sidebar__role">Reviewer</div></div></div>
+      <button class="app-dash-nav__item app-dash-nav__item--active" onclick="dPanel('rv','ov',this)">Overview</button>
+      <button class="app-dash-nav__item" onclick="dPanel('rv','users',this);renderRvUsers()">Registered users</button>
+      <button class="app-dash-nav__item" onclick="dPanel('rv','apis',this);renderRvApis()">API submissions</button>
+      <button class="app-dash-nav__item" onclick="dPanel('rv','requests',this);renderRvRequests()">Access requests</button>
+      <button class="app-dash-nav__item" style="color:#d4351c" onclick="doLogout()">Sign out</button>
+    </nav>
+  </div><div class="app-dash-content">
+    <div class="app-dash-panel app-dash-panel--active" id="rv-ov">
+      <h1 class="govuk-heading-l" id="rvGr">Reviewer overview</h1>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px">
+        <div class="govuk-summary-card" style="padding:20px;text-align:center"><div style="font-size:36px;font-weight:700;color:#1d70b8" id="rvStatUsers">0</div><div class="govuk-body-s" style="color:#505a5f">Registered users</div></div>
+        <div class="govuk-summary-card" style="padding:20px;text-align:center"><div style="font-size:36px;font-weight:700;color:#00703c" id="rvStatApis">0</div><div class="govuk-body-s" style="color:#505a5f">API submissions</div></div>
+        <div class="govuk-summary-card" style="padding:20px;text-align:center"><div style="font-size:36px;font-weight:700;color:#f47738" id="rvStatReqs">0</div><div class="govuk-body-s" style="color:#505a5f">Pending requests</div></div>
+      </div>
+      <div class="govuk-inset-text"><p class="govuk-body govuk-!-margin-bottom-0">View all registered consumers and producers, API submissions and access requests across the marketplace.</p></div>
+    </div>
+    <div class="app-dash-panel" id="rv-users">
+      <h1 class="govuk-heading-l">Registered users</h1>
+      <p class="govuk-body" style="color:#505a5f">All users registered with the HMCTS API Marketplace.</p>
+      <div style="display:flex;gap:12px;margin-bottom:16px">
+        <button class="govuk-button govuk-button--secondary" style="margin:0" onclick="filterRvUsers('all',this)">All</button>
+        <button class="govuk-button govuk-button--secondary" style="margin:0" onclick="filterRvUsers('consumer',this)">Consumers</button>
+        <button class="govuk-button govuk-button--secondary" style="margin:0" onclick="filterRvUsers('producer',this)">Producers</button>
+        <button class="govuk-button govuk-button--secondary" style="margin:0" onclick="filterRvUsers('reviewer',this)">Reviewers</button>
+      </div>
+      <div id="rvUserList"></div>
+    </div>
+    <div class="app-dash-panel" id="rv-apis">
+      <h1 class="govuk-heading-l">API submissions</h1>
+      <p class="govuk-body" style="color:#505a5f">APIs submitted by producers for listing on the marketplace.</p>
+      <div id="rvApiList"></div>
+    </div>
+    <div class="app-dash-panel" id="rv-requests">
+      <h1 class="govuk-heading-l">Access requests</h1>
+      <p class="govuk-body" style="color:#505a5f">All consumer access requests across the marketplace.</p>
+      <div id="rvReqList"></div>
+    </div>
+  </div></div></main>
+</div>
+
 <div id="prodDash" class="app-page">
   <main>
     <div class="app-dash-layout">
@@ -1947,7 +1994,7 @@ function setFilter(domain, btn) {
 }
 
 function hideAll() {
-  ['homePage','detailPage','marketplacePage','consDash','prodDash','signInPage','guidancePage','producerStandardsPage'].forEach(function(id) {
+  ['homePage','detailPage','marketplacePage','consDash','prodDash','revDash','signInPage','guidancePage','producerStandardsPage'].forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.classList.remove('app-page--active');
   });
@@ -3953,6 +4000,49 @@ function updateEndpointCount() {
     var el = document.getElementById('statEndpointCount');
     if (el) el.textContent = '25+';
   });
+}
+
+var _rvUserFilter='all';
+function showRvDash(){
+  hideAll();document.getElementById('revDash').classList.add('app-page--active');setActiveNav('');window.scrollTo(0,0);
+  var rvGr=document.getElementById('rvGr'),rvNm=document.getElementById('rvNm'),rvAv=document.getElementById('rvAv');
+  if(rvGr)rvGr.textContent='Welcome back, '+(AP.firstName||'Reviewer');
+  if(rvNm)rvNm.textContent=(AP.firstName||'')+' '+(AP.lastName||'');
+  if(rvAv)rvAv.textContent=(AP.firstName?AP.firstName[0]:'')+(AP.lastName?AP.lastName[0]:'');
+  var ua=Object.values(lsU()),ar=lsAllReqs(),p=ar.filter(function(r){return r.status==='pending';});
+  var ac=0;ua.forEach(function(u){if(u.role==='producer')ac+=lsPApis(u.id).length;});
+  var su=document.getElementById('rvStatUsers');if(su)su.textContent=ua.length;
+  var sa=document.getElementById('rvStatApis');if(sa)sa.textContent=ac;
+  var sr=document.getElementById('rvStatReqs');if(sr)sr.textContent=p.length;
+}
+function renderRvUsers(){
+  var ua=Object.values(lsU()),list=document.getElementById('rvUserList');if(!list)return;
+  var f=_rvUserFilter==='all'?ua:ua.filter(function(u){return u.role===_rvUserFilter;});
+  if(!f.length){list.innerHTML='<p class="govuk-body" style="color:#505a5f">No users found.</p>';return;}
+  list.innerHTML='<table class="govuk-table"><thead class="govuk-table__head"><tr class="govuk-table__row"><th class="govuk-table__header">Name</th><th class="govuk-table__header">Email</th><th class="govuk-table__header">Organisation</th><th class="govuk-table__header">Role</th><th class="govuk-table__header">Requests</th></tr></thead><tbody class="govuk-table__body">'+
+    f.map(function(u){var reqs=lsAllReqs().filter(function(r){return r.uid===u.id;}).length;var rc=u.role==='producer'?'govuk-tag--purple':u.role==='reviewer'?'govuk-tag--blue':'govuk-tag--green';return '<tr class="govuk-table__row"><td class="govuk-table__cell"><strong>'+(u.fn||'')+' '+(u.ln||'')+'</strong></td><td class="govuk-table__cell">'+(u.email||'')+'</td><td class="govuk-table__cell">'+(u.org||'-')+'</td><td class="govuk-table__cell"><strong class="govuk-tag '+rc+'">'+(u.role||'consumer')+'</strong></td><td class="govuk-table__cell">'+reqs+'</td></tr>';}).join('')+
+    '</tbody></table>';
+}
+function filterRvUsers(filter,btn){
+  _rvUserFilter=filter;
+  document.querySelectorAll('#rv-users .govuk-button--secondary').forEach(function(b){b.style.background='';b.style.color='';b.style.borderColor='';});
+  if(btn){btn.style.background='#1d70b8';btn.style.color='white';btn.style.borderColor='#1d70b8';}
+  renderRvUsers();
+}
+function renderRvApis(){
+  var users=lsU(),list=document.getElementById('rvApiList');if(!list)return;
+  var aa=[];Object.values(users).forEach(function(u){if(u.role==='producer'){lsPApis(u.id).forEach(function(api){aa.push({producer:(u.fn||'')+' '+(u.ln||''),org:u.org||'-',api:api});});}});
+  if(!aa.length){list.innerHTML='<p class="govuk-body" style="color:#505a5f">No API submissions yet.</p>';return;}
+  list.innerHTML='<table class="govuk-table"><thead class="govuk-table__head"><tr class="govuk-table__row"><th class="govuk-table__header">API name</th><th class="govuk-table__header">Repository</th><th class="govuk-table__header">Domain</th><th class="govuk-table__header">Submitted by</th><th class="govuk-table__header">Status</th></tr></thead><tbody class="govuk-table__body">'+
+    aa.map(function(item){return '<tr class="govuk-table__row"><td class="govuk-table__cell"><strong>'+(item.api.name||'-')+'</strong></td><td class="govuk-table__cell"><code style="font-size:13px">'+(item.api.api||'-')+'</code></td><td class="govuk-table__cell">'+(item.api.domain||'-')+'</td><td class="govuk-table__cell">'+item.producer+'<br><span style="font-size:13px;color:#505a5f">'+item.org+'</span></td><td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Pending review</strong></td></tr>';}).join('')+
+    '</tbody></table>';
+}
+function renderRvRequests(){
+  var ar=lsAllReqs(),users=lsU(),list=document.getElementById('rvReqList');if(!list)return;
+  if(!ar.length){list.innerHTML='<p class="govuk-body" style="color:#505a5f">No access requests yet.</p>';return;}
+  list.innerHTML='<table class="govuk-table"><thead class="govuk-table__head"><tr class="govuk-table__row"><th class="govuk-table__header">API</th><th class="govuk-table__header">Requested by</th><th class="govuk-table__header">Environment</th><th class="govuk-table__header">Submitted</th><th class="govuk-table__header">Status</th></tr></thead><tbody class="govuk-table__body">'+
+    ar.sort(function(a,b){return a.created<b.created?1:-1;}).map(function(r){var u=Object.values(users).find(function(u){return u.id===r.uid;});var sc=r.status==='approved'?'govuk-tag--green':r.status==='rejected'?'govuk-tag--red':'govuk-tag--yellow';return '<tr class="govuk-table__row"><td class="govuk-table__cell"><strong>'+(r.apiName||r.apiId||'-')+'</strong></td><td class="govuk-table__cell">'+(u?(u.fn+' '+u.ln):(r.uid||'Unknown'))+'<br><span style="font-size:13px;color:#505a5f">'+(u?u.org||'':'')+'</span></td><td class="govuk-table__cell">'+(r.env||'-')+'</td><td class="govuk-table__cell" style="font-size:13px">'+(r.created?new Date(r.created).toLocaleDateString('en-GB'):'-')+'</td><td class="govuk-table__cell"><strong class="govuk-tag '+sc+'">'+(r.status||'pending')+'</strong></td></tr>';}).join('')+
+    '</tbody></table>';
 }
 </script>
 </body>

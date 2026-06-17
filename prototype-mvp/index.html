@@ -3023,6 +3023,9 @@ function submitNewApiRequest(e) {
   if(!document.getElementById('narEmail').value.trim())    errs.push('Enter your work email address');
   if(!document.getElementById('narJobTitle').value.trim()) errs.push('Enter your job title');
   if(!document.getElementById('narApiDesc').value.trim())  errs.push('Describe the API you need');
+  if(!document.getElementById('narD1').checked||!document.getElementById('narD2').checked||
+     !document.getElementById('narD3').checked)
+    errs.push('Complete all declaration checkboxes');
   var eb=document.getElementById('narError'),el=document.getElementById('narErrorList');
   if(errs.length){
     if(eb)eb.style.display='block';
@@ -3048,7 +3051,9 @@ function submitNewApiRequest(e) {
     document.getElementById('narApiDesc').value,
     '',
     'Existing system:',
-    (document.getElementById('narExisting').value||'Not provided')
+    (document.getElementById('narExisting').value||'Not provided'),
+    '',
+    'Declaration: All 3 checkboxes confirmed'
   ].join('\n');
   window.location.href='mailto:Nagashankar.Ponnaganti@HMCTS.NET?subject='+encodeURIComponent(_subj)+'&body='+encodeURIComponent(_body);
   document.getElementById('narSuccess').style.display='block';
@@ -3791,7 +3796,8 @@ function showAccessRequestForm() {
 function showNewApiRequestForm(){hideAll();document.getElementById('newApiRequestPage').classList.add('app-page--active');setActiveNav('navNewApi');window.scrollTo(0,0);}
 function showPublishApiForm(){hideAll();document.getElementById('publishApiPage').classList.add('app-page--active');setActiveNav('navPublish');window.scrollTo(0,0);}
 function mvpUpdateSpecUrl(r){var e=document.getElementById('paSpecUrl');if(e)e.textContent=r?'https://raw.githubusercontent.com/hmcts/'+r+'/main/src/main/resources/openapi/openapi-spec.yml':'https://raw.githubusercontent.com/hmcts/<repo-name>/main/src/main/resources/openapi/openapi-spec.yml';}
-function submitAccessRequest(e){if(e)e.preventDefault();var errs=[];if(!document.getElementById('arName').value.trim())errs.push('Enter your full name');if(!document.getElementById('arOrg').value.trim())errs.push('Enter your organisation');if(!document.getElementById('arEmail').value.trim())errs.push('Enter your work email address');if(!document.getElementById('arJobTitle').value.trim())errs.push('Enter your job title');if(!document.getElementById('arApiName').value)errs.push('Select the API you need access to');if(!document.getElementById('arUseCase').value.trim())errs.push('Describe your use case');var eb=document.getElementById('arError'),el=document.getElementById('arErrorList');if(errs.length){if(eb)eb.style.display='block';if(el)el.innerHTML=errs.map(function(x){return'<li>'+x+'</li>';}).join('');window.scrollTo(0,0);return;}if(eb)eb.style.display='none';
+function submitAccessRequest(e){if(e)e.preventDefault();var errs=[];if(!document.getElementById('arName').value.trim())errs.push('Enter your full name');if(!document.getElementById('arOrg').value.trim())errs.push('Enter your organisation');if(!document.getElementById('arEmail').value.trim())errs.push('Enter your work email address');if(!document.getElementById('arJobTitle').value.trim())errs.push('Enter your job title');if(!document.getElementById('arApiName').value)errs.push('Select the API you need access to');if(!document.getElementById('arUseCase').value.trim())errs.push('Describe your use case');
+  if(!document.getElementById('arD1').checked||!document.getElementById('arD2').checked||!document.getElementById('arD3').checked||!document.getElementById('arD4').checked)errs.push('Complete all declaration checkboxes');var eb=document.getElementById('arError'),el=document.getElementById('arErrorList');if(errs.length){if(eb)eb.style.display='block';if(el)el.innerHTML=errs.map(function(x){return'<li>'+x+'</li>';}).join('');window.scrollTo(0,0);return;}if(eb)eb.style.display='none';
   var _arBody = [
     'HMCTS API Marketplace — Access Request',
     '',
@@ -3807,6 +3813,8 @@ function submitAccessRequest(e){if(e)e.preventDefault();var errs=[];if(!document
     '',
     'Use case:',
     document.getElementById('arUseCase').value,
+    '',
+    'Declaration: All 4 checkboxes confirmed'
   ].join('\n');
   window.location.href = 'mailto:Nagashankar.Ponnaganti@HMCTS.NET?subject=' + encodeURIComponent('API Access Request — ' + document.getElementById('arApiName').options[document.getElementById('arApiName').selectedIndex].text) + '&body=' + encodeURIComponent(_arBody);
   document.getElementById('arForm').style.display='none';

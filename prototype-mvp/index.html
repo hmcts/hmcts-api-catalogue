@@ -413,18 +413,15 @@ body, input, select, textarea, button {
     </a>
   </div>
 </header>
-<nav class="app-subnav" aria-label="Primary navigation">
-  <div class="app-subnav__inner">
-    <a class="app-subnav__link app-subnav__link--active" id="navMarket" onclick="showHome();setActiveNav('navMarket');return false;" href="#">What is the API Marketplace?</a>
+<nav class="app-subnav" aria-label="Secondary navigation">
+    <a class="app-subnav__link" id="navMarket" onclick="showHome();setActiveNav('navMarket');return false;" href="#">What is the API Marketplace?</a>
     <a class="app-subnav__link" id="navBrowse" onclick="showMarketplace();setActiveNav('navBrowse');return false;" href="#">API Catalogue</a>
-    <a class="app-subnav__link" id="navStandards" onclick="showProducerStandards();setActiveNav('navStandards');return false;" href="#">Producer standards</a>
-    <a class="app-subnav__link" onclick="showPublishApiForm();return false;" href="#">Publish an API</a>
-    <a class="app-subnav__link" onclick="showNewApiRequestForm();return false;" href="#">Request new API</a>
+    <a class="app-subnav__link" id="navAccess" onclick="showAccessRequestForm();return false;" href="#">Request API access</a>
+    <a class="app-subnav__link" id="navNewApi" onclick="showNewApiRequestForm();return false;" href="#">Request new API</a>
+    <a class="app-subnav__link" id="navPublish" onclick="showPublishApiForm();return false;" href="#">Publish an API</a>
     <a class="app-subnav__link" id="navGuide" onclick="showGuidance();setActiveNav('navGuide');return false;" href="#">Consumer guidance</a>
-    <div style="flex:1"></div>
-
-  </div>
-</nav>
+    <a class="app-subnav__link" id="navStandards" onclick="showProducerStandards();setActiveNav('navStandards');return false;" href="#">Producer standards</a>
+  </nav>
 
 <!-- DATA GOVERNANCE PAGE -->
 <div id="dataGovernancePage" class="app-page">
@@ -769,7 +766,7 @@ body, input, select, textarea, button {
     <div class="govuk-footer__inner">
       <div class="govuk-footer__navigation">
         <div class="govuk-footer__section"><h2 class="govuk-footer__heading">API Catalogue</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a onclick="showHome();return false;" href="#" class="govuk-footer__link">API Catalogue</a></li><li class="govuk-footer__list-item"><a onclick="showMarketplace();return false;" href="#" class="govuk-footer__link">What is API Catalogue?</a></li><li class="govuk-footer__list-item"><a onclick="showGuidance();return false;" href="#" class="govuk-footer__link">Consumer guidance</a></li><li class="govuk-footer__list-item"><a onclick="showProducerStandards();return false;" href="#" class="govuk-footer__link">Producer standards</a></li><li class="govuk-footer__list-item"><a href="https://hmcts.github.io/amp-catalog/" target="_blank" rel="noopener" class="govuk-footer__link">AMP Catalogue</a></li></ul></div>
-        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:Nagashankar.Ponnaganti@HMCTS.NET" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a onclick="requestNewApi();return false;" href="#" class="govuk-footer__link">Request a new API</a></li><li class="govuk-footer__list-item"><a onclick="showPublishApiForm();return false;" href="#" class="govuk-footer__link">Publish an API</a></li></ul></div>
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:Nagashankar.Ponnaganti@HMCTS.NET" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a onclick="showNewApiRequestForm();return false;" href="#" class="govuk-footer__link">Request a new API</a></li><li class="govuk-footer__list-item"><a onclick="showPublishApiForm();return false;" href="#" class="govuk-footer__link">Publish an API</a></li></ul></div>
         <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Policies</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Accessibility statement</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Cookies</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Privacy notice</a></li><li class="govuk-footer__list-item"><a onclick="showDataGovernance();return false;" href="#" class="govuk-footer__link">Data governance</a></li></ul></div>
       </div>
       <div class="govuk-footer__meta"><div class="govuk-footer__meta-item">Built by <a href="https://www.gov.uk/hmcts" class="govuk-footer__link">HMCTS Digital and Technology Solutions</a></div><div class="govuk-footer__copyright-logo">&copy; Crown copyright &mdash; MIT Licence</div></div>
@@ -994,7 +991,7 @@ body, input, select, textarea, button {
     <div class="govuk-footer__inner">
       <div class="govuk-footer__navigation">
         <div class="govuk-footer__section"><h2 class="govuk-footer__heading">API Catalogue</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a onclick="showHome();return false;" href="#" class="govuk-footer__link">API Catalogue</a></li><li class="govuk-footer__list-item"><a onclick="showMarketplace();return false;" href="#" class="govuk-footer__link">What is API Catalogue?</a></li><li class="govuk-footer__list-item"><a onclick="showGuidance();return false;" href="#" class="govuk-footer__link">Consumer guidance</a></li><li class="govuk-footer__list-item"><a onclick="showProducerStandards();return false;" href="#" class="govuk-footer__link">Producer standards</a></li><li class="govuk-footer__list-item"><a href="https://hmcts.github.io/amp-catalog/" target="_blank" rel="noopener" class="govuk-footer__link">AMP Catalogue</a></li></ul></div>
-        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:Nagashankar.Ponnaganti@HMCTS.NET" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a onclick="requestNewApi();return false;" href="#" class="govuk-footer__link">Request a new API</a></li><li class="govuk-footer__list-item"><a onclick="showPublishApiForm();return false;" href="#" class="govuk-footer__link">Publish an API</a></li></ul></div>
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:Nagashankar.Ponnaganti@HMCTS.NET" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a onclick="showNewApiRequestForm();return false;" href="#" class="govuk-footer__link">Request a new API</a></li><li class="govuk-footer__list-item"><a onclick="showPublishApiForm();return false;" href="#" class="govuk-footer__link">Publish an API</a></li></ul></div>
         <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Policies</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Accessibility statement</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Cookies</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Privacy notice</a></li><li class="govuk-footer__list-item"><a onclick="showDataGovernance();return false;" href="#" class="govuk-footer__link">Data governance</a></li></ul></div>
       </div>
       <div class="govuk-footer__meta"><div class="govuk-footer__meta-item">Built by <a href="https://www.gov.uk/hmcts" class="govuk-footer__link">HMCTS Digital and Technology Solutions</a></div><div class="govuk-footer__copyright-logo">&copy; Crown copyright &mdash; MIT Licence</div></div>
@@ -1113,7 +1110,7 @@ body, input, select, textarea, button {
     <div class="govuk-footer__inner">
       <div class="govuk-footer__navigation">
         <div class="govuk-footer__section"><h2 class="govuk-footer__heading">API Catalogue</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a onclick="showHome();return false;" href="#" class="govuk-footer__link">API Catalogue</a></li><li class="govuk-footer__list-item"><a onclick="showMarketplace();return false;" href="#" class="govuk-footer__link">What is API Catalogue?</a></li><li class="govuk-footer__list-item"><a onclick="showGuidance();return false;" href="#" class="govuk-footer__link">Consumer guidance</a></li><li class="govuk-footer__list-item"><a onclick="showProducerStandards();return false;" href="#" class="govuk-footer__link">Producer standards</a></li><li class="govuk-footer__list-item"><a href="https://hmcts.github.io/amp-catalog/" target="_blank" rel="noopener" class="govuk-footer__link">AMP Catalogue</a></li></ul></div>
-        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:Nagashankar.Ponnaganti@HMCTS.NET" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a onclick="requestNewApi();return false;" href="#" class="govuk-footer__link">Request a new API</a></li><li class="govuk-footer__list-item"><a onclick="showPublishApiForm();return false;" href="#" class="govuk-footer__link">Publish an API</a></li></ul></div>
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:Nagashankar.Ponnaganti@HMCTS.NET" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a onclick="showNewApiRequestForm();return false;" href="#" class="govuk-footer__link">Request a new API</a></li><li class="govuk-footer__list-item"><a onclick="showPublishApiForm();return false;" href="#" class="govuk-footer__link">Publish an API</a></li></ul></div>
         <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Policies</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Accessibility statement</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Cookies</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Privacy notice</a></li><li class="govuk-footer__list-item"><a onclick="showDataGovernance();return false;" href="#" class="govuk-footer__link">Data governance</a></li></ul></div>
       </div>
       <div class="govuk-footer__meta"><div class="govuk-footer__meta-item">Built by <a href="https://www.gov.uk/hmcts" class="govuk-footer__link">HMCTS Digital and Technology Solutions</a></div><div class="govuk-footer__copyright-logo">&copy; Crown copyright &mdash; MIT Licence</div></div>
@@ -1187,7 +1184,7 @@ body, input, select, textarea, button {
     <div class="govuk-footer__inner">
       <div class="govuk-footer__navigation">
         <div class="govuk-footer__section"><h2 class="govuk-footer__heading">API Catalogue</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a onclick="showHome();return false;" href="#" class="govuk-footer__link">API Catalogue</a></li><li class="govuk-footer__list-item"><a onclick="showMarketplace();return false;" href="#" class="govuk-footer__link">What is API Catalogue?</a></li><li class="govuk-footer__list-item"><a onclick="showGuidance();return false;" href="#" class="govuk-footer__link">Consumer guidance</a></li><li class="govuk-footer__list-item"><a onclick="showProducerStandards();return false;" href="#" class="govuk-footer__link">Producer standards</a></li><li class="govuk-footer__list-item"><a href="https://hmcts.github.io/amp-catalog/" target="_blank" rel="noopener" class="govuk-footer__link">AMP Catalogue</a></li></ul></div>
-        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:Nagashankar.Ponnaganti@HMCTS.NET" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a onclick="requestNewApi();return false;" href="#" class="govuk-footer__link">Request a new API</a></li><li class="govuk-footer__list-item"><a onclick="showPublishApiForm();return false;" href="#" class="govuk-footer__link">Publish an API</a></li></ul></div>
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:Nagashankar.Ponnaganti@HMCTS.NET" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a onclick="showNewApiRequestForm();return false;" href="#" class="govuk-footer__link">Request a new API</a></li><li class="govuk-footer__list-item"><a onclick="showPublishApiForm();return false;" href="#" class="govuk-footer__link">Publish an API</a></li></ul></div>
         <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Policies</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Accessibility statement</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Cookies</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Privacy notice</a></li><li class="govuk-footer__list-item"><a onclick="showDataGovernance();return false;" href="#" class="govuk-footer__link">Data governance</a></li></ul></div>
       </div>
       <div class="govuk-footer__meta"><div class="govuk-footer__meta-item">Built by <a href="https://www.gov.uk/hmcts" class="govuk-footer__link">HMCTS Digital and Technology Solutions</a></div><div class="govuk-footer__copyright-logo">&copy; Crown copyright &mdash; MIT Licence</div></div>
@@ -1433,7 +1430,7 @@ body, input, select, textarea, button {
     <div class="govuk-footer__inner">
       <div class="govuk-footer__navigation">
         <div class="govuk-footer__section"><h2 class="govuk-footer__heading">API Catalogue</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a onclick="showHome();return false;" href="#" class="govuk-footer__link">API Catalogue</a></li><li class="govuk-footer__list-item"><a onclick="showMarketplace();return false;" href="#" class="govuk-footer__link">What is API Catalogue?</a></li><li class="govuk-footer__list-item"><a onclick="showGuidance();return false;" href="#" class="govuk-footer__link">Consumer guidance</a></li><li class="govuk-footer__list-item"><a onclick="showProducerStandards();return false;" href="#" class="govuk-footer__link">Producer standards</a></li><li class="govuk-footer__list-item"><a href="https://hmcts.github.io/amp-catalog/" target="_blank" rel="noopener" class="govuk-footer__link">AMP Catalogue</a></li></ul></div>
-        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:Nagashankar.Ponnaganti@HMCTS.NET" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a onclick="requestNewApi();return false;" href="#" class="govuk-footer__link">Request a new API</a></li><li class="govuk-footer__list-item"><a onclick="showPublishApiForm();return false;" href="#" class="govuk-footer__link">Publish an API</a></li></ul></div>
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:Nagashankar.Ponnaganti@HMCTS.NET" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a onclick="showNewApiRequestForm();return false;" href="#" class="govuk-footer__link">Request a new API</a></li><li class="govuk-footer__list-item"><a onclick="showPublishApiForm();return false;" href="#" class="govuk-footer__link">Publish an API</a></li></ul></div>
         <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Policies</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Accessibility statement</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Cookies</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Privacy notice</a></li><li class="govuk-footer__list-item"><a onclick="showDataGovernance();return false;" href="#" class="govuk-footer__link">Data governance</a></li></ul></div>
       </div>
       <div class="govuk-footer__meta"><div class="govuk-footer__meta-item">Built by <a href="https://www.gov.uk/hmcts" class="govuk-footer__link">HMCTS Digital and Technology Solutions</a></div><div class="govuk-footer__copyright-logo">&copy; Crown copyright &mdash; MIT Licence</div></div>
@@ -1453,8 +1450,6 @@ body, input, select, textarea, button {
         <div class="govuk-form-group"><label class="govuk-label govuk-label--m" for="arName">Full name</label><input class="govuk-input" id="arName" type="text" autocomplete="name" spellcheck="false"></div>
         <div class="govuk-form-group"><label class="govuk-label govuk-label--m" for="arOrg">Organisation</label><div class="govuk-hint">For example: HMCTS DTS, Ministry of Justice Digital</div><input class="govuk-input" id="arOrg" type="text" spellcheck="false"></div>
         <div class="govuk-form-group"><label class="govuk-label govuk-label--m" for="arEmail">Work email address</label><input class="govuk-input" id="arEmail" type="email" autocomplete="email" spellcheck="false"></div>
-        <div class="govuk-form-group"><label class="govuk-label govuk-label--m" for="arJobTitle">Job title</label><div class="govuk-hint">For example: Senior Developer, Technical Architect</div><input class="govuk-input" id="arJobTitle" type="text" autocomplete="organization-title" spellcheck="false"></div>
-        <div class="govuk-form-group"><label class="govuk-label govuk-label--m" for="arPhone">Phone number <span class="govuk-hint" style="display:inline">(optional)</span></label><div class="govuk-hint">In case we need to contact you urgently about your request</div><input class="govuk-input govuk-input--width-20" id="arPhone" type="tel" autocomplete="tel" spellcheck="false"></div>
         <h2 class="govuk-heading-l" style="margin-top:32px">API details</h2>
         <div class="govuk-form-group"><label class="govuk-label govuk-label--m" for="arApiName">Which API do you need access to?</label><div class="govuk-hint" id="arApiHint">Select from the live catalogue</div><select class="govuk-select" id="arApiName" style="width:100%"><option value="">Select an API&hellip;</option></select></div>
         <div class="govuk-form-group"><label class="govuk-label govuk-label--m" for="arEnv">Environment</label><select class="govuk-select" id="arEnv"><option value="">Select&hellip;</option><option value="sandbox">Sandbox (development and testing)</option><option value="production">Production</option><option value="both">Both sandbox and production</option></select></div>
@@ -1483,8 +1478,6 @@ body, input, select, textarea, button {
         <div class="govuk-form-group"><label class="govuk-label govuk-label--m" for="narName">Full name</label><input class="govuk-input" id="narName" type="text" autocomplete="name" spellcheck="false"></div>
         <div class="govuk-form-group"><label class="govuk-label govuk-label--m" for="narOrg">Organisation</label><input class="govuk-input" id="narOrg" type="text" spellcheck="false"></div>
         <div class="govuk-form-group"><label class="govuk-label govuk-label--m" for="narEmail">Work email address</label><input class="govuk-input" id="narEmail" type="email" autocomplete="email" spellcheck="false"></div>
-        <div class="govuk-form-group"><label class="govuk-label govuk-label--m" for="narJobTitle">Job title</label><div class="govuk-hint">For example: Product Manager, Business Analyst</div><input class="govuk-input" id="narJobTitle" type="text" autocomplete="organization-title" spellcheck="false"></div>
-        <div class="govuk-form-group"><label class="govuk-label govuk-label--m" for="narPhone">Phone number <span class="govuk-hint" style="display:inline">(optional)</span></label><div class="govuk-hint">In case we need to follow up on your request</div><input class="govuk-input govuk-input--width-20" id="narPhone" type="tel" autocomplete="tel" spellcheck="false"></div>
         <h2 class="govuk-heading-l" style="margin-top:32px">API details</h2>
         <div class="govuk-form-group"><label class="govuk-label govuk-label--m" for="narApiDesc">What data or capability do you need?</label><div class="govuk-hint">Describe the data you need, what it would be used for, and the problem it would solve</div><textarea class="govuk-textarea" id="narApiDesc" rows="6"></textarea></div>
         <div class="govuk-form-group"><label class="govuk-label govuk-label--m" for="narDomain">Which justice domain does this relate to?</label><select class="govuk-select" id="narDomain"><option value="">Select&hellip;</option><option>Case Administration</option><option>Hearing Results</option><option>Scheduling and Listing</option><option>Reference Data</option><option>Financial</option><option>Not sure</option></select></div>
@@ -1510,8 +1503,6 @@ body, input, select, textarea, button {
         <div class="govuk-form-group"><label class="govuk-label govuk-label--m" for="paName">Full name</label><input class="govuk-input" id="paName" type="text" autocomplete="name" spellcheck="false"></div>
         <div class="govuk-form-group"><label class="govuk-label govuk-label--m" for="paOrg">Organisation</label><input class="govuk-input" id="paOrg" type="text" spellcheck="false"></div>
         <div class="govuk-form-group"><label class="govuk-label govuk-label--m" for="paEmail">Work email address</label><input class="govuk-input" id="paEmail" type="email" autocomplete="email" spellcheck="false"></div>
-        <div class="govuk-form-group"><label class="govuk-label govuk-label--m" for="paJobTitle">Job title</label><div class="govuk-hint">For example: API Lead, Technical Architect, Engineering Manager</div><input class="govuk-input" id="paJobTitle" type="text" autocomplete="organization-title" spellcheck="false"></div>
-        <div class="govuk-form-group"><label class="govuk-label govuk-label--m" for="paPhone">Phone number <span class="govuk-hint" style="display:inline">(optional)</span></label><div class="govuk-hint">In case we need to contact you during the review process</div><input class="govuk-input govuk-input--width-20" id="paPhone" type="tel" autocomplete="tel" spellcheck="false"></div>
         <h2 class="govuk-heading-l" style="margin-top:32px">API details</h2>
         <div class="govuk-form-group"><label class="govuk-label govuk-label--m" for="paApiName">API display name</label><div class="govuk-hint">The human-readable name shown to consumers, for example: Crime Prosecution Case Details API</div><input class="govuk-input" id="paApiName" type="text" spellcheck="false"></div>
         <div class="govuk-form-group"><label class="govuk-label govuk-label--m" for="paRepo">GitHub repository name</label><div class="govuk-hint">The repository name under the HMCTS organisation, for example: <code>api-cp-crime-prosecution-case-details</code></div><input class="govuk-input" id="paRepo" type="text" spellcheck="false" oninput="mvpUpdateSpecUrl(this.value)"></div>
@@ -1536,8 +1527,9 @@ body, input, select, textarea, button {
   </div>
 </div>
 
-<script>function statusPillClass(s){var m={'Alpha':'app-api-status-pill--alpha','Beta':'app-api-status-pill--beta','Lifunction statusPillClass(s){var m={'Alpha':'app-api-status-pill--alpha','Beta':'app-api-status-pill--beta','Live':'app-api-status-pill--live','Deprecated':'app-api-status-pill--deprecated','Retired':'app-api-status-pill--retired'};return m[s]||'app-api-status-pill--beta';}
+<script>function statusPillClass(s){var m={'Alpha':'app-api-status-pill--alpha','Beta':'app-api-status-pill--beta','Live':'app-api-status-pill--live','Deprecated':'app-api-status-pill--deprecated','Retired':'app-api-status-pill--retired'};return m[s]||'app-api-status-pill--beta';}
 function statusBadgeClass(s){var m={'Alpha':'app-tag--purple','Beta':'app-tag--blue','Live':'app-tag--green','Deprecated':'app-tag--yellow','Retired':'app-tag--grey'};return m[s]||'app-tag--blue';}
+var LIFECYCLE_STATES={'Alpha':'Early-stage API. Interface may change.','Beta':'Feature-complete. Minor changes possible.','Live':'Production-ready.','Deprecated':'Being phased out. Migrate before retirement.','Retired':'No longer available.'};
 
 var APIS = [{"id":"cpp-case-aggregator-poc","name":"CPP Case Aggregator API","shortName":"cpp-case-aggregator-poc","version":"latest","status":"Live","domain":"Case Administration","classification":"Official","authType":"OAuth 2.0","description":"Aggregates data from CPP downstream services and exposes shaped responses per domain.","plainEnglish":"Aggregates data from multiple CPP downstream services (system-id-mapper, prosecution-casefile, hearing, results, hearing-nows) and exposes shaped responses per domain.","docsUrl":"https://hmcts.github.io/cpp-case-aggregator-poc/","specUrl":"https://raw.githubusercontent.com/hmcts/cpp-case-aggregator-poc/main/src/main/resources/openapi/openapi-spec.yml","repoUrl":"https://github.com/hmcts/cpp-case-aggregator-poc","team":"AMP","changelog":[{"version":"latest","date":"2025","notes":"Latest release"}],"tags":["case","aggregator","CPP"]},{"id":"api-cp-crime-hearing-results-document-subscription","name":"Crime Hearing Results Document Subscription","shortName":"api-cp-crime-hearing-results-document-subscription","version":"latest","status":"Live","domain":"Hearing Results","classification":"Official","authType":"OAuth 2.0","description":"Allows organisations to be automatically notified when crime hearing result documents become available.","plainEnglish":"Allows organisations to be automatically notified when crime hearing result documents become available, such as when a verdict is recorded or sentencing notes are published. Organisations register the types of hearing events they are interested in and provide an address to receive notifications.","docsUrl":"https://hmcts.github.io/api-cp-crime-hearing-results-document-subscription/","specUrl":"https://raw.githubusercontent.com/hmcts/api-cp-crime-hearing-results-document-subscription/main/src/main/resources/openapi/openapi-spec.yml","repoUrl":"https://github.com/hmcts/api-cp-crime-hearing-results-document-subscription","team":"AMP","changelog":[{"version":"latest","date":"2025","notes":"Latest release"}],"tags":["hearing","results","documents","subscription"]},{"id":"api-cp-crime-prosecution-case-details","name":"Crime Prosecution Case Details","shortName":"api-cp-crime-prosecution-case-details","version":"latest","status":"Live","domain":"Case Administration","classification":"Official-Sensitive","authType":"OAuth 2.0","description":"Returns a summary of a criminal prosecution case for a given case reference number.","plainEnglish":"Returns a summary of a criminal prosecution case for a given case reference number. Provides the current status of the case, any reporting restrictions in place, defendant details, and associated hearing information. Used by prosecutors, defence solicitors, and court staff who need an up-to-date view of a case as it progresses through the courts.","docsUrl":"https://hmcts.github.io/api-cp-crime-prosecution-case-details/","specUrl":"https://raw.githubusercontent.com/hmcts/api-cp-crime-prosecution-case-details/main/src/main/resources/openapi/openapi-spec.yml","repoUrl":"https://github.com/hmcts/api-cp-crime-prosecution-case-details","team":"AMP","changelog":[{"version":"latest","date":"2025","notes":"Latest release"}],"tags":["prosecution","case","URN","crime"]},{"id":"api-cp-refdata-courthearing-courthouses","name":"Refdata Court Hearing Court Houses","shortName":"api-cp-refdata-courthearing-courthouses","version":"latest","status":"Live","domain":"Reference Data","classification":"Official","authType":"OAuth 2.0","description":"Provides information about court buildings and the rooms within them.","plainEnglish":"Provides information about court buildings and the rooms within them. Returns the building name, postal address, and room details for a given court. Used by listing officers and court diary systems to show where a hearing is taking place.","docsUrl":"https://hmcts.github.io/api-cp-refdata-courthearing-courthouses/","specUrl":"https://raw.githubusercontent.com/hmcts/api-cp-refdata-courthearing-courthouses/main/src/main/resources/openapi/openapi-spec.yml","repoUrl":"https://github.com/hmcts/api-cp-refdata-courthearing-courthouses","team":"AMP","changelog":[{"version":"latest","date":"2025","notes":"Latest release"}],"tags":["reference data","court houses","venues"]},{"id":"api-cp-crime-hearing-results-validator","name":"Results Validation Service API","shortName":"api-cp-crime-hearing-results-validator","version":"latest","status":"Beta","domain":"Hearing Results","classification":"Official","authType":"OAuth 2.0","description":"API for validating draft hearing results against declarative, programmatic, and LLM-assisted rules.","plainEnglish":"Validates draft hearing result records before they are published.","docsUrl":"https://hmcts.github.io/api-cp-crime-hearing-results-validator/","specUrl":"https://raw.githubusercontent.com/hmcts/api-cp-crime-hearing-results-validator/main/src/main/resources/openapi/openapi-spec.yml","repoUrl":"https://github.com/hmcts/api-cp-crime-hearing-results-validator","team":"AMP","changelog":[{"version":"latest","date":"2025","notes":"Latest release"}],"tags":["validation","hearing results","rules"]},{"id":"api-cp-crime-schedulingandlisting-courtschedule","name":"Scheduling and Listing Court Schedule","shortName":"api-cp-crime-schedulingandlisting-courtschedule","version":"latest","status":"Live","domain":"Scheduling and Listing","classification":"Official","authType":"OAuth 2.0","description":"Returns the court hearing schedule for a given case, showing when and where hearings are listed.","plainEnglish":"Returns the court hearing schedule for a given case, showing when and where hearings are listed to take place. For each hearing the response includes the court building, court room, sitting times, type of hearing, and the judge assigned. Used by listing officers who manage court diaries and by legal teams who need to see upcoming hearing dates for a case.","docsUrl":"https://hmcts.github.io/api-cp-crime-schedulingandlisting-courtschedule/","specUrl":"https://raw.githubusercontent.com/hmcts/api-cp-crime-schedulingandlisting-courtschedule/main/src/main/resources/openapi/openapi-spec.yml","repoUrl":"https://github.com/hmcts/api-cp-crime-schedulingandlisting-courtschedule","team":"AMP","changelog":[{"version":"latest","date":"2025","notes":"Latest release"}],"tags":["scheduling","listing","court schedule"]}];
 
@@ -1545,6 +1537,7 @@ var EMBEDDED_SPECS = {};
 
 var specCache = {};
 var currentApi = null;
+var AU = null, AP = null, AR = 'consumer';
 
 function renderHome() {
   var grid = document.getElementById('apiGrid');
@@ -2220,9 +2213,36 @@ function getSchemas(spec) {
 }
 
 /* ── Auth ────────────────────────────────────────────────── */
+function lsU()         { try { return JSON.parse(localStorage.getItem('_cat_users') || '{}'); } catch(e) { return {}; } }
+function lsSU(u)        { localStorage.setItem('_cat_users', JSON.stringify(u)); }
+function lsSess(u)      { localStorage.setItem('_cat_sess',  JSON.stringify(u)); }
+function lsGetSess()    { try { return JSON.parse(localStorage.getItem('_cat_sess')); } catch(e) { return null; } }
+function lsClear()      { localStorage.removeItem('_cat_sess'); }
+function lsAllReqs()    { try { return JSON.parse(localStorage.getItem('_cat_reqs') || '[]'); } catch(e) { return []; } }
+function lsSaveReqs(r)  { localStorage.setItem('_cat_reqs', JSON.stringify(r)); }
+function lsPApis(id)    { try { return JSON.parse(localStorage.getItem('_cat_papis_' + id) || '[]'); } catch(e) { return []; } }
+function lsSPApis(id,a) { localStorage.setItem('_cat_papis_' + id, JSON.stringify(a)); }
 
+function showAuth(tab)   { showSignInPage(tab || 'login'); }
+function hideAuth()      { document.getElementById('authOverlay').style.display = 'none'; }
+function showSignIn()    { showAuth('login'); }
+function showRegister()  { showAuth('register'); }
 
+function authTab(t) {
+  document.getElementById('fLogin').style.display    = t === 'login'    ? 'block' : 'none';
+  document.getElementById('fReg').style.display      = t === 'register' ? 'block' : 'none';
+  document.getElementById('atLogin').classList.toggle('app-auth-tab--active', t === 'login');
+  document.getElementById('atLogin').setAttribute('aria-selected', t === 'login' ? 'true' : 'false');
+  document.getElementById('atReg').classList.toggle('app-auth-tab--active',   t === 'register');
+  document.getElementById('atReg').setAttribute('aria-selected', t === 'register' ? 'true' : 'false');
+  setAErr('');
+}
 
+function setAErr(m) {
+  var e = document.getElementById('aErr');
+  e.textContent = m;
+  e.classList.toggle('app-auth-error--show', !!m);
+}
 
 function pickRole(r) {
   AR = r;
@@ -2247,6 +2267,9 @@ function defaultPermissions(role) {
   };
 }
 
+function hasPermission(perm) {
+  return AP && AP.permissions && AP.permissions[perm] === true;
+}
 
 function doLogin(e) {
   e.preventDefault(); setAErr('');
@@ -2291,21 +2314,158 @@ function doRegister(e) {
   }, 350);
 }
 
+function doLogout() { lsClear(); AU = null; AP = null; renderNav(); showHome(); }
 
 function restoreSession() {
   var u = lsGetSess();
   if (u) { if (!u.permissions) u.permissions = defaultPermissions(u.role); AU = u; AP = { firstName: u.fn, lastName: u.ln, email: u.email, org: u.org, role: u.role, permissions: u.permissions }; }
 }
 
+function renderNav() {
+  var link = document.getElementById('navAuthLink');
+  if (!link) return;
+  if (AU && AP) {
+    link.textContent = AP.firstName ? AP.firstName + ' ' + AP.lastName : 'My dashboard';
+    link.onclick = function() { showDash(); return false; };
+  } else {
+    link.textContent = 'Sign in';
+    link.onclick = function() { showAuth('login'); return false; };
+  }
+}
 
+function navAuthClick() {
+  if (AU && AP) { showDash(); } else { showAuth('login'); }
+}
 
 /* ── Dashboards ──────────────────────────────────────────── */
-function showDash() { showMarketplace(); }
+function showDash() {
+  if (!AU || !AP) { showAuth('login'); return; }
+  if (hasPermission('canReview')) showRvDash();
+  else if (hasPermission('canPublish')) showPDash();
+  else showCDash();
+}
 
+function showCDash() {
+  hideAll();
+  document.getElementById('consDash').classList.add('app-page--active');
+  setActiveNav('navDash');
+  /* Reset to overview panel */
+  document.querySelectorAll('#consDash .app-dash-panel').forEach(function(p){ p.classList.remove('app-dash-panel--active'); });
+  document.querySelectorAll('#consDash .app-dash-nav__item').forEach(function(n){ n.classList.remove('app-dash-nav__item--active'); });
+  var ovPanel = document.getElementById('c-ov');
+  if (ovPanel) ovPanel.classList.add('app-dash-panel--active');
+  var ovBtn = document.querySelector('#consDash .app-dash-nav__item');
+  if (ovBtn) ovBtn.classList.add('app-dash-nav__item--active');
+  window.scrollTo(0, 0);
+  document.getElementById('cGr').textContent = 'Welcome back, ' + (AP.firstName || 'there');
+  document.getElementById('cNm').textContent  = (AP.firstName || '') + ' ' + (AP.lastName || '');
+  document.getElementById('cAv').textContent  = (AP.firstName ? AP.firstName[0] : '') + (AP.lastName ? AP.lastName[0] : '');
+  var sel = document.getElementById('rqApi');
+  if (sel) sel.innerHTML = '<option value="">Select an API\u2026</option>' + APIS.map(function(a) { return '<option value="' + a.id + '">' + a.name + '</option>'; }).join('');
+  document.getElementById('cBrowse').innerHTML = APIS.map(function(api) {
+    return '<div class="app-api-card" onclick="showDetail(\'' + api.id + '\')" style="cursor:pointer" role="listitem" tabindex="0">' +
+      '<div class="app-api-card__name">' + api.name + '</div>' +
+      '<p class="app-api-card__desc">' + api.description + '</p>' +
+      '<div class="app-api-card__footer"><span class="app-api-card__meta">' + api.endpointCount + ' endpoint' + (api.endpointCount !== 1 ? 's' : '') + '</span><span class="app-tag app-tag--blue">View \u2192</span></div>' +
+    '</div>';
+  }).join('');
+  refreshCReqs();
+}
 
+function refreshCReqs() {
+  var list = document.getElementById('cRL');
+  if (!list) { console.warn('refreshCReqs: cRL element not found'); return; }
+  if (!AU) { list.innerHTML = '<p class="govuk-body" style="color:#505a5f">Sign in to see your requests.</p>'; return; }
+  /* Read from per-user store (always written) and merge with global for status updates */
+  var perUser = lsAllReqs().filter(function(r){ return r.uid === AU.id; });
+  var global  = lsAllReqsGlobal().filter(function(r){ return r.uid === AU.id; });
+  console.log('[refreshCReqs] AU.id:', AU.id, '| perUser:', perUser.length, '| global:', global.length);
+  console.log('[refreshCReqs] _cat_reqs raw:', localStorage.getItem('_cat_reqs'));
+  console.log('[refreshCReqs] _cat_all_reqs raw:', localStorage.getItem('_cat_all_reqs'));
+  /* Merge: global has latest status/notes; per-user has original submissions */
+  var merged = {};
+  perUser.forEach(function(r){ merged[r.id] = r; });
+  global.forEach(function(r){ if (merged[r.id]) { merged[r.id].status = r.status; merged[r.id].producerNotes = r.producerNotes || ''; } else { merged[r.id] = r; } });
+  var mine = Object.values(merged);
+  if (!mine.length) {
+    list.innerHTML = '<div class="app-empty-state"><div class="app-empty-state__icon" aria-hidden="true">&#128203;</div><div class="app-empty-state__title">No requests yet</div><div class="app-empty-state__desc">Submit your first access request to get started.</div></div>';
+    return;
+  }
+  list.innerHTML = mine.sort(function(a,b){ return a.created < b.created ? 1 : -1; }).map(function(r) {
+    var tagClass = r.status === 'approved' ? 'app-tag--green' : r.status === 'rejected' ? 'app-tag--red' : 'app-tag--yellow';
+    var tagLabel = r.status === 'approved' ? '&#10003; Approved' : r.status === 'rejected' ? '&#10007; Rejected' : 'Pending review';
+    return '<div class="app-submission-card">' +
+      '<div class="app-submission-card__header">' +
+        '<div><div class="app-submission-card__name">' + r.apiName + '</div>' +
+        '<div class="app-submission-card__meta">' + r.env + ' &middot; ' + r.sys + ' &middot; ' + (function(d){var s=Math.floor((new Date()-new Date(d))/1000);if(s<60)return 'just now';if(s<3600)return Math.floor(s/60)+'m ago';if(s<86400)return Math.floor(s/3600)+'h ago';return Math.floor(s/86400)+'d ago';})(r.created) + '</div></div>' +
+        '<span class="app-tag ' + tagClass + '">' + tagLabel + '</span>' +
+      '</div>' +
+      (r.producerNotes && r.status !== 'pending' ? '<div class="app-notes-box"><strong>Decision note:</strong> ' + r.producerNotes + '</div>' : '') +
+    '</div>';
+  }).join('');
+}
 
+function showPDash() {
+  hideAll();
+  document.getElementById('prodDash').classList.add('app-page--active');
+  setActiveNav('navDash');
+  window.scrollTo(0, 0);
+  document.getElementById('pGr').textContent = 'Welcome back, ' + (AP.firstName || 'there');
+  document.getElementById('pNm').textContent  = (AP.firstName || '') + ' ' + (AP.lastName || '');
+  document.getElementById('pAv').textContent  = (AP.firstName ? AP.firstName[0] : '') + (AP.lastName ? AP.lastName[0] : '');
+  var myApis = lsPApis(AU.id);
+  var pNA = document.getElementById('pNA'); if (pNA) pNA.textContent = myApis.length;
+  if (myApis.length) {
+    document.getElementById('pAL').innerHTML = myApis.map(function(a) {
+      return '<div class="app-producer-api">' +
+        '<div class="app-producer-api__header">' +
+          '<div class="app-producer-api__icon">API</div>' +
+          '<div><div class="app-producer-api__name">' + a.name + '</div><div class="app-producer-api__id">' + a.api + '</div></div>' +
+          '<div style="margin-left:auto"><span class="app-tag app-tag--yellow">Pending review</span></div>' +
+        '</div>' +
+        '<div class="app-producer-api__stats"><strong>' + a.domain + '</strong><span>v' + a.ver + '</span><span>' + a.auth + '</span></div>' +
+      '</div>';
+    }).join('');
+  }
+}
 
+function dPanel(role, panel, el) {
+  var pageId = role === 'c' ? 'consDash' : 'prodDash';
+  var page = document.getElementById(pageId);
+  page.querySelectorAll('.app-dash-panel').forEach(function(p) { p.classList.remove('app-dash-panel--active'); });
+  page.querySelectorAll('.app-dash-nav__item').forEach(function(n) { n.classList.remove('app-dash-nav__item--active'); });
+  var target = document.getElementById(role + '-' + panel);
+  if (target) target.classList.add('app-dash-panel--active');
+  if (el) el.classList.add('app-dash-nav__item--active');
+  if (panel === 'prof' && AP) {
+    var isP = role === 'p';
+    var fn = document.getElementById(isP ? 'pPFn' : 'cPFn'); if (fn) fn.value = AP.firstName || '';
+    var ln = document.getElementById(isP ? 'pPLn' : 'cPLn'); if (ln) ln.value = AP.lastName  || '';
+    var em = document.getElementById(isP ? 'pPEm' : 'cPEm'); if (em) em.value = AP.email     || '';
+    var og = document.getElementById(isP ? 'pPOrg' : 'cPOrg'); if (og) og.value = AP.org    || '';
+  }
+}
 
+function saveProf(role) {
+  if (!AU || !AP) return;
+  var isP = role === 'p';
+  var fn = document.getElementById(isP ? 'pPFn' : 'cPFn').value;
+  var ln = document.getElementById(isP ? 'pPLn' : 'cPLn').value;
+  var og = document.getElementById(isP ? 'pPOrg' : 'cPOrg').value;
+  AP.firstName = fn; AP.lastName = ln; AP.org = og;
+  var users = lsU();
+  if (users[AU.email]) { users[AU.email].fn = fn; users[AU.email].ln = ln; users[AU.email].org = og; lsSU(users); }
+  var updated = {}; for (var k in AU) updated[k] = AU[k];
+  updated.fn = fn; updated.ln = ln; updated.org = og; lsSess(updated); AU = updated;
+  renderNav();
+  var n = document.createElement('div');
+  n.className = 'govuk-notification-banner govuk-notification-banner--success';
+  n.setAttribute('role','alert');
+  n.innerHTML = '<div class="govuk-notification-banner__header"><h2 class="govuk-notification-banner__title">Success</h2></div><div class="govuk-notification-banner__content"><p class="govuk-body">Profile saved.</p></div>';
+  var panelEl = document.getElementById((isP ? 'p' : 'c') + '-prof');
+  panelEl.insertBefore(n, panelEl.firstChild);
+  setTimeout(function() { n.remove(); }, 3000);
+}
 
 document.addEventListener('keydown', function(e) {
   if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -2325,6 +2485,15 @@ renderHome();
 var reqData = {};
 var reqStepsDone = [false, false, false, false];
 
+function showReqStep(step) {
+  document.querySelectorAll('#c-access .app-step-form').forEach(function(el) {
+    el.classList.remove('app-step-form--active');
+  });
+  var target = document.getElementById('req-' + step);
+  if (target) target.classList.add('app-step-form--active');
+  if (step === 'check') buildReqCheckAnswers();
+  window.scrollTo(0,0);
+}
 
 function clearErrors(prefix, step) {
   var errBox = document.getElementById(prefix + '-err-' + step);
@@ -2560,6 +2729,26 @@ function buildPubCheckAnswers() {
   }).join('');
 }
 
+function submitPub() {
+  var d1 = document.getElementById('pubDecl1');
+  var d2 = document.getElementById('pubDecl2');
+  var d3 = document.getElementById('pubDecl3');
+  if (!d1.checked || !d2.checked || !d3.checked) {
+    alert('You must confirm all three declarations before submitting.');
+    return;
+  }
+  var ex = lsPApis(AU.id);
+  ex.push({ name:pubData.name, org:pubData.org, api:pubData.api, ver:pubData.ver, domain:pubData.domain, classification:pubData.classification, auth:pubData.auth, desc:pubData.desc, created:new Date().toISOString() });
+  lsSPApis(AU.id, ex);
+  var submittedName = pubData.name;
+  pubData = {}; pubStepsDone = [false,false,false];
+  document.getElementById('p-publish').innerHTML =
+    '<h1 class="govuk-heading-l">API submitted</h1>' +
+    '<div class="govuk-panel govuk-panel--confirmation" style="margin-bottom:24px"><h2 class="govuk-panel__title">Submitted for review</h2><div class="govuk-panel__body">' + submittedName + '</div></div>' +
+    '<p class="govuk-body">The marketplace team will review your API and contact you within 5 business days.</p>' +
+    '<p class="govuk-body"><a class="govuk-link" onclick="dPanel(\'p\',\'myapis\',document.querySelectorAll(\'#prodDash .app-dash-nav__item\')[1]);showPDash();return false;" href="#">View your APIs</a></p>';
+  showPDash();
+}
 
 document.addEventListener('input', function(e) {
   if (e.target && e.target.id === 'pubO') {
@@ -2587,10 +2776,58 @@ document.addEventListener('input', function(e) {
 
 /* ── CAP-03: SwaggerHub spec validation ───────────────────── */
 var specValidating = false;
+function validateGitHubSpec() {
+  var repo     = document.getElementById('pubO') ? document.getElementById('pubO').value.trim() : '';
+  var statusEl = document.getElementById('specValidationStatus');
+  var preview  = document.getElementById('specUrlPreview');
+  if (!statusEl) return;
+  if (!repo) {
+    statusEl.style.display = 'none';
+    if (preview) preview.innerHTML = 'https://raw.githubusercontent.com/hmcts/<em>&lt;repo-name&gt;</em>/main/src/main/resources/openapi/openapi-spec.yml';
+    return;
+  }
+  var specUrl = 'https://raw.githubusercontent.com/hmcts/' + repo + '/main/src/main/resources/openapi/openapi-spec.yml';
+  if (preview) preview.innerHTML = '<a href="' + specUrl + '" target="_blank" rel="noopener" class="govuk-link">' + specUrl + '</a>';
+  statusEl.style.display = 'block';
+  statusEl.innerHTML = '<span style="color:#505a5f;font-size:14px">&#8635; Checking GitHub&hellip;</span>';
+  fetch(specUrl)
+    .then(function(res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.text();
+    })
+    .then(function(text) {
+      var spec = parseYamlSpec(text);
+      if (!spec || !spec.info) throw new Error('Could not parse spec');
+      var epCount = 0;
+      if (spec.paths) {
+        Object.values(spec.paths).forEach(function(p) {
+          ['get','post','put','delete','patch'].forEach(function(m) { if (p[m]) epCount++; });
+        });
+      }
+      statusEl.innerHTML = '<div style="border-left:4px solid #00703c;background:#cce2d8;padding:10px 14px;font-size:14px">' +
+        '<strong style="color:#005a30">&#10003; Spec found</strong> &mdash; ' +
+        (spec.info.title || repo) + ' &middot; v' + (spec.info.version || '?') + ' &middot; ' + epCount + ' endpoint' + (epCount !== 1 ? 's' : '') +
+        '</div>';
+    })
+    .catch(function(err) {
+      statusEl.innerHTML = '<div style="border-left:4px solid #d4351c;background:#f6d7d2;padding:10px 14px;font-size:14px">' +
+        '<strong style="color:#942514">&#10007; Spec not found</strong> &mdash; check the repository name is correct and the workflow has run. ' +
+        '<a class="govuk-link" href="https://github.com/hmcts/' + (document.getElementById('pubO') ? document.getElementById('pubO').value.trim() : '') + '" target="_blank" rel="noopener">View repository &rarr;</a>' +
+        '</div>';
+    });
+}
 
 /* ── CAP-03: Draft save / restore ─────────────────────────── */
 var PUB_DRAFT_KEY = '_cat_pub_draft';
 
+function savePubDraft() {
+  try {
+    localStorage.setItem(PUB_DRAFT_KEY, JSON.stringify({
+      data:  pubData,
+      steps: pubStepsDone
+    }));
+  } catch(e) {}
+}
 
 function loadPubDraft() {
   try {
@@ -2604,6 +2841,20 @@ function loadPubDraft() {
   } catch(e) { return false; }
 }
 
+function discardPubDraft() {
+  localStorage.removeItem(PUB_DRAFT_KEY);
+  pubData = {}; pubStepsDone = [false, false, false];
+  var notice = document.getElementById('pubDraftNotice');
+  if (notice) notice.style.display = 'none';
+  var btn = document.getElementById('pub-submit-btn');
+  if (btn) { btn.disabled = true; btn.style.opacity = '.5'; btn.style.cursor = 'not-allowed'; }
+  document.querySelectorAll('[id^="pub-status-"]').forEach(function(el) {
+    el.className = 'govuk-task-list__status govuk-task-list__status--not-started';
+    el.innerHTML = '<span class="govuk-tag govuk-tag--grey">Not yet started</span>';
+  });
+  var prog = document.getElementById('pub-task-progress');
+  if (prog) prog.textContent = '0 of 3 sections completed';
+}
 
 /* Restore draft fields when a step is shown */
 var _origShowPubStep = showPubStep;
@@ -2738,7 +2989,30 @@ dPanel = function(role, panel, el) {
 /* ════════════════════════════════════════════════════════════
    Request a New API — consumer flow
    ════════════════════════════════════════════════════════════ */
+function lsNewApiReqs()     { try { return JSON.parse(localStorage.getItem('_cat_new_api_reqs') || '[]'); } catch(e) { return []; } }
+function lsSaveNewApiReqs(a){ localStorage.setItem('_cat_new_api_reqs', JSON.stringify(a)); }
 
+function requestNewApi() {
+  if (AU && AP && (hasPermission('canRequestNewApi') || hasPermission('canRequestAccess'))) {
+    /* If not on consumer dashboard, navigate there first */
+    var consDash = document.getElementById('consDash');
+    if (!consDash || !consDash.classList.contains('app-page--active')) {
+      showCDash();
+    }
+    /* Now activate the c-newapi panel */
+    dPanel('c', 'newapi', null);
+    /* Highlight the correct nav item */
+    document.querySelectorAll('#consDash .app-dash-nav__item').forEach(function(b){
+      if (b.textContent.trim() === 'Request a new API') b.classList.add('app-dash-nav__item--active');
+    });
+    renderNewApiHistory();
+    window.scrollTo(0, 0);
+  } else if (AU && AP) {
+    alert('Please sign in with a consumer account to request a new API.');
+  } else {
+    showAuth('login');
+  }
+}
 
 function submitNewApiRequest() {
   var name     = document.getElementById('napiName')     ? document.getElementById('napiName').value.trim()  : '';
@@ -2829,6 +3103,20 @@ function resetNewApiForm() {
     '</div>';
 }
 
+function renderNewApiHistory() {
+  var list = document.getElementById('napiHistoryList');
+  if (!list) return;
+  var mine = lsNewApiReqs().filter(function(r){ return AU && r.submittedBy === AU.id; });
+  if (!mine.length) { list.innerHTML = '<p class="govuk-body" style="color:#505a5f">Your submitted requests will appear here.</p>'; return; }
+  list.innerHTML = mine.sort(function(a,b){ return a.submittedAt < b.submittedAt ? 1 : -1; })
+    .map(function(r) {
+      return '<div class="app-submission-card"><div class="app-submission-card__header">' +
+        '<div><div class="app-submission-card__name">' + r.name + '</div>' +
+        '<div class="app-submission-card__meta">' + (r.domain||'') + ' &middot; ' + (r.priority||'') + ' &middot; Ref: ' + r.id + ' &middot; ' + (function(d){var s=Math.floor((new Date()-new Date(d))/1000);if(s<60)return 'just now';if(s<3600)return Math.floor(s/60)+'m ago';if(s<86400)return Math.floor(s/3600)+'h ago';return Math.floor(s/86400)+'d ago';})(r.submittedAt) + '</div></div>' +
+        '<span class="app-tag app-tag--blue">' + r.status + '</span></div>' +
+        '<p class="app-submission-card__body">' + (r.dataNeed||'').substring(0,120) + (r.dataNeed&&r.dataNeed.length>120?'&hellip;':'') + '</p></div>';
+    }).join('');
+}
 
 
 
@@ -2847,9 +3135,22 @@ function timeSince(dateStr) {
 /* ── Shared global request store ─────────────────────────── */
 function lsAllReqsGlobal()    { try { return JSON.parse(localStorage.getItem('_cat_all_reqs') || '[]'); } catch(e) { return []; } }
 function lsAllSubs()           { try { return JSON.parse(localStorage.getItem('_cat_submissions') || '[]'); } catch(e) { return []; } }
+function lsSaveAllReqsGlobal(a){ localStorage.setItem('_cat_all_reqs', JSON.stringify(a)); }
 
 /* ── Migrate existing per-user reqs into global store ─────── */
-function migrateReqsToGlobal() { /* MVP: no auth */ }
+function migrateReqsToGlobal() {
+  var existing = lsAllReqsGlobal();
+  if (existing.length) return; /* already migrated */
+  var perUser = lsAllReqs();
+  if (!perUser.length) return;
+  /* Back-fill submitter info if missing */
+  perUser.forEach(function(r) {
+    if (!r.submitterName) r.submitterName = r.uid || 'Unknown';
+    if (!r.submitterOrg)  r.submitterOrg  = '';
+    if (!r.producerNotes) r.producerNotes = '';
+  });
+  lsSaveAllReqsGlobal(perUser);
+}
 
 /* ── Get requests for producer's APIs ─────────────────────── */
 function getIncomingForProducer() {
@@ -2877,7 +3178,74 @@ function getIncomingForProducer() {
 var _currentIncomingTab = 'pending';
 var _currentReviewReqId = null;
 
+function renderIncomingRequests() {
+  migrateReqsToGlobal();
+  var all      = getIncomingForProducer();
+  var pending  = all.filter(function(r){ return r.status === 'pending'; });
+  var actioned = all.filter(function(r){ return r.status !== 'pending'; });
 
+  /* Badge count */
+  var badge = document.getElementById('incomingBadge');
+  if (badge) { badge.style.display = pending.length ? 'inline' : 'none'; badge.textContent = pending.length; }
+  var countEl = document.getElementById('incomingPendingCount');
+  if (countEl) countEl.textContent = pending.length;
+
+  /* Pending list */
+  var pList = document.getElementById('incomingPendingList');
+  if (pList) {
+    if (!pending.length) {
+      pList.innerHTML =
+        '<div class="app-empty-state">' +
+          '<div class="app-empty-state__icon" aria-hidden="true">&#128229;</div>' +
+          '<div class="app-empty-state__title">No pending requests</div>' +
+          '<div class="app-empty-state__desc">Access requests submitted by consumers in this browser session will appear here.</div>' +
+          '<div class="govuk-inset-text" style="margin-top:16px;text-align:left">' +
+            '<p class="govuk-body-s" style="margin-bottom:8px"><strong>Prototype note:</strong> Because this prototype uses browser storage, consumer and producer accounts must use the <strong>same browser window</strong> to share data. Open a second tab, register as a consumer, submit a request, then come back here.</p>' +
+            '<button class="govuk-button govuk-button--secondary" style="font-size:13px;margin:0" onclick="loadDemoRequest()">Load a demo request to test this flow</button>' +
+          '</div>' +
+        '</div>';
+    } else {
+      pList.innerHTML = pending.sort(function(a,b){ return a.created < b.created ? -1 : 1; })
+        .map(function(r){ return renderIncomingCard(r, true); }).join('');
+    }
+  }
+
+  /* Actioned list */
+  var aList = document.getElementById('incomingActionedList');
+  if (aList) {
+    if (!actioned.length) {
+      aList.innerHTML = '<p class="govuk-body" style="color:#505a5f">Requests you have approved or rejected will appear here.</p>';
+    } else {
+      aList.innerHTML = actioned.sort(function(a,b){ return a.decidedAt < b.decidedAt ? 1 : -1; })
+        .map(function(r){ return renderIncomingCard(r, false); }).join('');
+    }
+  }
+}
+
+function renderIncomingCard(r, isPending) {
+  var tagClass = r.status === 'approved' ? 'app-tag--green' : r.status === 'rejected' ? 'app-tag--red' : 'app-tag--yellow';
+  var tagLabel = r.status === 'approved' ? '&#10003; Approved' : r.status === 'rejected' ? '&#10007; Rejected' : 'Pending review';
+  return '<div class="app-submission-card">' +
+    '<div class="app-submission-card__header">' +
+      '<div>' +
+        '<div class="app-submission-card__name">' + r.apiName + '</div>' +
+        '<div class="app-submission-card__meta">From: ' + (r.submitterName || 'Consumer') + (r.submitterOrg ? ' &mdash; ' + r.submitterOrg : '') + ' &middot; ' + (function(d){var s=Math.floor((new Date()-new Date(d))/1000);if(s<60)return 'just now';if(s<3600)return Math.floor(s/60)+'m ago';if(s<86400)return Math.floor(s/3600)+'h ago';return Math.floor(s/86400)+'d ago';})(r.created) + '</div>' +
+      '</div>' +
+      '<span class="app-tag ' + tagClass + '">' + tagLabel + '</span>' +
+    '</div>' +
+    '<div class="app-submission-card__footer" style="margin-top:8px">' +
+      '<span class="app-tag app-tag--grey">' + r.env + '</span>' +
+      '<span class="app-tag app-tag--grey">' + r.vol + '</span>' +
+      '<span class="app-tag app-tag--grey">' + r.sys + '</span>' +
+    '</div>' +
+    (r.producerNotes && !isPending ? '<div class="app-notes-box" style="margin-top:8px"><strong>Your note:</strong> ' + r.producerNotes + '</div>' : '') +
+    '<div style="margin-top:12px">' +
+      '<button class="govuk-button govuk-button--secondary" style="margin:0;font-size:14px" onclick="showIncomingDetail(\'' + r.id + '\')">' +
+        (isPending ? 'Review request' : 'View detail') +
+      '</button>' +
+    '</div>' +
+  '</div>';
+}
 
 function switchIncomingTab(tab, el) {
   _currentIncomingTab = tab;
@@ -3052,8 +3420,41 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /* ── Demo request loader for prototype testing ─────────────── */
+function loadDemoRequest() {
+  var demo = {
+    id: 'demo-' + Date.now().toString(36),
+    uid: 'demo-consumer-001',
+    submitterName: 'Demo Consumer',
+    submitterOrg: 'HMCTS Test Team',
+    apiId: 'prosecution-case-details',
+    apiName: 'Prosecution Case Details',
+    sys: 'Case Management Portal',
+    env: 'Production',
+    vol: 'Medium \u2014 100 to 10,000 requests per day',
+    just: 'Our case management portal needs to retrieve prosecution case details to display defendant information to court clerks. This data is currently retrieved manually which causes delays during hearings.',
+    status: 'pending',
+    producerNotes: '',
+    created: new Date(Date.now() - 3600000).toISOString()
+  };
+  var allReqs = lsAllReqsGlobal();
+  /* Only add if not already there */
+  if (!allReqs.find(function(r){ return r.id === demo.id || r.uid === 'demo-consumer-001'; })) {
+    allReqs.push(demo);
+    lsSaveAllReqsGlobal(allReqs);
+  }
+  renderIncomingRequests();
+}
 
 /* ── Sign in / Register page ─────────────────────────────────*/
+function showSignInPage(tab) {
+  hideAll();
+  document.getElementById('signInPage').classList.add('app-page--active');
+  setActiveNav('');
+  var si = document.getElementById('navSignIn');
+  if (si) si.style.display = 'none';
+  showSignInCard(tab || 'login');
+  window.scrollTo(0, 0);
+}
 
 function showSignInCard(tab) {
   var siCard  = document.getElementById('signInCard');
@@ -3069,8 +3470,81 @@ function togglePwdVisibility(inputId, btn) {
   else                         { inp.type = 'password'; btn.textContent = 'Show'; }
 }
 
+function showForgotPassword() {
+  alert('Password reset is not available in this prototype. In production this would send a reset link to your email.');
+}
 
+function doSignInPage() {
+  var email = document.getElementById('signInEmail') ? document.getElementById('signInEmail').value.trim() : '';
+  var pwd   = document.getElementById('signInPwd')   ? document.getElementById('signInPwd').value           : '';
+  var errBox = document.getElementById('signInError');
 
+  if (!email || !pwd) {
+    if (errBox) { errBox.style.display = 'block'; document.getElementById('signInErrorMsg').textContent = 'Enter your email address and password'; }
+    return;
+  }
+
+  var users = lsU();
+  var user  = users[email.toLowerCase()];
+  if (!user || atob(user.pw) !== pwd) {
+    if (errBox) { errBox.style.display = 'block'; document.getElementById('signInErrorMsg').textContent = 'Email address or password is incorrect'; }
+    return;
+  }
+
+  if (errBox) errBox.style.display = 'none';
+  if (!user.permissions) user.permissions = defaultPermissions(user.role);
+  AU = user;
+  AP = { firstName: user.fn, lastName: user.ln, email: user.email, org: user.org, role: user.role, permissions: user.permissions };
+  lsSess(user);
+  renderNav();
+  showDash();
+  resolvePendingAction();
+}
+
+function doRegisterPage() {
+  var fn    = document.getElementById('regFn')    ? document.getElementById('regFn').value.trim()    : '';
+  var ln    = document.getElementById('regLn')    ? document.getElementById('regLn').value.trim()    : '';
+  var email = document.getElementById('regEmail') ? document.getElementById('regEmail').value.trim().toLowerCase() : '';
+  var org   = document.getElementById('regOrg')   ? document.getElementById('regOrg').value.trim()   : '';
+  var pwd   = document.getElementById('regPwd')   ? document.getElementById('regPwd').value           : '';
+  var roleEl = document.querySelector('input[name="regRole"]:checked');
+  var role  = roleEl ? roleEl.value : 'consumer';
+
+  var errors = [];
+  if (!fn)              errors.push('Enter your first name');
+  if (!ln)              errors.push('Enter your last name');
+  if (!email)           errors.push('Enter your email address');
+  if (!org)             errors.push('Enter your organisation');
+  if (!pwd || pwd.length < 8) errors.push('Password must be at least 8 characters');
+
+  var errBox  = document.getElementById('registerError');
+  var errList = document.getElementById('registerErrorList');
+  if (errors.length) {
+    if (errBox)  errBox.style.display = 'block';
+    if (errList) errList.innerHTML = errors.map(function(e){ return '<li>' + e + '</li>'; }).join('');
+    return;
+  }
+  if (errBox) errBox.style.display = 'none';
+
+  var users = lsU();
+  if (users[email]) {
+    if (errBox)  errBox.style.display = 'block';
+    if (errList) errList.innerHTML = '<li>An account with this email address already exists. <a href="#" onclick="showSignInCard(\'login\');return false;" style="color:#1d70b8">Sign in instead</a></li>';
+    return;
+  }
+
+  var id    = Date.now().toString(36) + Math.random().toString(36).slice(2,5);
+  var perms = defaultPermissions(role);
+  var user  = { id:id, fn:fn, ln:ln, email:email, pw:btoa(pwd), org:org, role:role, permissions:perms };
+  users[email] = user;
+  lsSU(users);
+  AU = user;
+  AP = { firstName:fn, lastName:ln, email:email, org:org, role:role, permissions:perms };
+  lsSess(user);
+  renderNav();
+  showDash();
+  resolvePendingAction();
+}
 
 /* ════════════════════════════════════════════════════════════
    Live API catalogue sync from hmcts.github.io/amp-catalog
@@ -3136,7 +3610,7 @@ function fetchLiveCatalogue() {
       var homePage = document.getElementById('homePage');
       if (homePage && homePage.classList.contains('app-page--active')) {
         renderHome();
-      }
+            }
 
       /* Show sync badge */
       if (catalogBanner) {
@@ -3160,32 +3634,24 @@ document.addEventListener('DOMContentLoaded', function() {
   fetchLiveCatalogue();
 });
 
+function mergeApprovedIntoHome() { /* stub */ }
 
-function showReqNew() {
-  /* Go directly to access request form — no login required */
-  showAccessRequestForm();
-  /* Navigate to the access request panel */
-  var accessBtn = document.querySelector('#consDash .app-dash-nav__item[onclick*="access"]');
-  if (accessBtn) accessBtn.click();
-  /* Pre-fill the API name if we came from a detail page */
-  if (currentApi) {
-    var apiField = document.getElementById('reqApiName');
-    if (apiField) apiField.value = currentApi.name;
-    var apiSelect = document.getElementById('reqApi');
-    if (apiSelect) {
-      for (var i = 0; i < apiSelect.options.length; i++) {
-        if (apiSelect.options[i].value === currentApi.id) {
-          apiSelect.selectedIndex = i;
-          break;
-        }
-      }
-    }
-  }
-}
+function showReqNew() { showAccessRequestForm(); }
 
 /* ── Post-login pending action ───────────────────────────── */
+var pendingAction = null;
 
+function setPendingAction(fn) {
+  pendingAction = fn;
+}
 
+function resolvePendingAction() {
+  if (pendingAction) {
+    var fn = pendingAction;
+    pendingAction = null;
+    fn();
+  }
+}
 
 function showGuidance() {
   hideAll();
@@ -3260,14 +3726,87 @@ function updateEndpointCount() {
   });
 }
 
+var _rvUserFilter='all';
+function showRvDash(){
+  hideAll();document.getElementById('revDash').classList.add('app-page--active');setActiveNav('');window.scrollTo(0,0);
+  var rvGr=document.getElementById('rvGr'),rvNm=document.getElementById('rvNm'),rvAv=document.getElementById('rvAv');
+  if(rvGr)rvGr.textContent='Welcome back, '+(AP.firstName||'Reviewer');
+  if(rvNm)rvNm.textContent=(AP.firstName||'')+' '+(AP.lastName||'');
+  if(rvAv)rvAv.textContent=(AP.firstName?AP.firstName[0]:'')+(AP.lastName?AP.lastName[0]:'');
+  var ua=Object.values(lsU()),ar=lsAllReqs(),p=ar.filter(function(r){return r.status==='pending';});
+  var ac=0;ua.forEach(function(u){if(u.role==='producer')ac+=lsPApis(u.id).length;});
+  var su=document.getElementById('rvStatUsers');if(su)su.textContent=ua.length;
+  var sa=document.getElementById('rvStatApis');if(sa)sa.textContent=ac;
+  var sr=document.getElementById('rvStatReqs');if(sr)sr.textContent=p.length;
+}
+function renderRvUsers(){
+  var ua=Object.values(lsU()),list=document.getElementById('rvUserList');if(!list)return;
+  var f=_rvUserFilter==='all'?ua:ua.filter(function(u){return u.role===_rvUserFilter;});
+  if(!f.length){list.innerHTML='<p class="govuk-body" style="color:#505a5f">No users found.</p>';return;}
+  list.innerHTML='<table class="govuk-table"><thead class="govuk-table__head"><tr class="govuk-table__row"><th class="govuk-table__header">Name</th><th class="govuk-table__header">Email</th><th class="govuk-table__header">Organisation</th><th class="govuk-table__header">Role</th><th class="govuk-table__header">Requests</th></tr></thead><tbody class="govuk-table__body">'+
+    f.map(function(u){var reqs=lsAllReqs().filter(function(r){return r.uid===u.id;}).length;var rc=u.role==='producer'?'govuk-tag--purple':u.role==='reviewer'?'govuk-tag--blue':'govuk-tag--green';return '<tr class="govuk-table__row"><td class="govuk-table__cell"><strong>'+(u.fn||'')+' '+(u.ln||'')+'</strong></td><td class="govuk-table__cell">'+(u.email||'')+'</td><td class="govuk-table__cell">'+(u.org||'-')+'</td><td class="govuk-table__cell"><strong class="govuk-tag '+rc+'">'+(u.role||'consumer')+'</strong></td><td class="govuk-table__cell">'+reqs+'</td></tr>';}).join('')+
+    '</tbody></table>';
+}
+function filterRvUsers(filter,btn){
+  _rvUserFilter=filter;
+  document.querySelectorAll('#rv-users .govuk-button--secondary').forEach(function(b){b.style.background='';b.style.color='';b.style.borderColor='';});
+  if(btn){btn.style.background='#1d70b8';btn.style.color='white';btn.style.borderColor='#1d70b8';}
+  renderRvUsers();
+}
+function renderRvApis(){
+  var users=lsU(),list=document.getElementById('rvApiList');if(!list)return;
+  var aa=[];Object.values(users).forEach(function(u){if(u.role==='producer'){lsPApis(u.id).forEach(function(api){aa.push({producer:(u.fn||'')+' '+(u.ln||''),org:u.org||'-',api:api});});}});
+  if(!aa.length){list.innerHTML='<p class="govuk-body" style="color:#505a5f">No API submissions yet.</p>';return;}
+  list.innerHTML='<table class="govuk-table"><thead class="govuk-table__head"><tr class="govuk-table__row"><th class="govuk-table__header">API name</th><th class="govuk-table__header">Repository</th><th class="govuk-table__header">Domain</th><th class="govuk-table__header">Submitted by</th><th class="govuk-table__header">Status</th></tr></thead><tbody class="govuk-table__body">'+
+    aa.map(function(item){return '<tr class="govuk-table__row"><td class="govuk-table__cell"><strong>'+(item.api.name||'-')+'</strong></td><td class="govuk-table__cell"><code style="font-size:13px">'+(item.api.api||'-')+'</code></td><td class="govuk-table__cell">'+(item.api.domain||'-')+'</td><td class="govuk-table__cell">'+item.producer+'<br><span style="font-size:13px;color:#505a5f">'+item.org+'</span></td><td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Pending review</strong></td></tr>';}).join('')+
+    '</tbody></table>';
+}
+function renderRvRequests(){
+  var ar=lsAllReqs(),users=lsU(),list=document.getElementById('rvReqList');if(!list)return;
+  if(!ar.length){list.innerHTML='<p class="govuk-body" style="color:#505a5f">No access requests yet.</p>';return;}
+  list.innerHTML='<table class="govuk-table"><thead class="govuk-table__head"><tr class="govuk-table__row"><th class="govuk-table__header">API</th><th class="govuk-table__header">Requested by</th><th class="govuk-table__header">Environment</th><th class="govuk-table__header">Submitted</th><th class="govuk-table__header">Status</th></tr></thead><tbody class="govuk-table__body">'+
+    ar.sort(function(a,b){return a.created<b.created?1:-1;}).map(function(r){var u=Object.values(users).find(function(u){return u.id===r.uid;});var sc=r.status==='approved'?'govuk-tag--green':r.status==='rejected'?'govuk-tag--red':'govuk-tag--yellow';return '<tr class="govuk-table__row"><td class="govuk-table__cell"><strong>'+(r.apiName||r.apiId||'-')+'</strong></td><td class="govuk-table__cell">'+(u?(u.fn+' '+u.ln):(r.uid||'Unknown'))+'<br><span style="font-size:13px;color:#505a5f">'+(u?u.org||'':'')+'</span></td><td class="govuk-table__cell">'+(r.env||'-')+'</td><td class="govuk-table__cell" style="font-size:13px">'+(r.created?new Date(r.created).toLocaleDateString('en-GB'):'-')+'</td><td class="govuk-table__cell"><strong class="govuk-tag '+sc+'">'+(r.status||'pending')+'</strong></td></tr>';}).join('')+
+    '</tbody></table>';
+}
 
 function showDataGovernance(){hideAll();document.getElementById('dataGovernancePage').classList.add('app-page--active');setActiveNav('');window.scrollTo(0,0);}
 
 
-function showAccessRequestForm(){
+/* ── MVP stubs ── */
+function mergeApprovedIntoHome() {}
+function lsAllReqs() { return []; }
+function lsSaveReqs() {}
+function lsAllReqsGlobal() { return []; }
+function lsPApis() { return []; }
+function lsSPApis() {}
+function lsU() { return {}; }
+function lsSU() {}
+function lsSess() {}
+function lsClear() {}
+function lsGetSess() { return null; }
+function lsNewApiReqs() { return []; }
+function lsSaveNewApiReqs() {}
+function migrateReqsToGlobal() {}
+function hideAuth() {}
+function showCDash() { showMarketplace(); }
+function showPDash() { showMarketplace(); }
+function showDash() { showMarketplace(); }
+function hasPermission() { return false; }
+function setPendingAction() {}
+function resolvePendingAction() {}
+function doLogout() { showHome(); }
+function authTab() {}
+function setAErr() {}
+function showAuth() { showMarketplace(); }
+function navAuthClick() {}
+function renderNav() {}
+function requestNewApi() { showNewApiRequestForm(); }
+
+/* ── MVP form functions ── */
+function showAccessRequestForm() {
   hideAll();
   document.getElementById('accessRequestPage').classList.add('app-page--active');
-  setActiveNav(''); window.scrollTo(0,0);
+  setActiveNav('navAccess'); window.scrollTo(0,0);
   var sel=document.getElementById('arApiName');
   if(sel&&sel.options.length<=1&&typeof APIS!=='undefined'){
     APIS.filter(function(a){return a.status!=='Retired';}).forEach(function(api){
@@ -3278,57 +3817,12 @@ function showAccessRequestForm(){
     for(var i=0;i<sel.options.length;i++){if(sel.options[i].value===currentApi.id){sel.selectedIndex=i;break;}}
   }
 }
-function showNewApiRequestForm(){hideAll();document.getElementById('newApiRequestPage').classList.add('app-page--active');setActiveNav('');window.scrollTo(0,0);}
-function showPublishApiForm(){hideAll();document.getElementById('publishApiPage').classList.add('app-page--active');setActiveNav('');window.scrollTo(0,0);}
-function showReqNew(){showAccessRequestForm();}
-function renderNav(){}
+function showNewApiRequestForm(){hideAll();document.getElementById('newApiRequestPage').classList.add('app-page--active');setActiveNav('navNewApi');window.scrollTo(0,0);}
+function showPublishApiForm(){hideAll();document.getElementById('publishApiPage').classList.add('app-page--active');setActiveNav('navPublish');window.scrollTo(0,0);}
 function mvpUpdateSpecUrl(r){var e=document.getElementById('paSpecUrl');if(e)e.textContent=r?'https://raw.githubusercontent.com/hmcts/'+r+'/main/src/main/resources/openapi/openapi-spec.yml':'https://raw.githubusercontent.com/hmcts/<repo-name>/main/src/main/resources/openapi/openapi-spec.yml';}
-function submitAccessRequest(e){
-  if(e)e.preventDefault();
-  var errs=[];
-  if(!document.getElementById('arName').value.trim())errs.push('Enter your full name');
-  if(!document.getElementById('arOrg').value.trim())errs.push('Enter your organisation');
-  if(!document.getElementById('arEmail').value.trim())errs.push('Enter your work email address');
-  if(!document.getElementById('arApiName').value)errs.push('Select the API you need access to');
-  if(!document.getElementById('arUseCase').value.trim())errs.push('Describe your use case');
-  var eb=document.getElementById('arError'),el=document.getElementById('arErrorList');
-  if(errs.length){if(eb)eb.style.display='block';if(el)el.innerHTML=errs.map(function(x){return'<li>'+x+'</li>';}).join('');window.scrollTo(0,0);return;}
-  if(eb)eb.style.display='none';
-  document.getElementById('arForm').style.display='none';
-  document.getElementById('arSuccess').style.display='block';
-  window.scrollTo(0,0);
-}
-function submitNewApiRequest(e){
-  if(e)e.preventDefault();
-  var errs=[];
-  if(!document.getElementById('narName').value.trim())errs.push('Enter your full name');
-  if(!document.getElementById('narOrg').value.trim())errs.push('Enter your organisation');
-  if(!document.getElementById('narEmail').value.trim())errs.push('Enter your work email address');
-  if(!document.getElementById('narApiDesc').value.trim())errs.push('Describe the API you need');
-  var eb=document.getElementById('narError'),el=document.getElementById('narErrorList');
-  if(errs.length){if(eb)eb.style.display='block';if(el)el.innerHTML=errs.map(function(x){return'<li>'+x+'</li>';}).join('');window.scrollTo(0,0);return;}
-  if(eb)eb.style.display='none';
-  document.getElementById('narForm').style.display='none';
-  document.getElementById('narSuccess').style.display='block';
-  window.scrollTo(0,0);
-}
-function submitPublishApi(e){
-  if(e)e.preventDefault();
-  var errs=[];
-  if(!document.getElementById('paName').value.trim())errs.push('Enter your full name');
-  if(!document.getElementById('paOrg').value.trim())errs.push('Enter your organisation');
-  if(!document.getElementById('paEmail').value.trim())errs.push('Enter your work email address');
-  if(!document.getElementById('paApiName').value.trim())errs.push('Enter the API display name');
-  if(!document.getElementById('paRepo').value.trim())errs.push('Enter the GitHub repository name');
-  if(!document.getElementById('paDomain').value)errs.push('Select a domain');
-  if(!document.getElementById('paD1').checked||!document.getElementById('paD2').checked||!document.getElementById('paD3').checked||!document.getElementById('paD4').checked)errs.push('Complete all declaration checkboxes');
-  var eb=document.getElementById('paError'),el=document.getElementById('paErrorList');
-  if(errs.length){if(eb)eb.style.display='block';if(el)el.innerHTML=errs.map(function(x){return'<li>'+x+'</li>';}).join('');window.scrollTo(0,0);return;}
-  if(eb)eb.style.display='none';
-  document.getElementById('paForm').style.display='none';
-  document.getElementById('paSuccess').style.display='block';
-  window.scrollTo(0,0);
-}
+function submitAccessRequest(e){if(e)e.preventDefault();var errs=[];if(!document.getElementById('arName').value.trim())errs.push('Enter your full name');if(!document.getElementById('arOrg').value.trim())errs.push('Enter your organisation');if(!document.getElementById('arEmail').value.trim())errs.push('Enter your work email address');if(!document.getElementById('arJobTitle').value.trim())errs.push('Enter your job title');if(!document.getElementById('arApiName').value)errs.push('Select the API you need access to');if(!document.getElementById('arUseCase').value.trim())errs.push('Describe your use case');var eb=document.getElementById('arError'),el=document.getElementById('arErrorList');if(errs.length){if(eb)eb.style.display='block';if(el)el.innerHTML=errs.map(function(x){return'<li>'+x+'</li>';}).join('');window.scrollTo(0,0);return;}if(eb)eb.style.display='none';document.getElementById('arForm').style.display='none';document.getElementById('arSuccess').style.display='block';window.scrollTo(0,0);}
+function submitNewApiRequest(e){if(e)e.preventDefault();var errs=[];if(!document.getElementById('narName').value.trim())errs.push('Enter your full name');if(!document.getElementById('narOrg').value.trim())errs.push('Enter your organisation');if(!document.getElementById('narEmail').value.trim())errs.push('Enter your work email address');if(!document.getElementById('narJobTitle').value.trim())errs.push('Enter your job title');if(!document.getElementById('narApiDesc').value.trim())errs.push('Describe the API you need');var eb=document.getElementById('narError'),el=document.getElementById('narErrorList');if(errs.length){if(eb)eb.style.display='block';if(el)el.innerHTML=errs.map(function(x){return'<li>'+x+'</li>';}).join('');window.scrollTo(0,0);return;}if(eb)eb.style.display='none';document.getElementById('narForm').style.display='none';document.getElementById('narSuccess').style.display='block';window.scrollTo(0,0);}
+function submitPublishApi(e){if(e)e.preventDefault();var errs=[];if(!document.getElementById('paName').value.trim())errs.push('Enter your full name');if(!document.getElementById('paOrg').value.trim())errs.push('Enter your organisation');if(!document.getElementById('paEmail').value.trim())errs.push('Enter your work email address');if(!document.getElementById('paJobTitle').value.trim())errs.push('Enter your job title');if(!document.getElementById('paApiName').value.trim())errs.push('Enter the API display name');if(!document.getElementById('paRepo').value.trim())errs.push('Enter the GitHub repository name');if(!document.getElementById('paDomain').value)errs.push('Select a domain');if(!document.getElementById('paD1').checked||!document.getElementById('paD2').checked||!document.getElementById('paD3').checked||!document.getElementById('paD4').checked)errs.push('Complete all declaration checkboxes');var eb=document.getElementById('paError'),el=document.getElementById('paErrorList');if(errs.length){if(eb)eb.style.display='block';if(el)el.innerHTML=errs.map(function(x){return'<li>'+x+'</li>';}).join('');window.scrollTo(0,0);return;}if(eb)eb.style.display='none';document.getElementById('paForm').style.display='none';document.getElementById('paSuccess').style.display='block';window.scrollTo(0,0);}
 </script>
 </body>
 </html>

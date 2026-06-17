@@ -1781,7 +1781,6 @@ function showMarketplace() {
   document.getElementById('homePage').classList.add('app-page--active');
   setActiveNav('navBrowse');
   renderHome();
-  mergeApprovedIntoHome();
   window.scrollTo(0, 0);
   currentApi = null;
 }
@@ -2850,19 +2849,7 @@ function lsAllReqsGlobal()    { try { return JSON.parse(localStorage.getItem('_c
 function lsAllSubs()           { try { return JSON.parse(localStorage.getItem('_cat_submissions') || '[]'); } catch(e) { return []; } }
 
 /* ── Migrate existing per-user reqs into global store ─────── */
-function migrateReqsToGlobal() {
-  var existing = lsAllReqsGlobal();
-  if (existing.length) return; /* already migrated */
-  var perUser = lsAllReqs();
-  if (!perUser.length) return;
-  /* Back-fill submitter info if missing */
-  perUser.forEach(function(r) {
-    if (!r.submitterName) r.submitterName = r.uid || 'Unknown';
-    if (!r.submitterOrg)  r.submitterOrg  = '';
-    if (!r.producerNotes) r.producerNotes = '';
-  });
-  lsSaveAllReqsGlobal(perUser);
-}
+function migrateReqsToGlobal() { /* MVP: no auth */ }
 
 /* ── Get requests for producer's APIs ─────────────────────── */
 function getIncomingForProducer() {
@@ -3149,7 +3136,6 @@ function fetchLiveCatalogue() {
       var homePage = document.getElementById('homePage');
       if (homePage && homePage.classList.contains('app-page--active')) {
         renderHome();
-        mergeApprovedIntoHome();
       }
 
       /* Show sync badge */

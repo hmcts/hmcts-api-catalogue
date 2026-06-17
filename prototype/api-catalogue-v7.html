@@ -449,6 +449,7 @@ body, input, select, textarea, button {
             <li style="margin-bottom:8px"><a class="govuk-link" href="#ps-s3">Specification quality</a></li>
             <li style="margin-bottom:8px"><a class="govuk-link" href="#ps-s4">Onboarding process</a></li>
             <li style="margin-bottom:8px"><a class="govuk-link" href="#ps-s5">Ongoing responsibilities</a></li>
+            <li style="margin-bottom:8px"><a class="govuk-link" href="#ps-s6">Data governance</a></li>
           </ol>
         </nav>
       </div>
@@ -624,6 +625,97 @@ body, input, select, textarea, button {
           </div>
         </section>
 
+        <section id="ps-s6" style="margin-top:40px">
+          <h2 class="govuk-heading-l" style="border-top:2px solid #1d70b8;padding-top:16px">6. Data governance</h2>
+          <p class="govuk-body">As an API producer you are a data controller (or joint data controller) for the data exposed through your API. The following standards apply to all producers listing on the marketplace.</p>
+
+          <h3 class="govuk-heading-m">Legal framework</h3>
+          <ul class="govuk-list govuk-list--bullet">
+            <li><strong>UK GDPR and the Data Protection Act 2018</strong> &mdash; you must ensure a lawful basis exists for each category of personal data exposed through your API and document it in your API specification</li>
+            <li><strong>Government Security Classifications (GSC) policy</strong> &mdash; APIs exposing Official-Sensitive data require additional governance controls and must be declared as such in the marketplace</li>
+            <li><strong>Public Records Act 1958</strong> &mdash; court records and justice data may carry public record obligations that limit how they can be shared</li>
+          </ul>
+
+          <h3 class="govuk-heading-m">Data sharing agreements</h3>
+          <p class="govuk-body">Before approving consumer access to any API containing personal data you must:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>Confirm a Data Processing Agreement (DPA) or Data Sharing Agreement (DSA) is in place with the consumer&rsquo;s organisation</li>
+            <li>Record the legal basis for the data sharing arrangement</li>
+            <li>Confirm the consumer&rsquo;s use case falls within the scope of the agreement</li>
+            <li>Notify your Data Protection Officer (DPO) of any new data sharing arrangements involving personal data</li>
+          </ul>
+
+          <div class="govuk-warning-text">
+            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+            <strong class="govuk-warning-text__text"><span class="govuk-visually-hidden">Warning</span>Do not approve access to personal data APIs without a signed DPA or DSA in place, regardless of the consumer&rsquo;s urgency or seniority.</strong>
+          </div>
+
+          <h3 class="govuk-heading-m">Data classification</h3>
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Official</dt>
+              <dd class="govuk-summary-list__value">Eligible for marketplace listing. Standard data protection controls required. Declare in your OpenAPI spec <code>info</code> block.</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Official-Sensitive</dt>
+              <dd class="govuk-summary-list__value">Eligible with enhanced governance. Formal DSA required before any access is granted. Consumers must demonstrate enhanced security controls. Longer approval timeline.</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Secret / Top Secret</dt>
+              <dd class="govuk-summary-list__value">Not eligible for marketplace listing.</dd>
+            </div>
+          </dl>
+
+          <h3 class="govuk-heading-m">Data minimisation</h3>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>Expose only the minimum data fields necessary &mdash; do not include fields that no current consumer requires</li>
+            <li>Review exposed data fields when a consumer&rsquo;s access is revoked</li>
+            <li>Do not expose internal identifiers, system fields or debug data in API responses</li>
+          </ul>
+
+          <h3 class="govuk-heading-m">Audit and monitoring</h3>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>Log all API calls with sufficient detail to support forensic investigation (timestamp, consumer ID, endpoint, response code)</li>
+            <li>Retain access logs for a minimum of <strong>12 months</strong></li>
+            <li>Make logs available to the marketplace team or HMCTS security team on request</li>
+            <li>Be able to identify which consumers were affected in the event of a data breach</li>
+          </ul>
+
+          <h3 class="govuk-heading-m">Data breaches</h3>
+          <p class="govuk-body">As data controller, you must:</p>
+          <ol class="govuk-list govuk-list--number">
+            <li>Report any suspected or confirmed breach to the HMCTS DPO within <strong>72 hours</strong> (UK GDPR Article 33)</li>
+            <li>Notify affected consumers as part of your incident response</li>
+            <li>Have an incident response plan that specifically covers API-related breaches</li>
+            <li>Preserve logs and evidence for investigation &mdash; do not attempt to conceal a breach</li>
+          </ol>
+
+          <h3 class="govuk-heading-m">Accountability</h3>
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">API Owner (you)</dt>
+              <dd class="govuk-summary-list__value">Accountable for the accuracy, security and lawfulness of data exposed through your API</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Data Controller</dt>
+              <dd class="govuk-summary-list__value">HMCTS &mdash; responsible for the overall lawfulness of data processing across the marketplace</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">DPO</dt>
+              <dd class="govuk-summary-list__value">Must be consulted on any new data sharing arrangement involving personal data</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Marketplace team</dt>
+              <dd class="govuk-summary-list__value">Responsible for onboarding governance, standards enforcement and access audit</dd>
+            </div>
+          </dl>
+
+          <div class="govuk-inset-text">
+            Questions about your data governance obligations? <a class="govuk-link" href="mailto:no-reply@hmcts.com">Contact the marketplace team</a> or consult your HMCTS Data Protection Officer.
+          </div>
+        </section>
+
+
       </div>
     </div>
   </div>
@@ -665,6 +757,7 @@ body, input, select, textarea, button {
             <li style="margin-bottom:8px"><a class="govuk-link" href="#guide-s4">Error handling and resilience</a></li>
             <li style="margin-bottom:8px"><a class="govuk-link" href="#guide-s5">Keeping access current</a></li>
             <li style="margin-bottom:8px"><a class="govuk-link" href="#guide-s6">Getting help</a></li>
+            <li style="margin-bottom:8px"><a class="govuk-link" href="#guide-s7">Data governance</a></li>
           </ol>
         </nav>
       </div>
@@ -779,6 +872,74 @@ body, input, select, textarea, button {
             Ready to find an API? <a class="govuk-link" href="#" onclick="showMarketplace();setActiveNav('navBrowse');return false;">Browse the API Catalogue &rarr;</a>
           </div>
         </section>
+
+        <section id="guide-s7" style="margin-top:40px">
+          <h2 class="govuk-heading-l" style="border-top:2px solid #1d70b8;padding-top:16px">Data governance</h2>
+          <p class="govuk-body">When accessing HMCTS APIs you are interacting with data that may be subject to legal and regulatory obligations. The following standards apply to all consumers.</p>
+
+          <h3 class="govuk-heading-m">Legal framework</h3>
+          <p class="govuk-body">Your organisation must comply with:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li><strong>UK GDPR and the Data Protection Act 2018</strong> &mdash; any personal data returned by HMCTS APIs must be processed lawfully, with a documented legal basis</li>
+            <li><strong>Government Security Classifications (GSC) policy</strong> &mdash; Official-Sensitive data requires enhanced security controls in your systems</li>
+            <li><strong>Computer Misuse Act 1990</strong> &mdash; credentials must not be shared or misused; unauthorised access is a criminal offence</li>
+          </ul>
+
+          <h3 class="govuk-heading-m">Data sharing agreements</h3>
+          <div class="govuk-warning-text">
+            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+            <strong class="govuk-warning-text__text"><span class="govuk-visually-hidden">Warning</span>You must not access any API containing personal data without a signed Data Processing Agreement (DPA) or Data Sharing Agreement (DSA) in place.</strong>
+          </div>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>Ensure your organisation&rsquo;s legal team has reviewed and approved the data sharing arrangement before submitting a request</li>
+            <li>Do not use data for purposes beyond those stated in your access request</li>
+            <li>Report any change in use case to the API owner before proceeding</li>
+          </ul>
+
+          <h3 class="govuk-heading-m">Data classification obligations</h3>
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Official</dt>
+              <dd class="govuk-summary-list__value">Standard data protection controls apply. Handle in accordance with your organisation&rsquo;s information security policy.</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Official-Sensitive</dt>
+              <dd class="govuk-summary-list__value">Restricted access. Formal DSA required. Enhanced access controls, audit logging and need-to-know access in your systems. Do not downgrade once received.</dd>
+            </div>
+          </dl>
+
+          <h3 class="govuk-heading-m">Data minimisation and retention</h3>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>Request access only to the APIs and data fields you actually need &mdash; do not request access speculatively</li>
+            <li>Do not cache or store API responses beyond the time needed to fulfil the request</li>
+            <li>Define and document a retention period for any data stored locally</li>
+            <li>Delete data when it is no longer required for the stated purpose</li>
+          </ul>
+
+          <h3 class="govuk-heading-m">Data breaches</h3>
+          <p class="govuk-body">If you suspect or confirm a data breach involving marketplace API data:</p>
+          <ol class="govuk-list govuk-list--number">
+            <li>Report to the HMCTS DPO within <strong>72 hours</strong> as required by UK GDPR Article 33</li>
+            <li>Notify the API owner immediately</li>
+            <li>Preserve logs and evidence for investigation</li>
+            <li>Have a process for notifying your own users if personal data you hold is compromised</li>
+          </ol>
+
+          <h3 class="govuk-heading-m">Cross-border data transfers</h3>
+          <p class="govuk-body">API responses must not be routed through or stored in systems outside the UK or EEA without prior written approval from the HMCTS DPO. Any cloud infrastructure used to process API responses must be documented in your organisation&rsquo;s Record of Processing Activities (ROPA).</p>
+
+          <h3 class="govuk-heading-m">Offboarding</h3>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>When your service is decommissioned, revoke credentials and notify the API owner</li>
+            <li>Delete all data derived from the API or return it to the data controller</li>
+            <li>Provide a data deletion certificate to the API owner on request</li>
+          </ul>
+
+          <div class="govuk-inset-text">
+            Questions about your data governance obligations? <a class="govuk-link" href="mailto:no-reply@hmcts.com">Contact the marketplace team</a> or speak to your organisation&rsquo;s Data Protection Officer.
+          </div>
+        </section>
+
 
       </div>
     </div>

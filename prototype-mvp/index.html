@@ -1078,7 +1078,7 @@ body, input, select, textarea, button {
 </div>
 
 <!-- SIGN IN PAGE -->
-<div id="homePage" class="app-page">
+<div id="homePage" class="app-page app-page--active">
   <div class="app-hero">
     <div class="app-hero__inner">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:24px;padding-top:8px">
@@ -1253,7 +1253,7 @@ body, input, select, textarea, button {
 <!-- CONSUMER DASHBOARD -->
 
 <!-- MARKETPLACE PAGE -->
-<div id="marketplacePage" class="app-page app-page--active">
+<div id="marketplacePage" class="app-page">
 <style>
   .app-header-crown { display:inline-block; width:32px; height:32px; margin-right:8px; vertical-align:middle; }
   .app-one-pager-hero { background:#f3f2f1; padding:40px 0; border-bottom:2px solid #b1b4b6; }
@@ -1815,14 +1815,14 @@ function setActiveNav(id) {
 
 function showHome() {
   hideAll();
-  document.getElementById('marketplacePage').classList.add('app-page--active');
+  document.getElementById('homePage').classList.add('app-page--active');
   setActiveNav('navMarket');
   window.scrollTo(0, 0);
 }
 
 function showMarketplace() {
   hideAll();
-  document.getElementById('homePage').classList.add('app-page--active');
+  document.getElementById('marketplacePage').classList.add('app-page--active');
   setActiveNav('navBrowse');
   renderHome();
   window.scrollTo(0, 0);

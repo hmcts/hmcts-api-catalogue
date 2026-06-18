@@ -1078,50 +1078,117 @@ body, input, select, textarea, button {
 </div>
 
 <!-- SIGN IN PAGE -->
-<div id="homePage" class="app-page app-page--active">
+<div id="homePage" class="app-page">
   <div class="app-hero">
     <div class="app-hero__inner">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:24px;padding-top:8px">
         <strong class="govuk-tag">Alpha</strong>
         <span style="font-size:13px;color:white">This is a new service &mdash; <a href="#" style="color:white">give your feedback</a> to help us improve it.</span>
       </div>
-      <h1 class="govuk-heading-xl" style="color:white;margin-bottom:8px">Find, request and use HMCTS data</h1>
-      <p class="app-hero__lead">A central catalogue of APIs from across His Majesty&rsquo;s Courts and Tribunals Service.</p>
-      <a class="govuk-button" href="#" onclick="showMarketplace();return false;" style="margin-top:8px">Browse the catalogue &rsaquo;</a>
+      <h1 class="app-hero__title govuk-heading-xl">HMCTS API Catalogue</h1>
+      <p class="app-hero__lead">Discover, explore and integrate with HMCTS APIs.</p>
+      <div class="app-hero__search-wrap" role="search">
+        <label for="searchBox" class="govuk-visually-hidden">Search APIs by name, domain or tag</label>
+        <input class="app-hero__search-input" id="searchBox" type="search" placeholder="Search by name, domain or tag&hellip;" oninput="filterCards(this.value)" autocomplete="off">
+        <button class="app-hero__search-btn" type="button">Search</button>
+      </div>
+      <div class="app-hero__stats" role="list" aria-label="Catalogue statistics">
+        <div role="listitem"><div class="app-hero__stat-num" id="statApiCount">6</div><div class="app-hero__stat-label">APIs available</div></div>
+        <div role="listitem"><div class="app-hero__stat-num" id="statLiveCount">6</div><div class="app-hero__stat-label">Live in production</div></div>
+        <div role="listitem"><div class="app-hero__stat-num" id="statDomainCount">5</div><div class="app-hero__stat-label">Domains covered</div></div>
+        <div role="listitem"><div class="app-hero__stat-num" id="statEndpointCount">25+</div><div class="app-hero__stat-label">Endpoints documented</div></div>
+      </div>
     </div>
   </div>
+  <main class="app-main" id="main-content">
+    <!-- A-Z navigation bar -->
+    <div class="app-az-bar">
+      <div class="app-az-inner">
+        <div class="app-az-label">Quick navigation</div>
+        <div class="app-az-letters" id="azLetters"></div>
+      </div>
+    </div>
 
-  <div class="govuk-width-container" style="padding:48px 0 60px">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:36px">
+    <!-- Body: sidebar + list -->
+    <div class="app-catalogue-body">
 
-      <a href="#" onclick="showMarketplace();return false;" style="display:block;text-decoration:none;color:inherit">
-        <h2 class="govuk-heading-m" style="color:#1d70b8;margin-bottom:10px">Browse the API catalogue</h2>
-        <p class="govuk-body">Search and filter all available HMCTS APIs. Read plain-English descriptions, view technical documentation, and understand what data each API returns.</p>
-      </a>
+      <!-- Sidebar filters -->
+      <aside class="app-cat-sidebar" aria-label="Filter APIs">
+        <div class="app-cat-sidebar__header">
+          Filters <a href="#" onclick="resetFilters();return false;">Reset</a>
+        </div>
 
-      <a href="#" onclick="showAccessRequestForm();return false;" style="display:block;text-decoration:none;color:inherit">
-        <h2 class="govuk-heading-m" style="color:#1d70b8;margin-bottom:10px">Request access to an API</h2>
-        <p class="govuk-body">Found an API you need? Submit an access request with your use case and organisation details. The API owner will review and respond within 2 working days.</p>
-      </a>
+        <div class="app-cat-filter-group" id="fg-domain">
+          <button class="app-cat-filter-head" onclick="toggleFilterGroup('fg-domain',this)" aria-expanded="true">
+            <i class="ti ti-chevron-up" aria-hidden="true"></i> Domain
+          </button>
+          <div class="app-cat-filter-items" id="fg-domain-items"></div>
+        </div>
 
-      <a href="#" onclick="showPublishApiForm();return false;" style="display:block;text-decoration:none;color:inherit">
-        <h2 class="govuk-heading-m" style="color:#1d70b8;margin-bottom:10px">Publish an API</h2>
-        <p class="govuk-body">Own an HMCTS API? Submit it for listing on the Marketplace so other teams can find and request access. Your API must meet the Producer Standards before submission.</p>
-      </a>
+        <div class="app-cat-filter-group" id="fg-status">
+          <button class="app-cat-filter-head" onclick="toggleFilterGroup('fg-status',this)" aria-expanded="true">
+            <i class="ti ti-chevron-up" aria-hidden="true"></i> Status
+          </button>
+          <div class="app-cat-filter-items" id="fg-status-items"></div>
+        </div>
 
-      <a href="#" onclick="showOnboarding();return false;" style="display:block;text-decoration:none;color:inherit">
-        <h2 class="govuk-heading-m" style="color:#1d70b8;margin-bottom:10px">New to the Marketplace?</h2>
-        <p class="govuk-body">Read the Onboarding guide for a plain-English walkthrough of how the Marketplace works, what you need before you start, and the steps for consumers and producers.</p>
-      </a>
+        <div class="app-cat-filter-group" id="fg-class">
+          <button class="app-cat-filter-head" onclick="toggleFilterGroup('fg-class',this)" aria-expanded="false">
+            <i class="ti ti-chevron-down" aria-hidden="true"></i> Classification
+          </button>
+          <div class="app-cat-filter-items" id="fg-class-items" style="display:none"></div>
+        </div>
+
+        <div class="app-cat-filter-group" style="border-bottom:none">
+          <button class="app-cat-filter-head" onclick="toggleFilterGroup('fg-team',this)" aria-expanded="false">
+            <i class="ti ti-chevron-down" aria-hidden="true"></i> Team
+          </button>
+          <div class="app-cat-filter-items" id="fg-team-items" style="display:none"></div>
+        </div>
+      </aside>
+
+      <!-- API list -->
+      <div class="app-cat-main">
+        <p class="app-cat-count" id="cardCount" aria-live="polite" aria-atomic="true">Showing 6 APIs</p>
+        <div id="apiGrid" role="list"></div>
+      </div>
 
     </div>
-  </div>
-
+    <section id="gettingStarted" aria-labelledby="gs-heading" style="padding:32px 0 0;border-top:1px solid #b1b4b6;margin-top:8px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+        <div>
+          <h2 class="govuk-heading-l" id="gs-heading">Getting started</h2>
+          <p class="govuk-body">New to the HMCTS APIs? Each API includes a plain-English summary for non-technical readers and full technical documentation for developers.</p>
+          <div class="app-steps" role="list">
+            <div class="app-step" role="listitem"><div class="app-step__number" aria-hidden="true">1</div><div><div class="app-step__title">Browse and discover</div><div class="app-step__desc">Use search and domain filters to find the API you need.</div></div></div>
+            <div class="app-step" role="listitem"><div class="app-step__number" aria-hidden="true">2</div><div><div class="app-step__title">Try the mock server</div><div class="app-step__desc">Explore the API using the live documentation and mock endpoints.</div></div></div>
+            <div class="app-step" role="listitem"><div class="app-step__number" aria-hidden="true">3</div><div><div class="app-step__title">Request access</div><div class="app-step__desc">Contact <a href="mailto:Nagashankar.Ponnaganti@HMCTS.NET" class="govuk-link">Nagashankar.Ponnaganti@HMCTS.NET</a> with your system name and use case.</div></div></div>
+          </div>
+        </div>
+        <div>
+          <h2 class="govuk-heading-l">Quick links</h2>
+          <ul class="govuk-list" style="border-top:1px solid #b1b4b6">
+            <li style="padding:12px 0;border-bottom:1px solid #b1b4b6"><a href="https://hmcts.github.io/amp-catalog/" target="_blank" rel="noopener" class="govuk-link">AMP Catalogue</a></li>
+            <li style="padding:12px 0;border-bottom:1px solid #b1b4b6"><a href="https://github.com/orgs/hmcts/repositories" target="_blank" rel="noopener" class="govuk-link">GitHub Repositories &mdash; hmcts</a></li>
+            <li style="padding:12px 0;border-bottom:1px solid #b1b4b6"><a href="mailto:Nagashankar.Ponnaganti@HMCTS.NET" class="govuk-link">Contact: Nagashankar.Ponnaganti@HMCTS.NET</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section style="padding:32px 0 0;border-top:1px solid #b1b4b6;margin-top:32px">
+      <h2 class="govuk-heading-l">About this catalogue</h2>
+      <div class="app-card-grid-3" role="list">
+        <div class="app-feature-card" role="listitem"><div class="app-feature-card__icon" aria-hidden="true">&#128260;</div><div class="app-feature-card__title">Always up to date</div><div class="app-feature-card__desc">API docs are fetched live from the AMP catalogue. Any changes published there are automatically reflected here.</div></div>
+        <div class="app-feature-card" role="listitem"><div class="app-feature-card__icon" aria-hidden="true">&#128101;</div><div class="app-feature-card__title">For everyone</div><div class="app-feature-card__desc">Each API has a plain-English summary for non-technical stakeholders alongside full technical documentation for developers.</div></div>
+        <div class="app-feature-card" role="listitem"><div class="app-feature-card__icon" aria-hidden="true">&#128640;</div><div class="app-feature-card__title">Ready to deploy</div><div class="app-feature-card__desc">This is a single HTML file. Deploy to GitHub Pages, Azure Static Web Apps or any web server instantly.</div></div>
+      </div>
+    </section>
+  </main>
   <footer class="govuk-footer" role="contentinfo">
     <div class="govuk-footer__inner">
       <div class="govuk-footer__navigation">
-        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">API Marketplace</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a onclick="showHome();return false;" href="#" class="govuk-footer__link">API Catalogue</a></li><li class="govuk-footer__list-item"><a onclick="showMarketplace();return false;" href="#" class="govuk-footer__link">What is API Catalogue?</a></li><li class="govuk-footer__list-item"><a onclick="showGuidance();return false;" href="#" class="govuk-footer__link">Consumer guidance</a></li><li class="govuk-footer__list-item"><a onclick="showProducerStandards();return false;" href="#" class="govuk-footer__link">Producer standards</a></li><li class="govuk-footer__list-item"><a href="https://hmcts.github.io/amp-catalog/" target="_blank" rel="noopener" class="govuk-footer__link">AMP Catalogue</a></li></ul></div>
-        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:Nagashankar.Ponnaganti@HMCTS.NET" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a onclick="showOnboarding();return false;" href="#" class="govuk-footer__link">Onboarding guide</a></li><li class="govuk-footer__list-item"><a onclick="showNewApiRequestForm();return false;" href="#" class="govuk-footer__link">Request a new API</a></li><li class="govuk-footer__list-item"><a onclick="showPublishApiForm();return false;" href="#" class="govuk-footer__link">Publish API</a></li></ul></div>
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">API Catalogue</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a onclick="showHome();return false;" href="#" class="govuk-footer__link">API Catalogue</a></li><li class="govuk-footer__list-item"><a onclick="showMarketplace();return false;" href="#" class="govuk-footer__link">What is API Catalogue?</a></li><li class="govuk-footer__list-item"><a onclick="showGuidance();return false;" href="#" class="govuk-footer__link">Consumer guidance</a></li><li class="govuk-footer__list-item"><a onclick="showProducerStandards();return false;" href="#" class="govuk-footer__link">Producer standards</a></li><li class="govuk-footer__list-item"><a href="https://hmcts.github.io/amp-catalog/" target="_blank" rel="noopener" class="govuk-footer__link">AMP Catalogue</a></li></ul></div>
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:Nagashankar.Ponnaganti@HMCTS.NET" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a onclick="requestNewApi();return false;" href="#" class="govuk-footer__link">Request a new API</a></li></ul></div>
         <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Policies</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Accessibility statement</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Cookies</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Privacy notice</a></li><li class="govuk-footer__list-item"><a onclick="showDataGovernance();return false;" href="#" class="govuk-footer__link">Data governance</a></li></ul></div>
       </div>
       <div class="govuk-footer__meta"><div class="govuk-footer__meta-item">Built by <a href="https://www.gov.uk/hmcts" class="govuk-footer__link">HMCTS Digital and Technology Solutions</a></div><div class="govuk-footer__copyright-logo">&copy; Crown copyright &mdash; MIT Licence</div></div>
@@ -1131,8 +1198,6 @@ body, input, select, textarea, button {
 
 
 <!-- DETAIL PAGE -->
-
-</div>
 
 <div id="detailPage" class="app-page">
   <div class="app-detail-header">
@@ -1249,202 +1314,48 @@ body, input, select, textarea, button {
 <!-- CONSUMER DASHBOARD -->
 
 <!-- MARKETPLACE PAGE -->
-<div id="marketplacePage" class="app-page">
-<style>
-  .app-header-crown { display:inline-block; width:32px; height:32px; margin-right:8px; vertical-align:middle; }
-  .app-one-pager-hero { background:#f3f2f1; padding:40px 0; border-bottom:2px solid #b1b4b6; }
-  .app-inset-quote { border-left:6px solid #1d70b8; padding:16px 20px; background:white; margin-bottom:20px; }
-  .app-inset-quote p { font-size:19px; font-style:italic; color:#0b0c0c; margin:0; line-height:1.5; }
-  .app-section-rule { border:none; border-top:3px solid #1d70b8; margin-bottom:20px; }
-  .app-does-table { width:100%; border-collapse:collapse; margin-bottom:30px; }
-  .app-does-table th { padding:12px 16px; text-align:left; font-family:GDS Transport,Arial,sans-serif; font-size:16px; font-weight:700; color:white; }
-  .app-does-table th.app-does-yes { background:#00703c; }
-  .app-does-table th.app-does-no  { background:#d4351c; }
-  .app-does-table td { padding:10px 16px; border-bottom:1px solid #b1b4b6; font-family:GDS Transport,Arial,sans-serif; font-size:16px; color:#0b0c0c; vertical-align:top; }
-  .app-does-table tr:nth-child(even) td { background:#f3f2f1; }
-  .app-tick { color:#00703c; font-weight:700; margin-right:6px; }
-  .app-cross { color:#d4351c; font-weight:700; margin-right:6px; }
-  .app-role-card { border:1px solid #b1b4b6; padding:20px; border-top:5px solid #1d70b8; background:white; }
-  .app-role-card--producer { border-top-color:#00703c; }
-  .app-role-card--reviewer { border-top-color:#f47738; }
-  .app-role-tag { display:inline-block; background:#e8f1f8; color:#003078; font-size:13px; font-weight:700; padding:3px 8px; margin:2px 2px 0 0; }
-  .app-role-tag--green  { background:#e3f3e3; color:#005a30; }
-  .app-role-tag--orange { background:#fef2e4; color:#6e3a0a; }
-  .app-how-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:8px; margin-bottom:40px; }
-  .app-how-step { text-align:center; padding:0 8px; }
-  .app-how-step__num { width:56px; height:56px; background:#1d70b8; color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:700; margin:0 auto 12px; border:3px solid white; outline:3px solid #1d70b8; }
-  .app-how-step__title { font-family:GDS Transport,Arial,sans-serif; font-size:16px; font-weight:700; color:#0b0c0c; margin-bottom:4px; }
-  .app-how-step__body  { font-family:GDS Transport,Arial,sans-serif; font-size:14px; color:#505a5f; line-height:1.4; }
-  .app-benefit-card { border-left:5px solid #1d70b8; border:1px solid #b1b4b6; border-left:5px solid #1d70b8; padding:16px 20px; background:white; }
-  .app-benefit-card__title { font-family:GDS Transport,Arial,sans-serif; font-size:17px; font-weight:700; color:#0b0c0c; margin-bottom:6px; }
-  .app-benefit-card__body  { font-family:GDS Transport,Arial,sans-serif; font-size:15px; color:#505a5f; line-height:1.5; margin:0; }
-  .app-misconception { padding:14px 16px; background:white; border:1px solid #b1b4b6; border-left:5px solid #b1b4b6; margin-bottom:10px; }
-  .app-misconception__q { font-family:GDS Transport,Arial,sans-serif; font-size:15px; color:#d4351c; font-style:italic; margin-bottom:4px; }
-  .app-misconception__a { font-family:GDS Transport,Arial,sans-serif; font-size:15px; color:#0b0c0c; margin:0; }
-</style>
-
-<div class="app-hero-band">
-  <div class="app-hero-band__inner">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:28px;padding-top:8px">
-      <strong class="govuk-tag">Alpha</strong>
-      <span style="font-size:13px;color:white">This is a new service &mdash; <a href="#" style="color:white">give your feedback</a> to help us improve it.</span>
+<div id="marketplacePage" class="app-page app-page--active">
+  <div class="app-hero">
+    <div class="app-hero__inner">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:24px;padding-top:8px">
+        <strong class="govuk-tag">Alpha</strong>
+        <span style="font-size:13px;color:white">This is a new service &mdash; <a href="#" style="color:white">give your feedback</a> to help us improve it.</span>
+      </div>
+      <h1 class="govuk-heading-xl" style="color:white;margin-bottom:8px">Find, request and use HMCTS data</h1>
+      <p class="app-hero__lead">A central catalogue of APIs from across His Majesty&rsquo;s Courts and Tribunals Service.</p>
+      <a class="govuk-button" href="#" onclick="showHome();return false;" style="margin-top:8px">Browse the catalogue &rsaquo;</a>
     </div>
-    <div class="govuk-masterhead">
-      <h1 class="govuk-heading-xl" style="color:white;margin-bottom:24px">Find, request and use HMCTS data</h1>
-    </div>
-    <div class="app-hero-band__quote">
-      <p>&ldquo;We don&rsquo;t build APIs &mdash; we connect you to them. Like a library &mdash; we don&rsquo;t write the books, we organise them so you can find and borrow what you need.&rdquo;</p>
-    </div>
-    <div class="app-hero-band__body" style="max-width:660px;margin-bottom:28px">
-      <p class="govuk-body-m" style="color:rgba(255,255,255,0.95);margin-bottom:12px">An API Marketplace is a curated catalogue of APIs from across the organisation and beyond.</p>
-      <p class="govuk-body-m" style="color:rgba(255,255,255,0.95);margin-bottom:12px">Think of it as an App Store for APIs &mdash; one centralised hub where teams can browse what&rsquo;s available, understand what each API does, and request access to use it.</p>
-      <p class="govuk-body-m" style="color:rgba(255,255,255,0.95);margin-bottom:0">The marketplace doesn&rsquo;t create the APIs, it makes them discoverable, documented, and accessible.</p>
-    </div>
-    <a href="#" class="app-btn-start" onclick="showMarketplace();setActiveNav('navBrowse');return false;">Browse the catalogue <svg xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false"><path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"/></svg></a>
   </div>
-</div>
+  <div class="govuk-width-container" style="padding:48px 0 60px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:36px">
 
-<div class="govuk-width-container">
+      <a href="#" onclick="showMarketplace();return false;" style="display:block;text-decoration:none;color:inherit">
+        <h2 class="govuk-heading-m" style="color:#1d70b8;margin-bottom:10px">Browse the API catalogue</h2>
+        <p class="govuk-body">Search and filter all available HMCTS APIs. Read plain-English descriptions, view technical documentation, and understand what data each API returns.</p>
+      </a>
 
-<!-- Who it's for -->
-    <h2 class="govuk-heading-l">Who it's for</h2>
-    <hr class="app-section-rule">
-    <div class="govuk-grid-row govuk-!-margin-bottom-8">
-      <div class="govuk-grid-column-one-third">
-        <div class="app-role-card">
-          <h3 class="govuk-heading-m">API Consumers</h3>
-          <p class="govuk-body">Teams and developers who need to use an existing API rather than build one from scratch.</p>
-          <span class="app-role-tag">API Catalogue</span>
-          <span class="app-role-tag">Read docs</span>
-          <span class="app-role-tag">Request access</span>
-          <span class="app-role-tag">Track requests</span>
-        </div>
-      </div>
-      <div class="govuk-grid-column-one-third">
-        <div class="app-role-card app-role-card--producer">
-          <h3 class="govuk-heading-m">API Producers</h3>
-          <p class="govuk-body">Teams that build and own APIs and want them discoverable and usable by others.</p>
-          <span class="app-role-tag app-role-tag--green">Publish APIs</span>
-          <span class="app-role-tag app-role-tag--green">Manage access</span>
-          <span class="app-role-tag app-role-tag--green">Review requests</span>
-        </div>
-      </div>
-      <div class="govuk-grid-column-one-third">
-        <div class="app-role-card app-role-card--reviewer">
-          <h3 class="govuk-heading-m">Reviewers</h3>
-          <p class="govuk-body">Marketplace team members responsible for governance and quality standards.</p>
-          <span class="app-role-tag app-role-tag--orange">Review submissions</span>
-          <span class="app-role-tag app-role-tag--orange">Approve APIs</span>
-          <span class="app-role-tag app-role-tag--orange">Triage requests</span>
-        </div>
-      </div>
+      <a href="#" onclick="showAccessRequestForm();return false;" style="display:block;text-decoration:none;color:inherit">
+        <h2 class="govuk-heading-m" style="color:#1d70b8;margin-bottom:10px">Request access to an API</h2>
+        <p class="govuk-body">Found an API you need? Submit an access request with your use case and organisation details. The API owner will review and respond within 2 working days.</p>
+      </a>
+
+      <a href="#" onclick="showPublishApiForm();return false;" style="display:block;text-decoration:none;color:inherit">
+        <h2 class="govuk-heading-m" style="color:#1d70b8;margin-bottom:10px">Publish an API</h2>
+        <p class="govuk-body">Own an HMCTS API? Submit it for listing on the Marketplace so other teams can find and request access. Your API must meet the Producer Standards before submission.</p>
+      </a>
+
+      <a href="#" onclick="showOnboarding();return false;" style="display:block;text-decoration:none;color:inherit">
+        <h2 class="govuk-heading-m" style="color:#1d70b8;margin-bottom:10px">New to the Marketplace?</h2>
+        <p class="govuk-body">Read the Onboarding guide for a plain-English walkthrough of how the Marketplace works, what you need before you start, and the steps for consumers and producers.</p>
+      </a>
+
     </div>
-
-    <!-- Does / doesn't do -->
-    <h2 class="govuk-heading-l">What the API Catalogue does and doesn't do</h2>
-    <hr class="app-section-rule">
-    <table class="app-does-table govuk-!-margin-bottom-8">
-      <thead>
-        <tr>
-          <th class="app-does-yes">✓&nbsp; The API Catalogue does</th>
-          <th class="app-does-no">✗&nbsp; The API Catalogue does not</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td><span class="app-tick">✓</span>Catalogue and curate APIs across the programme</td><td><span class="app-cross">✗</span>Build, own or develop APIs</td></tr>
-        <tr><td><span class="app-tick">✓</span>Provide a single point of discovery</td><td><span class="app-cross">✗</span>Host data or run backend services</td></tr>
-        <tr><td><span class="app-tick">✓</span>Document what each API does in plain English</td><td><span class="app-cross">✗</span>Support the API — that stays with the owner</td></tr>
-        <tr><td><span class="app-tick">✓</span>Manage access requests and the approval workflow</td><td><span class="app-cross">✗</span>Make architectural decisions for API teams</td></tr>
-        <tr><td><span class="app-tick">✓</span>Enforce naming conventions and data classification standards</td><td><span class="app-cross">✗</span>Guarantee uptime or SLAs for listed APIs</td></tr>
-        <tr><td><span class="app-tick">✓</span>Capture demand signals when consumers need data not yet available</td><td><span class="app-cross">✗</span>Replace any team's responsibility for their APIs</td></tr>
-      </tbody>
-    </table>
-
-    <!-- How it works -->
-    <h2 class="govuk-heading-l">How it works</h2>
-    <hr class="app-section-rule">
-    <div class="app-how-grid govuk-!-margin-bottom-8">
-      <div class="app-how-step">
-        <div class="app-how-step__num">1</div>
-        <p class="app-how-step__title">Browse</p>
-        <p class="app-how-step__body">Search by keyword or domain — no login required</p>
-      </div>
-      <div class="app-how-step">
-        <div class="app-how-step__num">2</div>
-        <p class="app-how-step__title">Discover</p>
-        <p class="app-how-step__body">Read plain-English summaries and full technical documentation</p>
-      </div>
-      <div class="app-how-step">
-        <div class="app-how-step__num">3</div>
-        <p class="app-how-step__title">Request access</p>
-        <p class="app-how-step__body">Submit a formal request with your business justification</p>
-      </div>
-      <div class="app-how-step">
-        <div class="app-how-step__num">4</div>
-        <p class="app-how-step__title">Integrate</p>
-        <p class="app-how-step__body">Use your credentials to connect via the API</p>
-      </div>
-    </div>
-
-    <!-- Key benefits -->
-    <h2 class="govuk-heading-l">Key benefits</h2>
-    <hr class="app-section-rule">
-    <div class="govuk-grid-row govuk-!-margin-bottom-8">
-      <div class="govuk-grid-column-one-half govuk-!-margin-bottom-4">
-        <div class="app-benefit-card">
-          <p class="app-benefit-card__title">Stops duplication</p>
-          <p class="app-benefit-card__body">Check whether an API already exists before building one. The catalogue makes invisible work visible.</p>
-        </div>
-      </div>
-      <div class="govuk-grid-column-one-half govuk-!-margin-bottom-4">
-        <div class="app-benefit-card">
-          <p class="app-benefit-card__title">Faster integration</p>
-          <p class="app-benefit-card__body">Documentation, specs, mock servers and access requests in one place. Integration time reduces from weeks to days.</p>
-        </div>
-      </div>
-      <div class="govuk-grid-column-one-half govuk-!-margin-bottom-4">
-        <div class="app-benefit-card">
-          <p class="app-benefit-card__title">Governance and standards</p>
-          <p class="app-benefit-card__body">The approval workflow ensures only APIs that meet quality and classification standards appear in the catalogue.</p>
-        </div>
-      </div>
-      <div class="govuk-grid-column-one-half govuk-!-margin-bottom-4">
-        <div class="app-benefit-card">
-          <p class="app-benefit-card__title">Controlled access</p>
-          <p class="app-benefit-card__body">Formal justifications mean sensitive data is only shared with authorised teams who have stated their use case.</p>
-        </div>
-      </div>
-      <div class="govuk-grid-column-one-half govuk-!-margin-bottom-4">
-        <div class="app-benefit-card">
-          <p class="app-benefit-card__title">Visibility for leadership</p>
-          <p class="app-benefit-card__body">Leadership and programme management get a clear picture of the API landscape — what exists, who owns it, and what demand looks like.</p>
-        </div>
-      </div>
-      <div class="govuk-grid-column-one-half govuk-!-margin-bottom-4">
-        <div class="app-benefit-card">
-          <p class="app-benefit-card__title">Captures demand signals</p>
-          <p class="app-benefit-card__body">When consumers can't find the data they need, they can request a new API — giving teams visibility of what the organisation actually needs.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Common misconceptions -->
-    <h2 class="govuk-heading-l">Common misconceptions</h2>
-    <hr class="app-section-rule">
-    <div class="govuk-!-margin-bottom-8">
-      <div class="app-misconception"><p class="app-misconception__q">"The marketplace team builds the APIs"</p><p class="app-misconception__a">We list them. Your team builds and owns the API. The catalogue makes it discoverable.</p></div>
-      <div class="app-misconception"><p class="app-misconception__q">"If it's in the catalogue, the marketplace team supports it"</p><p class="app-misconception__a">Support stays with the API owner. The catalogue is a directory, not a support desk.</p></div>
-      <div class="app-misconception"><p class="app-misconception__q">"It's only for developers"</p><p class="app-misconception__a">Product managers, architects, delivery managers and business analysts should all use it.</p></div>
-      <div class="app-misconception"><p class="app-misconception__q">"Listing my API means giving up ownership"</p><p class="app-misconception__a">You remain the owner. Listing makes your API discoverable — nothing more.</p></div>
-    </div>
-
   </div>
-
   <footer class="govuk-footer" role="contentinfo">
     <div class="govuk-footer__inner">
       <div class="govuk-footer__navigation">
-        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">API Marketplace</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a onclick="showHome();return false;" href="#" class="govuk-footer__link">API Catalogue</a></li><li class="govuk-footer__list-item"><a onclick="showMarketplace();return false;" href="#" class="govuk-footer__link">What is API Catalogue?</a></li><li class="govuk-footer__list-item"><a onclick="showGuidance();return false;" href="#" class="govuk-footer__link">Consumer guidance</a></li><li class="govuk-footer__list-item"><a onclick="showProducerStandards();return false;" href="#" class="govuk-footer__link">Producer standards</a></li><li class="govuk-footer__list-item"><a href="https://hmcts.github.io/amp-catalog/" target="_blank" rel="noopener" class="govuk-footer__link">AMP Catalogue</a></li></ul></div>
-        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:Nagashankar.Ponnaganti@HMCTS.NET" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a onclick="showOnboarding();return false;" href="#" class="govuk-footer__link">Onboarding guide</a></li><li class="govuk-footer__list-item"><a onclick="showNewApiRequestForm();return false;" href="#" class="govuk-footer__link">Request a new API</a></li><li class="govuk-footer__list-item"><a onclick="showPublishApiForm();return false;" href="#" class="govuk-footer__link">Publish API</a></li></ul></div>
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">API Catalogue</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a onclick="showHome();return false;" href="#" class="govuk-footer__link">API Catalogue</a></li><li class="govuk-footer__list-item"><a onclick="showMarketplace();return false;" href="#" class="govuk-footer__link">What is API Catalogue?</a></li><li class="govuk-footer__list-item"><a onclick="showGuidance();return false;" href="#" class="govuk-footer__link">Consumer guidance</a></li><li class="govuk-footer__list-item"><a onclick="showProducerStandards();return false;" href="#" class="govuk-footer__link">Producer standards</a></li><li class="govuk-footer__list-item"><a href="https://hmcts.github.io/amp-catalog/" target="_blank" rel="noopener" class="govuk-footer__link">AMP Catalogue</a></li></ul></div>
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:Nagashankar.Ponnaganti@HMCTS.NET" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a onclick="requestNewApi();return false;" href="#" class="govuk-footer__link">Request a new API</a></li></ul></div>
         <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Policies</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Accessibility statement</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Cookies</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Privacy notice</a></li><li class="govuk-footer__list-item"><a onclick="showDataGovernance();return false;" href="#" class="govuk-footer__link">Data governance</a></li></ul></div>
       </div>
       <div class="govuk-footer__meta"><div class="govuk-footer__meta-item">Built by <a href="https://www.gov.uk/hmcts" class="govuk-footer__link">HMCTS Digital and Technology Solutions</a></div><div class="govuk-footer__copyright-logo">&copy; Crown copyright &mdash; MIT Licence</div></div>
@@ -1452,8 +1363,6 @@ body, input, select, textarea, button {
   </footer>
 </div>
 
-<!-- CONSUMER DASHBOARD -->
-<!-- ACCESS REQUEST PAGE -->
 <div id="accessRequestPage" class="app-page">
   <div class="app-hero"><div class="app-hero__inner"><div style="display:flex;align-items:center;gap:8px;margin-bottom:24px;padding-top:8px"><strong class="govuk-tag">Alpha</strong><span style="font-size:13px;color:white">This is a new service &mdash; <a href="#" style="color:white">give your feedback</a> to help us improve it.</span></div><h1 class="govuk-heading-xl" style="color:white;margin-bottom:8px">Request API access</h1><p class="app-hero__lead">Submit a request to access an HMCTS API. The API owner will review within 2 working days.</p></div></div>
   <div class="govuk-width-container" style="padding-top:40px;padding-bottom:60px"><nav aria-label="Breadcrumb" style="margin-bottom:24px"><ol style="list-style:none;padding:0;margin:0;display:flex;gap:8px;font-size:14px"><li><a href="#" onclick="showMarketplace();return false;" class="govuk-link">API Catalogue</a></li><li style="color:#505a5f">&rsaquo;</li><li style="color:#505a5f">Request access</li></ol></nav>
@@ -1575,6 +1484,10 @@ body, input, select, textarea, button {
 </div>
 
 <script>function statusPillClass(s){var m={'Alpha':'app-api-status-pill--alpha','Beta':'app-api-status-pill--beta','Live':'app-api-status-pill--live','Deprecated':'app-api-status-pill--deprecated','Retired':'app-api-status-pill--retired'};return m[s]||'app-api-status-pill--beta';}
+function statusBadgeClass(s){var m={'Alpha':'app-tag--purple','Beta':'app-tag--blue','Live':'app-tag--green','Deprecated':'app-tag--yellow','Retired':'app-tag--grey'};return m[s]||'app-tag--blue';}
+var LIFECYCLE_STATES={'Alpha':'Early-stage API. Interface may change.','Beta':'Feature-complete. Minor changes possible.','Live':'Production-ready.','Deprecated':'Being phased out. Migrate before retirement.','Retired':'No longer available.'};
+
+var APIS = [{"id":"cpp-case-aggregator-poc","name":"CPP Case Aggregator API","shortName":"cpp-case-aggregator-poc","version":"latest","status":"Live","domain":"Case Administration","classification":"Official","authType":"OAuth 2.0","description":"Aggregates data from CPP downstream services and exposes shaped responses per domain.","plainEnglish":"Aggregates data from multiple CPP downstream services (system-id-mapper, prosecution-casefile, hearing, results, hearing-nows) and exposes shaped responses per domain.","docsUrl":"https://hmcts.github.io/cpp-case-aggregator-poc/","specUrl":"https://raw.githubusercontent.com/hmcts/cpp-case-aggregator-poc/main/src/main/resources/openapi/openapi-spec.yml","repoUrl":"https://github.com/hmcts/cpp-case-aggregator-poc","team":"AMP","changelog":[{"version":"latest","date":"2025","notes":"Latest release"}],"tags":["case","aggregator","CPP"]},{"id":"api-cp-crime-hearing-results-document-subscription","name":"Crime Hearing Results Document Subscription","shortName":"api-cp-crime-hearing-results-document-subscription","version":"latest","status":"Live","domain":"Hearing Results","classification":"Official","authType":"OAuth 2.0","description":"Allows organisations to be automatically notified when crime hearing result documents become available.","plainEnglish":"Allows organisations to be automatically notified when crime hearing result documents become available, such as when a verdict is recorded or sentencing notes are published. Organisations register the types of hearing events they are interested in and provide an address to receive notifications.","docsUrl":"https://hmcts.github.io/api-cp-crime-hearing-results-document-subscription/","specUrl":"https://raw.githubusercontent.com/hmcts/api-cp-crime-hearing-results-document-subscription/main/src/main/resources/openapi/openapi-spec.yml","repoUrl":"https://github.com/hmcts/api-cp-crime-hearing-results-document-subscription","team":"AMP","changelog":[{"version":"latest","date":"2025","notes":"Latest release"}],"tags":["hearing","results","documents","subscription"]},{"id":"api-cp-crime-prosecution-case-details","name":"Crime Prosecution Case Details","shortName":"api-cp-crime-prosecution-case-details","version":"latest","status":"Live","domain":"Case Administration","classification":"Official-Sensitive","authType":"OAuth 2.0","description":"Returns a summary of a criminal prosecution case for a given case reference number.","plainEnglish":"Returns a summary of a criminal prosecution case for a given case reference number. Provides the current status of the case, any reporting restrictions in place, defendant details, and associated hearing information. Used by prosecutors, defence solicitors, and court staff who need an up-to-date view of a case as it progresses through the courts.","docsUrl":"https://hmcts.github.io/api-cp-crime-prosecution-case-details/","specUrl":"https://raw.githubusercontent.com/hmcts/api-cp-crime-prosecution-case-details/main/src/main/resources/openapi/openapi-spec.yml","repoUrl":"https://github.com/hmcts/api-cp-crime-prosecution-case-details","team":"AMP","changelog":[{"version":"latest","date":"2025","notes":"Latest release"}],"tags":["prosecution","case","URN","crime"]},{"id":"api-cp-refdata-courthearing-courthouses","name":"Refdata Court Hearing Court Houses","shortName":"api-cp-refdata-courthearing-courthouses","version":"latest","status":"Live","domain":"Reference Data","classification":"Official","authType":"OAuth 2.0","description":"Provides information about court buildings and the rooms within them.","plainEnglish":"Provides information about court buildings and the rooms within them. Returns the building name, postal address, and room details for a given court. Used by listing officers and court diary systems to show where a hearing is taking place.","docsUrl":"https://hmcts.github.io/api-cp-refdata-courthearing-courthouses/","specUrl":"https://raw.githubusercontent.com/hmcts/api-cp-refdata-courthearing-courthouses/main/src/main/resources/openapi/openapi-spec.yml","repoUrl":"https://github.com/hmcts/api-cp-refdata-courthearing-courthouses","team":"AMP","changelog":[{"version":"latest","date":"2025","notes":"Latest release"}],"tags":["reference data","court houses","venues"]},{"id":"api-cp-crime-hearing-results-validator","name":"Results Validation Service API","shortName":"api-cp-crime-hearing-results-validator","version":"latest","status":"Beta","domain":"Hearing Results","classification":"Official","authType":"OAuth 2.0","description":"API for validating draft hearing results against declarative, programmatic, and LLM-assisted rules.","plainEnglish":"Validates draft hearing result records before they are published.","docsUrl":"https://hmcts.github.io/api-cp-crime-hearing-results-validator/","specUrl":"https://raw.githubusercontent.com/hmcts/api-cp-crime-hearing-results-validator/main/src/main/resources/openapi/openapi-spec.yml","repoUrl":"https://github.com/hmcts/api-cp-crime-hearing-results-validator","team":"AMP","changelog":[{"version":"latest","date":"2025","notes":"Latest release"}],"tags":["validation","hearing results","rules"]},{"id":"api-cp-crime-schedulingandlisting-courtschedule","name":"Scheduling and Listing Court Schedule","shortName":"api-cp-crime-schedulingandlisting-courtschedule","version":"latest","status":"Live","domain":"function statusPillClass(s){var m={'Alpha':'app-api-status-pill--alpha','Beta':'app-api-status-pill--beta','Live':'app-api-status-pill--live','Deprecated':'app-api-status-pill--deprecated','Retired':'app-api-status-pill--retired'};return m[s]||'app-api-status-pill--beta';}
 function statusBadgeClass(s){var m={'Alpha':'app-tag--purple','Beta':'app-tag--blue','Live':'app-tag--green','Deprecated':'app-tag--yellow','Retired':'app-tag--grey'};return m[s]||'app-tag--blue';}
 var LIFECYCLE_STATES={'Alpha':'Early-stage API. Interface may change.','Beta':'Feature-complete. Minor changes possible.','Live':'Production-ready.','Deprecated':'Being phased out. Migrate before retirement.','Retired':'No longer available.'};
 
@@ -1811,14 +1724,14 @@ function setActiveNav(id) {
 
 function showHome() {
   hideAll();
-  document.getElementById('homePage').classList.add('app-page--active');
+  document.getElementById('marketplacePage').classList.add('app-page--active');
   setActiveNav('navMarket');
   window.scrollTo(0, 0);
 }
 
 function showMarketplace() {
   hideAll();
-  document.getElementById('marketplacePage').classList.add('app-page--active');
+  document.getElementById('homePage').classList.add('app-page--active');
   setActiveNav('navBrowse');
   renderHome();
   window.scrollTo(0, 0);
@@ -3916,6 +3829,3 @@ function submitPublishApi(e){if(e)e.preventDefault();var errs=[];if(!document.ge
   window.scrollTo(0,0);}
 
 function showOnboarding(){hideAll();document.getElementById('onboardingPage').classList.add('app-page--active');setActiveNav('navOnboard');window.scrollTo(0,0);}
-</script>
-</body>
-</html>

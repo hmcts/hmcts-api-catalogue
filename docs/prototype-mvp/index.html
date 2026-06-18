@@ -1099,74 +1099,32 @@ body, input, select, textarea, button {
         <div role="listitem"><div class="app-hero__stat-num" id="statEndpointCount">25+</div><div class="app-hero__stat-label">Endpoints documented</div></div>
       </div>
     </div>
+  <div class="govuk-width-container" style="padding:48px 0 60px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:36px">
+
+      <a href="#" onclick="showMarketplace();return false;" style="display:block;text-decoration:none;color:inherit">
+        <h2 class="govuk-heading-m" style="color:#1d70b8;margin-bottom:10px">Browse the API catalogue</h2>
+        <p class="govuk-body">Search and filter all available HMCTS APIs. Read plain-English descriptions, view technical documentation, and understand what data each API returns.</p>
+      </a>
+
+      <a href="#" onclick="showAccessRequestForm();return false;" style="display:block;text-decoration:none;color:inherit">
+        <h2 class="govuk-heading-m" style="color:#1d70b8;margin-bottom:10px">Request access to an API</h2>
+        <p class="govuk-body">Found an API you need? Submit an access request with your use case and organisation details. The API owner will review and respond within 2 working days.</p>
+      </a>
+
+      <a href="#" onclick="showPublishApiForm();return false;" style="display:block;text-decoration:none;color:inherit">
+        <h2 class="govuk-heading-m" style="color:#1d70b8;margin-bottom:10px">Publish an API</h2>
+        <p class="govuk-body">Own an HMCTS API? Submit it for listing on the Marketplace so other teams can find and request access. Your API must meet the Producer Standards before submission.</p>
+      </a>
+
+      <a href="#" onclick="showOnboarding();return false;" style="display:block;text-decoration:none;color:inherit">
+        <h2 class="govuk-heading-m" style="color:#1d70b8;margin-bottom:10px">New to the Marketplace?</h2>
+        <p class="govuk-body">Read the Onboarding guide for a plain-English walkthrough of how the Marketplace works, what you need before you start, and the steps for consumers and producers.</p>
+      </a>
+
+    </div>
   </div>
-  <main class="app-main" id="main-content">
-    <!-- A-Z navigation bar -->
-    <div class="app-az-bar">
-      <div class="app-az-inner">
-        <div class="app-az-label">Quick navigation</div>
-        <div class="app-az-letters" id="azLetters"></div>
-      </div>
-    </div>
-
-    <!-- Body: sidebar + list -->
-    <div class="app-catalogue-body">
-
-      <!-- Sidebar filters -->
-      <aside class="app-cat-sidebar" aria-label="Filter APIs">
-        <div class="app-cat-sidebar__header">
-          Filters <a href="#" onclick="resetFilters();return false;">Reset</a>
-        </div>
-
-        <div class="app-cat-filter-group" id="fg-domain">
-          <button class="app-cat-filter-head" onclick="toggleFilterGroup('fg-domain',this)" aria-expanded="true">
-            <i class="ti ti-chevron-up" aria-hidden="true"></i> Domain
-          </button>
-          <div class="app-cat-filter-items" id="fg-domain-items"></div>
-        </div>
-
-        <div class="app-cat-filter-group" id="fg-status">
-          <button class="app-cat-filter-head" onclick="toggleFilterGroup('fg-status',this)" aria-expanded="true">
-            <i class="ti ti-chevron-up" aria-hidden="true"></i> Status
-          </button>
-          <div class="app-cat-filter-items" id="fg-status-items"></div>
-        </div>
-
-        <div class="app-cat-filter-group" id="fg-class">
-          <button class="app-cat-filter-head" onclick="toggleFilterGroup('fg-class',this)" aria-expanded="false">
-            <i class="ti ti-chevron-down" aria-hidden="true"></i> Classification
-          </button>
-          <div class="app-cat-filter-items" id="fg-class-items" style="display:none"></div>
-        </div>
-
-        <div class="app-cat-filter-group" style="border-bottom:none">
-          <button class="app-cat-filter-head" onclick="toggleFilterGroup('fg-team',this)" aria-expanded="false">
-            <i class="ti ti-chevron-down" aria-hidden="true"></i> Team
-          </button>
-          <div class="app-cat-filter-items" id="fg-team-items" style="display:none"></div>
-        </div>
-      </aside>
-
-      <!-- API list -->
-      <div class="app-cat-main">
-        <p class="app-cat-count" id="cardCount" aria-live="polite" aria-atomic="true">Showing 6 APIs</p>
-        <div id="apiGrid" role="list"></div>
-      </div>
-
-    </div>
-    <section id="gettingStarted" aria-labelledby="gs-heading" style="padding:32px 0 0;border-top:1px solid #b1b4b6;margin-top:8px">
-      
-    </section>
-    <section style="padding:32px 0 0;border-top:1px solid #b1b4b6;margin-top:32px">
-      <h2 class="govuk-heading-l">About this catalogue</h2>
-      <div class="app-card-grid-3" role="list">
-        <div class="app-feature-card" role="listitem"><div class="app-feature-card__icon" aria-hidden="true">&#128260;</div><div class="app-feature-card__title">Always up to date</div><div class="app-feature-card__desc">API docs are fetched live from the AMP catalogue. Any changes published there are automatically reflected here.</div></div>
-        <div class="app-feature-card" role="listitem"><div class="app-feature-card__icon" aria-hidden="true">&#128101;</div><div class="app-feature-card__title">For everyone</div><div class="app-feature-card__desc">Each API has a plain-English summary for non-technical stakeholders alongside full technical documentation for developers.</div></div>
-        <div class="app-feature-card" role="listitem"><div class="app-feature-card__icon" aria-hidden="true">&#128640;</div><div class="app-feature-card__title">Ready to deploy</div><div class="app-feature-card__desc">This is a single HTML file. Deploy to GitHub Pages, Azure Static Web Apps or any web server instantly.</div></div>
-      </div>
-    </section>
-  </main>
-  <footer class="govuk-footer" role="contentinfo">
+<footer class="govuk-footer" role="contentinfo">
     <div class="govuk-footer__inner">
       <div class="govuk-footer__navigation">
         <div class="govuk-footer__section"><h2 class="govuk-footer__heading">API Marketplace</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a onclick="showHome();return false;" href="#" class="govuk-footer__link">API Catalogue</a></li><li class="govuk-footer__list-item"><a onclick="showMarketplace();return false;" href="#" class="govuk-footer__link">What is API Catalogue?</a></li><li class="govuk-footer__list-item"><a onclick="showGuidance();return false;" href="#" class="govuk-footer__link">Consumer guidance</a></li><li class="govuk-footer__list-item"><a onclick="showProducerStandards();return false;" href="#" class="govuk-footer__link">Producer standards</a></li><li class="govuk-footer__list-item"><a href="https://hmcts.github.io/amp-catalog/" target="_blank" rel="noopener" class="govuk-footer__link">AMP Catalogue</a></li></ul></div>

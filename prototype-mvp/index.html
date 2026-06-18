@@ -1085,20 +1085,12 @@ body, input, select, textarea, button {
         <strong class="govuk-tag">Alpha</strong>
         <span style="font-size:13px;color:white">This is a new service &mdash; <a href="#" style="color:white">give your feedback</a> to help us improve it.</span>
       </div>
-      <h1 class="app-hero__title govuk-heading-xl">HMCTS API Catalogue</h1>
-      <p class="app-hero__lead">Discover, explore and integrate with HMCTS APIs.</p>
-      <div class="app-hero__search-wrap" role="search">
-        <label for="searchBox" class="govuk-visually-hidden">Search APIs by name, domain or tag</label>
-        <input class="app-hero__search-input" id="searchBox" type="search" placeholder="Search by name, domain or tag&hellip;" oninput="filterCards(this.value)" autocomplete="off">
-        <button class="app-hero__search-btn" type="button">Search</button>
-      </div>
-      <div class="app-hero__stats" role="list" aria-label="Catalogue statistics">
-        <div role="listitem"><div class="app-hero__stat-num" id="statApiCount">6</div><div class="app-hero__stat-label">APIs available</div></div>
-        <div role="listitem"><div class="app-hero__stat-num" id="statLiveCount">6</div><div class="app-hero__stat-label">Live in production</div></div>
-        <div role="listitem"><div class="app-hero__stat-num" id="statDomainCount">5</div><div class="app-hero__stat-label">Domains covered</div></div>
-        <div role="listitem"><div class="app-hero__stat-num" id="statEndpointCount">25+</div><div class="app-hero__stat-label">Endpoints documented</div></div>
-      </div>
+      <h1 class="govuk-heading-xl" style="color:white;margin-bottom:8px">Find, request and use HMCTS data</h1>
+      <p class="app-hero__lead">A central catalogue of APIs from across His Majesty&rsquo;s Courts and Tribunals Service.</p>
+      <a class="govuk-button" href="#" onclick="showMarketplace();return false;" style="margin-top:8px">Browse the catalogue &rsaquo;</a>
     </div>
+  </div>
+
   <div class="govuk-width-container" style="padding:48px 0 60px">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:36px">
 
@@ -1124,7 +1116,8 @@ body, input, select, textarea, button {
 
     </div>
   </div>
-<footer class="govuk-footer" role="contentinfo">
+
+  <footer class="govuk-footer" role="contentinfo">
     <div class="govuk-footer__inner">
       <div class="govuk-footer__navigation">
         <div class="govuk-footer__section"><h2 class="govuk-footer__heading">API Marketplace</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a onclick="showHome();return false;" href="#" class="govuk-footer__link">API Catalogue</a></li><li class="govuk-footer__list-item"><a onclick="showMarketplace();return false;" href="#" class="govuk-footer__link">What is API Catalogue?</a></li><li class="govuk-footer__list-item"><a onclick="showGuidance();return false;" href="#" class="govuk-footer__link">Consumer guidance</a></li><li class="govuk-footer__list-item"><a onclick="showProducerStandards();return false;" href="#" class="govuk-footer__link">Producer standards</a></li><li class="govuk-footer__list-item"><a href="https://hmcts.github.io/amp-catalog/" target="_blank" rel="noopener" class="govuk-footer__link">AMP Catalogue</a></li></ul></div>
@@ -1138,6 +1131,9 @@ body, input, select, textarea, button {
 
 
 <!-- DETAIL PAGE -->
+
+</div>
+
 <div id="detailPage" class="app-page">
   <div class="app-detail-header">
     <div class="app-detail-header__inner">

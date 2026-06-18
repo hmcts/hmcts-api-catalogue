@@ -7,6 +7,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/govuk-frontend@5.4.0/dist/govuk/govuk-frontend.min.css">
 <style>
+html{box-sizing:border-box;-webkit-text-size-adjust:100%}
+*,*::before,*::after{box-sizing:inherit}
+@font-face{font-family:"GDS Transport";src:url("https://cdn.jsdelivr.net/npm/govuk-frontend@5.4.0/dist/govuk/assets/fonts/light-94a07e06a1-v2.woff2") format("woff2"),url("https://cdn.jsdelivr.net/npm/govuk-frontend@5.4.0/dist/govuk/assets/fonts/light-f591880d6f-v2.woff") format("woff");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"GDS Transport";src:url("https://cdn.jsdelivr.net/npm/govuk-frontend@5.4.0/dist/govuk/assets/fonts/bold-b542beb274-v2.woff2") format("woff2"),url("https://cdn.jsdelivr.net/npm/govuk-frontend@5.4.0/dist/govuk/assets/fonts/bold-1d5e47bda2-v2.woff") format("woff");font-weight:700;font-style:normal;font-display:swap}
 /* ── GOV.UK Transport font (self-hosted via CDN) ──────────── */
 @font-face {
   font-family: "GDS Transport";
@@ -36,7 +40,7 @@ body, input, select, textarea, button {
 .app-az-btn{min-width:30px;height:30px;border-radius:3px;border:1px solid #aeb7bd;background:#e8edee;font-size:13px;font-weight:700;color:#1d70b8;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0 4px}
 .app-az-btn.inactive{color:#aeb7bd;border-color:#d8dde0;background:#f3f2f1;cursor:default}
 .app-az-btn.active{background:#1d70b8;color:white;border-color:#1d70b8}
-.app-catalogue-body{display:flex;max-width:1200px;margin:0 auto;padding:0 16px}
+.app-catalogue-body{margin:0;font-family:"GDS Transport",arial,sans-serif;font-size:16px;line-height:1.25;color:#0b0c0c;-webkit-font-smoothing:antialiased}
 .app-cat-sidebar{width:220px;flex-shrink:0;padding:16px 16px 16px 0;border-right:1px solid #b1b4b6}
 .app-cat-sidebar__header{font-size:16px;font-weight:700;color:#0b0c0c;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
 .app-cat-sidebar__header a{font-size:13px;font-weight:400;color:#1d70b8;text-decoration:underline}
@@ -73,7 +77,7 @@ body, input, select, textarea, button {
 <style>
 .app-page{display:none}.app-page--active{display:block}
 .app-header{background:#0b0c0c;border-bottom:none;padding:0}
-.app-subnav{background:#f3f2f1;border-bottom:1px solid #b1b4b6;padding:0 16px}
+.app-subnav{background:#f3f2f1;border-bottom:1px solid #b1b4b6;padding:0 16px;width:100%}
 .app-subnav__inner{max-width:1200px;margin:0 auto;display:flex;align-items:center}
 .app-subnav__link{display:block;padding:12px 16px;font-size:15px;color:#0b0c0c;text-decoration:none;border-bottom:4px solid transparent;white-space:nowrap;font-family:GDS Transport,arial,sans-serif}
 .app-subnav__link:hover{background:#e8e8e8}
@@ -381,7 +385,7 @@ body, input, select, textarea, button {
 .govuk-summary-card__title{font-size:16px;font-weight:700;color:#0b0c0c;margin:0}
 .govuk-summary-card__content{padding:0 16px}
 /* GOV.UK Footer */
-.govuk-footer{background:#f3f2f1;border-top:1px solid #b1b4b6;padding:30px 0}
+.govuk-footer{background:#f3f2f1;border-top:1px solid #b1b4b6;padding:30px 0;width:100%}
 .govuk-footer__inner{max-width:1200px;margin:0 auto;padding:0 30px}
 .govuk-footer__navigation{display:flex;flex-wrap:wrap;gap:24px;margin-bottom:20px}
 .govuk-footer__section{flex:1;min-width:200px}

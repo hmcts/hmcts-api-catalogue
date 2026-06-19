@@ -1999,7 +1999,7 @@ async function loadSpec(api) {
       }
 
       /* Populate response codes */
-      var sResp = document.getElementById('sResponse');
+      var sResp = document.getElementById('sRC');
       if (sResp) {
         var _codes={};
         Object.values(spec.paths||{}).forEach(function(pi){

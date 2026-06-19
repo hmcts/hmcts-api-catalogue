@@ -1981,6 +1981,42 @@ async function loadSpec(api) {
           '</div>';
       }
 
+      /* Populate API information sidebar from live spec */
+      var sInfo = document.getElementById('sInfo');
+      if (sInfo) {
+        var _eps = Object.keys(spec.paths||{}).reduce(function(a,p){
+          return a+Object.keys(spec.paths[p]).filter(function(m){return['get','post','put','patch','delete'].indexOf(m)>=0;}).length;
+        },0);
+        sInfo.innerHTML=[
+          ['Version', spec.info?(spec.info.version||api.version):api.version],
+          ['Status', api.status],
+          ['OpenAPI', spec.openapi||spec.swagger||'—'],
+          ['Endpoints', _eps]
+        ].map(function(r){
+          return '<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f3f2f1;font-size:14px">'+
+            '<span style="color:#505a5f">'+r[0]+'</span><span style="font-weight:500">'+r[1]+'</span></div>';
+        }).join('');
+      }
+
+      /* Populate response codes */
+      var sResp = document.getElementById('sResponse');
+      if (sResp) {
+        var _codes={};
+        Object.values(spec.paths||{}).forEach(function(pi){
+          Object.values(pi).forEach(function(op){
+            if(op&&op.responses)Object.keys(op.responses).forEach(function(c){_codes[c]=true;});
+          });
+        });
+        var _cl=Object.keys(_codes).sort();
+        sResp.innerHTML=_cl.length?_cl.map(function(c){
+          var col=c.startsWith('2')?'#005a30':c.startsWith('4')?'#942514':'#0b0c0c';
+          return '<span style="display:inline-block;background:#f3f2f1;border-radius:3px;padding:2px 8px;margin:2px;font-size:13px;color:'+col+';font-weight:700">'+c+'</span>';
+        }).join(''):'<p style="font-size:13px;color:#505a5f;margin:0">None defined</p>';
+      }
+
+      /* Update sync bar */
+      updateSyncBar('green', 'Specification loaded', new Date().toLocaleTimeString());
+
     })
     .catch(function(err) {
       console.warn('[loadSpec] Failed to load spec for', api.id, ':', err.message);

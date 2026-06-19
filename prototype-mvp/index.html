@@ -1788,7 +1788,7 @@ function showDetail(apiId) {
   document.getElementById('sAuth').innerHTML = '<p class="govuk-body" style="margin:0;font-size:14px">' + (api.authType || 'OAuth 2.0') + '</p>';
   document.getElementById('sLinks').innerHTML =
     (api.docsUrl ? '<p style="margin:0 0 8px"><a class="govuk-link" href="' + api.docsUrl + '" target="_blank" rel="noopener">API Documentation</a></p>' : '') +
-    (api.repoUrl ? '<p style="margin:0"><a class="govuk-link" href="' + api.repoUrl + '" target="_blank" rel="noopener">Source repository</a></p>' : '');text-align:center;margin:0" href="' + api.repoUrl + '" target="_blank" rel="noopener">Source repository</a>' : '');
+    (api.repoUrl ? '<p style="margin:0"><a class="govuk-link" href="' + api.repoUrl + '" target="_blank" rel="noopener">Source repository</a></p>' : '');;
   var fsl = document.getElementById('footSwaggerLink');
   if (fsl) fsl.innerHTML = api.docsUrl ? '<a href="' + api.docsUrl + '" target="_blank" rel="noopener" class="govuk-link">API Documentation</a>' : '';
   document.title = api.name + ' - HMCTS API Marketplace';

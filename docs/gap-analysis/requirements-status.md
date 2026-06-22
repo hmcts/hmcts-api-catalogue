@@ -86,3 +86,65 @@ A requirement is **done** when:
 ---
 
 *Last updated: June 2026*
+
+---
+
+# Requirements Status — prototype-mvp
+
+**Date:** June 2026 | **Scope:** MVP no-auth prototype
+
+---
+
+## CAP-01: API Catalogue & Discovery
+
+| Req | Description | Status |
+|---|---|---|
+| REQ-CAP01-01 | Browse without login | ✅ |
+| REQ-CAP01-02 | Keyword search | ✅ |
+| REQ-CAP01-03 | Domain filter | ✅ |
+| REQ-CAP01-04 | Data classification on cards | ✅ |
+| REQ-CAP01-05 | Access type (OAuth 2.0) indicator | ✅ |
+| REQ-CAP01-06 | 5-tab detail page | ✅ |
+| REQ-CAP01-07 | Plain-English summary | ✅ |
+| REQ-CAP01-08 | Related APIs in sidebar | ❌ Outstanding |
+| REQ-CAP01-09 | Zero-results → Request a new API | ❌ Not built |
+| REQ-CAP01-10 | Live spec fetch | ✅ |
+| REQ-CAP01-11 | API information sidebar from spec | ✅ |
+| REQ-CAP01-12 | Response codes from spec | ✅ |
+| REQ-CAP01-13 | Spec status indicator (sync bar) | ✅ |
+
+## CAP-03: API Publication (MVP simplified)
+
+| Req | Description | Status |
+|---|---|---|
+| REQ-CAP03-MVP-01 | Publish API form | ✅ |
+| REQ-CAP03-MVP-02 | GitHub repo URL field | ✅ |
+| REQ-CAP03-MVP-03 | Live spec URL preview | ✅ |
+| REQ-CAP03-MVP-04 | Domain and classification fields | ✅ |
+| REQ-CAP03-MVP-05 | Plain-English description | ✅ |
+| REQ-CAP03-MVP-06 | Declaration checkboxes (×4) | ✅ |
+| REQ-CAP03-MVP-07 | Email submission | ✅ |
+
+## CAP-05: Access Request (MVP simplified)
+
+| Req | Description | Status |
+|---|---|---|
+| REQ-CAP05-MVP-01 | API selection dropdown (from catalogue) | ✅ |
+| REQ-CAP05-MVP-02 | Environment selection | ✅ |
+| REQ-CAP05-MVP-03 | Call volume field | ✅ |
+| REQ-CAP05-MVP-04 | Use case / justification | ✅ |
+| REQ-CAP05-MVP-05 | OAuth capability declaration | ✅ |
+| REQ-CAP05-MVP-06 | Personal and organisation details | ✅ |
+| REQ-CAP05-MVP-07 | Declaration checkboxes (×4) | ✅ |
+| REQ-CAP05-MVP-08 | Email submission | ✅ |
+
+## CAP-11: Developer & Business UX
+
+| Req | Description | Status |
+|---|---|---|
+| REQ-CAP11-MVP-01 | Onboarding guide (consumer steps) | ✅ |
+| REQ-CAP11-MVP-02 | Onboarding guide (producer steps) | ✅ |
+| REQ-CAP11-MVP-03 | Consumer guidance page | ✅ |
+| REQ-CAP11-MVP-04 | Producer standards page | ✅ |
+| REQ-CAP11-MVP-05 | Data governance page | ✅ |
+| REQ-CAP11-MVP-06 | Consistent footer navigation | ✅ |

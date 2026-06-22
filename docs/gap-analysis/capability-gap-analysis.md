@@ -1,160 +1,122 @@
-# Capability Gap Analysis — api-catalogue-v7
+# Capability Gap Analysis
 
-**Date:** June 2026
-**Prototype version:** api-catalogue-v7.html (219 KB)
+**Updated:** June 2026
+**Scope:** Both prototypes — api-catalogue-v7 (full) and prototype-mvp (no-auth)
 
 ---
 
 ## Summary
 
-| Capability | Status | Coverage |
-|---|---|---|
-| CAP-01 API Catalogue & Discovery | Partial | 92% |
-| CAP-02 User Registration & Identity | Partial | 62% |
-| CAP-03 API Publication & Onboarding | Complete | 100% |
-| CAP-04 Publication Review & Approval | Complete | 100% |
-| CAP-05 Access Request Management | Complete | 100% |
-| CAP-06 Access Request Approval Workflow | Partial | 50% |
-| CAP-07 Notifications & Communications | Not started | 0% |
-| CAP-08 API Lifecycle Management | Not started | 0% |
-| CAP-09 Consumer Credential Management | Not started | 0% |
-| CAP-10 Usage Monitoring & Analytics | Deferred | Phase 2 |
-| CAP-11 Developer & Business UX | Partial | 50% |
-| CAP-12 Governance, Compliance & Audit | Partial | 25% |
-| CAP-13 Search & Discovery Intelligence | Deferred | Phase 2 |
-| CAP-14 Platform Administration | Not started | 0% |
+| Capability | v7 Full Prototype | MVP Prototype | Notes |
+|---|---|---|---|
+| CAP-01 API Catalogue & Discovery | 92% | ✅ Core built | MVP: search, filter, detail pages, live spec |
+| CAP-02 User Registration & Identity | 62% | ⚪ By design | MVP is no-auth — not a gap |
+| CAP-03 API Publication & Onboarding | 100% | ✅ Simplified | MVP: single-form publish with email submission |
+| CAP-04 Publication Review & Approval | 100% | ⚪ Not in scope | MVP routes submissions by email |
+| CAP-05 Access Request Management | 100% | ✅ Form built | MVP: form with declarations, email submission |
+| CAP-06 Access Request Approval Workflow | 50% | ⚪ Not in scope | MVP routes by email |
+| CAP-07 Notifications & Communications | 0% | ⚪ Email-based | MVP uses mailto: for all submissions |
+| CAP-08 API Lifecycle Management | 0% | ⚪ Not in scope | Deferred to production |
+| CAP-09 Consumer Credential Management | 0% | ⚪ Not in scope | Deferred to production |
+| CAP-10 Usage Monitoring & Analytics | Deferred | Deferred | Phase 2 |
+| CAP-11 Developer & Business UX | 50% | ✅ Guidance built | MVP: onboarding, consumer guidance, producer standards |
+| CAP-12 Governance, Compliance & Audit | 25% | ✅ Page built | MVP: full data governance standards page |
+| CAP-13 Search & Discovery Intelligence | Deferred | Deferred | Phase 2 |
+| CAP-14 Platform Administration | 0% | ⚪ Not in scope | Deferred to production |
 
 ---
 
-## CAP-01 — 92%
+## CAP-01 — API Catalogue & Discovery
 
-**What's built:** Browse, search, filter, domain pills, API cards, detail pages with 5 tabs, embedded specs with live SwaggerHub fetch, plain-English summaries, zero-results prompt linking to Request a new API flow, approved submitted APIs merged into catalogue, data classification on cards.
+### v7 Full Prototype — 92%
+
+**What's built:** Browse, search, domain/status/classification filters, A-Z navigation, API cards, detail pages with 5 tabs (Overview, Endpoints, Data model, Changelog, Try it out), live spec fetching from GitHub with embedded YAML fallback, plain-English summaries, zero-results prompt, approved APIs merged into catalogue.
 
 **What's missing:**
-- Related APIs in sidebar (REQ-CAP01-08) — small effort, no backend needed
+- Related APIs in sidebar (REQ-CAP01-08)
+
+### MVP Prototype — Core built
+
+**What's built:** Searchable API catalogue with domain/status/classification filters and A-Z navigation, API cards with status pills and tags, detail pages loading live OpenAPI specs from GitHub, API information sidebar (version, status, OpenAPI version, endpoint count), response codes from live spec, sync status bar, 5-tab detail page, Authentication card, Links section with text links.
+
+**Differences from v7:** No embedded YAML fallback (live fetch only), no zero-results prompt, no spec source selection.
 
 ---
 
-## CAP-02 — 62%
+## CAP-02 — User Registration & Identity
 
-**What's built:** Register with role selection (Consumer, Producer, Reviewer), permission-based auth model (`defaultPermissions`, `hasPermission`), sign in, sign out, profile management, localStorage session, role-based dashboard routing.
+### v7 Full Prototype — 62%
 
-**What's missing:**
-- Email verification (requires Supabase auth)
-- Password reset (requires Supabase auth)
-- Session persistence across devices (requires Supabase auth)
+**What's built:** Register with role selection, permission-based auth model, sign in, sign out, profile management, localStorage session, role-based dashboard routing.
 
----
+**What's missing:** Email verification, password reset, cross-device session persistence (all require backend).
 
-## CAP-03 — 100%
+### MVP Prototype — Not applicable
 
-**What's built:** Complete 3-step task list publication journey, three spec source options (SwaggerHub, URL, file upload), live spec validation, data classification, domain, auth type, plain-English description with character counter, check your answers, 3 declarations, draft save/restore, edit submitted API, submission to shared queue, status visible to producer, reviewer notes visible to producer.
+The MVP is a no-auth prototype by design. All form submissions route via `mailto:` to the marketplace team. This is appropriate for alpha/stakeholder demonstration purposes.
 
 ---
 
-## CAP-04 — 100%
+## CAP-03 — API Publication & Onboarding
 
-**What's built:** Reviewer dashboard, review queue (oldest-first), full submission detail view, approve with optional notes, reject with mandatory notes, approved APIs published to catalogue immediately, reviewed history panel, reviewer notes visible to producer.
+### v7 Full Prototype — 100%
 
----
+Full 3-step task list publication journey, three spec source options (SwaggerHub, URL, file upload), live spec validation, data classification, domain, auth type, plain-English description with character counter, check your answers, 3 declarations, draft save/restore, edit submitted API, submission to shared review queue.
 
-## CAP-05 — 100%
+### MVP Prototype — Simplified
 
-**What's built:** 4-step task list access request journey, all form fields, check your answers, 2 declarations, request stored in both per-user and shared global store, consumer status tracking (Pending / Approved / Rejected), producer decision notes shown to consumer, Request a new API panel with 8-field structured form.
-
----
-
-## CAP-06 — 50%
-
-**What's built:** Producer Access requests panel with Pending and Actioned tabs, red badge count on nav, full request detail view, approve with optional note, reject with mandatory reason, GDS confirmation panel, consumer My requests reflects decision.
-
-**What's missing:**
-- Governance review stage for Official-Sensitive APIs (REQ-CAP06-03)
-- Request further information flow (REQ-CAP06-05)
-- SLA enforcement and reminders (REQ-CAP06-06, 07) — requires backend
-- Consumer resubmit after rejection (REQ-CAP06-08)
-
-**Prototype note:** Consumer and producer must use the same browser window (different tabs) to share data. A demo request button is available for testing without two tabs.
+Single-page Publish API form covering: API name, GitHub repository URL with live spec URL preview, version, domain, data classification, plain-English description, 4 declaration checkboxes, email submission. Sufficient for alpha stakeholder testing.
 
 ---
 
-## CAP-07 — 0%
+## CAP-05 — Access Request Management
 
-**What's not built:** No in-portal notification bell. No email notifications.
+### v7 Full Prototype — 100%
 
-**Note:** In-portal notifications are achievable without a backend using a `_cat_notifications` localStorage store. This is the natural next capability to build.
+4-step task list, API selection, environment, volume, system name, business justification, check your answers, 2 declaration checkboxes, request stored in localStorage, consumer status tracking, request visible to API owner.
 
----
+### MVP Prototype — Form built
 
-## CAP-08 — 0%
-
-**What's not built:** No lifecycle states. All APIs show as Live. No deprecated banners.
-
-**Note:** Fully achievable without a backend.
+Single-page form covering: API dropdown (live from catalogue), environment, call volume, use case/justification, OAuth capability radio, Full name, Organisation, Work email, Job title, Phone (optional), 4 declaration checkboxes, email submission via mailto:.
 
 ---
 
-## CAP-09 — 0%
+## CAP-11 — Developer & Business UX
 
-**What's not built:** No credential issuance on approval. No subscription management.
+### v7 Full Prototype — 50%
 
-**Blocker:** Requires real authentication system and backend.
+Consumer guidance and producer standards pages built. Onboarding guide, data governance, and walkthrough content not fully built.
 
----
+### MVP Prototype — Guidance pages built
 
-## CAP-10 — Phase 2
-
-No prototype implementation planned. Requires API gateway instrumentation.
-
----
-
-## CAP-11 — 50%
-
-**What's built:** Plain-English summaries, mock server links on Try it out tab.
-
-**What's missing (Phase 2):** Sandbox environment, data dictionary, onboarding walkthroughs, code examples.
+Full set of guidance pages:
+- **Onboarding guide** — 6 sections, plain-English, consumer and producer step-by-step walkthroughs, sticky contents navigation
+- **Consumer guidance** — 6 sections covering responsible use, authentication, data handling
+- **Producer standards** — OpenAPI requirements, GitHub workflow, naming conventions
+- **Data governance** — GDPR, DPIA, data classification, audit obligations
 
 ---
 
-## CAP-12 — 25%
+## CAP-12 — Governance, Compliance & Audit
 
-**What's built:** Data classification field on publish form, classification tags on approved API cards.
+### v7 Full Prototype — 25%
 
-**What's missing:** Audit trail, GDPR/DSA tracking, access log. All require a backend database.
+Data classification enforced on API cards and publication form. Full audit log and data retention automation not built.
 
----
+### MVP Prototype — Page built
 
-## CAP-13 — Phase 2
-
-Basic keyword search built. Full-text schema search, related APIs sidebar — Phase 2.
+Full Data Governance Standards page covering: data classification (Official vs Official-Sensitive), GDPR obligations, DPIA requirements, data minimisation, audit and access logging, incident response, data retention. Linked from footer across all pages.
 
 ---
 
-## CAP-14 — 0%
+## Outstanding gaps (both prototypes)
 
-**What's not built:** No admin role, no user management, no platform configuration.
-
----
-
-## Outstanding work — no backend needed
-
-| Item | Capability | Effort |
+| Gap | Affected capability | Effort to close |
 |---|---|---|
-| Related APIs in sidebar | CAP-01 | Small |
-| In-portal notification bell | CAP-07 | Medium |
-| API lifecycle states | CAP-08 | Medium |
-| Consumer resubmit after rejection | CAP-06 | Small |
-| Governance stage for Official-Sensitive | CAP-06 | Medium |
-
-## Outstanding work — requires Supabase
-
-| Item | Capability | Unblocks |
-|---|---|---|
-| Real shared auth (email verification, password reset) | CAP-02 | — |
-| Shared submissions and requests store | CAP-03/04/05/06 | True cross-user visibility |
-| Credentials issuance | CAP-09 | — |
-| Audit trail | CAP-12 | — |
-
----
-
-*Last updated: June 2026*
+| Related APIs in sidebar | CAP-01 | Low — no backend needed |
+| Email verification and password reset | CAP-02 | Requires Supabase auth |
+| Notifications (in-portal and email) | CAP-07 | Requires backend |
+| API lifecycle automation (deprecation alerts) | CAP-08 | Requires backend |
+| Credential management | CAP-09 | Requires backend |
+| Governance stage for Official-Sensitive requests | CAP-06 | Medium effort |
+| Platform administration | CAP-14 | Requires backend |

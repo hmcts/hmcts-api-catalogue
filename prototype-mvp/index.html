@@ -2612,6 +2612,29 @@ function submitReq() {
   /* Also write to shared global store so producers can see it */
   var allReqs = lsAllReqsGlobal(); allReqs.push(reqRecord); lsSaveAllReqsGlobal(allReqs);
   console.log('[submitReq] Written to _cat_reqs and _cat_all_reqs. reqRecord:', JSON.stringify(reqRecord));
+  /* POST to Azure onboarding endpoint */
+  var payload = {
+    name: reqRecord.submitterName,
+    organisation: reqRecord.submitterOrg,
+    email: AU.email || '',
+    jobTitle: AU.role || '',
+    apiRequested: reqRecord.apiName,
+    environment: reqRecord.env,
+    useCase: reqRecord.just
+  };
+  console.log('[submitReq] About to POST to Azure endpoint. Payload:', JSON.stringify(payload));
+  fetch('https://service-marketplace-onboarding.kindsand-8f5a0ec0.uksouth.azurecontainerapps.io/onboarding/requests', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).then(function(r) {
+    console.log('[submitReq] Azure endpoint response status:', r.status);
+    return r.text();
+  }).then(function(body) {
+    console.log('[submitReq] Azure endpoint response body:', body);
+  }).catch(function(e) {
+    console.error('[submitReq] Azure endpoint error:', e);
+  });
   reqData = {}; reqStepsDone = [false,false,false,false];
   document.getElementById('c-access').innerHTML =
     '<h1 class="govuk-heading-l">Request submitted</h1>' +
@@ -3799,7 +3822,28 @@ function submitAccessRequest(e){if(e)e.preventDefault();var errs=[];if(!document
     '',
     'Declaration: All 4 checkboxes confirmed'
   ].join('\n');
-  window.location.href = 'mailto:Nagashankar.Ponnaganti@HMCTS.NET?subject=' + encodeURIComponent('API Access Request — ' + document.getElementById('arApiName').options[document.getElementById('arApiName').selectedIndex].text) + '&body=' + encodeURIComponent(_arBody);
+  var _arPayload = {
+    name:         document.getElementById('arName').value,
+    organisation: document.getElementById('arOrg').value,
+    email:        document.getElementById('arEmail').value,
+    jobTitle:     (document.getElementById('arJobTitle') ? document.getElementById('arJobTitle').value : ''),
+    apiRequested: document.getElementById('arApiName').options[document.getElementById('arApiName').selectedIndex].text,
+    environment:  document.getElementById('arEnv').value,
+    useCase:      document.getElementById('arUseCase').value
+  };
+  console.log('[submitAccessRequest] About to POST to Azure endpoint. Payload:', JSON.stringify(_arPayload));
+  fetch('https://service-marketplace-onboarding.kindsand-8f5a0ec0.uksouth.azurecontainerapps.io/onboarding/requests', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(_arPayload)
+  }).then(function(r) {
+    console.log('[submitAccessRequest] Azure endpoint response status:', r.status);
+    return r.text();
+  }).then(function(body) {
+    console.log('[submitAccessRequest] Azure endpoint response body:', body);
+  }).catch(function(e) {
+    console.error('[submitAccessRequest] Azure endpoint error:', e);
+  });
   document.getElementById('arForm').style.display='none';
   document.getElementById('arSuccess').style.display='block';
   window.scrollTo(0,0);}

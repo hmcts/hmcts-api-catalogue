@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>HMCTS API Catalogue</title>
+<title>HMCTS API Marketplace</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/govuk-frontend@5.4.0/dist/govuk/govuk-frontend.min.css">
 <style>
@@ -412,7 +412,7 @@ body, input, select, textarea, button {
 <a href="#main-content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
 <header class="app-header" role="banner">
   <div class="app-header__inner">
-    <a class="app-header__logo-link" onclick="showHome();return false;" href="#" aria-label="HMCTS API Catalogue home">
+    <a class="app-header__logo-link" onclick="showHome();return false;" href="#" aria-label="HMCTS API Marketplace home">
       
       <span class="app-header__logo-text">HMCTS <span>API Marketplace</span></span>
     </a>
@@ -420,7 +420,7 @@ body, input, select, textarea, button {
 </header>
 <nav class="app-subnav" aria-label="Secondary navigation">
     <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;width:100%"><a class="app-subnav__link" id="navMarket" onclick="showHome();setActiveNav('navMarket');return false;" href="#">API Marketplace</a>
-    <a class="app-subnav__link" id="navBrowse" onclick="showMarketplace();setActiveNav('navBrowse');return false;" href="#">API Catalogue</a>
+    <a class="app-subnav__link" id="navBrowse" onclick="showMarketplace();setActiveNav('navBrowse');return false;" href="#">API Marketplace</a>
     <a class="app-subnav__link" id="navAccess" onclick="showAccessRequestForm();return false;" href="#">Request API</a>
     <a class="app-subnav__link" id="navNewApi" onclick="showNewApiRequestForm();return false;" href="#">New API</a>
     <a class="app-subnav__link" id="navPublish" onclick="showPublishApiForm();return false;" href="#">Publish API</a>
@@ -462,7 +462,7 @@ body, input, select, textarea, button {
           </div>
         </section>
         <section id="ob-s3" style="margin-top:40px"><h2 class="govuk-heading-l" style="border-top:2px solid #1d70b8;padding-top:16px">Consumer onboarding &mdash; step by step</h2><p class="govuk-body">If your team needs to access data from an HMCTS API, follow these steps.</p>
-          <div style="display:flex;gap:16px;padding:14px 0;border-bottom:1px solid #b1b4b6"><div style="width:36px;height:36px;border-radius:50%;background:#1d70b8;color:white;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px">1</div><div><h3 class="govuk-heading-s">Confirm your use case</h3><p class="govuk-body" style="margin-bottom:6px">Find the API you need in the catalogue and confirm your use case is within scope. Read the plain-English description to understand what data it returns. Do not request access speculatively.</p><a class="govuk-link" href="#" onclick="showMarketplace();return false;">Browse the API Catalogue &rarr;</a></div></div>
+          <div style="display:flex;gap:16px;padding:14px 0;border-bottom:1px solid #b1b4b6"><div style="width:36px;height:36px;border-radius:50%;background:#1d70b8;color:white;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px">1</div><div><h3 class="govuk-heading-s">Confirm your use case</h3><p class="govuk-body" style="margin-bottom:6px">Find the API you need in the catalogue and confirm your use case is within scope. Read the plain-English description to understand what data it returns. Do not request access speculatively.</p><a class="govuk-link" href="#" onclick="showMarketplace();return false;">Browse the API Marketplace &rarr;</a></div></div>
           <div style="display:flex;gap:16px;padding:14px 0;border-bottom:1px solid #b1b4b6"><div style="width:36px;height:36px;border-radius:50%;background:#1d70b8;color:white;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px">2</div><div><h3 class="govuk-heading-s">Check your organisation&rsquo;s eligibility</h3><p class="govuk-body">Your organisation must be part of HMCTS Digital and Technology Solutions, a justice sector partner, or an approved third party. You need a valid work email address to proceed.</p></div></div>
           <div style="display:flex;gap:16px;padding:14px 0;border-bottom:1px solid #b1b4b6"><div style="width:36px;height:36px;border-radius:50%;background:#1d70b8;color:white;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px">3</div><div><h3 class="govuk-heading-s">Arrange a Data Sharing Agreement</h3><p class="govuk-body" style="margin-bottom:6px">For APIs that return personal data, your organisation must have a DPA or DSA in place before access is granted. Check with your legal or data protection team before submitting.</p><strong class="govuk-tag govuk-tag--yellow">Required for personal data APIs</strong></div></div>
           <div style="display:flex;gap:16px;padding:14px 0;border-bottom:1px solid #b1b4b6"><div style="width:36px;height:36px;border-radius:50%;background:#1d70b8;color:white;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px">4</div><div><h3 class="govuk-heading-s">Submit your access request</h3><p class="govuk-body" style="margin-bottom:6px">Use the Request API form to describe your use case, expected call volume and environment. Complete the declaration checkboxes before submitting.</p><a class="govuk-link" href="#" onclick="showAccessRequestForm();return false;">Request API access &rarr;</a></div></div>
@@ -496,7 +496,7 @@ body, input, select, textarea, button {
           </dl>
           <div class="govuk-inset-text" style="border-left-color:#00703c;margin-top:8px">
             <p class="govuk-body" style="margin-bottom:12px">Ready to get started?</p>
-            <a class="govuk-button" href="#" onclick="showMarketplace();return false;" style="margin-right:12px">Browse the API Catalogue</a>
+            <a class="govuk-button" href="#" onclick="showMarketplace();return false;" style="margin-right:12px">Browse the API Marketplace</a>
             <a class="govuk-button govuk-button--secondary" href="#" onclick="showAccessRequestForm();return false;" style="margin-right:12px">Request API access</a>
             <a class="govuk-button govuk-button--secondary" href="#" onclick="showPublishApiForm();return false;">Publish an API</a>
           </div>
@@ -1005,7 +1005,7 @@ body, input, select, textarea, button {
             <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Marketplace feedback</dt><dd class="govuk-summary-list__value"><a class="govuk-link" href="mailto:Nagashankar.Ponnaganti@HMCTS.NET">Contact the marketplace team</a></dd></div>
           </dl>
           <div class="govuk-inset-text" style="border-left-color:#00703c">
-            Ready to find an API? <a class="govuk-link" href="#" onclick="showMarketplace();setActiveNav('navBrowse');return false;">Browse the API Catalogue &rarr;</a>
+            Ready to find an API? <a class="govuk-link" href="#" onclick="showMarketplace();setActiveNav('navBrowse');return false;">Browse the API Marketplace &rarr;</a>
           </div>
         </section>
 
@@ -1195,7 +1195,7 @@ body, input, select, textarea, button {
     <div class="app-detail-header__inner">
       <nav aria-label="Breadcrumb">
         <ol style="list-style:none;padding:0;margin:0 0 16px;display:flex;gap:8px;flex-wrap:wrap;font-size:14px">
-          <li><a onclick="showHome();return false;" href="#" class="govuk-link">API Catalogue</a></li>
+          <li><a onclick="showHome();return false;" href="#" class="govuk-link">API Marketplace</a></li>
           <li style="color:#505a5f">&rsaquo;</li>
           <li style="color:#505a5f" aria-current="page" id="breadcrumbApi">API Detail</li>
         </ol>
@@ -1265,7 +1265,7 @@ body, input, select, textarea, button {
 <!-- AUTH OVERLAY -->
 <div id="authOverlay" style="display:none" class="app-auth-overlay" role="dialog" aria-modal="true" aria-labelledby="auth-title" onclick="if(event.target===this)hideAuth()">
   <div class="app-auth-card">
-    <div class="app-auth-header"><h2 class="app-auth-header__title" id="auth-title">HMCTS API Catalogue</h2><p class="app-auth-header__sub">Sign in to request API access and manage your integrations.</p></div>
+    <div class="app-auth-header"><h2 class="app-auth-header__title" id="auth-title">HMCTS API Marketplace</h2><p class="app-auth-header__sub">Sign in to request API access and manage your integrations.</p></div>
     <div class="app-auth-body">
       <div class="app-auth-tabs" role="tablist">
         <button class="app-auth-tab app-auth-tab--active" id="atLogin" role="tab" aria-selected="true"  onclick="authTab('login')">Sign in</button>
@@ -1356,7 +1356,7 @@ body, input, select, textarea, button {
 
 <div id="accessRequestPage" class="app-page">
   <div class="app-hero"><div class="app-hero__inner"><div style="display:flex;align-items:center;gap:8px;margin-bottom:24px;padding-top:8px"><strong class="govuk-tag">Alpha</strong><span style="font-size:13px;color:white">This is a new service &mdash; <a href="#" style="color:white">give your feedback</a> to help us improve it.</span></div><h1 class="govuk-heading-xl" style="color:white;margin-bottom:8px">Request API access</h1><p class="app-hero__lead">Submit a request to access an HMCTS API. The API owner will review within 2 working days.</p></div></div>
-  <div class="govuk-width-container" style="padding-top:40px;padding-bottom:60px"><nav aria-label="Breadcrumb" style="margin-bottom:24px"><ol style="list-style:none;padding:0;margin:0;display:flex;gap:8px;font-size:14px"><li><a href="#" onclick="showMarketplace();return false;" class="govuk-link">API Catalogue</a></li><li style="color:#505a5f">&rsaquo;</li><li style="color:#505a5f">Request access</li></ol></nav>
+  <div class="govuk-width-container" style="padding-top:40px;padding-bottom:60px"><nav aria-label="Breadcrumb" style="margin-bottom:24px"><ol style="list-style:none;padding:0;margin:0;display:flex;gap:8px;font-size:14px"><li><a href="#" onclick="showMarketplace();return false;" class="govuk-link">API Marketplace</a></li><li style="color:#505a5f">&rsaquo;</li><li style="color:#505a5f">Request access</li></ol></nav>
     <div class="govuk-grid-row"><div class="govuk-grid-column-two-thirds">
       <div class="govuk-error-summary" id="arError" style="display:none" aria-labelledby="arErrorTitle" role="alert"><h2 class="govuk-error-summary__title" id="arErrorTitle">There is a problem</h2><div class="govuk-error-summary__body"><ul class="govuk-list govuk-error-summary__list" id="arErrorList"></ul></div></div>
       <div id="arForm">
@@ -1375,7 +1375,7 @@ body, input, select, textarea, button {
         <button class="govuk-button" onclick="submitAccessRequest(event)">Submit request</button>
         <p class="govuk-body"><a class="govuk-link" href="#" onclick="showMarketplace();return false;">Cancel and return to catalogue</a></p>
       </div>
-      <div id="arSuccess" style="display:none"><div class="govuk-panel govuk-panel--confirmation"><h1 class="govuk-panel__title">Request submitted</h1><div class="govuk-panel__body">Your reference<br><strong>AR-2025-001</strong></div></div><p class="govuk-body" style="margin-top:24px">The API owner will respond within 2 working days. Questions? <a class="govuk-link" href="mailto:Nagashankar.Ponnaganti@HMCTS.NET">Contact the marketplace team</a>.</p><a class="govuk-button govuk-button--secondary" href="#" onclick="showMarketplace();return false;">Return to API Catalogue</a></div>
+      <div id="arSuccess" style="display:none"><div class="govuk-panel govuk-panel--confirmation"><h1 class="govuk-panel__title">Request submitted</h1><div class="govuk-panel__body">Your reference<br><strong>AR-2025-001</strong></div></div><p class="govuk-body" style="margin-top:24px">The API owner will respond within 2 working days. Questions? <a class="govuk-link" href="mailto:Nagashankar.Ponnaganti@HMCTS.NET">Contact the marketplace team</a>.</p><a class="govuk-button govuk-button--secondary" href="#" onclick="showMarketplace();return false;">Return to API Marketplace</a></div>
     </div>
     <div class="govuk-grid-column-one-third"><div class="govuk-summary-card" style="padding:16px"><h3 class="govuk-heading-s">Before you submit</h3><ul class="govuk-list govuk-list--bullet govuk-body-s"><li>Read the <a class="govuk-link" href="#" onclick="showGuidance();return false;">Consumer Guidance</a></li><li>Check a DSA is in place for personal data APIs</li><li>Confirm your system supports OAuth 2.0</li></ul></div></div></div>
   </div>
@@ -1395,7 +1395,7 @@ body, input, select, textarea, button {
 <!-- NEW API REQUEST PAGE -->
 <div id="newApiRequestPage" class="app-page">
   <div class="app-hero"><div class="app-hero__inner"><div style="display:flex;align-items:center;gap:8px;margin-bottom:24px;padding-top:8px"><strong class="govuk-tag">Alpha</strong><span style="font-size:13px;color:white">This is a new service &mdash; <a href="#" style="color:white">give your feedback</a> to help us improve it.</span></div><h1 class="govuk-heading-xl" style="color:white;margin-bottom:8px">Request a new API</h1><p class="app-hero__lead">Can&rsquo;t find the API you need? Tell us what data or capability you&rsquo;re looking for.</p></div></div>
-  <div class="govuk-width-container" style="padding-top:40px;padding-bottom:60px"><nav aria-label="Breadcrumb" style="margin-bottom:24px"><ol style="list-style:none;padding:0;margin:0;display:flex;gap:8px;font-size:14px"><li><a href="#" onclick="showMarketplace();return false;" class="govuk-link">API Catalogue</a></li><li style="color:#505a5f">&rsaquo;</li><li style="color:#505a5f">Request a new API</li></ol></nav>
+  <div class="govuk-width-container" style="padding-top:40px;padding-bottom:60px"><nav aria-label="Breadcrumb" style="margin-bottom:24px"><ol style="list-style:none;padding:0;margin:0;display:flex;gap:8px;font-size:14px"><li><a href="#" onclick="showMarketplace();return false;" class="govuk-link">API Marketplace</a></li><li style="color:#505a5f">&rsaquo;</li><li style="color:#505a5f">Request a new API</li></ol></nav>
     <div class="govuk-grid-row"><div class="govuk-grid-column-two-thirds">
       <div class="govuk-error-summary" id="narError" style="display:none" aria-labelledby="narErrorTitle" role="alert"><h2 class="govuk-error-summary__title" id="narErrorTitle">There is a problem</h2><div class="govuk-error-summary__body"><ul class="govuk-list govuk-error-summary__list" id="narErrorList"></ul></div></div>
       <div id="narForm">
@@ -1411,7 +1411,7 @@ body, input, select, textarea, button {
         <h2 class="govuk-heading-l" style="margin-top:32px">Declaration</h2><div class="govuk-form-group"><div class="govuk-checkboxes"><div class="govuk-checkboxes__item"><input class="govuk-checkboxes__input" id="narD1" type="checkbox"><label class="govuk-label govuk-checkboxes__label" for="narD1">I confirm there is no existing HMCTS API that meets this need, to the best of my knowledge</label></div><div class="govuk-checkboxes__item"><input class="govuk-checkboxes__input" id="narD2" type="checkbox"><label class="govuk-label govuk-checkboxes__label" for="narD2">I understand this is a request for discovery and does not guarantee an API will be built</label></div><div class="govuk-checkboxes__item"><input class="govuk-checkboxes__input" id="narD3" type="checkbox"><label class="govuk-label govuk-checkboxes__label" for="narD3">I have read and accept the <a class="govuk-link" href="#" onclick="showDataGovernance();return false;">Data Governance Standards</a></label></div></div></div><button class="govuk-button" onclick="submitNewApiRequest(event)">Submit request</button>
         <p class="govuk-body"><a class="govuk-link" href="#" onclick="showMarketplace();return false;">Cancel and return to catalogue</a></p>
       </div>
-      <div id="narSuccess" style="display:none"><div class="govuk-panel govuk-panel--confirmation"><h1 class="govuk-panel__title">Request received</h1><div class="govuk-panel__body">We will review and be in touch within 5 working days.</div></div><p class="govuk-body" style="margin-top:24px">Questions? <a class="govuk-link" href="mailto:Nagashankar.Ponnaganti@HMCTS.NET">Contact the marketplace team</a>.</p><a class="govuk-button govuk-button--secondary" href="#" onclick="showMarketplace();return false;">Return to API Catalogue</a></div>
+      <div id="narSuccess" style="display:none"><div class="govuk-panel govuk-panel--confirmation"><h1 class="govuk-panel__title">Request received</h1><div class="govuk-panel__body">We will review and be in touch within 5 working days.</div></div><p class="govuk-body" style="margin-top:24px">Questions? <a class="govuk-link" href="mailto:Nagashankar.Ponnaganti@HMCTS.NET">Contact the marketplace team</a>.</p><a class="govuk-button govuk-button--secondary" href="#" onclick="showMarketplace();return false;">Return to API Marketplace</a></div>
     </div></div>
   </div>
 
@@ -1430,7 +1430,7 @@ body, input, select, textarea, button {
 <!-- PUBLISH API PAGE -->
 <div id="publishApiPage" class="app-page">
   <div class="app-hero"><div class="app-hero__inner"><div style="display:flex;align-items:center;gap:8px;margin-bottom:24px;padding-top:8px"><strong class="govuk-tag">Alpha</strong><span style="font-size:13px;color:white">This is a new service &mdash; <a href="#" style="color:white">give your feedback</a> to help us improve it.</span></div><h1 class="govuk-heading-xl" style="color:white;margin-bottom:8px">Publish an API</h1><p class="app-hero__lead">Submit your API for listing on the HMCTS API Marketplace. The team will review within 2 working days.</p></div></div>
-  <div class="govuk-width-container" style="padding-top:40px;padding-bottom:60px"><nav aria-label="Breadcrumb" style="margin-bottom:24px"><ol style="list-style:none;padding:0;margin:0;display:flex;gap:8px;font-size:14px"><li><a href="#" onclick="showMarketplace();return false;" class="govuk-link">API Catalogue</a></li><li style="color:#505a5f">&rsaquo;</li><li style="color:#505a5f">Publish an API</li></ol></nav>
+  <div class="govuk-width-container" style="padding-top:40px;padding-bottom:60px"><nav aria-label="Breadcrumb" style="margin-bottom:24px"><ol style="list-style:none;padding:0;margin:0;display:flex;gap:8px;font-size:14px"><li><a href="#" onclick="showMarketplace();return false;" class="govuk-link">API Marketplace</a></li><li style="color:#505a5f">&rsaquo;</li><li style="color:#505a5f">Publish an API</li></ol></nav>
     <div class="govuk-grid-row"><div class="govuk-grid-column-two-thirds">
       <div class="govuk-inset-text">Before submitting, check you meet the <a class="govuk-link" href="#" onclick="showProducerStandards();return false;">API Producer Standards</a>.</div>
       <div class="govuk-error-summary" id="paError" style="display:none" aria-labelledby="paErrorTitle" role="alert"><h2 class="govuk-error-summary__title" id="paErrorTitle">There is a problem</h2><div class="govuk-error-summary__body"><ul class="govuk-list govuk-error-summary__list" id="paErrorList"></ul></div></div>
@@ -1457,7 +1457,7 @@ body, input, select, textarea, button {
         <button class="govuk-button" onclick="submitPublishApi(event)">Submit for review</button>
         <p class="govuk-body"><a class="govuk-link" href="#" onclick="showMarketplace();return false;">Cancel and return to catalogue</a></p>
       </div>
-      <div id="paSuccess" style="display:none"><div class="govuk-panel govuk-panel--confirmation"><h1 class="govuk-panel__title">Submission received</h1><div class="govuk-panel__body">The marketplace team will review and respond within 2 working days.</div></div><p class="govuk-body" style="margin-top:24px">Questions? <a class="govuk-link" href="mailto:Nagashankar.Ponnaganti@HMCTS.NET">Contact the marketplace team</a>.</p><a class="govuk-button govuk-button--secondary" href="#" onclick="showMarketplace();return false;">Return to API Catalogue</a></div>
+      <div id="paSuccess" style="display:none"><div class="govuk-panel govuk-panel--confirmation"><h1 class="govuk-panel__title">Submission received</h1><div class="govuk-panel__body">The marketplace team will review and respond within 2 working days.</div></div><p class="govuk-body" style="margin-top:24px">Questions? <a class="govuk-link" href="mailto:Nagashankar.Ponnaganti@HMCTS.NET">Contact the marketplace team</a>.</p><a class="govuk-button govuk-button--secondary" href="#" onclick="showMarketplace();return false;">Return to API Marketplace</a></div>
     </div>
     <div class="govuk-grid-column-one-third"><div class="govuk-summary-card" style="padding:16px"><h3 class="govuk-heading-s">Before you submit</h3><ul class="govuk-list govuk-list--bullet govuk-body-s"><li>Read the <a class="govuk-link" href="#" onclick="showProducerStandards();return false;">Producer Standards</a></li><li>Confirm your spec is published on GitHub Pages</li><li>Check Spectral linting passes</li><li>Ensure your spec has a plain-English description</li></ul></div></div></div>
   </div>

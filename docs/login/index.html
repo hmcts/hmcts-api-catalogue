@@ -419,6 +419,7 @@ body, input, select, textarea, button {
     <a class="app-subnav__link" id="navBrowse" onclick="showMarketplace();setActiveNav('navBrowse');return false;" href="#">API Marketplace</a>
     <a class="app-subnav__link" id="navStandards" onclick="showProducerStandards();setActiveNav('navStandards');return false;" href="#">Producer standards</a>
     <a class="app-subnav__link" id="navGuide" onclick="showGuidance();setActiveNav('navGuide');return false;" href="#">Consumer guidance</a>
+    <a class="app-subnav__link" id="navContact" onclick="showContactUs();setActiveNav('navContact');return false;" href="#">Contact us</a>
     <div style="flex:1"></div>
     <a class="app-subnav__signin" id="navAuthLink" href="#" onclick="navAuthClick();return false;">Sign in</a>
   </div>
@@ -758,6 +759,185 @@ body, input, select, textarea, button {
           </div>
         </section>
 
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="govuk-footer" role="contentinfo">
+    <div class="govuk-footer__inner">
+      <div class="govuk-footer__navigation">
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">API Marketplace</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a onclick="showHome();return false;" href="#" class="govuk-footer__link">API Marketplace</a></li><li class="govuk-footer__list-item"><a onclick="showMarketplace();return false;" href="#" class="govuk-footer__link">What is API Marketplace?</a></li><li class="govuk-footer__list-item"><a onclick="showGuidance();return false;" href="#" class="govuk-footer__link">Consumer guidance</a></li><li class="govuk-footer__list-item"><a onclick="showProducerStandards();return false;" href="#" class="govuk-footer__link">Producer standards</a></li><li class="govuk-footer__list-item"><a href="https://hmcts.github.io/amp-catalog/" target="_blank" rel="noopener" class="govuk-footer__link">AMP Catalogue</a></li></ul></div>
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Support</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="mailto:Nagashankar.Ponnaganti@HMCTS.NET" class="govuk-footer__link">Contact the team</a></li><li class="govuk-footer__list-item"><a onclick="requestNewApi();return false;" href="#" class="govuk-footer__link">Request a new API</a></li></ul></div>
+        <div class="govuk-footer__section"><h2 class="govuk-footer__heading">Policies</h2><ul class="govuk-footer__list"><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Accessibility statement</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Cookies</a></li><li class="govuk-footer__list-item"><a href="#" class="govuk-footer__link">Privacy notice</a></li><li class="govuk-footer__list-item"><a onclick="showDataGovernance();return false;" href="#" class="govuk-footer__link">Data governance</a></li></ul></div>
+      </div>
+      <div class="govuk-footer__meta"><div class="govuk-footer__meta-item">Built by <a href="https://www.gov.uk/hmcts" class="govuk-footer__link">HMCTS Digital and Technology Solutions</a></div><div class="govuk-footer__copyright-logo">&copy; Crown copyright &mdash; MIT Licence</div></div>
+    </div>
+  </footer>
+</div>
+
+<!-- CONTACT US PAGE -->
+<div id="contactUsPage" class="app-page">
+  <div class="app-hero">
+    <div class="app-hero__inner">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:24px;padding-top:8px">
+        <strong class="govuk-tag">Alpha</strong>
+        <span style="font-size:13px;color:white">This is a new service &mdash; <a href="#" style="color:white">give your feedback</a> to help us improve it.</span>
+      </div>
+      <h1 class="govuk-heading-xl" style="color:white;margin-bottom:8px">Contact us</h1>
+      <p class="app-hero__lead">Find out how to get in touch about the HMCTS API Marketplace.</p>
+    </div>
+  </div>
+
+  <div class="govuk-width-container" style="padding-top:40px;padding-bottom:60px">
+    <div class="govuk-grid-row">
+
+      <div class="govuk-grid-column-one-quarter">
+        <nav aria-label="Page contents" style="position:sticky;top:24px">
+          <p class="govuk-body-s" style="font-weight:700;margin-bottom:8px;color:#505a5f;text-transform:uppercase;letter-spacing:.05em;font-size:12px">Contents</p>
+          <ol class="govuk-list" style="border-left:4px solid #b1b4b6;padding-left:12px;margin:0">
+            <li style="margin-bottom:8px"><a class="govuk-link" href="#cu-s1">General enquiries</a></li>
+            <li style="margin-bottom:8px"><a class="govuk-link" href="#cu-s2">Support by role</a></li>
+            <li style="margin-bottom:8px"><a class="govuk-link" href="#cu-s3">Technical and API issues</a></li>
+            <li style="margin-bottom:8px"><a class="govuk-link" href="#cu-s4">Give feedback</a></li>
+            <li style="margin-bottom:8px"><a class="govuk-link" href="#cu-s5">Make a complaint</a></li>
+            <li style="margin-bottom:8px"><a class="govuk-link" href="#cu-s6">Press and media enquiries</a></li>
+            <li style="margin-bottom:8px"><a class="govuk-link" href="#cu-s7">Freedom of information</a></li>
+            <li style="margin-bottom:8px"><a class="govuk-link" href="#cu-s8">Other useful links</a></li>
+          </ol>
+        </nav>
+      </div>
+
+      <div class="govuk-grid-column-three-quarters">
+
+        <div class="govuk-inset-text">
+          The marketplace team supports discovery, publication and access requests across the HMCTS API Marketplace. We are unable to help with enquiries about the wider HMCTS service or individual court cases.
+        </div>
+
+        <!-- Section 1 -->
+        <section id="cu-s1">
+          <h2 class="govuk-heading-l" style="border-top:2px solid #1d70b8;padding-top:16px">1. General enquiries</h2>
+          <p class="govuk-body">If you can&rsquo;t find what you need in the <a class="govuk-link" href="#" onclick="showGuidance();return false;">consumer guidance</a> or <a class="govuk-link" href="#" onclick="showProducerStandards();return false;">producer standards</a>, contact the marketplace team directly.</p>
+
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Email</dt>
+              <dd class="govuk-summary-list__value"><a class="govuk-link" href="mailto:Nagashankar.Ponnaganti@HMCTS.NET">Nagashankar.Ponnaganti@HMCTS.NET</a></dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Response time</dt>
+              <dd class="govuk-summary-list__value">Within 2 working days, Monday to Friday, excluding public holidays</dd>
+            </div>
+          </dl>
+        </section>
+
+        <!-- Section 2 -->
+        <section id="cu-s2" style="margin-top:40px">
+          <h2 class="govuk-heading-l" style="border-top:2px solid #1d70b8;padding-top:16px">2. Support by role</h2>
+          <p class="govuk-body">The right contact route depends on what you&rsquo;re trying to do.</p>
+
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header">If you are&hellip;</th>
+                <th class="govuk-table__header">We can help with</th>
+                <th class="govuk-table__header">Contact</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell"><strong>A consumer</strong></td>
+                <td class="govuk-table__cell">Finding an API, requesting access, tracking a request</td>
+                <td class="govuk-table__cell"><a class="govuk-link" href="#" onclick="showAuth('login');return false;">Sign in or register</a> and use your consumer dashboard</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell"><strong>A producer</strong></td>
+                <td class="govuk-table__cell">Listing a new API, updating a listing, reviewing incoming requests</td>
+                <td class="govuk-table__cell"><a class="govuk-link" href="#" onclick="showAuth('login');return false;">Sign in or register</a> and use your producer dashboard</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell"><strong>A reviewer</strong></td>
+                <td class="govuk-table__cell">Governance queries, publication review, standards enforcement</td>
+                <td class="govuk-table__cell"><a class="govuk-link" href="mailto:Nagashankar.Ponnaganti@HMCTS.NET">Email the marketplace team</a></td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell"><strong>Suggesting a new API</strong></td>
+                <td class="govuk-table__cell">An API you need doesn&rsquo;t exist yet in the catalogue</td>
+                <td class="govuk-table__cell"><a class="govuk-link" href="#" onclick="requestNewApi();return false;">Notify us of a new API</a></td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell"><strong>Developer / technical support</strong></td>
+                <td class="govuk-table__cell">API endpoints, specs, outages or breaking changes</td>
+                <td class="govuk-table__cell"><a class="govuk-link" href="#cu-s3">See technical and API issues</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Section 3 -->
+        <section id="cu-s3" style="margin-top:40px">
+          <h2 class="govuk-heading-l" style="border-top:2px solid #1d70b8;padding-top:16px">3. Technical and API issues</h2>
+          <p class="govuk-body">The marketplace does not build, own or support the APIs it lists &mdash; that responsibility stays with each API&rsquo;s producer team.</p>
+
+          <h3 class="govuk-heading-m">Issues with a specific API</h3>
+          <p class="govuk-body">Each API&rsquo;s detail page lists a contact email for its owning team under the Overview tab. Contact the producer directly for questions about endpoints, data returned, outages or breaking changes.</p>
+
+          <h3 class="govuk-heading-m">Issues with the marketplace platform itself</h3>
+          <p class="govuk-body">For problems browsing the catalogue, broken links, or issues signing in or with your dashboard, email the marketplace team.</p>
+
+          <div class="govuk-warning-text">
+            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+            <strong class="govuk-warning-text__text"><span class="govuk-visually-hidden">Warning</span>To report a suspected data breach, email the marketplace team immediately and see the <a class="govuk-link" href="#" onclick="showDataGovernance();return false;">Data Governance Standards</a> for the full incident process.</strong>
+          </div>
+        </section>
+
+        <!-- Section 4 -->
+        <section id="cu-s4" style="margin-top:40px">
+          <h2 class="govuk-heading-l" style="border-top:2px solid #1d70b8;padding-top:16px">4. Give feedback</h2>
+          <p class="govuk-body">This is a new, alpha service and we want to know what&rsquo;s working and what isn&rsquo;t. Feedback helps us prioritise improvements.</p>
+          <p class="govuk-body">To give feedback on the service, use the &ldquo;give your feedback&rdquo; link at the top of any page, or <a class="govuk-link" href="mailto:Nagashankar.Ponnaganti@HMCTS.NET">email the marketplace team</a>. We read every piece of feedback but don&rsquo;t reply to each one individually unless you ask us to.</p>
+        </section>
+
+        <!-- Section 5 -->
+        <section id="cu-s5" style="margin-top:40px">
+          <h2 class="govuk-heading-l" style="border-top:2px solid #1d70b8;padding-top:16px">5. Make a complaint</h2>
+          <p class="govuk-body">If you&rsquo;re unhappy with how an access request, publication review or enquiry was handled, tell us so we can put it right.</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li><a class="govuk-link" href="mailto:Nagashankar.Ponnaganti@HMCTS.NET">Email the marketplace team</a> explaining what happened and what you&rsquo;d like to see change</li>
+            <li>We&rsquo;ll acknowledge your complaint within 2 working days and aim to give a full response within 5 working days</li>
+            <li>If you&rsquo;re not satisfied with the response, ask for it to be escalated to the marketplace team lead</li>
+          </ul>
+        </section>
+
+        <!-- Section 6 -->
+        <section id="cu-s6" style="margin-top:40px">
+          <h2 class="govuk-heading-l" style="border-top:2px solid #1d70b8;padding-top:16px">6. Press and media enquiries</h2>
+          <p class="govuk-body">If you&rsquo;re a journalist or member of the media, do not use the general enquiries address above. Contact the <a class="govuk-link" href="https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service" target="_blank" rel="noopener">HMCTS press office</a> instead. The marketplace team is unable to respond to media enquiries directly.</p>
+        </section>
+
+        <!-- Section 7 -->
+        <section id="cu-s7" style="margin-top:40px">
+          <h2 class="govuk-heading-l" style="border-top:2px solid #1d70b8;padding-top:16px">7. Freedom of information</h2>
+          <p class="govuk-body">The Freedom of Information Act 2000 gives you the right to request information held by HMCTS. Requests relating to the API Marketplace itself should be marked &ldquo;Freedom of Information&rdquo; in the subject line and sent to the marketplace team email address above.</p>
+          <p class="govuk-body">Requests about other HMCTS services should go through the <a class="govuk-link" href="https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service" target="_blank" rel="noopener">main HMCTS freedom of information process</a>.</p>
+        </section>
+
+        <!-- Section 8 -->
+        <section id="cu-s8" style="margin-top:40px">
+          <h2 class="govuk-heading-l" style="border-top:2px solid #1d70b8;padding-top:16px">8. Other useful links</h2>
+          <ul class="govuk-list govuk-list--bullet">
+            <li><a class="govuk-link" href="#" onclick="showGuidance();return false;">Consumer guidance</a> &mdash; how to find, request and use APIs responsibly</li>
+            <li><a class="govuk-link" href="#" onclick="showProducerStandards();return false;">Producer standards</a> &mdash; requirements for listing an API</li>
+            <li><a class="govuk-link" href="#" onclick="showDataGovernance();return false;">Data governance standards</a> &mdash; legal and regulatory obligations</li>
+            <li><a class="govuk-link" href="https://hmcts.github.io/amp-catalog/" target="_blank" rel="noopener">AMP Catalogue</a> &mdash; the underlying API catalogue feed</li>
+          </ul>
+
+          <div class="govuk-inset-text" style="border-left-color:#00703c">
+            <p class="govuk-body govuk-!-margin-bottom-0">Still can&rsquo;t find what you need? <a class="govuk-link" href="mailto:Nagashankar.Ponnaganti@HMCTS.NET">Email the marketplace team</a>.</p>
+          </div>
+        </section>
+
+        <p class="govuk-body-s" style="color:#505a5f;margin-top:40px;padding-top:16px;border-top:1px solid #b1b4b6">Last updated: 8 July 2026</p>
 
       </div>
     </div>
@@ -2198,7 +2378,7 @@ function setFilter(domain, btn) {
 }
 
 function hideAll() {
-  ['homePage','detailPage','marketplacePage','consDash','prodDash','revDash','signInPage','guidancePage','producerStandardsPage','dataGovernancePage'].forEach(function(id) {
+  ['homePage','detailPage','marketplacePage','consDash','prodDash','revDash','signInPage','guidancePage','producerStandardsPage','dataGovernancePage','contactUsPage'].forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.classList.remove('app-page--active');
   });
@@ -4144,6 +4324,13 @@ function showProducerStandards() {
   hideAll();
   document.getElementById('producerStandardsPage').classList.add('app-page--active');
   setActiveNav('navStandards');
+  window.scrollTo(0, 0);
+}
+
+function showContactUs() {
+  hideAll();
+  document.getElementById('contactUsPage').classList.add('app-page--active');
+  setActiveNav('navContact');
   window.scrollTo(0, 0);
 }
 

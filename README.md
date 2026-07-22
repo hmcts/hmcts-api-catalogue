@@ -122,7 +122,7 @@ hmcts-api-marketplace/
 
 ## Capabilities
 
-14 capabilities define the full platform scope. See [`docs/capabilities.md`](docs/capabilities.md) for full detail.
+14 capabilities define the full platform scope. See [`docs/capabilities.md`](docs/v0/capabilities.md) for full detail.
 
 | ID | Capability | Priority | Phase | v7 Status | MVP Status |
 |---|---|---|---|---|---|

@@ -46,8 +46,8 @@ Marketplace team members responsible for governance and standards. Review API su
 Two prototypes have been built, both hosted on GitHub Pages.
 
 ### MVP Prototype (no-auth, current)
-**URL:** https://hmcts.github.io/hmcts-api-marketplace/prototype-mvp/
-**File:** `docs/prototype-mvp/index.html` (295 KB)
+**URL:** https://hmcts.github.io/hmcts-api-marketplace/
+**File:** `docs/index.html` (295 KB)
 
 A no-authentication single-page prototype focused on the consumer journey and service discovery. Built to be shown to stakeholders without requiring login.
 

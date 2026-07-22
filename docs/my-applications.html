@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My applications and teams — HMCTS API Marketplace</title>
+<meta name="description" content="Register your applications in our test and production environments.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<div class="top-bar">
+  <div class="wrap">
+    <a class="crest" href="index.html">
+      <img src="assets/hmcts-logo-black.png" alt="HM Courts &amp; Tribunals Service" class="logo-img">
+    </a>
+    <div class="top-bar-actions">
+      <form class="site-search" action="resources-a-z.html" method="get" role="search">
+        <label class="visually-hidden" for="site-search-input">Search</label>
+        <input type="search" id="site-search-input" name="q" placeholder="Search">
+        <button type="submit" aria-label="Search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
+      </form>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    </div>
+  </div>
+</div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="site-title" href="index.html">API Marketplace</a>
+    <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+      <ul>
+        <li><a href="sign-in.html" id="nav-auth-link">Sign in</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<div class="phase-banner">
+  <div class="wrap">
+    <span class="phase-tag">Alpha</span>
+    <span>This is a new service &mdash; <a href="request-new-api.html">give your feedback</a> to help us improve it.</span>
+  </div>
+</div>
+
+<main id="main-content">
+
+<section class="wizard-page">
+  <div class="wrap wizard-wrap">
+
+    <!-- STEP: list -->
+    <section id="step-list" class="wizard-step active">
+      <div class="breadcrumbs" style="padding:0 0 1.2em;"><ol><li><a href="account.html">Home</a></li><li>My applications and teams</li></ol></div>
+      <h1>My applications and teams</h1>
+      <div class="accent-bar" style="--chip:#0096d6;"></div>
+
+      <div class="wizard-tabs">
+        <button class="active" data-tab="apps">My applications</button>
+        <button data-tab="teams">My teams</button>
+      </div>
+
+      <div id="tab-apps" class="wizard-tab-panel active">
+        <h2>My applications</h2>
+        <p>Register your applications in our test and production environments.</p>
+        <button type="button" class="btn btn-start" id="add-app-btn">Add new application</button>
+        <div id="apps-list" style="margin-top:2em;">
+          <p id="no-apps-message">No applications found</p>
+          <table id="apps-table" style="display:none;">
+            <thead><tr><th>Name</th><th>Environment</th><th>Owner</th></tr></thead>
+            <tbody id="apps-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="tab-teams" class="wizard-tab-panel">
+        <h2>My teams</h2>
+        <p>Teams let you share application ownership with colleagues.</p>
+        <p>No teams found</p>
+      </div>
+    </section>
+
+    <!-- STEP: environment -->
+    <section id="step-environment" class="wizard-step">
+      <p class="wizard-caption">Add new application</p>
+      <h1>Select your environment</h1>
+      <div class="accent-bar" style="--chip:#724695;"></div>
+      <p style="max-width:65ch;color:var(--grey-dark);font-size:1.05rem;">You must have a separate application for each environment. To learn more about our environments see: <a href="documentation.html">Path to Live environments</a> and <a href="consumer-guidance.html">Testing APIs</a>.</p>
+
+      <fieldset>
+        <legend class="visually-hidden">Select your environment</legend>
+        <div class="radio-list-large">
+          <label><input type="radio" name="environment" value="Sandbox" checked> Sandbox</label>
+          <label><input type="radio" name="environment" value="Development"> Development</label>
+          <label><input type="radio" name="environment" value="Integration test"> Integration test</label>
+          <label><input type="radio" name="environment" value="Production"> Production</label>
+        </div>
+      </fieldset>
+
+      <div class="wizard-btn-row">
+        <button type="button" class="btn btn-start" data-next="step-owner">Continue</button>
+        <button type="button" class="btn btn-dark" data-cancel>Cancel</button>
+      </div>
+    </section>
+
+    <!-- STEP: owner -->
+    <section id="step-owner" class="wizard-step">
+      <p class="wizard-caption">Add new application</p>
+      <h1>Select application owner</h1>
+      <div class="accent-bar" style="--chip:#f9ae00;"></div>
+
+      <fieldset>
+        <legend class="visually-hidden">Select application owner</legend>
+        <div class="radio-list-large">
+          <label><input type="radio" name="owner" value="Me"> Me</label>
+          <label><input type="radio" name="owner" value="Test" checked> Test</label>
+          <p style="margin:4px 0 4px 42px;color:var(--grey-dark);">or</p>
+          <label><input type="radio" name="owner" value="Add a new team"> Add a new team</label>
+        </div>
+      </fieldset>
+
+      <div class="wizard-btn-row">
+        <button type="button" class="btn btn-start" data-next="step-name">Continue</button>
+        <button type="button" class="btn btn-dark" data-cancel>Cancel</button>
+      </div>
+    </section>
+
+    <!-- STEP: name -->
+    <section id="step-name" class="wizard-step">
+      <p><a href="#" data-back="step-owner">&lsaquo; Go back</a></p>
+      <p class="wizard-caption">Add new application</p>
+      <h1>What is your application name?</h1>
+      <div class="accent-bar" style="--chip:#11a63c;"></div>
+      <p style="max-width:65ch;color:var(--grey-dark);font-size:1.05rem;">The application name must be unique. This means you cannot have applications with the same name and owner.</p>
+
+      <div class="field" style="max-width:560px;">
+        <label class="visually-hidden" for="app-name">Application name</label>
+        <input type="text" id="app-name" required>
+      </div>
+
+      <div class="wizard-btn-row">
+        <button type="button" class="btn btn-start" data-next="step-check" id="name-continue">Continue</button>
+        <button type="button" class="btn btn-dark" data-cancel>Cancel</button>
+      </div>
+    </section>
+
+    <!-- STEP: check answers -->
+    <section id="step-check" class="wizard-step">
+      <p class="wizard-caption">Add new application</p>
+      <h1>Check your answers before creating your application</h1>
+      <div class="accent-bar" style="--chip:#0096d6;"></div>
+
+      <table class="check-table">
+        <tbody>
+          <tr><td>Environment</td><td id="check-environment"></td><td><a href="#" class="change-link" data-back="step-environment">Change</a></td></tr>
+          <tr><td>Owner</td><td id="check-owner"></td><td><a href="#" class="change-link" data-back="step-owner">Change</a></td></tr>
+          <tr><td>Application name</td><td id="check-name"></td><td><a href="#" class="change-link" data-back="step-name">Change</a></td></tr>
+        </tbody>
+      </table>
+
+      <div class="wizard-btn-row">
+        <button type="button" class="btn btn-start" id="create-app-btn">Create application</button>
+        <button type="button" class="btn btn-dark" data-cancel>Cancel</button>
+      </div>
+    </section>
+
+    <!-- STEP: success -->
+    <section id="step-success" class="wizard-step">
+      <h1>Application created successfully</h1>
+      <div class="accent-bar" style="--chip:#11a63c;"></div>
+      <p style="font-size:1.1rem;color:var(--grey-dark);">Remember to add your APIs, Public key and Callback URL if required.</p>
+
+      <h2 style="margin-top:1.6em;">What happens next:</h2>
+      <p><a href="#" id="view-app-link">View your new application</a></p>
+      <p><a href="account.html">Go back to Home</a></p>
+    </section>
+
+    <!-- STEP: application detail -->
+    <section id="step-detail" class="wizard-step">
+      <div class="breadcrumbs" style="padding:0 0 1.2em;">
+        <ol>
+          <li><a href="account.html">Home</a></li>
+          <li><a href="#" data-goto="step-list">My applications and teams</a></li>
+          <li id="detail-breadcrumb-name"></li>
+        </ol>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <h1 id="detail-name" style="margin-bottom:0;"></h1>
+        <button type="button" class="btn" style="background:var(--red);color:#fff;box-shadow:0 2px 0 #a02b16;">Delete</button>
+      </div>
+
+      <div class="accent-bar" style="--chip:#f9ae00;"></div>
+
+      <p style="margin-top:1.4em;"><a href="#">View Audit log</a></p>
+
+      <h2 style="margin-top:1.6em;">Basic details</h2>
+      <table class="check-table">
+        <tbody>
+          <tr><td>Application name</td><td id="detail-app-name"></td><td><a href="#" class="change-link">Edit</a></td></tr>
+          <tr><td>Description</td><td id="detail-description"></td><td><a href="#" class="change-link">Edit</a></td></tr>
+          <tr><td>Owner</td><td id="detail-owner"></td><td></td></tr>
+          <tr><td>Date created</td><td id="detail-created"></td><td></td></tr>
+          <tr><td>Application ID</td><td id="detail-id" style="font-family:monospace;font-size:0.92rem;"></td><td></td></tr>
+          <tr><td>Environment</td><td id="detail-environment"></td><td></td></tr>
+        </tbody>
+      </table>
+
+      <h2 style="margin-top:1.6em;">Security details</h2>
+      <table class="check-table">
+        <tbody>
+          <tr><td>Active API keys</td><td id="detail-api-keys"></td><td><a href="#" class="change-link">Edit</a></td></tr>
+          <tr><td>Public key URL</td><td id="detail-public-key"></td><td><a href="#" class="change-link">Edit</a></td></tr>
+          <tr><td>Callback URL</td><td id="detail-callback"></td><td><a href="#" class="change-link">Edit</a></td></tr>
+        </tbody>
+      </table>
+
+      <h2 style="margin-top:1.6em;">Custom attributes</h2>
+      <p>No custom attributes.</p>
+      <button type="button" class="btn btn-start">Add custom attribute</button>
+
+      <h2 style="margin-top:1.8em;">Connected APIs</h2>
+      <p id="detail-no-apis">No connected APIs.</p>
+      <ul id="detail-apis-list" style="display:none;list-style:none;padding:0;margin:0 0 1.4em;"></ul>
+      <button type="button" class="btn btn-start" id="add-apis-btn">Add APIs</button>
+    </section>
+
+    <!-- STEP: add APIs -->
+    <section id="step-add-apis" class="wizard-step">
+      <div class="breadcrumbs" style="padding:0 0 1.2em;">
+        <ol>
+          <li><a href="account.html">Home</a></li>
+          <li><a href="#" data-goto="step-list">My applications and teams</a></li>
+          <li><a href="#" data-goto="step-detail" id="add-apis-breadcrumb-name"></a></li>
+          <li>Add APIs</li>
+        </ol>
+      </div>
+
+      <h1>Add APIs</h1>
+      <div class="accent-bar" style="--chip:#724695;"></div>
+      <p>Here are the APIs available for this application. Enable access to the APIs you want to use.</p>
+      <p>For production environments you need to request access which will be approved after you complete the <a href="onboarding-guide.html">onboarding process</a>.</p>
+
+      <h2 style="margin-top:1.6em;">APIs available in this environment</h2>
+      <label for="api-search" style="font-weight:700;display:block;margin-bottom:8px;">Search</label>
+      <div class="search-row" style="max-width:480px;">
+        <input type="text" id="api-search" placeholder="Search&hellip;">
+        <button type="button" id="api-search-btn">Search</button>
+      </div>
+      <p id="api-results-count" style="margin:0.8em 0 1.4em;font-weight:700;"></p>
+
+      <div id="api-checkbox-list">
+        <label class="api-checkbox-row" data-search="crime prosecution case details api returns case details for prosecuted criminal cases, including defendant, hearing and outcome information.">
+        <input type="checkbox" value="Crime Prosecution Case Details API">
+        <span><strong>Crime Prosecution Case Details API (Sandbox)</strong><br><span class="api-checkbox-desc">Returns case details for prosecuted criminal cases, including defendant, hearing and outcome information.</span></span>
+      </label><label class="api-checkbox-row" data-search="hearing results api provides recorded results and orders from court and tribunal hearings.">
+        <input type="checkbox" value="Hearing Results API">
+        <span><strong>Hearing Results API (Sandbox)</strong><br><span class="api-checkbox-desc">Provides recorded results and orders from court and tribunal hearings.</span></span>
+      </label><label class="api-checkbox-row" data-search="court listings and scheduling api returns published court and tribunal listings, including scheduled hearing times and courtrooms.">
+        <input type="checkbox" value="Court Listings and Scheduling API">
+        <span><strong>Court Listings and Scheduling API (Sandbox)</strong><br><span class="api-checkbox-desc">Returns published court and tribunal listings, including scheduled hearing times and courtrooms.</span></span>
+      </label><label class="api-checkbox-row" data-search="court and tribunal reference data api canonical reference data for courts, tribunals, venues and case types.">
+        <input type="checkbox" value="Court and Tribunal Reference Data API">
+        <span><strong>Court and Tribunal Reference Data API (Sandbox)</strong><br><span class="api-checkbox-desc">Canonical reference data for courts, tribunals, venues and case types.</span></span>
+      </label><label class="api-checkbox-row" data-search="fees and financial transactions api fee schedules and transaction records for court and tribunal payments.">
+        <input type="checkbox" value="Fees and Financial Transactions API">
+        <span><strong>Fees and Financial Transactions API (Sandbox)</strong><br><span class="api-checkbox-desc">Fee schedules and transaction records for court and tribunal payments.</span></span>
+      </label><label class="api-checkbox-row" data-search="tribunal case administration api case administration data for tribunal cases, including case status and parties.">
+        <input type="checkbox" value="Tribunal Case Administration API">
+        <span><strong>Tribunal Case Administration API (Sandbox)</strong><br><span class="api-checkbox-desc">Case administration data for tribunal cases, including case status and parties.</span></span>
+      </label><label class="api-checkbox-row" data-search="data governance reference api reference data describing classification and handling requirements for hmcts datasets.">
+        <input type="checkbox" value="Data Governance Reference API">
+        <span><strong>Data Governance Reference API (Sandbox)</strong><br><span class="api-checkbox-desc">Reference data describing classification and handling requirements for HMCTS datasets.</span></span>
+      </label><label class="api-checkbox-row" data-search="notifications and alerts api send and track case-related notifications to parties and legal representatives.">
+        <input type="checkbox" value="Notifications and Alerts API">
+        <span><strong>Notifications and Alerts API (Sandbox)</strong><br><span class="api-checkbox-desc">Send and track case-related notifications to parties and legal representatives.</span></span>
+      </label>
+      </div>
+
+      <div class="wizard-btn-row">
+        <button type="button" class="btn btn-start" id="save-apis-btn">Save changes</button>
+        <button type="button" class="btn btn-dark" id="cancel-add-apis-btn">Cancel</button>
+      </div>
+    </section>
+
+  </div>
+</section>
+
+<script>
+(function () {
+  var answers = { environment: 'Sandbox', owner: 'Test', name: '' };
+  var apps = [];
+  var currentApp = null;
+
+  function showStep(id) {
+    document.querySelectorAll('.wizard-step').forEach(function (s) { s.classList.remove('active'); });
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  function makeId() {
+    if (window.crypto && window.crypto.randomUUID) return window.crypto.randomUUID();
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
+  document.getElementById('add-app-btn').addEventListener('click', function () {
+    showStep('step-environment');
+  });
+
+  document.querySelectorAll('[data-cancel]').forEach(function (btn) {
+    btn.addEventListener('click', function () { showStep('step-list'); });
+  });
+
+  document.querySelectorAll('[data-back]').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      showStep(el.getAttribute('data-back'));
+    });
+  });
+
+  document.querySelectorAll('[data-goto]').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      showStep(el.getAttribute('data-goto'));
+    });
+  });
+
+  // Environment step
+  document.querySelector('[data-next="step-owner"]').addEventListener('click', function () {
+    var checked = document.querySelector('input[name="environment"]:checked');
+    answers.environment = checked ? checked.value : 'Sandbox';
+    showStep('step-owner');
+  });
+
+  // Owner step
+  document.querySelector('[data-next="step-name"]').addEventListener('click', function () {
+    var checked = document.querySelector('input[name="owner"]:checked');
+    answers.owner = checked ? checked.value : 'Test';
+    showStep('step-name');
+  });
+
+  // Name step
+  document.getElementById('name-continue').addEventListener('click', function () {
+    var nameInput = document.getElementById('app-name');
+    if (!nameInput.value.trim()) {
+      nameInput.focus();
+      return;
+    }
+    answers.name = nameInput.value.trim();
+    document.getElementById('check-environment').textContent = answers.environment;
+    document.getElementById('check-owner').textContent = answers.owner;
+    document.getElementById('check-name').textContent = answers.name;
+    showStep('step-check');
+  });
+
+  // Create application
+  document.getElementById('create-app-btn').addEventListener('click', function () {
+    var today = new Date();
+    var dateStr = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    var timeStr = today.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+    var app = {
+      id: makeId(),
+      name: answers.name,
+      environment: answers.environment,
+      owner: answers.owner,
+      description: '',
+      createdAt: dateStr,
+      apiKeysCreated: dateStr + ' ' + timeStr,
+      publicKeyUrl: 'Not set yet',
+      callbackUrl: 'Not set yet',
+      connectedApis: []
+    };
+    apps.push(app);
+    currentApp = app;
+    renderAppsList();
+    showStep('step-success');
+  });
+
+  document.getElementById('view-app-link').addEventListener('click', function (e) {
+    e.preventDefault();
+    renderDetail(currentApp);
+    showStep('step-detail');
+  });
+
+  function renderAppsList() {
+    var tbody = document.getElementById('apps-table-body');
+    var table = document.getElementById('apps-table');
+    var noAppsMsg = document.getElementById('no-apps-message');
+    if (apps.length === 0) {
+      table.style.display = 'none';
+      noAppsMsg.style.display = 'block';
+      return;
+    }
+    noAppsMsg.style.display = 'none';
+    table.style.display = 'table';
+    tbody.innerHTML = '';
+    apps.forEach(function (app) {
+      var tr = document.createElement('tr');
+      tr.style.cursor = 'pointer';
+      tr.innerHTML = '<td><a href="#">' + app.name + '</a></td><td>' + app.environment + '</td><td>' + app.owner + '</td>';
+      tr.addEventListener('click', function () {
+        currentApp = app;
+        renderDetail(app);
+        showStep('step-detail');
+      });
+      tbody.appendChild(tr);
+    });
+  }
+
+  function renderDetail(app) {
+    document.getElementById('detail-breadcrumb-name').textContent = app.name;
+    document.getElementById('detail-name').textContent = app.name;
+    document.getElementById('detail-app-name').textContent = app.name;
+    document.getElementById('detail-description').textContent = app.description || '';
+    document.getElementById('detail-owner').textContent = app.owner;
+    document.getElementById('detail-created').textContent = app.createdAt;
+    document.getElementById('detail-id').textContent = app.id;
+    document.getElementById('detail-environment').textContent = app.environment;
+    document.getElementById('detail-api-keys').textContent = 'Created: ' + app.apiKeysCreated;
+    document.getElementById('detail-public-key').textContent = app.publicKeyUrl;
+    document.getElementById('detail-callback').textContent = app.callbackUrl;
+    document.getElementById('add-apis-breadcrumb-name').textContent = app.name;
+
+    var noApisMsg = document.getElementById('detail-no-apis');
+    var apisList = document.getElementById('detail-apis-list');
+    if (app.connectedApis.length === 0) {
+      noApisMsg.style.display = 'block';
+      apisList.style.display = 'none';
+    } else {
+      noApisMsg.style.display = 'none';
+      apisList.style.display = 'block';
+      apisList.innerHTML = app.connectedApis.map(function (name) {
+        return '<li style="padding:10px 0;border-bottom:1px solid var(--border-light);">' + name + '</li>';
+      }).join('');
+    }
+  }
+
+  // Add APIs page
+  document.getElementById('add-apis-btn').addEventListener('click', function () {
+    document.querySelectorAll('#api-checkbox-list input[type=checkbox]').forEach(function (cb) {
+      cb.checked = currentApp.connectedApis.indexOf(cb.value) !== -1;
+    });
+    applyApiSearch('');
+    document.getElementById('api-search').value = '';
+    showStep('step-add-apis');
+  });
+
+  document.getElementById('cancel-add-apis-btn').addEventListener('click', function () {
+    renderDetail(currentApp);
+    showStep('step-detail');
+  });
+
+  document.getElementById('save-apis-btn').addEventListener('click', function () {
+    var selected = [];
+    document.querySelectorAll('#api-checkbox-list input[type=checkbox]:checked').forEach(function (cb) {
+      selected.push(cb.value);
+    });
+    currentApp.connectedApis = selected;
+    renderDetail(currentApp);
+    showStep('step-detail');
+  });
+
+  function applyApiSearch(query) {
+    query = query.trim().toLowerCase();
+    var rows = document.querySelectorAll('.api-checkbox-row');
+    var shown = 0;
+    rows.forEach(function (row) {
+      var match = !query || row.getAttribute('data-search').indexOf(query) !== -1;
+      row.style.display = match ? 'flex' : 'none';
+      if (match) shown++;
+    });
+    document.getElementById('api-results-count').textContent = shown + ' result' + (shown === 1 ? '' : 's');
+  }
+
+  document.getElementById('api-search').addEventListener('input', function () {
+    applyApiSearch(this.value);
+  });
+  document.getElementById('api-search-btn').addEventListener('click', function () {
+    applyApiSearch(document.getElementById('api-search').value);
+  });
+  applyApiSearch('');
+
+  // Tabs on the list step
+  document.querySelectorAll('.wizard-tabs button').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.wizard-tabs button').forEach(function (b) { b.classList.remove('active'); });
+      document.querySelectorAll('.wizard-tab-panel').forEach(function (p) { p.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.getAttribute('data-tab')).classList.add('active');
+    });
+  });
+})();
+</script>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid footer-grid-2">
+      <div>
+        <h2>Legal</h2>
+        <ul>
+          <li><a href="#">Accessibility statement</a></li>
+          <li><a href="#">Cookies</a></li>
+          <li><a href="#">Privacy notice</a></li>
+          <li><a href="data-governance.html">Data governance</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Get in touch</h2>
+        <ul>
+          <li><a href="contact.html">Contact the marketplace team</a></li>
+          <li><a href="request-new-api.html">Request a new API</a></li>
+          <li><a href="onboarding-guide.html">Onboarding guide</a></li>
+          <li><a href="publish-api.html">Publish an API</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; Crown copyright &mdash; MIT Licence</span>
+      <span>Built by <a href="https://www.gov.uk/hmcts">HMCTS Digital and Technology Solutions</a></span>
+    </div>
+  </div>
+</footer>
+<script src="assets/scripts.js"></script>
+
+</body>
+</html>

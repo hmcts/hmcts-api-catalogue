@@ -1,17 +1,5 @@
 // HMCTS API Marketplace — shared behaviour
 
-// Embed mode: hide chrome when loaded inside an iframe (persist via sessionStorage)
-(function () {
-  if (new URLSearchParams(window.location.search).get('embed') === 'true') {
-    sessionStorage.setItem('embed', 'true');
-  }
-  if (sessionStorage.getItem('embed') === 'true') {
-    var style = document.createElement('style');
-    style.textContent = '.top-bar,.site-header,.phase-banner,.breadcrumbs,.site-footer{display:none!important}';
-    document.head.appendChild(style);
-  }
-}());
-
 document.addEventListener('DOMContentLoaded', function () {
 
   // Mobile nav toggle

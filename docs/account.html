@@ -84,20 +84,11 @@
 
 <script>
   const API_BASE = "https://hmcts-api-marketplace-auth.onrender.com";
-  const TOKEN_KEY = "hmcts_marketplace_token";
 
   (async function () {
-    const token = localStorage.getItem(TOKEN_KEY);
-    if (!token) {
-      window.location.href = 'sign-in.html';
-      return;
-    }
     try {
-      const res = await fetch(API_BASE + '/api/me', {
-        headers: { Authorization: 'Bearer ' + token },
-      });
+      const res = await fetch(API_BASE + '/api/me', { credentials: 'include' });
       if (!res.ok) {
-        localStorage.removeItem(TOKEN_KEY);
         window.location.href = 'sign-in.html';
         return;
       }
@@ -109,9 +100,11 @@
     }
   })();
 
-  document.getElementById('sign-out-link').addEventListener('click', function (e) {
+  document.getElementById('sign-out-link').addEventListener('click', async function (e) {
     e.preventDefault();
-    localStorage.removeItem(TOKEN_KEY);
+    try {
+      await fetch(API_BASE + '/api/logout', { method: 'POST', credentials: 'include' });
+    } catch (err) {}
     window.location.href = 'sign-in.html';
   });
 </script>

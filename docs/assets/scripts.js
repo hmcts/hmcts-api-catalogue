@@ -127,31 +127,40 @@ document.addEventListener('DOMContentLoaded', function () {
   var navAuthLink = document.getElementById('nav-auth-link');
   if (navAuthLink) {
     var AUTH_API_BASE = 'https://hmcts-api-marketplace-auth.onrender.com';
-    fetch(AUTH_API_BASE + '/api/me', { credentials: 'include' })
-      .then(function (res) { return res.ok ? res.json() : null; })
-      .then(function (data) {
-        if (!data) return; // not signed in - leave the link as "Sign in"
+    var AUTH_TOKEN_KEY = 'hmcts_marketplace_token';
+    var authToken = localStorage.getItem(AUTH_TOKEN_KEY);
 
-        navAuthLink.textContent = 'My account (' + data.user.firstName + ')';
-        navAuthLink.setAttribute('href', 'account.html');
-
-        var signOutLi = document.createElement('li');
-        var signOutLink = document.createElement('a');
-        signOutLink.href = '#';
-        signOutLink.textContent = 'Sign out';
-        signOutLink.addEventListener('click', function (e) {
-          e.preventDefault();
-          fetch(AUTH_API_BASE + '/api/logout', { method: 'POST', credentials: 'include' })
-            .catch(function () {})
-            .then(function () { window.location.reload(); });
-        });
-        signOutLi.appendChild(signOutLink);
-        navAuthLink.closest('li').insertAdjacentElement('afterend', signOutLi);
+    if (authToken) {
+      fetch(AUTH_API_BASE + '/api/me', {
+        headers: { Authorization: 'Bearer ' + authToken },
       })
-      .catch(function () {
-        // Auth server unreachable (e.g. still waking up on Render's free tier) -
-        // fail quietly and just leave the link as "Sign in".
-      });
+        .then(function (res) { return res.ok ? res.json() : null; })
+        .then(function (data) {
+          if (!data) {
+            localStorage.removeItem(AUTH_TOKEN_KEY);
+            return; // not signed in - leave the link as "Sign in"
+          }
+
+          navAuthLink.textContent = 'My account (' + data.user.firstName + ')';
+          navAuthLink.setAttribute('href', 'account.html');
+
+          var signOutLi = document.createElement('li');
+          var signOutLink = document.createElement('a');
+          signOutLink.href = '#';
+          signOutLink.textContent = 'Sign out';
+          signOutLink.addEventListener('click', function (e) {
+            e.preventDefault();
+            localStorage.removeItem(AUTH_TOKEN_KEY);
+            window.location.reload();
+          });
+          signOutLi.appendChild(signOutLink);
+          navAuthLink.closest('li').insertAdjacentElement('afterend', signOutLi);
+        })
+        .catch(function () {
+          // Auth server unreachable (e.g. still waking up on Render's free tier) -
+          // fail quietly and just leave the link as "Sign in".
+        });
+    }
   }
 
 });

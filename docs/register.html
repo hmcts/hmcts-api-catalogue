@@ -187,7 +187,6 @@
     try {
       const res = await fetch(API_BASE + '/api/register', {
         method: 'POST',
-        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           firstName, lastName, email, organisation,
@@ -201,6 +200,8 @@
         errorBox.classList.add('show');
         return;
       }
+
+      localStorage.setItem('hmcts_marketplace_token', data.token);
 
       successText.textContent = 'Welcome, ' + data.user.firstName + ' — your account has been created.';
       form.style.display = 'none';

@@ -149,7 +149,6 @@
     try {
       const res = await fetch(API_BASE + '/api/login', {
         method: 'POST',
-        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
@@ -160,6 +159,8 @@
         errorBox.classList.add('show');
         return;
       }
+
+      localStorage.setItem('hmcts_marketplace_token', data.token);
 
       successText.textContent = 'Signed in as ' + data.user.firstName + ' ' + data.user.lastName + '.';
       form.style.display = 'none';

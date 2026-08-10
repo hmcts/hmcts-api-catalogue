@@ -177,14 +177,16 @@
         </ol>
       </div>
 
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-        <h1 id="detail-name" style="margin-bottom:0;"></h1>
-        <button type="button" class="btn" style="background:var(--red);color:#fff;box-shadow:0 2px 0 #a02b16;">Delete</button>
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;">
+        <div>
+          <h1 id="detail-name" style="margin-bottom:0;"></h1>
+          <div class="accent-bar" style="--chip:#0096d6;"></div>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <button type="button" class="btn btn-dark">View audit log</button>
+          <button type="button" class="btn" style="background:var(--red);color:#fff;box-shadow:0 2px 0 #a02b16;">Delete</button>
+        </div>
       </div>
-
-      <div class="accent-bar" style="--chip:#f9ae00;"></div>
-
-      <p style="margin-top:1.4em;"><a href="#">View Audit log</a></p>
 
       <h2 style="margin-top:1.6em;">Basic details</h2>
       <table class="check-table">
@@ -193,15 +195,68 @@
           <tr><td>Description</td><td id="detail-description"></td><td><a href="#" class="change-link">Edit</a></td></tr>
           <tr><td>Owner</td><td id="detail-owner"></td><td></td></tr>
           <tr><td>Date created</td><td id="detail-created"></td><td></td></tr>
-          <tr><td>Application ID</td><td id="detail-id" style="font-family:monospace;font-size:0.92rem;"></td><td></td></tr>
-          <tr><td>Environment</td><td id="detail-environment"></td><td></td></tr>
+          <tr><td>Application ID</td><td id="detail-id" style="font-family:monospace;font-size:0.92rem;"></td><td><button type="button" class="btn btn-dark copy-btn" id="copy-id-btn" style="padding:6px 14px;font-size:0.85rem;">Copy</button></td></tr>
+          <tr><td>Environment</td><td><span class="status-badge status-badge-env" id="detail-environment"></span></td><td></td></tr>
         </tbody>
       </table>
 
-      <h2 style="margin-top:1.6em;">Security details</h2>
+      <h2 style="margin-top:1.8em;">Credentials</h2>
+      <p style="max-width:70ch;color:var(--grey-dark);">Use these credentials to obtain a JWT access token from the Marketplace Entra token endpoint.</p>
       <table class="check-table">
         <tbody>
-          <tr><td>Active API keys</td><td id="detail-api-keys"></td><td><a href="#" class="change-link" id="edit-api-keys-link">Edit</a></td></tr>
+          <tr>
+            <td>Token endpoint</td>
+            <td style="font-family:monospace;font-size:0.86rem;word-break:break-all;" id="detail-token-endpoint"></td>
+            <td><button type="button" class="btn btn-dark copy-btn" id="copy-endpoint-btn" style="padding:6px 14px;font-size:0.85rem;">Copy</button></td>
+          </tr>
+          <tr>
+            <td>Scope</td>
+            <td style="font-family:monospace;font-size:0.86rem;word-break:break-all;" id="detail-scope"></td>
+            <td><button type="button" class="btn btn-dark copy-btn" id="copy-scope-btn" style="padding:6px 14px;font-size:0.85rem;">Copy</button></td>
+          </tr>
+          <tr>
+            <td>Client secret</td>
+            <td><span class="secret-mask">&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</span></td>
+            <td><a href="#" class="change-link" id="edit-api-keys-link">View and manage</a></td>
+          </tr>
+          <tr>
+            <td>Subscription key</td>
+            <td colspan="2">
+              <span class="status-badge status-badge-pending" id="detail-subscription-status">Pending subscription</span>
+              <p id="detail-subscription-hint" style="margin:8px 0 0;color:var(--grey-dark);">Subscribe to an API to receive your subscription key.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 style="margin-top:1.8em;">Get a token</h2>
+      <p style="max-width:70ch;color:var(--grey-dark);">Use your Application ID and client secret to get a JWT access token. Include this token as a Bearer token on every API call.</p>
+
+      <div class="wizard-tabs" role="tablist">
+        <button type="button" class="lang-tab active" data-lang="curl">curl</button>
+        <button type="button" class="lang-tab" data-lang="python">Python</button>
+        <button type="button" class="lang-tab" data-lang="dotnet">.NET</button>
+        <button type="button" class="lang-tab" data-lang="node">Node.js</button>
+      </div>
+
+      <div class="lang-tab-panel active" id="lang-curl">
+        <div class="code-block" id="code-curl"></div>
+      </div>
+      <div class="lang-tab-panel" id="lang-python">
+        <div class="code-block" id="code-python"></div>
+      </div>
+      <div class="lang-tab-panel" id="lang-dotnet">
+        <div class="code-block" id="code-dotnet"></div>
+      </div>
+      <div class="lang-tab-panel" id="lang-node">
+        <div class="code-block" id="code-node"></div>
+      </div>
+
+      <p>For full integration instructions including Track B (signed JWT) for production, see the <a href="entra-jwt-auth.html">signed JWT authentication guide</a>.</p>
+
+      <h2 style="margin-top:1.8em;">Security details</h2>
+      <table class="check-table">
+        <tbody>
           <tr><td>Public key URL</td><td id="detail-public-key"></td><td><a href="#" class="change-link" id="edit-public-key-link">Edit</a></td></tr>
           <tr><td>Callback URL</td><td id="detail-callback"></td><td><a href="#" class="change-link" id="edit-callback-link">Edit</a></td></tr>
         </tbody>
@@ -473,6 +528,8 @@
       apiKeysCreated: dateStr + ' ' + timeStr,
       apiKey: makeId().replace(/-/g, '').slice(0, 24),
       apiSecret: makeId().replace(/-/g, '') + makeId().replace(/-/g, ''),
+      tenantId: makeId(),
+      scopeId: makeId(),
       publicKeyUrl: 'Not set yet',
       callbackUrl: 'Not set yet',
       connectedApis: []
@@ -518,18 +575,82 @@
     document.getElementById('detail-breadcrumb-name').textContent = app.name;
     document.getElementById('detail-name').textContent = app.name;
     document.getElementById('detail-app-name').textContent = app.name;
-    document.getElementById('detail-description').textContent = app.description || '';
+    document.getElementById('detail-description').textContent = app.description || '\u2014';
     document.getElementById('detail-owner').textContent = app.owner;
     document.getElementById('detail-created').textContent = app.createdAt;
     document.getElementById('detail-id').textContent = app.id;
     document.getElementById('detail-environment').textContent = app.environment;
-    document.getElementById('detail-api-keys').textContent = 'Created: ' + app.apiKeysCreated;
     document.getElementById('detail-public-key').textContent = app.publicKeyUrl;
     document.getElementById('detail-callback').textContent = app.callbackUrl;
     document.getElementById('add-apis-breadcrumb-name').textContent = app.name;
     document.getElementById('edit-keys-breadcrumb-name').textContent = app.name;
     document.getElementById('edit-public-key-breadcrumb-name').textContent = app.name;
     document.getElementById('edit-callback-breadcrumb-name').textContent = app.name;
+
+    var tokenEndpoint = 'https://login.microsoftonline.com/' + app.tenantId + '/oauth2/v2.0/token';
+    var scope = app.scopeId + '/.default';
+    document.getElementById('detail-token-endpoint').textContent = tokenEndpoint;
+    document.getElementById('detail-scope').textContent = scope;
+
+    var subStatus = document.getElementById('detail-subscription-status');
+    var subHint = document.getElementById('detail-subscription-hint');
+    if (app.connectedApis.length === 0) {
+      subStatus.textContent = 'Pending subscription';
+      subStatus.className = 'status-badge status-badge-pending';
+      subHint.textContent = 'Subscribe to an API to receive your subscription key.';
+    } else {
+      subStatus.textContent = 'Active';
+      subStatus.className = 'status-badge status-badge-env';
+      subHint.textContent = 'Subscribed to ' + app.connectedApis.length + ' API' + (app.connectedApis.length === 1 ? '' : 's') + '.';
+    }
+
+    document.getElementById('code-curl').textContent =
+      'curl -X POST \\\n' +
+      '  "' + tokenEndpoint + '" \\\n' +
+      '  -H "Content-Type: application/x-www-form-urlencoded" \\\n' +
+      '  -d "grant_type=client_credentials" \\\n' +
+      '  -d "client_id=' + app.id + '" \\\n' +
+      '  -d "client_secret=YOUR_CLIENT_SECRET" \\\n' +
+      '  -d "scope=' + scope + '"';
+
+    document.getElementById('code-python').textContent =
+      'import requests\n\n' +
+      'response = requests.post(\n' +
+      '    "' + tokenEndpoint + '",\n' +
+      '    data={\n' +
+      '        "grant_type": "client_credentials",\n' +
+      '        "client_id": "' + app.id + '",\n' +
+      '        "client_secret": "YOUR_CLIENT_SECRET",\n' +
+      '        "scope": "' + scope + '",\n' +
+      '    },\n' +
+      ')\n' +
+      'access_token = response.json()["access_token"]';
+
+    document.getElementById('code-dotnet').textContent =
+      'var client = new HttpClient();\n' +
+      'var request = new FormUrlEncodedContent(new Dictionary<string, string>\n' +
+      '{\n' +
+      '    ["grant_type"] = "client_credentials",\n' +
+      '    ["client_id"] = "' + app.id + '",\n' +
+      '    ["client_secret"] = "YOUR_CLIENT_SECRET",\n' +
+      '    ["scope"] = "' + scope + '"\n' +
+      '});\n\n' +
+      'var response = await client.PostAsync(\n' +
+      '    "' + tokenEndpoint + '",\n' +
+      '    request);';
+
+    document.getElementById('code-node').textContent =
+      'const params = new URLSearchParams({\n' +
+      '  grant_type: "client_credentials",\n' +
+      '  client_id: "' + app.id + '",\n' +
+      '  client_secret: "YOUR_CLIENT_SECRET",\n' +
+      '  scope: "' + scope + '",\n' +
+      '});\n\n' +
+      'const res = await fetch(\n' +
+      '  "' + tokenEndpoint + '",\n' +
+      '  { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: params }\n' +
+      ');\n' +
+      'const { access_token } = await res.json();';
 
     var noApisMsg = document.getElementById('detail-no-apis');
     var apisList = document.getElementById('detail-apis-list');
@@ -692,6 +813,31 @@
     renderDetail(currentApp);
     showStep('step-detail');
   });
+
+  // --- Get a token: language tabs ---
+  document.querySelectorAll('.lang-tab').forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      document.querySelectorAll('.lang-tab').forEach(function (t) { t.classList.remove('active'); });
+      document.querySelectorAll('.lang-tab-panel').forEach(function (p) { p.classList.remove('active'); });
+      tab.classList.add('active');
+      document.getElementById('lang-' + tab.getAttribute('data-lang')).classList.add('active');
+    });
+  });
+
+  // --- Copy buttons for Application ID, Token endpoint, Scope ---
+  function wireCopyButton(btnId, getValue) {
+    var btn = document.getElementById(btnId);
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      navigator.clipboard.writeText(getValue()).catch(function () {});
+      var original = btn.textContent;
+      btn.textContent = 'Copied';
+      setTimeout(function () { btn.textContent = original; }, 1500);
+    });
+  }
+  wireCopyButton('copy-id-btn', function () { return currentApp.id; });
+  wireCopyButton('copy-endpoint-btn', function () { return document.getElementById('detail-token-endpoint').textContent; });
+  wireCopyButton('copy-scope-btn', function () { return document.getElementById('detail-scope').textContent; });
 })();
 </script>
 

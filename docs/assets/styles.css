@@ -411,6 +411,9 @@ form.hidden-after-submit{ display:none; }
 .wizard-tab-panel{ display:none; }
 .wizard-tab-panel.active{ display:block; }
 .wizard-tab-panel h2{ font-size:1.8rem; margin-bottom:0.5em; }
+.lang-tab-panel{ display:none; }
+.lang-tab-panel.active{ display:block; }
+.code-block{ font-family:monospace; font-size:0.86rem; white-space:pre-wrap; word-break:break-all; background:var(--surface); border:1px solid var(--border-light); border-radius:4px; padding:16px; margin:0.6em 0; }
 .radio-list-large{ margin:1.6em 0; }
 .radio-list-large label{ display:flex; align-items:center; gap:16px; font-size:1.15rem; padding:10px 0; cursor:pointer; }
 .radio-list-large input[type=radio]{ width:26px; height:26px; accent-color: var(--ink); flex:none; cursor:pointer; }

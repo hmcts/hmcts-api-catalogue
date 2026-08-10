@@ -276,7 +276,7 @@
 
       <div id="try-it-result" style="display:none;margin-top:1.2em;">
         <p id="try-it-status" style="font-weight:700;"></p>
-        <div class="code-block" id="try-it-response" style="white-space:pre-wrap;word-break:break-all;"></div>
+        <div class="code-block" id="try-it-response"></div>
       </div>
 
       <h2 style="margin-top:1.8em;">Security details</h2>
@@ -614,6 +614,7 @@
 
     var tokenEndpoint = 'https://login.microsoftonline.com/' + app.tenantId + '/oauth2/v2.0/token';
     var scope = app.scopeId + '/.default';
+    var apiExampleUrl = 'https://sps-api-mgmt.sandbox.api.hmcts.net/courtschedule/case/{case_urn}/courtschedule';
     document.getElementById('detail-token-endpoint').textContent = tokenEndpoint;
     document.getElementById('detail-scope').textContent = scope;
 
@@ -630,17 +631,23 @@
     }
 
     document.getElementById('code-curl').textContent =
+      '# 1. Get an access token\n' +
       'curl -X POST \\\n' +
       '  "' + tokenEndpoint + '" \\\n' +
       '  -H "Content-Type: application/x-www-form-urlencoded" \\\n' +
       '  -d "grant_type=client_credentials" \\\n' +
       '  -d "client_id=' + app.id + '" \\\n' +
       '  -d "client_secret=YOUR_CLIENT_SECRET" \\\n' +
-      '  -d "scope=' + scope + '"';
+      '  -d "scope=' + scope + '"\n\n' +
+      '# 2. Call the API with the token and your subscription key\n' +
+      'curl "' + apiExampleUrl + '" \\\n' +
+      '  -H "Authorization: Bearer ACCESS_TOKEN" \\\n' +
+      '  -H "Ocp-Apim-Subscription-Key: YOUR_SUBSCRIPTION_KEY"';
 
     document.getElementById('code-python').textContent =
       'import requests\n\n' +
-      'response = requests.post(\n' +
+      '# 1. Get an access token\n' +
+      'token_response = requests.post(\n' +
       '    "' + tokenEndpoint + '",\n' +
       '    data={\n' +
       '        "grant_type": "client_credentials",\n' +
@@ -649,33 +656,55 @@
       '        "scope": "' + scope + '",\n' +
       '    },\n' +
       ')\n' +
-      'access_token = response.json()["access_token"]';
+      'access_token = token_response.json()["access_token"]\n\n' +
+      '# 2. Call the API with the token and your subscription key\n' +
+      'api_response = requests.get(\n' +
+      '    "' + apiExampleUrl + '",\n' +
+      '    headers={\n' +
+      '        "Authorization": "Bearer " + access_token,\n' +
+      '        "Ocp-Apim-Subscription-Key": "YOUR_SUBSCRIPTION_KEY",\n' +
+      '    },\n' +
+      ')';
 
     document.getElementById('code-dotnet').textContent =
-      'var client = new HttpClient();\n' +
-      'var request = new FormUrlEncodedContent(new Dictionary<string, string>\n' +
+      'var client = new HttpClient();\n\n' +
+      '// 1. Get an access token\n' +
+      'var tokenRequest = new FormUrlEncodedContent(new Dictionary<string, string>\n' +
       '{\n' +
       '    ["grant_type"] = "client_credentials",\n' +
       '    ["client_id"] = "' + app.id + '",\n' +
       '    ["client_secret"] = "YOUR_CLIENT_SECRET",\n' +
       '    ["scope"] = "' + scope + '"\n' +
-      '});\n\n' +
-      'var response = await client.PostAsync(\n' +
-      '    "' + tokenEndpoint + '",\n' +
-      '    request);';
+      '});\n' +
+      'var tokenResponse = await client.PostAsync("' + tokenEndpoint + '", tokenRequest);\n' +
+      'var tokenJson = JsonDocument.Parse(await tokenResponse.Content.ReadAsStringAsync());\n' +
+      'var accessToken = tokenJson.RootElement.GetProperty("access_token").GetString();\n\n' +
+      '// 2. Call the API with the token and your subscription key\n' +
+      'var apiRequest = new HttpRequestMessage(HttpMethod.Get, "' + apiExampleUrl + '");\n' +
+      'apiRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);\n' +
+      'apiRequest.Headers.Add("Ocp-Apim-Subscription-Key", "YOUR_SUBSCRIPTION_KEY");\n' +
+      'var apiResponse = await client.SendAsync(apiRequest);';
 
     document.getElementById('code-node').textContent =
-      'const params = new URLSearchParams({\n' +
+      '// 1. Get an access token\n' +
+      'const tokenParams = new URLSearchParams({\n' +
       '  grant_type: "client_credentials",\n' +
       '  client_id: "' + app.id + '",\n' +
       '  client_secret: "YOUR_CLIENT_SECRET",\n' +
       '  scope: "' + scope + '",\n' +
-      '});\n\n' +
-      'const res = await fetch(\n' +
+      '});\n' +
+      'const tokenRes = await fetch(\n' +
       '  "' + tokenEndpoint + '",\n' +
-      '  { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: params }\n' +
+      '  { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: tokenParams }\n' +
       ');\n' +
-      'const { access_token } = await res.json();';
+      'const { access_token } = await tokenRes.json();\n\n' +
+      '// 2. Call the API with the token and your subscription key\n' +
+      'const apiRes = await fetch("' + apiExampleUrl + '", {\n' +
+      '  headers: {\n' +
+      '    Authorization: "Bearer " + access_token,\n' +
+      '    "Ocp-Apim-Subscription-Key": "YOUR_SUBSCRIPTION_KEY",\n' +
+      '  },\n' +
+      '});';
 
     var noApisMsg = document.getElementById('detail-no-apis');
     var apisList = document.getElementById('detail-apis-list');

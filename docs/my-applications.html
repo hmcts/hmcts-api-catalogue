@@ -614,7 +614,7 @@
 
     var tokenEndpoint = 'https://login.microsoftonline.com/' + app.tenantId + '/oauth2/v2.0/token';
     var scope = app.scopeId + '/.default';
-    var apiExampleUrl = 'https://sps-api-mgmt.sandbox.api.hmcts.net/courtschedule/case/{case_urn}/courtschedule';
+    var apiExampleUrl = 'https://sps-api-mgmt.sandbox.api.hmcts.net/amp/slc/case/{case_urn}/courtschedule';
     document.getElementById('detail-token-endpoint').textContent = tokenEndpoint;
     document.getElementById('detail-scope').textContent = scope;
 
@@ -897,7 +897,7 @@
   // Calls the API directly with a token the developer already obtained (e.g. via the
   // curl sample above). Never requests a token itself — a client secret must not be
   // pasted into a browser, so the token exchange always happens outside this page.
-  var APIM_GATEWAY_BASE = 'https://sps-api-mgmt.sandbox.api.hmcts.net/courtschedule';
+  var APIM_GATEWAY_BASE = 'https://sps-api-mgmt.sandbox.api.hmcts.net/amp/slc';
 
   document.getElementById('try-it-btn').addEventListener('click', function () {
     var token = document.getElementById('try-it-token').value.trim();

@@ -279,14 +279,6 @@
         <div class="code-block" id="try-it-response"></div>
       </div>
 
-      <h2 style="margin-top:1.8em;">Security details</h2>
-      <table class="check-table">
-        <tbody>
-          <tr><td>Public key URL</td><td id="detail-public-key"></td><td><a href="#" class="change-link" id="edit-public-key-link">Edit</a></td></tr>
-          <tr><td>Callback URL</td><td id="detail-callback"></td><td><a href="#" class="change-link" id="edit-callback-link">Edit</a></td></tr>
-        </tbody>
-      </table>
-
       <h2 style="margin-top:1.6em;">Custom attributes</h2>
       <p>No custom attributes.</p>
       <button type="button" class="btn btn-start">Add custom attribute</button>
@@ -335,76 +327,6 @@
         <button type="button" class="btn" style="background:var(--red);color:#fff;box-shadow:0 2px 0 #a02b16;" id="revoke-key-btn">Revoke</button>
         <button type="button" class="btn btn-dark" data-back="step-detail">Back to application</button>
       </div>
-    </section>
-
-    <!-- STEP: edit public key -->
-    <section id="step-edit-public-key" class="wizard-step">
-      <div class="breadcrumbs" style="padding:0 0 1.2em;">
-        <ol>
-          <li><a href="account.html">Home</a></li>
-          <li><a href="#" data-goto="step-list">My applications and teams</a></li>
-          <li><a href="#" data-goto="step-detail" id="edit-public-key-breadcrumb-name"></a></li>
-          <li>Manage public key</li>
-        </ol>
-      </div>
-
-      <h1>Manage public key</h1>
-      <div class="accent-bar" style="--chip:#724695;"></div>
-
-      <div class="field" style="max-width:640px;margin-top:1.2em;">
-        <label for="public-key-url-input">Public key URL</label>
-        <input type="text" id="public-key-url-input" placeholder="https://example.com/.well-known/jwks.json">
-      </div>
-
-      <details class="onboarding-toggle" style="--chip:#f9ae00;--chip-tint:#FFEBCB;max-width:640px;">
-        <summary><span class="toggle-icon"></span>What is a public key?</summary>
-        <p>This is the URL for the JWKS endpoint for your public key. You need to provide it if you are using one of the following security patterns:</p>
-        <ul>
-          <li><a href="entra-jwt-auth.html">Application-restricted RESTful API &mdash; signed JWT authentication</a></li>
-          <li><a href="consumer-guidance.html">User-restricted RESTful API &mdash; separate authentication and authorisation</a></li>
-        </ul>
-        <p>You only need to provide it if you are hosting your own public key. If you ask us to host your public key, we will provide the URL.</p>
-      </details>
-
-      <div class="wizard-btn-row">
-        <button type="button" class="btn btn-start" id="save-public-key-btn">Save</button>
-        <button type="button" class="btn btn-dark" id="remove-public-key-btn">Remove</button>
-      </div>
-
-      <h2 style="margin-top:1.8em;">Upload public key</h2>
-      <p>You can upload one JSON file that is smaller than 250MB.</p>
-      <input type="file" id="public-key-file-input" accept="application/json" style="margin-bottom:1em;display:block;">
-      <div class="wizard-btn-row">
-        <button type="button" class="btn btn-start" id="upload-public-key-btn">Upload</button>
-      </div>
-      <p style="margin-top:1.6em;"><a href="#" data-back="step-detail">&lsaquo; Back to application</a></p>
-    </section>
-
-    <!-- STEP: edit callback URL -->
-    <section id="step-edit-callback" class="wizard-step">
-      <div class="breadcrumbs" style="padding:0 0 1.2em;">
-        <ol>
-          <li><a href="account.html">Home</a></li>
-          <li><a href="#" data-goto="step-list">My applications and teams</a></li>
-          <li><a href="#" data-goto="step-detail" id="edit-callback-breadcrumb-name"></a></li>
-          <li>Manage callback URL</li>
-        </ol>
-      </div>
-
-      <h1>Manage callback URL</h1>
-      <div class="accent-bar" style="--chip:#f9ae00;"></div>
-
-      <div class="field" style="max-width:640px;margin-top:1.2em;">
-        <label for="callback-url-input">Callback URL</label>
-        <span class="hint">The URL we redirect to after authentication. Required for user-restricted APIs using an authorisation code flow.</span>
-        <input type="text" id="callback-url-input" placeholder="https://your-application.example/callback">
-      </div>
-
-      <div class="wizard-btn-row">
-        <button type="button" class="btn btn-start" id="save-callback-btn">Save</button>
-        <button type="button" class="btn btn-dark" id="remove-callback-btn">Remove</button>
-      </div>
-      <p style="margin-top:1.6em;"><a href="#" data-back="step-detail">&lsaquo; Back to application</a></p>
     </section>
 
     <!-- STEP: add APIs -->
@@ -555,8 +477,6 @@
       apiSecret: makeId().replace(/-/g, '') + makeId().replace(/-/g, ''),
       tenantId: makeId(),
       scopeId: makeId(),
-      publicKeyUrl: 'Not set yet',
-      callbackUrl: 'Not set yet',
       connectedApis: []
     };
     apps.push(app);
@@ -605,12 +525,8 @@
     document.getElementById('detail-created').textContent = app.createdAt;
     document.getElementById('detail-id').textContent = app.id;
     document.getElementById('detail-environment').textContent = app.environment;
-    document.getElementById('detail-public-key').textContent = app.publicKeyUrl;
-    document.getElementById('detail-callback').textContent = app.callbackUrl;
     document.getElementById('add-apis-breadcrumb-name').textContent = app.name;
     document.getElementById('edit-keys-breadcrumb-name').textContent = app.name;
-    document.getElementById('edit-public-key-breadcrumb-name').textContent = app.name;
-    document.getElementById('edit-callback-breadcrumb-name').textContent = app.name;
 
     var tokenEndpoint = 'https://login.microsoftonline.com/' + app.tenantId + '/oauth2/v2.0/token';
     var scope = app.scopeId + '/.default';
@@ -813,59 +729,6 @@
     document.getElementById('edit-keys-secret').style.display = 'none';
     document.getElementById('show-secret-btn').textContent = 'Show secret';
     renderDetail(currentApp);
-  });
-
-  // --- Manage public key screen ---
-  document.getElementById('edit-public-key-link').addEventListener('click', function (e) {
-    e.preventDefault();
-    var current = currentApp.publicKeyUrl;
-    document.getElementById('public-key-url-input').value = current === 'Not set yet' ? '' : current;
-    showStep('step-edit-public-key');
-  });
-
-  document.getElementById('save-public-key-btn').addEventListener('click', function () {
-    var value = document.getElementById('public-key-url-input').value.trim();
-    currentApp.publicKeyUrl = value || 'Not set yet';
-    renderDetail(currentApp);
-    showStep('step-detail');
-  });
-
-  document.getElementById('remove-public-key-btn').addEventListener('click', function () {
-    currentApp.publicKeyUrl = 'Not set yet';
-    document.getElementById('public-key-url-input').value = '';
-    renderDetail(currentApp);
-    showStep('step-detail');
-  });
-
-  document.getElementById('upload-public-key-btn').addEventListener('click', function () {
-    var fileInput = document.getElementById('public-key-file-input');
-    if (fileInput.files.length > 0) {
-      currentApp.publicKeyUrl = 'Uploaded: ' + fileInput.files[0].name;
-      renderDetail(currentApp);
-      showStep('step-detail');
-    }
-  });
-
-  // --- Manage callback URL screen ---
-  document.getElementById('edit-callback-link').addEventListener('click', function (e) {
-    e.preventDefault();
-    var current = currentApp.callbackUrl;
-    document.getElementById('callback-url-input').value = current === 'Not set yet' ? '' : current;
-    showStep('step-edit-callback');
-  });
-
-  document.getElementById('save-callback-btn').addEventListener('click', function () {
-    var value = document.getElementById('callback-url-input').value.trim();
-    currentApp.callbackUrl = value || 'Not set yet';
-    renderDetail(currentApp);
-    showStep('step-detail');
-  });
-
-  document.getElementById('remove-callback-btn').addEventListener('click', function () {
-    currentApp.callbackUrl = 'Not set yet';
-    document.getElementById('callback-url-input').value = '';
-    renderDetail(currentApp);
-    showStep('step-detail');
   });
 
   // --- Get a token: language tabs ---

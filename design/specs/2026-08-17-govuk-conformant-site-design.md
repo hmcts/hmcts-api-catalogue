@@ -31,7 +31,7 @@ Agreed with the product owner on 17 August 2026:
 | AMp catalogue | Stays outside this site. Signpost only; final URL swapped in later. |
 | Content forms | Honest prototypes — full GDS patterns, confirmation pages that state plainly nothing was submitted. |
 | Legal pages | Drafted here to the GOV.UK templates, every fact needing sign-off flagged inline. |
-| Authentication | Existing Render backend retained and restyled. Migration is a separate decision — see [ADR 0003](../adr/0003-authentication-and-identity.md). |
+| Authentication | **No backend.** The `onrender.com` dependency is removed and the sign-in, registration and account flows are faked client-side until a sanctioned identity solution exists — see [ADR 0003](../adr/0003-authentication-and-identity.md). |
 | De-risking | A vertical slice of five pages, reviewed at an explicit approval gate, before the remaining ~43 routes. A mockup layer was considered and rejected — see [§9](#why-this-order). |
 
 ### Why these documents live in `design/`, not `docs/`
@@ -53,7 +53,7 @@ prototype-kit/                  GOV.UK Prototype Kit application (npm)
       sass/application.scss     imports govuk-frontend; near-zero bespoke CSS
       javascripts/
         journey-store.js        sessionStorage answer store for exported journeys
-        auth.js                 the existing Render auth calls, restyled
+        prototype-session.js    the entire faked sign-in/account state — one module, one seam
     routes.js
   package.json                  govuk-frontend, govuk-prototype-kit
 scripts/
@@ -146,7 +146,8 @@ Estimated total: ~30 content pages and ~18 journey steps, ≈48 routes.
 | bespoke footer | `govuk-footer` with OGL logo and correct Crown copyright |
 | generic `.error-summary` | `govuk-error-summary` with links into fields, `role="alert"`, focus on reveal |
 | `<span class="hint">` | `govuk-hint` wired via `aria-describedby` |
-| password inputs | `govuk-password-input` with `autocomplete="new-password"` / `current-password` |
+| password inputs | `govuk-password-input` with `autocomplete="new-password"` / `current-password` — correct patterns even though the plumbing is faked, so they are already right when a real provider arrives |
+| `fetch(...onrender.com/api/me)` on every page | removed entirely; header state comes from `prototype-session.js` |
 | bespoke `.confirmation .banner` | `govuk-panel--confirmation` |
 | `.phase-tag` (defined, never used) | `govuk-phase-banner`, BETA, on every page, with a feedback link |
 | 278 inline `style` attributes | removed — GOV.UK spacing, typography and colour utilities only |
@@ -181,11 +182,12 @@ confirm the relevant gate fails. A gate that has never failed has not been shown
 
 ## 8. Out of scope
 
-- Migrating authentication off `onrender.com`, or adopting GOV.UK One Login — see [ADR 0003](../adr/0003-authentication-and-identity.md)
+- **Choosing** the eventual identity provider — GOV.UK One Login, Microsoft Entra ID or otherwise. Removing the `onrender.com` dependency is in scope; picking its replacement is not, and gets its own ADR when it has an owner. See [ADR 0003](../adr/0003-authentication-and-identity.md).
+- Establishing what the Render instance already received and stored, and whether it must be purged and shut down — needs an owner, not a designer
 - The AMp catalogue itself (`hmcts.github.io/amp-catalog`)
 - `docs/v0/`, the root `index.html`, and `prototype/`
 - Acquiring the `service.gov.uk` domain, and the GDS service assessment that GOV.UK branding brings into scope
-- Writing the DPIA that [L-2](../audit/2026-08-17-govuk-conformance-audit.md#l-2--critical--no-privacy-notice-and-personal-data-is-being-collected) implies
+- A DPIA. Once nothing is transmitted, the rebuilt site does not process personal data, so the obligation that [L-2](../audit/2026-08-17-govuk-conformance-audit.md#l-2--critical--no-privacy-notice-and-personal-data-is-being-collected) identified falls away for it. Whether one is needed for what the live site has *already* sent is a separate question with a separate owner.
 
 ## 9. Sequencing
 
@@ -224,7 +226,7 @@ What the gate is asking about:
 
 4. Content pages, section by section
 5. Remaining forms and journeys, with the full GDS error pattern
-6. The account area, including gating `my-applications`
+6. The account area — faked session, prototype data, and a prototype gate on `my-applications` that is labelled in the code as protecting nothing
 7. Favicon, redirects from the current URLs
 8. Full gate run, then promote `docs/v2/` to the root
 

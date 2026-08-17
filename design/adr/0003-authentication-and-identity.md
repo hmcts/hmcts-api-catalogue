@@ -1,95 +1,96 @@
-# ADR 0003 — Authentication and identity
+# ADR 0003 — No authentication backend: fake the flow statically
 
 | | |
 |---|---|
-| **Status** | Proposed — decision deferred, deliberately |
+| **Status** | Accepted |
 | **Date** | 17 August 2026 |
-| **Deciders** | To be determined — this needs a security and information-assurance owner, not a design decision |
+| **Deciders** | Product owner, HMCTS API Marketplace |
+| **Revises** | An earlier draft of this ADR proposed deferring an identity-provider choice. That framing was wrong — see [Context](#context). |
 
 ## Context
 
-`register.html:151` and `sign-in.html:128` both set:
+The live site calls a third-party auth API. `register.html:151` and `sign-in.html:128` both set:
 
 ```js
 const API_BASE = "https://hmcts-api-marketplace-auth.onrender.com";
 ```
 
-Endpoints in use: `/api/register`, `/api/login`, `/api/me`, `/api/logout`, `/api/requests`.
-`assets/scripts.js:130` calls `/api/me` with `credentials: 'include'` on **every** page load, and the
-code comments note the Render free tier's cold starts.
+`assets/scripts.js:130` calls `/api/me` with `credentials: 'include'` on **every** page load. Endpoints
+in use: `/api/register`, `/api/login`, `/api/me`, `/api/logout`, `/api/requests`. First name, last
+name, work email, organisation, role and password are transmitted to that host from
+`register.html`.
 
-So today: first name, last name, work email, organisation, role and a password are transmitted to a
-third-party consumer PaaS on a non-HMCTS domain, and the site publishes no privacy notice
-([audit L-2](../audit/2026-08-17-govuk-conformance-audit.md#l-2--critical--no-privacy-notice-and-personal-data-is-being-collected))
-and no cookies page
-([L-3](../audit/2026-08-17-govuk-conformance-audit.md#l-3--high--no-cookies-page)). Recorded in the
-audit as [S-1](../audit/2026-08-17-govuk-conformance-audit.md#s-1--critical--credentials-are-posted-to-a-third-party-consumer-paas).
+The product owner has confirmed that **`onrender.com` should not have been used**. It was not a
+sanctioned architecture decision, and there is no assurance position behind it.
 
-This engages the Technology Code of Practice on making things secure and on making privacy integral,
-and HMCTS's Secure by Design expectations.
-
-> **Source honesty.** Secure by Design principle titles are not enumerated here. The official page
-> blocks automated retrieval and the commonly circulated titles come from secondary summaries.
-> Confirm them against the live source before citing them in a governance paper. Likewise, which
-> Technology Code of Practice points are mandatory rather than advisory is a matter for GDS
-> Assurance; GOV.UK does not enumerate it.
-
-## Options considered
-
-**A. Status quo.** Keep the Render backend. Zero migration effort. Leaves credentials and personal
-data on a non-HMCTS consumer platform with no assurance position.
-
-**B. GOV.UK One Login.** The reuse-first answer under Service Standard 13, *use and contribute to
-open standards, common components and patterns*. Removes password handling from the service
-altogether. Requires onboarding with the One Login team and a suitable relying-party integration —
-and One Login is aimed at members of the public, so its fit for a developer/vendor audience needs
-checking, not assuming.
-
-**C. HMCTS-managed IDP — Microsoft Entra ID.** The `entra-jwt-auth.html` link in
-`my-applications.html` (broken, target missing —
-[H-3](../audit/2026-08-17-govuk-conformance-audit.md#h-3--low--one-broken-link-one-orphan-page))
-suggests this was already the intended direction. Fits an audience of HMCTS staff and known partner
-organisations, and keeps identity inside the estate.
-
-**D. Rehost the same backend inside the HMCTS estate.** Least conceptual change; addresses the
-hosting and data-residency objection without addressing the fact that the service is handling
-passwords itself.
+That changes what this ADR is for. An earlier draft treated the Render backend as an existing
+architecture to be assessed, and deferred the choice of a replacement identity provider. That was the
+wrong question. An unsanctioned dependency carrying credentials is not a design to weigh options
+against — it is something to remove.
 
 ## Decision
 
-**Deferred.** No decision is taken in this ADR, and none is taken by the site rebuild.
+**The site has no authentication backend. The Render dependency is removed, and the sign-in,
+registration and account flows are faked entirely client-side until a sanctioned identity solution
+exists.**
 
-The rebuild retains the existing Render endpoints unchanged and restyles the sign-in and registration
-pages to GOV.UK patterns — adding the `govuk-password-input` component, correct `autocomplete` values
-([A-3](../audit/2026-08-17-govuk-conformance-audit.md#a-3--high--no-autocomplete-on-identity-fields--wcag-135)),
-the GDS error summary pattern, and a gate on `my-applications`
+Concretely:
+
+1. Every call to `hmcts-api-marketplace-auth.onrender.com` is removed. No replacement endpoint is
+   introduced.
+2. **No credential and no personal data leaves the browser.** Nothing is transmitted, and nothing is
+   stored server-side, because there is no server.
+3. The flows are faked, and say so:
+   - **Sign in** accepts any well-formed input and sets a prototype session flag in `sessionStorage`.
+   - **Register** runs the full GDS journey and ends on a confirmation panel stating plainly that
+     nothing was submitted or stored.
+   - **The account area** renders clearly labelled prototype data.
+4. The *patterns* stay correct even though the plumbing is fake: `govuk-password-input`,
+   `autocomplete="current-password"` / `"new-password"`, the GDS error summary with links into
+   fields. When a real identity provider arrives, the markup is already right and only the plumbing
+   changes.
+5. All faking lives in **one module** — `app/assets/javascripts/prototype-session.js`. Swapping in a
+   real provider is a contained change, not a rewrite.
+
+Choosing the eventual identity provider — GOV.UK One Login, Microsoft Entra ID, or something else —
+is explicitly **not** decided here and gets its own ADR when there is an owner for it. The broken
+`entra-jwt-auth.html` link in `my-applications.html` suggests Entra was once the intended direction;
+that is a lead, not a decision.
+
+## Consequences
+
+**The data-protection position simplifies substantially.** Once nothing is transmitted, HMCTS is not
+processing personal data through this site, so the UK GDPR obligations that
+[audit L-2](../audit/2026-08-17-govuk-conformance-audit.md#l-2--critical--no-privacy-notice-and-personal-data-is-being-collected)
+identified fall away for the rebuilt site. The privacy notice still gets published, and says exactly
+that: this is a prototype, what you type stays in your browser, nothing is sent or retained.
+
+**The cookie position simplifies too.** No auth session cookie means no consent question at all. The
+`sessionStorage` prototype state is still disclosed on the cookies page — PECR reg. 6 covers cookies
+*and similar technologies* — but as strictly necessary prototype state, it needs disclosure rather
+than consent.
+
+**The `my-applications` gate is a prototype gate, not a security control.** It stops the page looking
+broken to an anonymous visitor
 ([C-6](../audit/2026-08-17-govuk-conformance-audit.md#c-6--medium--the-account-area-is-not-gated)).
+It protects nothing, because there is nothing behind it to protect. It must be described that way in
+the code, so nobody later mistakes it for access control.
 
-## Rationale for deferring
+**Demo discipline.** Anyone showing the prototype must not present it as having real accounts. The
+beta phase banner and the confirmation-page wording carry that message in the product itself rather
+than relying on the presenter.
 
-Choosing an identity provider is a security, data-protection and operating-model decision with an
-owner, a threat model and an assurance route. Settling it as a side effect of a visual redesign would
-be exactly the "decisions in someone's head" failure mode that ADRs exist to prevent.
-
-Making it visible and unresolved is the useful outcome here. The alternative — quietly restyling the
-sign-in page and moving on — would leave a Critical finding looking as though it had been addressed.
+**Honest capability loss.** Sign-in stops meaning anything. Sessions do not persist across browsers
+or devices, and there are no real users. That is the correct state for a prototype and is preferable
+to a working login built on an unassured dependency.
 
 ## What must not wait
 
-Regardless of which option is eventually chosen, and independent of the rebuild:
+Removing the Render calls from the **currently live** site is independent of the rebuild and should
+not wait for it. Until that change ships, `https://hmcts.github.io/hmcts-api-marketplace/register.html`
+transmits names, work emails, organisations and passwords to an unsanctioned third-party host, and the
+site publishes no privacy notice. It is a small, surgical change to four files in `docs/`.
 
-1. **Publish a privacy notice** covering the registration data as it is processed *today*. Required by
-   UK GDPR Arts. 13–14. A DPIA is likely required.
-2. **Publish a cookies page** describing the session cookie. Required by PECR reg. 6. A consent
-   banner is not required for a strictly necessary auth cookie, but disclosure is.
-3. **Confirm what the Render instance stores, where, and who can reach it** — including how passwords
-   are hashed and whether any data must be deleted.
-
-Items 1 and 2 are in scope for the rebuild's sequencing step 2. Item 3 is not, and needs an owner.
-
-## Next step
-
-Assign an owner and take this ADR to the HMCTS Technical Design Authority or Technical Architecture
-Board as an options paper. *(TAB and TDA are internal HMCTS DTS forums, cited as internal rather than
-public fact.)* The right artefact is an options paper, not a design — the point is to get a decision
-recorded, with the assurance route named.
+Separately, and needing an owner: establish what the Render instance already received and stored, how
+any passwords were hashed, who could reach it, and whether data must be deleted and the instance shut
+down. Removing the client calls stops new data flowing; it does nothing about data already sent.

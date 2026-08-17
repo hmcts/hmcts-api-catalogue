@@ -9,8 +9,11 @@ platform for HMCTS APIs. It is a presentation/demo artefact, not a production se
 is `hmcts/hmcts-api-marketplace` and the public site is served from GitHub Pages at
 `https://hmcts.github.io/hmcts-api-marketplace/`.
 
-It is not entirely backend-free: sign-in, registration and account pages call a real auth API at
-`https://hmcts-api-marketplace-auth.onrender.com`. Everything else runs in the browser.
+The live site is not currently backend-free: sign-in, registration and account pages call an auth API
+at `https://hmcts-api-marketplace-auth.onrender.com`. **That dependency was never sanctioned and is
+being removed.** Do not extend it, do not add endpoints to it, and do not build anything new against
+it. Authentication is to be faked client-side until a sanctioned identity solution exists — see
+[`design/adr/0003-authentication-and-identity.md`](design/adr/0003-authentication-and-identity.md).
 
 ## Two lines of work — know which one you're in
 
@@ -42,7 +45,8 @@ catalogue feed.
 Plain multi-page static HTML. `docs/assets/styles.css` (37 KB) is a bespoke design system; there is no
 GOV.UK Frontend. `docs/assets/scripts.js` provides the mobile nav toggle, catalogue filtering, tab
 switching, mock form submission (`data-mock-submit` — forms show a confirmation and send nothing), and
-a site-wide `/api/me` check that swaps the header "Sign in" link for the signed-in user's name.
+a site-wide `/api/me` check that swaps the header "Sign in" link for the signed-in user's name. That
+last one is the unsanctioned dependency described above and is on its way out.
 
 Header, navigation and both footer columns are **copy-pasted into all 28 pages**. A change to any of
 them is a 28-file edit.
@@ -82,5 +86,8 @@ anything in it is served publicly.
   two are legally required. See `design/audit/`.
 - The brand blue `#0096d6` used for every link and primary button is 3.32:1 against white and fails
   WCAG AA. Do not extend its use.
+- `register.html` and `sign-in.html` transmit names, work emails, organisations and passwords to
+  `onrender.com`, an unsanctioned host, and the site publishes no privacy notice. Removing those calls
+  is the highest-priority change in the repository. Any new auth work must be a client-side fake.
 - `docs/v2/`, once it exists, will be **generated output**. Never hand-edit it; edit the Prototype Kit
   source and re-run the export.

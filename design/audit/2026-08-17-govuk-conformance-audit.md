@@ -269,9 +269,22 @@ non-HMCTS domain — `scripts.js:152–154` notes the free tier's cold starts �
 anywhere on the site ([L-2](#l-2--critical--no-privacy-notice-and-personal-data-is-being-collected)).
 
 This engages the Technology Code of Practice on security and on privacy, and HMCTS's Secure by
-Design expectations. GOV.UK One Login is the reuse-first alternative for the authentication itself
-(Service Standard 13). This needs a decision of its own and should not be settled inside a visual
-redesign — recorded as `design/adr/0003-authentication-and-identity.md`.
+Design expectations.
+
+> **Update, 17 August 2026.** The product owner has confirmed that `onrender.com` **should not have
+> been used** — it was not a sanctioned architecture decision and has no assurance position behind
+> it. That does not change the finding, which records what the live site does today. It raises its
+> priority and changes the remediation: this is no longer a question of which identity provider to
+> adopt, but of removing the dependency outright and faking the flows client-side until a sanctioned
+> identity solution exists. See [ADR 0003](../adr/0003-authentication-and-identity.md).
+>
+> Two consequences worth keeping separate:
+>
+> - **Removing the client calls stops new data flowing.** A small change to four files in `docs/`,
+>   which should not wait for the rebuild.
+> - **It does nothing about data already sent.** Establishing what the Render instance received and
+>   stored, how passwords were hashed, who could reach it, and whether it must be purged and shut
+>   down needs an owner. That is not a design task.
 
 > Secure by Design principle titles are deliberately not enumerated here: the official page blocks
 > automated retrieval and the commonly circulated titles come from secondary summaries. Confirm

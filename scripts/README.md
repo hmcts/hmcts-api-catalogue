@@ -34,6 +34,7 @@ missing pages surface as a warning before the link gate turns them into an error
 | `check-links.mjs` | zero broken internal links |
 | `html-validate` | markup validity |
 | `check-a11y.mjs` | axe, WCAG 2.1 AA, on **every** exported page |
+| `check-reflow.mjs` | WCAG 1.4.10 Reflow - every page must fit a 320px viewport without sideways scrolling |
 
 Each maps to findings in `design/audit/2026-08-17-govuk-conformance-audit.md`, so
 the audit's defects become regressions that cannot recur silently.
@@ -87,6 +88,23 @@ link, one `<h1>`, `noindex`, and honest wording instead.
 They are not axe-tested: a zero-second `meta refresh` navigates before axe can
 run. WCAG technique H76 treats an immediate refresh as the accepted approach
 where server redirects are unavailable, which is the case on GitHub Pages.
+
+## Why there is a separate reflow gate
+
+axe inspects the accessibility tree. Reflow is a layout property that only appears
+when the window is actually narrow, so axe cannot see it and the accessibility
+gate does not cover it. `check-reflow.mjs` drives a real Chrome at 320px and fails
+if the document scrolls horizontally, naming the element that sticks out.
+
+It found two genuine defects on its first two runs: the data governance
+classification table (486px of content in a 288px column) and a long email
+address with no break opportunities. Both were invisible to every other gate and
+to desktop-width eyeballing.
+
+Wide content is fixed by wrapping it in `.app-table-wrapper` - a `<section>` with
+`overflow-x: auto`, an `aria-label` and `tabindex="0"`, so it scrolls instead of
+the page and keyboard users can reach it. The gate deliberately ignores anything
+inside such a container, because that is the correct fix rather than a defect.
 
 ## Gate the gates
 

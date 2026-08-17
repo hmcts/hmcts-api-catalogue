@@ -17,6 +17,16 @@ const problems = []
 const { redirects } = JSON.parse(await readFile('scripts/redirects.json', 'utf8'))
 const stubs = new Map(redirects.map((r) => [r.from, r]))
 
+const VAGUE_LINK_TEXT = new Set([
+  'read more', 'more', 'here', 'click here', 'link', 'this page', 'read',
+  'more information', 'find out more', 'read this', 'see more', 'learn more'
+])
+
+// Same words, different destination. Confusing for everyone, and specifically a
+// problem for anyone navigating by a list of links. Collected across all pages
+// and checked once at the end.
+const linkTextTargets = new Map()
+
 // Pages with no position in the hierarchy, so no breadcrumb is expected.
 const NO_BREADCRUMB = new Set(['index.html', '404.html'])
 
@@ -93,10 +103,41 @@ for (const file of files.sort()) {
     if (!insideForm) fail('a govuk-button renders as <button> outside a <form> - its href is probably undefined')
   }
 
+  // Heading hierarchy must not skip a level. Screen reader users navigate by
+  // heading, and a jump from h2 to h4 reads as a missing section.
+  const mainMatch = html.match(/<main[\s\S]*?<\/main>/)
+  const mainHtml = mainMatch ? mainMatch[0] : html
+  let previousLevel = null
+  for (const heading of mainHtml.matchAll(/<h([1-6])[\s>]/g)) {
+    const level = Number(heading[1])
+    if (previousLevel !== null && level > previousLevel + 1) {
+      fail(`heading hierarchy skips h${previousLevel} to h${level}`)
+    }
+    previousLevel = level
+  }
+
+  // Link text must make sense out of context - WCAG 2.4.4. "Read more" and
+  // "here" were all over the old site's cards.
+  for (const link of mainHtml.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)) {
+    const text = link[2].replace(/<[^>]+>/g, '').replace(/&[a-z]+;/g, ' ').trim().toLowerCase().replace(/\s+/g, ' ')
+    if (VAGUE_LINK_TEXT.has(text)) fail(`link text "${text}" is meaningless out of context`)
+    if (text.length > 3) {
+      const target = link[1].replace(/^(\.\.\/)+/, '')
+      if (!linkTextTargets.has(text)) linkTextTargets.set(text, new Set())
+      linkTextTargets.get(text).add(target)
+    }
+  }
+
   // In-page anchors must resolve to a real id
   const ids = new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]))
   for (const m of html.matchAll(/href="#([^"]+)"/g)) {
     if (!ids.has(m[1])) fail(`dangling in-page anchor #${m[1]}`)
+  }
+}
+
+for (const [text, targets] of linkTextTargets) {
+  if (targets.size > 1) {
+    problems.push(`link text "${text}" is used for ${targets.size} different destinations: ${[...targets].join(', ')}`)
   }
 }
 

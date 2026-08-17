@@ -47,3 +47,34 @@ dl.govuk-body {
     margin-bottom: govuk-spacing(4);
   }
 }
+
+// Wide tables
+//
+// The Design System has no scrollable-table pattern, and a table wide enough to
+// need one overflows its column on a narrow screen - which forces the whole page
+// to scroll sideways and fails WCAG 1.4.10 Reflow. The data governance
+// classification table is 486px of content in a 288px column at 320px wide.
+//
+// The wrapper scrolls horizontally instead of the page. It carries tabindex="0"
+// and a role/label in the markup so keyboard users can reach and scroll it, and
+// screen reader users are told what they have landed in.
+.app-table-wrapper {
+  overflow-x: auto;
+
+  // Only show the scroll affordance when there is something to scroll.
+  &:focus-visible {
+    outline: 3px solid $govuk-focus-colour;
+    outline-offset: 0;
+  }
+}
+
+// Long unbreakable strings
+//
+// Email addresses and raw URLs have no break opportunities, so on a narrow
+// screen they push the whole page sideways - which fails WCAG 1.4.10 Reflow.
+// The reflow gate caught Nagashankar.Ponnaganti@HMCTS.NET doing exactly that at
+// 320px. Letting a long link wrap is always preferable to a page that scrolls
+// horizontally.
+.govuk-link {
+  overflow-wrap: break-word;
+}

@@ -103,6 +103,7 @@
       iconFallbackText: "Warning"
     }) }}
 
+    <section class="app-table-wrapper" aria-label="API eligibility by type" tabindex="0">
     {{ govukTable({
       caption: "API eligibility by type",
       captionClasses: "govuk-table__caption--m",
@@ -130,6 +131,7 @@
         ]
       ]
     }) }}
+    </section>
 
     <p class="govuk-body">
       Your API repository must also be <strong>public on GitHub</strong>. The documentation site is
@@ -223,6 +225,7 @@
 
     <h3 class="govuk-heading-m">Data classification</h3>
 
+    <section class="app-table-wrapper" aria-label="Eligibility by data classification" tabindex="0">
     {{ govukTable({
       caption: "Eligibility by data classification",
       captionClasses: "govuk-table__caption--m",
@@ -246,6 +249,7 @@
         ]
       ]
     }) }}
+    </section>
 
     {{ govukInsetText({
       text: "Full detail on the legal framework, data minimisation, audit, breaches and

@@ -127,6 +127,7 @@
 
     <h2 class="govuk-heading-l" id="error-handling">4. Error handling and resilience</h2>
 
+    <section class="app-table-wrapper" aria-label="How to handle each response status" tabindex="0">
     {{ govukTable({
       caption: "How to handle each response status",
       captionClasses: "govuk-table__caption--m",
@@ -145,6 +146,7 @@
         [{ text: "5xx" }, { text: "Server error" }, { text: "Implement exponential backoff. Use circuit breakers in your service." }]
       ]
     }) }}
+    </section>
 
     {{ govukWarningText({
       text: "Do not treat the API as guaranteed to be available. Implement circuit breakers and

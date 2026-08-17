@@ -27,7 +27,8 @@ const gates = {
   structure: () => spawnSync('node', ['scripts/check-structure.mjs'], { env: env(), encoding: 'utf8' }),
   links: () => spawnSync('node', ['scripts/check-links.mjs'], { env: env(), encoding: 'utf8' }),
   a11y: () => spawnSync('node', ['scripts/check-a11y.mjs'], { env: env(), encoding: 'utf8' }),
-  html: () => spawnSync('npx', ['html-validate', `${COPY}/**/*.html`], { encoding: 'utf8' })
+  html: () => spawnSync('npx', ['html-validate', `${COPY}/**/*.html`], { encoding: 'utf8' }),
+  reflow: () => spawnSync('node', ['scripts/check-reflow.mjs'], { env: { ...env(), REFLOW_PORT: '8154' }, encoding: 'utf8' })
 }
 
 function env () {
@@ -102,9 +103,34 @@ const mutations = [
     html: (h) => h.replace('</main>', '<div class="govuk-body"></main>')
   },
   {
+    // The defect this gate was written for: wide content with no scroll
+    // container pushes the whole page sideways at 320px.
+    gate: 'reflow',
+    what: 'wide content that pushes the page sideways at 320px',
+    target: 'publish/data-governance/index.html',
+    // Strip only the class, so the markup stays valid and the single thing
+    // being removed is the overflow container.
+    html: (h) => h.replace('<section class="app-table-wrapper"', '<section')
+  },
+  {
     gate: 'a11y',
     what: 'an image with no alt text',
     html: (h) => h.replace('</main>', '<img src="../plugin-assets/govuk-frontend/dist/govuk/assets/images/govuk-crest.svg"></main>')
+  },
+  {
+    gate: 'structure',
+    what: 'a heading hierarchy that skips a level',
+    html: (h) => h.replace('</main>', '<h4>Skipped from h2 to h4</h4></main>')
+  },
+  {
+    gate: 'structure',
+    what: 'link text that is meaningless out of context',
+    html: (h) => h.replace('</main>', '<a href="../help/">Read more</a></main>')
+  },
+  {
+    gate: 'structure',
+    what: 'the same link text used for two different destinations',
+    html: (h) => h.replace('</main>', '<a href="../help/">API producer standards</a></main>')
   },
   {
     gate: 'structure',

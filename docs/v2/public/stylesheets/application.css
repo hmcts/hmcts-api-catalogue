@@ -7498,3 +7498,15 @@ dl.govuk-body dd {
   margin-left: 0;
   margin-bottom: 20px;
 }
+
+.app-table-wrapper {
+  overflow-x: auto;
+}
+.app-table-wrapper:focus-visible {
+  outline: 3px solid var(--govuk-focus-colour, #ffdd00);
+  outline-offset: 0;
+}
+
+.govuk-link {
+  overflow-wrap: break-word;
+}

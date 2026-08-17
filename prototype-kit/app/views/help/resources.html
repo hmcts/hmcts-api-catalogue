@@ -1,0 +1,81 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "A to Z of developer resources" %}
+{% set section = "help" %}
+{% set breadcrumbs = [
+  { text: "Home", href: "/" },
+  { text: "Help and support", href: "/help" }
+] %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">A to Z of developer resources</h1>
+
+    <p class="govuk-body-l">
+      Every page on the HMCTS API Marketplace, in one place.
+    </p>
+
+    <h2 class="govuk-heading-l" id="getting-started">Getting started</h2>
+
+    <ul class="govuk-list">
+      <li><a class="govuk-link" href="/get-started">Getting started with our APIs</a></li>
+      <li><a class="govuk-link" href="/get-started/onboarding-guide">Onboarding guide</a></li>
+      <li><a class="govuk-link" href="/get-started/technology-introduction">Introduction to justice sector technology</a></li>
+    </ul>
+
+    <h2 class="govuk-heading-l" id="apis">APIs and integration</h2>
+
+    <ul class="govuk-list">
+      <li><a class="govuk-link" href="/api-catalogue">API and integration catalogue</a></li>
+      <li><a class="govuk-link" href="/publish">Publish an API</a></li>
+      <li><a class="govuk-link" href="/publish/producer-standards">Producer standards</a></li>
+      <li><a class="govuk-link" href="/publish/submit">Submit an API for publication</a></li>
+    </ul>
+
+    <h2 class="govuk-heading-l" id="guidance">Guidance and policy</h2>
+
+    <ul class="govuk-list">
+      <li><a class="govuk-link" href="/get-started/consumer-guidance">Consumer guidance</a></li>
+      <li><a class="govuk-link" href="/publish/data-governance">Data governance standards</a></li>
+      <li><a class="govuk-link" href="/get-started/building-software">Building justice sector software</a></li>
+    </ul>
+
+    <h2 class="govuk-heading-l" id="architecture">Architecture</h2>
+
+    <ul class="govuk-list">
+      <li><a class="govuk-link" href="/documentation/architecture">HMCTS architecture</a></li>
+      <li><a class="govuk-link" href="/documentation/architecture-principles">HMCTS architecture principles</a></li>
+      <li><a class="govuk-link" href="/documentation/our-capabilities">Our capabilities</a></li>
+    </ul>
+
+    <h2 class="govuk-heading-l" id="reference">Reference</h2>
+
+    <ul class="govuk-list">
+      <li><a class="govuk-link" href="/documentation">Documentation, guides and tutorials</a></li>
+      <li><a class="govuk-link" href="/get-started/glossary">Glossary of developer terms</a></li>
+      <li><a class="govuk-link" href="/documentation/case-studies">API platform case studies</a></li>
+      <li><a class="govuk-link" href="/documentation/our-api-technologies">Our API technologies</a></li>
+    </ul>
+
+    <h2 class="govuk-heading-l" id="get-involved">Get involved</h2>
+
+    <ul class="govuk-list">
+      <li><a class="govuk-link" href="/help/community">Developer community</a></li>
+      <li><a class="govuk-link" href="/help">Help and support</a></li>
+    </ul>
+
+    <h2 class="govuk-heading-l" id="legal">Legal</h2>
+
+    <ul class="govuk-list">
+      <li><a class="govuk-link" href="/accessibility-statement">Accessibility statement</a></li>
+      <li><a class="govuk-link" href="/cookies">Cookies</a></li>
+      <li><a class="govuk-link" href="/privacy">Privacy notice</a></li>
+    </ul>
+
+  </div>
+</div>
+
+{% endblock %}

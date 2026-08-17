@@ -1,0 +1,82 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Cookies" %}
+{% set breadcrumbs = [{ text: "Home", href: "/" }] %}
+
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">Cookies</h1>
+
+    <p class="govuk-body-l">
+      This service does not set any cookies.
+    </p>
+
+    <p class="govuk-body">
+      There is no sign-in, no analytics, no tag manager and no third-party embed, so there is nothing
+      to consent to and no cookie banner.
+    </p>
+
+    <h2 class="govuk-heading-l">What we do store in your browser</h2>
+
+    <p class="govuk-body">
+      Multi-step forms need to remember your answers between one page and the next so you can review
+      them before submitting. We keep those answers in your browser&rsquo;s session storage.
+    </p>
+
+    <section class="app-table-wrapper" aria-label="Data stored in your browser" tabindex="0">
+    {{ govukTable({
+      caption: "Data stored in your browser",
+      captionClasses: "govuk-table__caption--m",
+      firstCellIsHeader: true,
+      head: [
+        { text: "Name" },
+        { text: "Purpose" },
+        { text: "Expires" }
+      ],
+      rows: [
+        [
+          { text: "journey:*" },
+          { text: "Your answers to a multi-step form, so the check-answers page can show them back to you" },
+          { text: "When you close the browser tab" }
+        ]
+      ]
+    }) }}
+    </section>
+
+    <p class="govuk-body">
+      This data stays in your browser. It is never sent to us, never stored on a server, and is
+      discarded as soon as you close the tab. Because it is strictly necessary for a form you have
+      asked to use, the law requires us to tell you about it but not to ask your permission.
+    </p>
+
+    <h2 class="govuk-heading-l">Turning it off</h2>
+
+    <p class="govuk-body">
+      You can clear session storage or block it in your browser settings. Forms will still work, but
+      each step will forget what you typed on the previous one, and the check-answers page will show
+      your answers as &ldquo;Not provided&rdquo;.
+    </p>
+
+    {{ govukInsetText({
+      html: '<strong>NEEDS SIGN-OFF &mdash; whoever adds analytics next.</strong> This page is only
+             accurate while the service sets no cookies. Adding analytics, a tag manager, embedded
+             video, or any third-party script means non-essential storage, which requires a cookie
+             banner and consent before it loads. Update this page and add the banner in the same
+             change &mdash; not afterwards.'
+    }) }}
+
+    <p class="govuk-body">
+      Read our <a class="govuk-link" href="/privacy">privacy notice</a> for what happens to
+      information you type into this service.
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

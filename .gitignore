@@ -211,3 +211,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Node.js / GOV.UK Prototype Kit
+node_modules/
+prototype-kit/.tmp/
+prototype-kit/public/
+npm-debug.log*
+.gate-verify/

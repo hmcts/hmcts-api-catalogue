@@ -1,0 +1,80 @@
+//
+// For guidance on how to add CSS and SCSS see:
+// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
+//
+// Keep this file as close to empty as possible. Everything else in this service
+// comes from GOV.UK Frontend, deliberately - the audit that prompted the rebuild
+// found 278 inline styles and a 37 KB bespoke stylesheet, and the point of
+// adopting the Design System is not to grow a second one alongside it.
+//
+
+// Inline code
+//
+// The Design System has no code component, so <code> falls back to the browser's
+// default monospace at the inherited 19px. That reads noticeably larger than the
+// GDS Transport around it, because monospace faces carry a bigger x-height at the
+// same nominal size, and the result looks unrelated to the rest of the page.
+// Producer standards has 14 of them - file paths, spec fields, workflow
+// filenames - so it is very visible there.
+//
+// This is the treatment the GOV.UK Tech Docs template uses: a monospace stack,
+// set slightly smaller so x-heights line up with the surrounding prose, on a
+// light-grey ground. Colours come from the GOV.UK palette only - and via the
+// current API, not the deprecated govuk-colour("light-grey").
+code {
+  font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", menlo, consolas, monospace;
+  font-size: 0.875em;
+  background-color: govuk-colour("black", $variant: "tint-95");
+  padding: 0 govuk-spacing(1);
+
+  // Long paths such as src/main/resources/openapi/openapi-spec.yml would
+  // otherwise overflow the column on a narrow screen.
+  overflow-wrap: break-word;
+}
+
+// Definition lists used for term-and-description content
+//
+// Several transposed pages - the glossary, our API technologies, consumer
+// guidance - are naturally definition lists, which the Design System does not
+// style. Without this the terms and descriptions run together.
+dl.govuk-body {
+  dt {
+    font-weight: 700;
+  }
+
+  dd {
+    margin-left: 0;
+    margin-bottom: govuk-spacing(4);
+  }
+}
+
+// Wide tables
+//
+// The Design System has no scrollable-table pattern, and a table wide enough to
+// need one overflows its column on a narrow screen - which forces the whole page
+// to scroll sideways and fails WCAG 1.4.10 Reflow. The data governance
+// classification table is 486px of content in a 288px column at 320px wide.
+//
+// The wrapper scrolls horizontally instead of the page. It carries tabindex="0"
+// and a role/label in the markup so keyboard users can reach and scroll it, and
+// screen reader users are told what they have landed in.
+.app-table-wrapper {
+  overflow-x: auto;
+
+  // Only show the scroll affordance when there is something to scroll.
+  &:focus-visible {
+    outline: 3px solid $govuk-focus-colour;
+    outline-offset: 0;
+  }
+}
+
+// Long unbreakable strings
+//
+// Email addresses and raw URLs have no break opportunities, so on a narrow
+// screen they push the whole page sideways - which fails WCAG 1.4.10 Reflow.
+// The reflow gate caught Nagashankar.Ponnaganti@HMCTS.NET doing exactly that at
+// 320px. Letting a long link wrap is always preferable to a page that scrolls
+// horizontally.
+.govuk-link {
+  overflow-wrap: break-word;
+}

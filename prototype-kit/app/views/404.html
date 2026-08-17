@@ -1,0 +1,39 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Page not found" %}
+
+{# No breadcrumbs: a 404 has no position in the hierarchy to describe. #}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">Page not found</h1>
+
+    <p class="govuk-body">
+      If you typed the web address, check it is correct.
+    </p>
+
+    <p class="govuk-body">
+      If you pasted the web address, check you copied the whole address.
+    </p>
+
+    <p class="govuk-body">
+      This service is in beta and its pages move around as we build it, so a link that worked before
+      may have changed.
+    </p>
+
+    <h2 class="govuk-heading-m">Where to go instead</h2>
+
+    <ul class="govuk-list">
+      <li><a class="govuk-link" href="/">Marketplace home</a></li>
+      <li><a class="govuk-link" href="/api-catalogue">API catalogue</a></li>
+      <li><a class="govuk-link" href="/publish">Publish an API</a></li>
+      <li><a class="govuk-link" href="/help">Help and support</a></li>
+    </ul>
+
+  </div>
+</div>
+
+{% endblock %}

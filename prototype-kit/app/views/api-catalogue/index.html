@@ -1,0 +1,52 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "API catalogue" %}
+{% set section = "catalogue" %}
+{% set breadcrumbs = [{ text: "Home", href: "/" }] %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">API catalogue</h1>
+
+    <p class="govuk-body-l">
+      Browse the full list of published HMCTS APIs, search by name, and read the endpoint
+      documentation for each one.
+    </p>
+
+    <p class="govuk-body">
+      The catalogue is generated directly from each API&rsquo;s OpenAPI specification, so it stays in
+      step with the API itself rather than being maintained by hand.
+    </p>
+
+    {{ govukButton({
+      text: "Browse the live catalogue",
+      href: ampCatalogueUrl,
+      isStartButton: true
+    }) }}
+
+    {{ govukInsetText({
+      text: "The catalogue is a separate service at hmcts.github.io/amp-catalog, so it looks a little
+             different from this site. Use your browser's back button to return here."
+    }) }}
+
+    <h2 class="govuk-heading-m">Can&rsquo;t find what you need?</h2>
+
+    <p class="govuk-body">
+      If the data or capability you need isn&rsquo;t listed, tell us. We record what people are
+      looking for and use it to decide which APIs to prioritise.
+    </p>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="/help">Get help and contact the marketplace team</a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

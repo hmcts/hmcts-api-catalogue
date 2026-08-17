@@ -1,0 +1,28 @@
+{
+  "name": "hmcts-api-marketplace-build",
+  "private": true,
+  "type": "module",
+  "description": "Static export and conformance gates for the GOV.UK-conformant HMCTS API Marketplace site. Pages are authored in prototype-kit/; docs/v2/ is generated output and must never be hand-edited.",
+  "scripts": {
+    "kit": "cd prototype-kit && PORT=3100 npm run dev",
+    "export": "node scripts/export-static.mjs",
+    "gate:manifest": "node scripts/check-manifest.mjs",
+    "gate:structure": "node scripts/check-structure.mjs",
+    "gate:html": "html-validate \"docs/v2/**/*.html\"",
+    "gate:links": "node scripts/check-links.mjs",
+    "gate:a11y": "node scripts/check-a11y.mjs",
+    "gates": "npm run gate:manifest && npm run gate:structure && npm run gate:html && npm run gate:links && npm run gate:a11y && npm run gate:reflow",
+    "verify-gates": "node scripts/verify-gates.mjs",
+    "gate:reflow": "node scripts/check-reflow.mjs"
+  },
+  "devDependencies": {
+    "html-validate": "^11.7.0",
+    "linkinator": "^8.0.4",
+    "pa11y": "^9.1.1",
+    "puppeteer": "^25.8.0",
+    "wait-on": "^9.1.0"
+  },
+  "engines": {
+    "node": ">=20 <25"
+  }
+}

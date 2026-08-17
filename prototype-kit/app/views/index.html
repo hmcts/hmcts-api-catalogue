@@ -1,0 +1,98 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Home" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">HMCTS API Marketplace</h1>
+    <p class="govuk-body-l">
+      Discover, request and integrate the APIs powering justice sector software.
+    </p>
+
+    {{ govukButton({
+      text: "Get started",
+      href: "/get-started",
+      isStartButton: true
+    }) }}
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    <h2 class="govuk-heading-m">
+      <a class="govuk-link" href="/get-started">Getting started with our APIs</a>
+    </h2>
+    <p class="govuk-body">
+      A step-by-step introduction to what our APIs can do and how your team can get connected.
+    </p>
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    <h2 class="govuk-heading-m">
+      <a class="govuk-link" href="/api-catalogue">API and integration catalogue</a>
+    </h2>
+    <p class="govuk-body">
+      An A to Z list of HMCTS APIs and other integrations, with plain-English descriptions of what each
+      one returns.
+    </p>
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    <h2 class="govuk-heading-m">
+      <a class="govuk-link" href="/documentation">Documentation, guides and tutorials</a>
+    </h2>
+    <p class="govuk-body">
+      Learn about APIs and the standards we use, and how to make the most of our developer resources.
+    </p>
+  </div>
+</div>
+
+<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    <h2 class="govuk-heading-m">
+      <a class="govuk-link" href="/help">Help and support building software</a>
+    </h2>
+    <p class="govuk-body">
+      Get help at any point in your project, to make sure your integration with our APIs goes smoothly.
+    </p>
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    <h2 class="govuk-heading-m">
+      <a class="govuk-link" href="/documentation/architecture">Our architecture</a>
+    </h2>
+    <p class="govuk-body">
+      Architecture is integral to the design and delivery of all products and services that we produce and
+      maintain for the justice system.
+    </p>
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    <h2 class="govuk-heading-m">
+      <a class="govuk-link" href="/get-started/onboarding-guide">Onboarding to APIs and services</a>
+    </h2>
+    <p class="govuk-body">
+      Find out how to get assured for an API or service before your software goes live.
+    </p>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h2 class="govuk-heading-m">
+      <a class="govuk-link" href="/publish">Publish an API</a>
+    </h2>
+    <p class="govuk-body">
+      If your team owns an API, list it in the marketplace so other teams can find it, understand it, and
+      request access.
+    </p>
+  </div>
+</div>
+
+{% endblock %}

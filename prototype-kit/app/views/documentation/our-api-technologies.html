@@ -1,0 +1,70 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Our API technologies" %}
+{% set section = "documentation" %}
+{% set breadcrumbs = [
+  { text: "Home", href: "/" },
+  { text: "Documentation", href: "/documentation" }
+] %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">Our API technologies</h1>
+
+    <p class="govuk-body-l">The technologies used to build and publish HMCTS APIs.</p>
+
+    <dl class="govuk-body">
+
+      <dt class="govuk-!-font-weight-bold">REST</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">
+        All HMCTS APIs on the marketplace are RESTful HTTP APIs returning JSON.
+      </dd>
+
+      <dt class="govuk-!-font-weight-bold">OpenAPI 3.x</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">
+        Every published API has a machine-readable OpenAPI specification, which powers the documentation
+        shown in the <a class="govuk-link" href="/api-catalogue">API catalogue</a>.
+      </dd>
+
+      <dt class="govuk-!-font-weight-bold">OAuth 2.0 with JWT bearer tokens</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">
+        The standard authentication method across all marketplace APIs. See the
+        <a class="govuk-link" href="/get-started/glossary">glossary</a> for more detail.
+      </dd>
+
+      <dt class="govuk-!-font-weight-bold">GitHub and GitHub Pages</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">
+        Producer teams host their OpenAPI specification and documentation in a public GitHub repository,
+        published via GitHub Pages, in line with the
+        <a class="govuk-link" href="/publish/producer-standards">producer standards</a>.
+      </dd>
+
+      <dt class="govuk-!-font-weight-bold">GOV.UK Design System</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">
+        The marketplace is built on the GOV.UK Design System, so its forms, error handling and typography
+        will be familiar from other government services.
+      </dd>
+
+      <dt class="govuk-!-font-weight-bold">Spectral linting</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">
+        Producer API specifications are linted against the standard OAS3 ruleset before being listed, to
+        keep documentation quality and consistency up.
+      </dd>
+
+    </dl>
+
+    <h2 class="govuk-heading-l" id="related">Related</h2>
+
+    <ul class="govuk-list">
+      <li><a class="govuk-link" href="/publish/producer-standards">Producer standards</a></li>
+      <li><a class="govuk-link" href="/get-started/glossary">Glossary of developer terms</a></li>
+      <li><a class="govuk-link" href="/documentation/architecture">HMCTS architecture</a></li>
+    </ul>
+
+  </div>
+</div>
+
+{% endblock %}

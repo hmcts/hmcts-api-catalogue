@@ -23,9 +23,15 @@ jobs:
       CHROME_PATH: /usr/bin/google-chrome
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
+        with:
+          # Full history so the live-site guard can diff against the base
+          # branch. The default shallow single-branch fetch leaves
+          # origin/<base_ref> undefined, which failed with
+          # "fatal: bad revision".
+          fetch-depth: 0
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version-file: '.nvmrc'
           cache: 'npm'
@@ -82,11 +88,20 @@ jobs:
       - name: Run the gates
         run: npm run gates
 
+      # The live site must stay byte-identical until docs/v2 is promoted.
       - name: Guard the live site
+        if: github.base_ref != ''
+        env:
+          BASE_REF: ${{ github.base_ref }}
         run: |
-          if ! git diff --quiet --exit-code origin/${{ github.base_ref }} -- docs --':(exclude)docs/v2'; then
+          git fetch --no-tags origin "+refs/heads/$BASE_REF:refs/remotes/origin/$BASE_REF"
+          if ! git diff --quiet --exit-code "origin/$BASE_REF" -- docs ':(exclude)docs/v2'; then
             echo "::error::This change touches docs/ outside docs/v2. The live site must stay untouched until promotion."
-            git diff --stat origin/${{ github.base_ref }} -- docs ':(exclude)docs/v2'
+            git diff --stat "origin/$BASE_REF" -- docs ':(exclude)docs/v2'
             exit 1
           fi
           echo "No changes to the live site."
+
+      - name: Stop the Kit
+        if: always()
+        run: pkill -f govuk-prototype-kit || true

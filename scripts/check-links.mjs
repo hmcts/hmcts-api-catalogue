@@ -17,6 +17,7 @@
 import { readdir, readFile } from 'node:fs/promises'
 import { join, relative, sep, posix } from 'node:path'
 import { LinkChecker } from 'linkinator'
+import { loadManifest } from './routes.mjs'
 
 const OUT = process.env.EXPORT_OUT ?? 'docs/v2'
 const LOCAL_HOSTS = new Set(['localhost', '127.0.0.1', '[::1]'])
@@ -83,42 +84,87 @@ function resolveTarget (fromPage, href) {
 // form submission, where the next step is declared in data-next - so that is a
 // real edge too, and treating it as one keeps the reachability check meaningful
 // for multi-step journeys instead of forcing them onto an exemption list.
+//
+// The language toggle is deliberately NOT an edge. It is the one link that
+// crosses locales, and counting it would let a page orphaned in English stay
+// "reachable" via its Welsh counterpart's toggle - which is exactly what a
+// mutation test caught. Reachability is checked per locale instead, from that
+// locale's own homepage, so each language has to stand up on its own.
 const EDGE_ATTRIBUTES = /\b(?:href|data-next)="([^"]+)"/g
+const ANCHOR_TAG = /<a\b[^>]*>/g
 
-const graph = new Map()
-for (const page of pages) {
-  const html = await readFile(join(OUT, page), 'utf8')
+function edgesFrom (page, html) {
   const targets = new Set()
-  for (const match of html.matchAll(EDGE_ATTRIBUTES)) {
+
+  // Anchors, skipping the cross-locale toggle.
+  for (const tag of html.matchAll(ANCHOR_TAG)) {
+    if (/rel="alternate"/.test(tag[0])) continue
+    const href = tag[0].match(/\bhref="([^"]+)"/)
+    if (!href) continue
+    const target = resolveTarget(page, href[1])
+    if (target && target !== page) targets.add(target)
+  }
+
+  // data-next lives on forms, not anchors.
+  for (const match of html.matchAll(/\bdata-next="([^"]+)"/g)) {
     const target = resolveTarget(page, match[1])
     if (target && target !== page) targets.add(target)
   }
-  graph.set(page, targets)
+
+  return targets
 }
 
-const reached = new Set(['index.html'])
-const queue = ['index.html']
-while (queue.length) {
-  for (const next of graph.get(queue.shift()) ?? []) {
-    if (!reached.has(next)) {
-      reached.add(next)
-      queue.push(next)
+const graph = new Map()
+for (const page of pages) {
+  graph.set(page, edgesFrom(page, await readFile(join(OUT, page), 'utf8')))
+}
+
+const manifest = await loadManifest()
+const locales = manifest.locales ?? ['en']
+const roots = locales.map((locale) => (locale === 'en' ? 'index.html' : `${locale}/index.html`))
+
+const orphansByLocale = []
+
+for (const [index, root] of roots.entries()) {
+  const locale = locales[index]
+  const prefix = locale === 'en' ? '' : `${locale}/`
+
+  const reached = new Set([root])
+  const queue = [root]
+  while (queue.length) {
+    for (const next of graph.get(queue.shift()) ?? []) {
+      if (!reached.has(next)) {
+        reached.add(next)
+        queue.push(next)
+      }
     }
   }
+
+  // Only judge pages belonging to this locale.
+  const localePages = pages.filter((page) => {
+    if (ALLOW_UNREACHABLE.has(page)) return false
+    const pageLocale = locales.find((l) => l !== 'en' && page.startsWith(`${l}/`)) ?? 'en'
+    return pageLocale === locale
+  })
+
+  const orphans = localePages.filter((page) => !reached.has(page))
+  if (orphans.length) orphansByLocale.push({ locale, root, orphans })
+  void prefix
 }
 
-const orphans = pages.filter((page) => !reached.has(page) && !ALLOW_UNREACHABLE.has(page))
-
-if (orphans.length) {
+if (orphansByLocale.length) {
+  const detail = orphansByLocale
+    .map(({ locale, root, orphans }) => `[${locale}] ${orphans.length} page(s) unreachable from ${root}:\n      ` + orphans.join('\n      '))
+    .join('\n  ')
   console.error(
-    `Link gate FAILED - ${orphans.length} page(s) unreachable from the homepage:\n  ` +
-    orphans.join('\n  ') +
-    '\n\nLink to them from a page that is reachable, or add them to ALLOW_UNREACHABLE if that is deliberate.'
+    'Link gate FAILED - unreachable pages:\n  ' + detail +
+    '\n\nLink to them from a page that is reachable in the same language, or add them to ' +
+    'ALLOW_UNREACHABLE if that is deliberate. The language toggle does not count as a link.'
   )
   process.exit(1)
 }
 
 console.log(
   `Link gate passed - ${checked} internal link(s) checked, ` +
-  `${pages.length} page(s) all reachable from the homepage`
+  `${pages.length} page(s) all reachable within their own language`
 )

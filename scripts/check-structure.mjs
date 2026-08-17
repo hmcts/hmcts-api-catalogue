@@ -6,6 +6,7 @@
 
 import { readdir, readFile } from 'node:fs/promises'
 import { join, relative, sep } from 'node:path'
+import { loadManifest } from './routes.mjs'
 
 const OUT = process.env.EXPORT_OUT ?? 'docs/v2'
 const problems = []
@@ -17,15 +18,34 @@ const problems = []
 const { redirects } = JSON.parse(await readFile('scripts/redirects.json', 'utf8'))
 const stubs = new Map(redirects.map((r) => [r.from, r]))
 
+// Non-default locales, so a page's language can be read from its path.
+const LOCALES = new Set((await loadManifest()).locales?.filter((l) => l !== 'en') ?? [])
+
 const VAGUE_LINK_TEXT = new Set([
   'read more', 'more', 'here', 'click here', 'link', 'this page', 'read',
   'more information', 'find out more', 'read this', 'see more', 'learn more'
 ])
 
 // Same words, different destination. Confusing for everyone, and specifically a
-// problem for anyone navigating by a list of links. Collected across all pages
-// and checked once at the end.
+// problem for anyone navigating by a list of links.
+//
+// Scoped per locale. Until Welsh is translated its link text is identical to
+// English, so a global check would flag every link in the site as "used for two
+// destinations" - /get-started and /cy/get-started - which is not a defect but
+// the whole point of having two locales. Targets have their locale prefix
+// stripped before comparison for the same reason.
 const linkTextTargets = new Map()
+
+function localeOf (relPath) {
+  const first = relPath.split('/')[0]
+  return LOCALES.has(first) ? first : 'en'
+}
+
+function stripLocale (target) {
+  const cleaned = target.replace(/^(\.\.\/)+/, '')
+  const first = cleaned.split('/')[0]
+  return LOCALES.has(first) ? cleaned.slice(first.length + 1) : cleaned
+}
 
 // Pages with no position in the hierarchy, so no breadcrumb is expected.
 const NO_BREADCRUMB = new Set(['index.html', '404.html'])
@@ -86,7 +106,9 @@ for (const file of files.sort()) {
   if (!/govuk-phase-banner/.test(html)) fail('missing beta phase banner')
 
   // C-7 - breadcrumb root was inconsistent across the current site
-  if (!NO_BREADCRUMB.has(rel) && !/govuk-breadcrumbs/.test(html)) {
+  // Compared with the locale prefix stripped, so cy/index.html is recognised as
+  // the Welsh homepage rather than a page missing its breadcrumbs.
+  if (!NO_BREADCRUMB.has(stripLocale(rel)) && !/govuk-breadcrumbs/.test(html)) {
     fail('missing breadcrumbs (add to NO_BREADCRUMB if genuinely top-level)')
   }
 
@@ -122,9 +144,9 @@ for (const file of files.sort()) {
     const text = link[2].replace(/<[^>]+>/g, '').replace(/&[a-z]+;/g, ' ').trim().toLowerCase().replace(/\s+/g, ' ')
     if (VAGUE_LINK_TEXT.has(text)) fail(`link text "${text}" is meaningless out of context`)
     if (text.length > 3) {
-      const target = link[1].replace(/^(\.\.\/)+/, '')
-      if (!linkTextTargets.has(text)) linkTextTargets.set(text, new Set())
-      linkTextTargets.get(text).add(target)
+      const scoped = `${localeOf(rel)}\u0000${text}`
+      if (!linkTextTargets.has(scoped)) linkTextTargets.set(scoped, new Set())
+      linkTextTargets.get(scoped).add(stripLocale(link[1]))
     }
   }
 
@@ -135,9 +157,10 @@ for (const file of files.sort()) {
   }
 }
 
-for (const [text, targets] of linkTextTargets) {
+for (const [scoped, targets] of linkTextTargets) {
   if (targets.size > 1) {
-    problems.push(`link text "${text}" is used for ${targets.size} different destinations: ${[...targets].join(', ')}`)
+    const [locale, text] = scoped.split('\u0000')
+    problems.push(`[${locale}] link text "${text}" is used for ${targets.size} different destinations: ${[...targets].join(', ')}`)
   }
 }
 

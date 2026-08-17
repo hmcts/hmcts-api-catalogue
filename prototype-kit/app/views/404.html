@@ -2,6 +2,15 @@
 
 {% set pageName = "Page not found" %}
 
+{#
+  No language toggle. GitHub Pages serves exactly one 404 document from the
+  publishing root, so a Welsh counterpart at /cy/404 could never be reached -
+  offering a "Cymraeg" link that leads nowhere is worse than not offering one.
+  A Welsh speaker who mistypes a /cy/ URL gets this page; that is a Pages
+  limitation, not a choice.
+#}
+{% set hideLanguageToggle = true %}
+
 {# No breadcrumbs: a 404 has no position in the hierarchy to describe. #}
 
 {% block content %}

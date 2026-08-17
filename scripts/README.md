@@ -35,6 +35,7 @@ missing pages surface as a warning before the link gate turns them into an error
 | `html-validate` | markup validity |
 | `check-a11y.mjs` | axe, WCAG 2.1 AA, on **every** exported page |
 | `check-reflow.mjs` | WCAG 1.4.10 Reflow - every page must fit a 320px viewport without sideways scrolling |
+| `check-translations.mjs` | locale key parity, plus a translation coverage report |
 
 Each maps to findings in `design/audit/2026-08-17-govuk-conformance-audit.md`, so
 the audit's defects become regressions that cannot recur silently.
@@ -44,10 +45,12 @@ the audit's defects become regressions that cannot recur silently.
 Four rules from `html-validate:recommended` are relaxed, because they fight
 GOV.UK Frontend's intended output rather than catching real defects:
 
-- **`prefer-native-element`** — narrowed with `exclude: ["button"]`, not switched
-  off. GOV.UK's start button is deliberately `<a role="button">` because it
-  navigates. The rule stays active for everything else, so `<div role="button">`
-  in our own markup would still fail.
+- **`prefer-native-element`** — narrowed with `exclude: ["button", "region"]`, not
+  switched off. Both exclusions are govuk-frontend's own markup, which we cannot
+  change: the start button is deliberately `<a role="button">` because it
+  navigates, and the notification banner applies `role="region"` on purpose to
+  make itself a landmark. Our own wide-table wrappers use a native `<section>`
+  rather than `role="region"`, and the rule still catches anything else.
 - **`void-style`** — off. The Kit emits `<link … />` while govuk-frontend macros
   omit the slash. The mixture is upstream and purely stylistic.
 - **`no-trailing-whitespace`** — off. A Nunjucks rendering artefact in generated
@@ -105,6 +108,47 @@ Wide content is fixed by wrapping it in `.app-table-wrapper` - a `<section>` wit
 `overflow-x: auto`, an `aria-label` and `tabindex="0"`, so it scrolls instead of
 the page and keyboard users can reach it. The gate deliberately ignores anything
 inside such a container, because that is the correct fix rather than a defect.
+
+## Bilingual
+
+English is at `/`, Welsh at `/cy/`. HMCTS runs courts and tribunals in England
+**and Wales**, so Welsh is a duty rather than a feature.
+
+One set of templates serves both. `scripts/routes.mjs` expands the manifest's
+routes across `locales`, so the export and all seven gates work from a single
+list and a locale cannot be published but ungated.
+
+- **Strings** live in `prototype-kit/app/locales/<locale>.json`. Templates call
+  `t("key")`. A Welsh string set to `null` falls back to English.
+- **`null` means "not yet translated"**, and is the expected state. The gate does
+  not fail on it - a gate that fails on the normal condition just gets switched
+  off. It fails on **key drift** instead, which is the thing that actually rots:
+  a string added to English that translators never see, or dead Welsh left behind
+  when English changes.
+- **Nothing here invents Welsh copy.** Machine-translated Welsh on a government
+  service is worse than none. The words must come from the HMCTS Welsh Language
+  Unit or a professional translator. Current coverage: **2/45 (4%)** — the two
+  are the language-toggle labels, which are the same in both languages.
+- **Links** are hardcoded in English in the templates and rewritten to `/cy/...`
+  by `app/routes.js`, so a new page is bilingual without its author doing
+  anything. The language toggle carries `rel="alternate"`, which is what stops
+  the rewriter turning the escape hatch back into the language it is leaving.
+- **Welsh pages carry a notification banner** saying translation is in progress.
+  Removing that banner is the signal translation is finished.
+- **The 404 has no language toggle.** GitHub Pages serves exactly one error
+  document from the publishing root, so `/cy/404` could never be reached, and a
+  "Cymraeg" link leading nowhere is worse than none.
+
+### Reachability is per locale
+
+The link gate checks that every page is reachable from its **own** language's
+homepage, and deliberately does not count the language toggle as a link. A
+mutation test caught why: with the toggle counted, a page orphaned in English
+stayed "reachable" via its Welsh counterpart's toggle, so each language has to
+stand up on its own.
+
+Welsh text runs roughly 15-20% longer than English, so the reflow gate is doing
+real work here once translation lands.
 
 ## Gate the gates
 

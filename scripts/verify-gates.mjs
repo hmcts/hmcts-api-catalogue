@@ -28,14 +28,44 @@ const gates = {
   links: () => spawnSync('node', ['scripts/check-links.mjs'], { env: env(), encoding: 'utf8' }),
   a11y: () => spawnSync('node', ['scripts/check-a11y.mjs'], { env: env(), encoding: 'utf8' }),
   html: () => spawnSync('npx', ['html-validate', `${COPY}/**/*.html`], { encoding: 'utf8' }),
-  reflow: () => spawnSync('node', ['scripts/check-reflow.mjs'], { env: { ...env(), REFLOW_PORT: '8154' }, encoding: 'utf8' })
+  reflow: () => spawnSync('node', ['scripts/check-reflow.mjs'], { env: { ...env(), REFLOW_PORT: '8154' }, encoding: 'utf8' }),
+  translations: () => spawnSync('node', ['scripts/check-translations.mjs'], { env: env(), encoding: 'utf8' })
 }
 
 function env () {
   return { ...process.env, EXPORT_OUT: COPY, A11Y_PORT: '8151' }
 }
 
+const LOCALE_CY = 'prototype-kit/app/locales/cy.json'
+const LOCALE_EN = 'prototype-kit/app/locales/en.json'
+
 const mutations = [
+  {
+    // Key drift is the thing that actually rots a bilingual site: a string added
+    // to English that translators never see.
+    gate: 'translations',
+    what: 'a Welsh key missing entirely, so translators would never see it',
+    file: LOCALE_CY,
+    edit: (json) => { delete json.nav.publish; return json }
+  },
+  {
+    gate: 'translations',
+    what: 'a Welsh key that does not exist in English',
+    file: LOCALE_CY,
+    edit: (json) => { json.nav.somethingRemoved = 'Rhywbeth'; return json }
+  },
+  {
+    gate: 'translations',
+    what: 'an empty string used instead of null to mean untranslated',
+    file: LOCALE_CY,
+    edit: (json) => { json.nav.help = ''; return json }
+  },
+  {
+    gate: 'translations',
+    what: 'an empty string in the source language',
+    file: LOCALE_EN,
+    edit: (json) => { json.nav.help = ''; return json }
+  },
   {
     gate: 'structure',
     what: 'a second <h1>',
@@ -200,6 +230,23 @@ let failures = 0
 for (const mutation of mutations) {
   await rm(COPY, { recursive: true, force: true })
   await cp(join(WORK, 'pristine'), COPY, { recursive: true })
+
+  if (mutation.edit) {
+    // Locale files live in the source tree, not the export, so they are backed
+    // up and restored rather than copied.
+    const original = await readFile(mutation.file, 'utf8')
+    await writeFile(mutation.file, JSON.stringify(mutation.edit(JSON.parse(original)), null, 2) + '\n', 'utf8')
+    const result = gates[mutation.gate]()
+    await writeFile(mutation.file, original, 'utf8')
+    const caught = result.status !== 0
+    console.log(`${caught ? 'PASS' : 'FAIL'}  gate:${mutation.gate} catches ${mutation.what}`)
+    if (!caught) {
+      failures++
+      console.log('      gate output was:')
+      console.log('      ' + (result.stdout ?? '').trim().split('\n').join('\n      '))
+    }
+    continue
+  }
 
   if (mutation.html) {
     const file = join(COPY, mutation.target ?? TARGET)

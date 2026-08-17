@@ -1,6 +1,6 @@
 {% extends "layouts/main.html" %}
 
-{% set pageName = "Home" %}
+{% set pageName = t("home.title") %}
 
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
@@ -8,13 +8,13 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl">HMCTS API Marketplace</h1>
+    <h1 class="govuk-heading-xl">{{ t("home.heading") }}</h1>
     <p class="govuk-body-l">
-      Discover, request and integrate the APIs powering justice sector software.
+      {{ t("home.lede") }}
     </p>
 
     {{ govukButton({
-      text: "Get started",
+      text: t("home.startButton"),
       href: "/get-started",
       isStartButton: true
     }) }}
@@ -24,29 +24,28 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-one-third">
     <h2 class="govuk-heading-m">
-      <a class="govuk-link" href="/get-started">Getting started with our APIs</a>
+      <a class="govuk-link" href="/get-started">{{ t("home.getStartedHeading") }}</a>
     </h2>
     <p class="govuk-body">
-      A step-by-step introduction to what our APIs can do and how your team can get connected.
+      {{ t("home.getStartedBody") }}
     </p>
   </div>
 
   <div class="govuk-grid-column-one-third">
     <h2 class="govuk-heading-m">
-      <a class="govuk-link" href="/api-catalogue">API and integration catalogue</a>
+      <a class="govuk-link" href="/api-catalogue">{{ t("home.catalogueHeading") }}</a>
     </h2>
     <p class="govuk-body">
-      An A to Z list of HMCTS APIs and other integrations, with plain-English descriptions of what each
-      one returns.
+      {{ t("home.catalogueBody") }}
     </p>
   </div>
 
   <div class="govuk-grid-column-one-third">
     <h2 class="govuk-heading-m">
-      <a class="govuk-link" href="/documentation">Documentation, guides and tutorials</a>
+      <a class="govuk-link" href="/documentation">{{ t("home.documentationHeading") }}</a>
     </h2>
     <p class="govuk-body">
-      Learn about APIs and the standards we use, and how to make the most of our developer resources.
+      {{ t("home.documentationBody") }}
     </p>
   </div>
 </div>
@@ -56,29 +55,28 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-one-third">
     <h2 class="govuk-heading-m">
-      <a class="govuk-link" href="/help">Help and support building software</a>
+      <a class="govuk-link" href="/help">{{ t("home.helpHeading") }}</a>
     </h2>
     <p class="govuk-body">
-      Get help at any point in your project, to make sure your integration with our APIs goes smoothly.
+      {{ t("home.helpBody") }}
     </p>
   </div>
 
   <div class="govuk-grid-column-one-third">
     <h2 class="govuk-heading-m">
-      <a class="govuk-link" href="/documentation/architecture">Our architecture</a>
+      <a class="govuk-link" href="/documentation/architecture">{{ t("home.architectureHeading") }}</a>
     </h2>
     <p class="govuk-body">
-      Architecture is integral to the design and delivery of all products and services that we produce and
-      maintain for the justice system.
+      {{ t("home.architectureBody") }}
     </p>
   </div>
 
   <div class="govuk-grid-column-one-third">
     <h2 class="govuk-heading-m">
-      <a class="govuk-link" href="/get-started/onboarding-guide">Onboarding to APIs and services</a>
+      <a class="govuk-link" href="/get-started/onboarding-guide">{{ t("home.onboardingHeading") }}</a>
     </h2>
     <p class="govuk-body">
-      Find out how to get assured for an API or service before your software goes live.
+      {{ t("home.onboardingBody") }}
     </p>
   </div>
 </div>
@@ -86,11 +84,10 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h2 class="govuk-heading-m">
-      <a class="govuk-link" href="/publish">Publish an API</a>
+      <a class="govuk-link" href="/publish">{{ t("home.publishHeading") }}</a>
     </h2>
     <p class="govuk-body">
-      If your team owns an API, list it in the marketplace so other teams can find it, understand it, and
-      request access.
+      {{ t("home.publishBody") }}
     </p>
   </div>
 </div>

@@ -1,0 +1,62 @@
+{
+  "service": {
+    "name": null
+  },
+  "nav": {
+    "catalogue": null,
+    "getStarted": null,
+    "documentation": null,
+    "publish": null,
+    "help": null
+  },
+  "phase": {
+    "tag": null,
+    "text": null,
+    "feedbackLink": null
+  },
+  "footer": {
+    "visuallyHiddenTitle": null,
+    "contact": null,
+    "accessibility": null,
+    "cookies": null,
+    "privacy": null,
+    "hmcts": null
+  },
+  "breadcrumb": {
+    "home": null,
+    "getStarted": null,
+    "documentation": null,
+    "publish": null,
+    "help": null,
+    "architecture": null,
+    "submit": null
+  },
+  "language": {
+    "toWelsh": "Cymraeg",
+    "toEnglish": "English",
+    "switchLabel": null,
+    "noticeTitle": null,
+    "noticeBody": null
+  },
+  "home": {
+    "title": null,
+    "heading": null,
+    "lede": null,
+    "startButton": null,
+    "catalogueHeading": null,
+    "catalogueBody": null,
+    "getStartedHeading": null,
+    "getStartedBody": null,
+    "documentationHeading": null,
+    "documentationBody": null,
+    "helpHeading": null,
+    "helpBody": null,
+    "architectureHeading": null,
+    "architectureBody": null,
+    "onboardingHeading": null,
+    "onboardingBody": null,
+    "publishHeading": null,
+    "publishBody": null
+  },
+  "_comment": "Welsh strings. null means NOT YET TRANSLATED - do not machine-translate these. They must come from the HMCTS Welsh Language Unit or a professional translator. Untranslated keys fall back to English and are reported by scripts/check-translations.mjs."
+}

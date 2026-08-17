@@ -18,13 +18,14 @@ import { readFile, access } from 'node:fs/promises'
 import { spawn } from 'node:child_process'
 import { once } from 'node:events'
 import puppeteer from 'puppeteer'
+import { loadRoutes } from './routes.mjs'
 
 const OUT = process.env.EXPORT_OUT ?? 'docs/v2'
 const PORT = Number(process.env.REFLOW_PORT ?? 8153)
 const VIEWPORT_WIDTH = 320
 const TOLERANCE = 1 // sub-pixel rounding
 
-const { routes } = JSON.parse(await readFile('scripts/routes.manifest.json', 'utf8'))
+const routes = await loadRoutes()
 
 const CHROME_CANDIDATES = [
   process.env.CHROME_PATH,

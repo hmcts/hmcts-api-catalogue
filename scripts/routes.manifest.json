@@ -1,4 +1,13 @@
 {
+  "_comment": [
+    "Routes are declared once, in English. The site is published in every locale listed below;",
+    "scripts/routes.mjs expands routes x locales so the export and all six gates work from one list.",
+    "Welsh lives under /cy. /404 is English-only: GitHub Pages serves one 404 from the publishing root."
+  ],
+  "locales": [
+    "en",
+    "cy"
+  ],
   "routes": [
     {
       "path": "/",

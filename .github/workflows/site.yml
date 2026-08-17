@@ -5,6 +5,7 @@ on:
     paths:
       - 'prototype-kit/**'
       - 'scripts/**'
+      - 'prototype-kit/app/locales/**'
       - 'docs/v2/**'
       - 'package.json'
       - 'package-lock.json'

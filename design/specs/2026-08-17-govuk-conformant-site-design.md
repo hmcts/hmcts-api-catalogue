@@ -32,6 +32,7 @@ Agreed with the product owner on 17 August 2026:
 | Content forms | Honest prototypes — full GDS patterns, confirmation pages that state plainly nothing was submitted. |
 | Legal pages | Drafted here to the GOV.UK templates, every fact needing sign-off flagged inline. |
 | Authentication | Existing Render backend retained and restyled. Migration is a separate decision — see [ADR 0003](../adr/0003-authentication-and-identity.md). |
+| De-risking | A vertical slice of five pages, reviewed at an explicit approval gate, before the remaining ~43 routes. A mockup layer was considered and rejected — see [§9](#why-this-order). |
 
 ### Why these documents live in `design/`, not `docs/`
 
@@ -188,25 +189,74 @@ confirm the relevant gate fails. A gate that has never failed has not been shown
 
 ## 9. Sequencing
 
+### Phase 1 — vertical slice (≈10% of the work)
+
 1. Scaffold the Kit, the layout, the export script and the CI gates — mutation-tested before anything depends on them
 2. Legal pages and the phase banner — the Critical findings that need no redesign to fix
-3. Homepage, the five section landing pages and the navigation
+3. Five representative pages, one of each kind the rest of the site is made from:
+   - the homepage
+   - one section landing page
+   - one long content page (`producer-standards` — the most structurally demanding)
+   - one complete journey with check-answers (`/publish/submit`)
+   - the 404
+
+### ▲ Approval gate
+
+**Phase 2 does not start until the slice is reviewed and approved.**
+
+The slice is deliberately one of each page archetype, so approving it approves the patterns that get
+repeated across the remaining ~43 routes. Rejecting it costs five pages, not fifty.
+
+It also proves the two things no mockup can: that the static export produces a working site from Kit
+source, and that the CI gates actually fail when they should.
+
+What the gate is asking about:
+
+| Question | Evidenced by |
+|---|---|
+| Is the information architecture right? | the section landing page and the navigation |
+| Do the GOV.UK patterns carry this content? | the long content page |
+| Do the journeys work without a server? | the publish journey, with JavaScript disabled |
+| Does the export pipeline hold? | `docs/v2/` rendering correctly from the manifest |
+| Do the gates work? | the mutation-test results from step 1 |
+
+### Phase 2 — breadth
+
 4. Content pages, section by section
-5. Forms and journeys, with the full GDS error pattern
+5. Remaining forms and journeys, with the full GDS error pattern
 6. The account area, including gating `my-applications`
-7. 404, favicon, redirects from the current URLs
+7. Favicon, redirects from the current URLs
 8. Full gate run, then promote `docs/v2/` to the root
+
+### Why this order
 
 Steps 1 and 2 are worth doing regardless of what happens to the rest: the legal exposure in
 [L-1](../audit/2026-08-17-govuk-conformance-audit.md#l-1--critical--no-accessibility-statement) and
 [L-2](../audit/2026-08-17-govuk-conformance-audit.md#l-2--critical--no-privacy-notice-and-personal-data-is-being-collected)
 does not wait for a redesign.
 
+Building a mockup layer ahead of the slice was considered and rejected. Adopting GOV.UK Frontend
+leaves very little visual latitude to get wrong — the components are already designed, published and
+tested by GDS — so a mockup of a GOV.UK page costs close to what the real page costs, while proving
+less. The risk concentrates in the information architecture, the journey splits and the export
+pipeline, none of which a mockup exercises. A real vertical slice tests all three.
+
+Around 30 of the pages are near-mechanical transposition: the existing content is good and needs
+GOV.UK markup around it. Design judgment concentrates in roughly eight pages — the homepage, the five
+section landings and the two check-answers patterns — all of which the slice covers by archetype.
+
 ## 10. Open questions
 
 | # | Question | Blocks |
 |---|---|---|
-| 1 | **What is "Jump"?** Described as part of the offer alongside AMp for technical users. It appears nowhere in the repository. Does it need a place in the information architecture? | §4 |
-| 2 | Where should `entra-jwt-auth.html` point? | §4, link gate |
-| 3 | Is the `service.gov.uk` domain confirmed, and what is it? | ADR 0001, redirects |
-| 4 | Who signs off the accessibility statement and the privacy notice? | §9 step 2 |
+| 1 | Where should `entra-jwt-auth.html` point? | §4, link gate |
+| 2 | Is the `service.gov.uk` domain confirmed, and what is it? | ADR 0001, redirects |
+| 3 | Who signs off the accessibility statement and the privacy notice? | §9 step 2 |
+
+### Closed
+
+**"Jump"** — the original brief described the site as "the product of AMp plus jump for technical
+users". No such product or feature exists anywhere in the repository, and the product owner did not
+recognise the term. Read as a transcription slip for the site acting as a jumping-off point into the
+wider HMCTS API estate for technical users, which is consistent with the "new front door" framing in
+the same brief. No separate place in the information architecture is required. Closed 17 August 2026.

@@ -1,0 +1,55 @@
+{
+  "_comment": [
+    "Every URL the current site publishes, and where it goes after docs/v2 is promoted to the root.",
+    "GitHub Pages cannot do server-side redirects, so the export generates a stub page at each old",
+    "path carrying rel=canonical, a meta refresh, and a visible link for anyone the refresh does not",
+    "move. Without these, all 27 existing URLs 404 the moment v2 is promoted.",
+    "",
+    "index.html is deliberately absent: the old and new homepages share the same URL.",
+    "",
+    "kind=moved      the destination is the same content in its new home",
+    "kind=superseded there is no direct equivalent yet, so this points at the nearest useful page and",
+    "                the stub says so rather than pretending the content moved"
+  ],
+  "redirects": [
+    { "from": "getting-started.html",        "to": "/get-started",                              "kind": "moved" },
+    { "from": "onboarding-guide.html",       "to": "/get-started/onboarding-guide",             "kind": "moved" },
+    { "from": "consumer-guidance.html",      "to": "/get-started/consumer-guidance",            "kind": "moved" },
+    { "from": "technology-introduction.html","to": "/get-started/technology-introduction",       "kind": "moved" },
+    { "from": "building-software.html",      "to": "/get-started/building-software",             "kind": "moved" },
+    { "from": "glossary.html",               "to": "/get-started/glossary",                      "kind": "moved" },
+
+    { "from": "documentation.html",          "to": "/documentation",                             "kind": "moved" },
+    { "from": "architecture.html",           "to": "/documentation/architecture",                "kind": "moved" },
+    { "from": "architecture-principles.html","to": "/documentation/architecture-principles",     "kind": "moved" },
+    { "from": "our-capabilities.html",       "to": "/documentation/our-capabilities",            "kind": "moved" },
+    { "from": "our-api-technologies.html",   "to": "/documentation/our-api-technologies",        "kind": "moved" },
+    { "from": "case-studies.html",           "to": "/documentation/case-studies",                "kind": "moved" },
+
+    { "from": "api-catalogue.html",          "to": "/api-catalogue",                             "kind": "moved" },
+
+    { "from": "producer-standards.html",     "to": "/publish/producer-standards",                "kind": "moved" },
+    { "from": "data-governance.html",        "to": "/publish/data-governance",                   "kind": "moved" },
+    { "from": "publish-api.html",            "to": "/publish/submit",                            "kind": "moved" },
+
+    { "from": "help-and-support.html",       "to": "/help",                                      "kind": "moved" },
+    { "from": "contact.html",                "to": "/help",                                      "kind": "moved" },
+    { "from": "community.html",              "to": "/help/community",                            "kind": "moved" },
+    { "from": "resources-a-z.html",          "to": "/help/resources",                            "kind": "moved" },
+
+    { "from": "api-detail.html",             "to": "/api-catalogue",             "kind": "superseded",
+      "because": "Per-API detail pages now live in the AMp catalogue, which is a separate service." },
+    { "from": "request-api.html",            "to": "/api-catalogue",             "kind": "superseded",
+      "because": "The access request journey has not been rebuilt yet. Start from the catalogue." },
+    { "from": "request-new-api.html",        "to": "/help",                      "kind": "superseded",
+      "because": "The request-a-new-API journey has not been rebuilt yet. Tell the marketplace team instead." },
+    { "from": "sign-in.html",                "to": "/help",                      "kind": "superseded",
+      "because": "Developer accounts are not part of this service yet - see ADR 0003." },
+    { "from": "register.html",               "to": "/help",                      "kind": "superseded",
+      "because": "Developer accounts are not part of this service yet - see ADR 0003." },
+    { "from": "account.html",                "to": "/help",                      "kind": "superseded",
+      "because": "Developer accounts are not part of this service yet - see ADR 0003." },
+    { "from": "my-applications.html",        "to": "/help",                      "kind": "superseded",
+      "because": "Application and credential management is not part of this service yet - see ADR 0003." }
+  ]
+}

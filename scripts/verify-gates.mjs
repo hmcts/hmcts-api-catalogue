@@ -107,6 +107,43 @@ const mutations = [
     html: (h) => h.replace('</main>', '<img src="../plugin-assets/govuk-frontend/dist/govuk/assets/images/govuk-crest.svg"></main>')
   },
   {
+    gate: 'structure',
+    what: 'a redirect stub with no rel=canonical',
+    target: 'getting-started.html',
+    html: (h) => h.replace(/<link rel="canonical"[^>]*>/, '')
+  },
+  {
+    gate: 'structure',
+    what: 'a redirect stub with no meta refresh',
+    target: 'getting-started.html',
+    html: (h) => h.replace(/<meta http-equiv="refresh"[^>]*>/, '')
+  },
+  {
+    gate: 'structure',
+    what: 'a redirect stub with no visible link, stranding anyone the refresh misses',
+    target: 'getting-started.html',
+    html: (h) => h.replace(/<a class="govuk-link"[^>]*>Continue to[^<]*<\/a>/, 'gone')
+  },
+  {
+    // A page whose feature does not exist yet must not imply its content simply
+    // moved somewhere else.
+    gate: 'structure',
+    what: 'a superseded stub pretending the content moved',
+    target: 'sign-in.html',
+    html: (h) => h.replace('This page no longer exists in its old form.', 'This page has a new address.')
+  },
+  {
+    gate: 'links',
+    what: 'a redirect stub pointing at a page that does not exist',
+    target: 'getting-started.html',
+    html: (h) => h.replaceAll('get-started/', 'gone-away/')
+  },
+  {
+    gate: 'manifest',
+    what: 'a declared redirect missing from the output',
+    fs: async () => rm(join(COPY, 'getting-started.html'))
+  },
+  {
     gate: 'manifest',
     what: 'an output file not declared in the manifest',
     fs: async () => writeFile(

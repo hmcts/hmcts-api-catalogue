@@ -10,6 +10,13 @@ import { join, relative, sep } from 'node:path'
 const OUT = process.env.EXPORT_OUT ?? 'docs/v2'
 const problems = []
 
+// Redirect stubs are generated, deliberately minimal pages. The page-furniture
+// rules below do not apply to them - a redirect with a phase banner and
+// breadcrumbs would be absurd - so they are checked against what actually
+// matters for a redirect instead.
+const { redirects } = JSON.parse(await readFile('scripts/redirects.json', 'utf8'))
+const stubs = new Map(redirects.map((r) => [r.from, r]))
+
 // Pages with no position in the hierarchy, so no breadcrumb is expected.
 const NO_BREADCRUMB = new Set(['index.html', '404.html'])
 
@@ -25,6 +32,21 @@ for (const file of files.sort()) {
   const html = await readFile(file, 'utf8')
   const count = (re) => (html.match(re) ?? []).length
   const fail = (msg) => problems.push(`${rel}: ${msg}`)
+
+  if (stubs.has(rel)) {
+    const redirect = stubs.get(rel)
+    if (!/<html[^>]*\slang="[a-z]{2}/.test(html)) fail('redirect stub: missing lang attribute')
+    if (!/<title[^>]*>\s*\S/.test(html)) fail('redirect stub: missing title')
+    if (!/<link rel="canonical" href="[^"]+"/.test(html)) fail('redirect stub: missing rel=canonical')
+    if (!/<meta http-equiv="refresh" content="0; url=[^"]+"/.test(html)) fail('redirect stub: missing meta refresh')
+    if (!/<a [^>]*href="[^"]+"[^>]*>Continue to/.test(html)) fail('redirect stub: missing a visible link, so anyone the refresh does not move is stranded')
+    if (count(/<h1[\s>]/g) !== 1) fail('redirect stub: expected exactly 1 <h1>')
+    if (!/name="robots" content="noindex"/.test(html)) fail('redirect stub: should be noindex')
+    if (redirect.kind === 'superseded' && !/no longer exists in its old form/.test(html)) {
+      fail('redirect stub: a superseded page must say so rather than implying the content moved')
+    }
+    continue
+  }
 
   // C-2 - journeys must be real pages, one thing per page
   const h1s = count(/<h1[\s>]/g)

@@ -21,8 +21,10 @@ import { LinkChecker } from 'linkinator'
 const OUT = process.env.EXPORT_OUT ?? 'docs/v2'
 const LOCAL_HOSTS = new Set(['localhost', '127.0.0.1', '[::1]'])
 
-// A 404 page is reachable by URL, never by link.
-const ALLOW_UNREACHABLE = new Set(['404.html'])
+// Reachable by URL, never by link: the 404 page, and every redirect stub - the
+// whole point of a stub is that an old external link or bookmark lands on it.
+const { redirects } = JSON.parse(await readFile('scripts/redirects.json', 'utf8'))
+const ALLOW_UNREACHABLE = new Set(['404.html', ...redirects.map((r) => r.from)])
 
 // --- part 1: broken links --------------------------------------------------
 

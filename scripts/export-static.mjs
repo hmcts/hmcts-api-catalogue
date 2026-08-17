@@ -38,6 +38,7 @@ const STRIP_SCRIPTS = [
 const TEXT_EXTENSIONS = ['.css', '.js', '.mjs', '.json', '.svg', '.webmanifest']
 
 const { routes } = JSON.parse(await readFile('scripts/routes.manifest.json', 'utf8'))
+const { redirects } = JSON.parse(await readFile('scripts/redirects.json', 'utf8'))
 
 // Route -> path of its output file, relative to OUT.
 function outputRelFor (route) {
@@ -151,6 +152,66 @@ if (pageFailures.length) {
   process.exit(1)
 }
 
+// --- redirect stubs --------------------------------------------------------
+//
+// GitHub Pages has no server-side redirects, so each old URL gets a real page
+// carrying rel=canonical, a meta refresh, and a visible link for anyone the
+// refresh does not move (and for anyone reading with the refresh blocked).
+// Without these, every URL the current site publishes 404s at promotion.
+
+function redirectStub ({ to, kind, because }, target) {
+  const moved = kind === 'moved'
+  const title = moved ? 'This page has moved' : 'This page is not available'
+  const lead = moved
+    ? 'This page has a new address. You will be taken there automatically.'
+    : 'This page no longer exists in its old form.'
+  const reason = because ? `<p class="govuk-body">${because}</p>` : ''
+
+  return `<!DOCTYPE html>
+<html lang="en" class="govuk-template">
+<head>
+<meta charset="utf-8">
+<title>${title} - HMCTS API Marketplace - GOV.UK</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="${target}">
+<meta http-equiv="refresh" content="0; url=${target}">
+<link rel="stylesheet" href="public/stylesheets/application.css">
+</head>
+<body class="govuk-template__body">
+<div class="govuk-width-container">
+<main class="govuk-main-wrapper" id="main-content">
+<h1 class="govuk-heading-l">${title}</h1>
+<p class="govuk-body">${lead}</p>
+${reason}
+<p class="govuk-body"><a class="govuk-link" href="${target}">Continue to ${to}</a></p>
+</main>
+</div>
+</body>
+</html>
+`
+}
+
+const redirectFailures = []
+const declaredRoutes = new Set(routes.map((r) => r.path))
+
+for (const redirect of redirects) {
+  if (!declaredRoutes.has(redirect.to)) {
+    redirectFailures.push(`${redirect.from} -> ${redirect.to} is not a declared route`)
+    continue
+  }
+  // Stubs sit at the output root, so the target is relative to there.
+  const target = linkRelFor(redirect.to) || './'
+  const outFile = join(OUT, redirect.from)
+  await mkdir(dirname(outFile), { recursive: true })
+  await writeFile(outFile, redirectStub(redirect, target), 'utf8')
+}
+
+if (redirectFailures.length) {
+  console.error('Redirect targets invalid:\n  ' + redirectFailures.join('\n  '))
+  process.exit(1)
+}
+
 // --- assets ----------------------------------------------------------------
 
 const assetFailures = []
@@ -187,7 +248,7 @@ if (assetFailures.length) {
   process.exit(1)
 }
 
-console.log(`Exported ${routes.length} page(s) and ${assetCount} asset(s) to ${OUT}`)
+console.log(`Exported ${routes.length} page(s), ${redirects.length} redirect(s) and ${assetCount} asset(s) to ${OUT}`)
 
 if (unknownLinks.size) {
   console.warn('\nLinks to pages not in the manifest (the link gate will flag these):')

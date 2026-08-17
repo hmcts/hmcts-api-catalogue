@@ -59,6 +59,35 @@ GOV.UK Frontend's intended output rather than catching real defects:
 a real browser from `CHROME_PATH`, then well-known macOS and Linux locations. Set
 `CHROME_PATH` if yours is elsewhere.
 
+## Redirects
+
+`redirects.json` maps every URL the current live site publishes to its home in v2.
+GitHub Pages has no server-side redirects, so the export generates a real page at
+each old path with `rel=canonical`, a `meta refresh`, and a visible link for
+anyone the refresh does not move. Without these, all 27 existing URLs 404 the
+moment `docs/v2` is promoted.
+
+Two kinds, and the distinction matters:
+
+- **`moved`** — the destination is the same content in its new home.
+- **`superseded`** — there is no direct equivalent yet, so the stub points at the
+  nearest useful page and *says the content no longer exists in its old form*,
+  rather than implying it simply moved. A gate enforces that wording, because
+  quietly redirecting `sign-in.html` to a help page as though nothing changed
+  would be misleading.
+
+The manifest gate also fails if any `docs/*.html` has no redirect at all, so a
+URL cannot be dropped by omission.
+
+Stubs are excluded from the reachability check (an old bookmark is the entry
+point) and from the page-furniture rules — a redirect with breadcrumbs and a
+phase banner would be absurd. They are checked for canonical, refresh, a visible
+link, one `<h1>`, `noindex`, and honest wording instead.
+
+They are not axe-tested: a zero-second `meta refresh` navigates before axe can
+run. WCAG technique H76 treats an immediate refresh as the accepted approach
+where server redirects are unavailable, which is the case on GitHub Pages.
+
 ## Gate the gates
 
 `verify-gates.mjs` breaks each thing a gate claims to check and asserts the gate

@@ -84,12 +84,21 @@ than relying on the presenter.
 or devices, and there are no real users. That is the correct state for a prototype and is preferable
 to a working login built on an unassured dependency.
 
-## What must not wait
+## Interim position for the live site
 
-Removing the Render calls from the **currently live** site is independent of the rebuild and should
-not wait for it. Until that change ships, `https://hmcts.github.io/hmcts-api-marketplace/register.html`
-transmits names, work emails, organisations and passwords to an unsanctioned third-party host, and the
-site publishes no privacy notice. It is a small, surgical change to four files in `docs/`.
+Removing the Render calls from the **currently live** site is technically independent of the rebuild:
+it is a surgical change to four files in `docs/`.
+
+**Decided 17 August 2026: the live site will not be patched ahead of the `docs/v2/` promotion.** The
+dependency disappears when v2 is promoted to the root.
+
+This is an accepted risk, recorded so it is visible rather than forgotten. Until the promotion,
+`https://hmcts.github.io/hmcts-api-marketplace/register.html` transmits names, work emails,
+organisations and passwords to an unsanctioned third-party host, and the site publishes no privacy
+notice. The risk window is therefore the delivery time of the rebuild, which makes the v2 promotion
+date the mitigation. If that date slips materially, this decision is worth revisiting.
+
+## What must not wait
 
 Separately, and needing an owner: establish what the Render instance already received and stored, how
 any passwords were hashed, who could reach it, and whether data must be deleted and the instance shut

@@ -1,0 +1,65 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Introduction to justice sector technology" %}
+{% set section = "get-started" %}
+{% set breadcrumbs = [
+  { text: "Home", href: "/" },
+  { text: "Get started", href: "/get-started" }
+] %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">Introduction to justice sector technology</h1>
+
+    <p class="govuk-body-l">
+      Learn how digital technology works across HMCTS and the wider justice system.
+    </p>
+
+    <p class="govuk-body">
+      HMCTS delivers services across crime, civil, family and tribunal jurisdictions, spanning courts
+      and tribunals across England and Wales. Digital technology increasingly underpins how cases are
+      administered, listed, and heard.
+    </p>
+
+    <h2 class="govuk-heading-l" id="how-systems-fit">How HMCTS systems fit together</h2>
+
+    <p class="govuk-body">
+      Rather than one single system, HMCTS operates a range of case management systems by jurisdiction,
+      connected through shared reference data and, increasingly, APIs published on this marketplace.
+      This lets teams integrate with the specific capability they need &mdash; case administration,
+      listings, hearing results &mdash; without needing access to an entire case management system.
+    </p>
+
+    <h2 class="govuk-heading-l" id="who-builds">Who builds and uses this technology</h2>
+
+    <p class="govuk-body">
+      Digital services for the justice system are built by in-house HMCTS Digital and Technology
+      Solutions teams, as well as approved third-party suppliers and justice sector partners, all
+      working within the same architecture principles and data governance standards.
+    </p>
+
+    <h2 class="govuk-heading-l" id="where-apis-fit">Where APIs fit in</h2>
+
+    <p class="govuk-body">
+      The API Marketplace exists to make HMCTS data and capabilities discoverable and reusable, rather
+      than every team building its own point-to-point integration. See
+      <a class="govuk-link" href="/documentation/our-capabilities">our capabilities</a> for the
+      categories of business service on offer, and the
+      <a class="govuk-link" href="/api-catalogue">API catalogue</a> for what is available today.
+    </p>
+
+    <h2 class="govuk-heading-l" id="related">Related</h2>
+
+    <ul class="govuk-list">
+      <li><a class="govuk-link" href="/documentation/our-capabilities">Our capabilities</a></li>
+      <li><a class="govuk-link" href="/documentation/our-api-technologies">Our API technologies</a></li>
+      <li><a class="govuk-link" href="/documentation/architecture">HMCTS architecture</a></li>
+    </ul>
+
+  </div>
+</div>
+
+{% endblock %}

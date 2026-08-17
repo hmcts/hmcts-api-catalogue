@@ -58,6 +58,19 @@ for (const file of files.sort()) {
     fail('missing breadcrumbs (add to NO_BREADCRUMB if genuinely top-level)')
   }
 
+  // A govuk-button rendered as <button> outside a <form> can do nothing on a
+  // static site. This happens when a href is undefined - the macro silently
+  // falls back to <button>. It is valid HTML and not a broken link, so nothing
+  // else catches it. The service-navigation mobile toggle is a real button and
+  // is excluded by class.
+  const formRanges = [...html.matchAll(/<form[\s\S]*?<\/form>/g)].map((m) => [m.index, m.index + m[0].length])
+  for (const match of html.matchAll(/<button\b[^>]*>/g)) {
+    const tag = match[0]
+    if (!/class="[^"]*\bgovuk-button\b/.test(tag)) continue
+    const insideForm = formRanges.some(([start, end]) => match.index >= start && match.index < end)
+    if (!insideForm) fail('a govuk-button renders as <button> outside a <form> - its href is probably undefined')
+  }
+
   // In-page anchors must resolve to a real id
   const ids = new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]))
   for (const m of html.matchAll(/href="#([^"]+)"/g)) {

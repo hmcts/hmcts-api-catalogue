@@ -1,0 +1,66 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Documentation, guides and tutorials" %}
+{% set section = "documentation" %}
+{% set breadcrumbs = [{ text: "Home", href: "/" }] %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">Documentation, guides and tutorials</h1>
+
+    <p class="govuk-body-l">
+      Best practice on designing, building, managing and documenting an integration with an HMCTS API.
+    </p>
+
+    <h2 class="govuk-heading-l" id="journey">Your integration journey</h2>
+
+    <ol class="govuk-list govuk-list--number">
+      <li>Understand the justice landscape</li>
+      <li>Prepare your integration</li>
+      <li>Build your API integration</li>
+      <li>Test your integration</li>
+      <li>Go live with your integration</li>
+    </ol>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="/get-started">Getting started with our APIs</a> walks through those
+      stages in order. The pages below go deeper on each.
+    </p>
+
+    <h2 class="govuk-heading-l" id="architecture">Architecture</h2>
+
+    <ul class="govuk-list">
+      <li><a class="govuk-link" href="/documentation/architecture">HMCTS architecture</a> &mdash; how architecture works across our products and services</li>
+      <li><a class="govuk-link" href="/documentation/architecture-principles">HMCTS architecture principles</a> &mdash; best practice when designing systems for the justice sector</li>
+      <li><a class="govuk-link" href="/documentation/our-capabilities">Our capabilities</a> &mdash; the categories of business service HMCTS provides</li>
+    </ul>
+
+    <h2 class="govuk-heading-l" id="technical">Technical reference</h2>
+
+    <ul class="govuk-list">
+      <li><a class="govuk-link" href="/documentation/our-api-technologies">Our API technologies</a> &mdash; the technologies used to build and publish HMCTS APIs</li>
+      <li><a class="govuk-link" href="/get-started/glossary">Glossary of developer terms</a> &mdash; terminology used across the marketplace</li>
+    </ul>
+
+    <h2 class="govuk-heading-l" id="context">Context and examples</h2>
+
+    <ul class="govuk-list">
+      <li><a class="govuk-link" href="/get-started/technology-introduction">Introduction to justice sector technology</a> &mdash; how HMCTS systems fit together</li>
+      <li><a class="govuk-link" href="/get-started/building-software">Building justice sector software</a> &mdash; designing for court and tribunal settings</li>
+      <li><a class="govuk-link" href="/documentation/case-studies">API platform case studies</a> &mdash; how teams have integrated with our APIs</li>
+    </ul>
+
+    <h2 class="govuk-heading-l" id="a-to-z">Everything in one place</h2>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="/help/resources">A to Z of developer resources</a> lists every page on
+      the marketplace.
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>
-  Submission received - HMCTS API Marketplace - GOV.UK
+  Onboarding guide - HMCTS API Marketplace - GOV.UK
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#1d70b8">
@@ -11,7 +11,7 @@
     
   
   
-    <link href="../../../public/stylesheets/application.css" rel="stylesheet" type="text/css" />
+    <link href="../../public/stylesheets/application.css" rel="stylesheet" type="text/css" />
 
 
 
@@ -20,11 +20,11 @@
 
 
     
-      <link rel="icon" sizes="48x48" href="../../../plugin-assets/govuk-frontend/dist/govuk/assets/images/favicon.ico">
-      <link rel="icon" sizes="any" href="../../../plugin-assets/govuk-frontend/dist/govuk/assets/images/favicon.svg" type="image/svg+xml">
-      <link rel="mask-icon" href="../../../plugin-assets/govuk-frontend/dist/govuk/assets/images/govuk-icon-mask.svg" color="#1d70b8">
-      <link rel="apple-touch-icon" href="../../../plugin-assets/govuk-frontend/dist/govuk/assets/images/govuk-icon-180.png">
-      <link rel="manifest" href="../../../plugin-assets/govuk-frontend/dist/govuk/assets/manifest.json">
+      <link rel="icon" sizes="48x48" href="../../plugin-assets/govuk-frontend/dist/govuk/assets/images/favicon.ico">
+      <link rel="icon" sizes="any" href="../../plugin-assets/govuk-frontend/dist/govuk/assets/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="../../plugin-assets/govuk-frontend/dist/govuk/assets/images/govuk-icon-mask.svg" color="#1d70b8">
+      <link rel="apple-touch-icon" href="../../plugin-assets/govuk-frontend/dist/govuk/assets/images/govuk-icon-180.png">
+      <link rel="manifest" href="../../plugin-assets/govuk-frontend/dist/govuk/assets/manifest.json">
     
     
   </head>
@@ -107,7 +107,7 @@ data-module="govuk-service-navigation"
       
         <span class="govuk-service-navigation__service-name">
           
-            <a href="../../../" class="govuk-service-navigation__link">
+            <a href="../../" class="govuk-service-navigation__link">
               HMCTS API Marketplace
             </a>
           
@@ -133,7 +133,7 @@ data-module="govuk-service-navigation"
               
               <li class="govuk-service-navigation__item">
                 
-                  <a class="govuk-service-navigation__link" href="../../../api-catalogue/">
+                  <a class="govuk-service-navigation__link" href="../../api-catalogue/">
                     
                 
                 API catalogue
@@ -145,12 +145,14 @@ data-module="govuk-service-navigation"
               
 
               
-              <li class="govuk-service-navigation__item">
+              <li class="govuk-service-navigation__item govuk-service-navigation__item--active">
                 
-                  <a class="govuk-service-navigation__link" href="../../../get-started/">
+                  <a class="govuk-service-navigation__link" href="../../get-started/" aria-current="true">
                     
                 
-                Get started
+                
+                  <strong class="govuk-service-navigation__active-fallback">Get started</strong>
+                
               
                   </a>
                 
@@ -161,7 +163,7 @@ data-module="govuk-service-navigation"
               
               <li class="govuk-service-navigation__item">
                 
-                  <a class="govuk-service-navigation__link" href="../../../documentation/">
+                  <a class="govuk-service-navigation__link" href="../../documentation/">
                     
                 
                 Documentation
@@ -173,14 +175,12 @@ data-module="govuk-service-navigation"
               
 
               
-              <li class="govuk-service-navigation__item govuk-service-navigation__item--active">
+              <li class="govuk-service-navigation__item">
                 
-                  <a class="govuk-service-navigation__link" href="../../../publish/" aria-current="true">
+                  <a class="govuk-service-navigation__link" href="../../publish/">
                     
                 
-                
-                  <strong class="govuk-service-navigation__active-fallback">Publish an API</strong>
-                
+                Publish an API
               
                   </a>
                 
@@ -191,7 +191,7 @@ data-module="govuk-service-navigation"
               
               <li class="govuk-service-navigation__item">
                 
-                  <a class="govuk-service-navigation__link" href="../../../help/">
+                  <a class="govuk-service-navigation__link" href="../../help/">
                     
                 
                 Help and support
@@ -230,7 +230,7 @@ data-module="govuk-service-navigation"
       Beta
     </strong>
     <span class="govuk-phase-banner__text">
-      This is a new service. <a class="govuk-link" href="../../../help/">Help us improve it by giving feedback</a>.
+      This is a new service. <a class="govuk-link" href="../../help/">Help us improve it by giving feedback</a>.
     </span>
   </p>
 </div>
@@ -242,13 +242,13 @@ data-module="govuk-service-navigation"
 
   
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="../../../">Home</a>
+      <a class="govuk-breadcrumbs__link" href="../../">Home</a>
     </li>
   
 
   
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="../../../publish/">Publish an API</a>
+      <a class="govuk-breadcrumbs__link" href="../../get-started/">Get started</a>
     </li>
   
 
@@ -264,50 +264,254 @@ data-module="govuk-service-navigation"
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <div class="govuk-panel govuk-panel--confirmation">
-  <h1 class="govuk-panel__title">
-    Submission received
-  </h1>
-  
-  <div class="govuk-panel__body">
-    This is a prototype<br>Nothing was submitted
-  </div>
-  
-  
+    <h1 class="govuk-heading-xl">Onboarding guide</h1>
+
+    <p class="govuk-body-l">
+      How to get started with the HMCTS API Marketplace &mdash; for consumers, producers and
+      non-technical teams.
+    </p>
+
+    <h2 class="govuk-heading-m" id="contents">Contents</h2>
+
+    <ol class="govuk-list govuk-list--number">
+      <li><a class="govuk-link" href="#what-is-it">What is the API Marketplace?</a></li>
+      <li><a class="govuk-link" href="#who-for">Who is this guide for?</a></li>
+      <li><a class="govuk-link" href="#consumer-onboarding">Consumer onboarding</a></li>
+      <li><a class="govuk-link" href="#producer-onboarding">Producer onboarding</a></li>
+      <li><a class="govuk-link" href="#before-you-start">Before you start</a></li>
+      <li><a class="govuk-link" href="#getting-help">Getting help</a></li>
+    </ol>
+
+    <p class="govuk-body">
+      This guide is written for a non-technical audience. It explains what the API Marketplace is, who
+      it is for, and what your organisation needs to do before you can start using or publishing APIs.
+    </p>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l" id="what-is-it">1. What is the HMCTS API Marketplace?</h2>
+
+    <p class="govuk-body">
+      The HMCTS API Marketplace is a central catalogue of data APIs from across His Majesty&rsquo;s
+      Courts and Tribunals Service. Think of it as a library for data &mdash; teams can browse,
+      understand, and request access to data feeds that power justice services.
+    </p>
+
+    <p class="govuk-body">
+      The marketplace does not build or host the APIs itself. It makes them discoverable, documented,
+      and accessible in one place &mdash; with governance controls to ensure only the right people can
+      access the right data.
+    </p>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l" id="who-for">2. Who is this guide for?</h2>
+
+    <h3 class="govuk-heading-m">API consumers</h3>
+
+    <p class="govuk-body">
+      Teams who need to use an existing HMCTS API to build a service or product.
+      <a class="govuk-link" href="../../api-catalogue/">Browse APIs</a>.
+    </p>
+
+    <h3 class="govuk-heading-m">API producers</h3>
+
+    <p class="govuk-body">
+      Teams that own and build HMCTS APIs and want them discoverable and usable by others.
+      <a class="govuk-link" href="../../publish/">Publish an API</a> or
+      <a class="govuk-link" href="../../publish/producer-standards/">read the standards</a>.
+    </p>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l" id="consumer-onboarding">3. Consumer onboarding, step by step</h2>
+
+    <p class="govuk-body">
+      If your team needs to access data from an HMCTS API, follow these steps.
+    </p>
+
+    <h3 class="govuk-heading-m">Step 1: Confirm your use case</h3>
+
+    <p class="govuk-body">
+      Find the API you need in the <a class="govuk-link" href="../../api-catalogue/">catalogue</a> and confirm
+      your use case is within scope. Read the plain-English description to understand what data it
+      returns. Do not request access speculatively.
+    </p>
+
+    <h3 class="govuk-heading-m">Step 2: Check your organisation&rsquo;s eligibility</h3>
+
+    <p class="govuk-body">
+      Your organisation must be part of HMCTS Digital and Technology Solutions, a justice sector
+      partner, or an approved third party. You need a valid work email address to proceed.
+    </p>
+
+    <h3 class="govuk-heading-m">Step 3: Arrange a Data Sharing Agreement</h3>
+
+    <p class="govuk-body">
+      <strong class="govuk-tag govuk-tag--yellow">
+  Required for personal data APIs
+</strong>
+
+    </p>
+
+    <p class="govuk-body">
+      For APIs that return personal data, your organisation must have a DPA or DSA in place before
+      access is granted. Check with your legal or data protection team before submitting.
+    </p>
+
+    <h3 class="govuk-heading-m">Step 4: Submit your access request</h3>
+
+    <p class="govuk-body">
+      Describe your use case, expected call volume and environment, and complete the declarations.
+    </p>
+
+    <div class="govuk-inset-text">
+  The access request form is not yet part of this prototype.
+               <a class="govuk-link" href="../../help/">Contact the marketplace team</a> and they will take you
+               through it.
 </div>
 
+
+    <h3 class="govuk-heading-m">Step 5: API owner review</h3>
+
+    <p class="govuk-body">
+      <strong class="govuk-tag govuk-tag--blue">
+  2 working days
+</strong>
+
+    </p>
+
+    <p class="govuk-body">
+      The API owner reviews your request within 2 working days. You may be contacted for further
+      information. If approved, credentials are issued via a secure channel.
+    </p>
+
+    <h3 class="govuk-heading-m">Step 6: Integrate and go live</h3>
+
+    <p class="govuk-body">
+      Use your issued credentials to integrate in the sandbox environment first. Never test against
+      production. Once integration is confirmed, request production access.
+    </p>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l" id="producer-onboarding">4. Producer onboarding, step by step</h2>
+
+    <p class="govuk-body">
+      If your team owns an HMCTS API and wants it listed on the marketplace, follow these steps.
+    </p>
 
     <div class="govuk-warning-text">
   <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
   <strong class="govuk-warning-text__text">
     <span class="govuk-visually-hidden">Warning</span>
-    Nothing was submitted and nothing was stored. No one has received this information, and
-             no one will act on it.
+    Only external APIs may be listed. Internal or developer-only APIs are not eligible for
+             the marketplace.
   </strong>
 </div>
 
 
-    <h2 class="govuk-heading-m">What this page would normally tell you</h2>
+    <h3 class="govuk-heading-m">Step 1: Check your API meets the producer standards</h3>
 
     <p class="govuk-body">
-      In the live service this page would give you a reference number, confirm the email address the
-      acknowledgement had gone to, and tell you that the marketplace team reviews submissions within
-      2 working days.
+      Your API must have a valid OpenAPI 3.x specification hosted at the standard path in a public
+      GitHub repository under the HMCTS organisation. It must pass Spectral linting with no errors.
+      <a class="govuk-link" href="../../publish/producer-standards/">Read the producer standards</a>.
     </p>
 
-    <h2 class="govuk-heading-m">If you need to publish an API for real</h2>
+    <h3 class="govuk-heading-m">Step 2: Set up the GitHub Actions workflow</h3>
 
     <p class="govuk-body">
-      <a class="govuk-link" href="../../../help/">Contact the marketplace team</a> and tell them what you are
-      trying to list. They can take you through it directly.
+      Add the standard <code>publish-api-docs.yml</code> workflow to your repository. This triggers the
+      shared <code>amp-catalog</code> workflow and stamps the version from your GitHub release tag
+      automatically.
     </p>
 
-    <h2 class="govuk-heading-m">Before you go</h2>
+    <h3 class="govuk-heading-m">Step 3: Confirm documentation is publicly accessible</h3>
 
     <p class="govuk-body">
-      This service is in beta. If anything in this journey was confusing or looked wrong,
-      <a class="govuk-link" href="../../../help/">telling us</a> is the most useful thing you can do next.
+      Verify your Swagger UI documentation site is live at
+      <code>https://hmcts.github.io/&lt;repo-name&gt;/</code> before submitting.
     </p>
+
+    <h3 class="govuk-heading-m">Step 4: Submit via the publish an API form</h3>
+
+    <p class="govuk-body">
+      Provide your API name, GitHub repository, domain, data classification and a plain-English
+      description for consumers. Complete the declaration and
+      <a class="govuk-link" href="../../publish/submit/">submit for review</a>.
+    </p>
+
+    <h3 class="govuk-heading-m">Step 5: Marketplace team review</h3>
+
+    <p class="govuk-body">
+      <strong class="govuk-tag govuk-tag--blue">
+  2 working days
+</strong>
+
+    </p>
+
+    <p class="govuk-body">
+      The marketplace team reviews your submission within 2 working days. Once approved, your API
+      appears in the catalogue and stays in sync with your OpenAPI specification.
+    </p>
+
+    <h3 class="govuk-heading-m">Step 6: Manage incoming access requests</h3>
+
+    <p class="govuk-body">
+      Once live, consumers can submit access requests. You are responsible for reviewing them within 2
+      working days, notifying consumers of breaking changes, and keeping your specification up to date.
+    </p>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l" id="before-you-start">5. Before you start, what you will need</h2>
+
+    <h3 class="govuk-heading-m">A valid work email address</h3>
+
+    <p class="govuk-body">
+      You must use an HMCTS, justice sector, or approved partner email address to submit any form on
+      the marketplace.
+    </p>
+
+    <h3 class="govuk-heading-m">A Data Sharing Agreement &mdash; consumers</h3>
+
+    <p class="govuk-body">
+      For APIs containing personal data, your organisation&rsquo;s legal team must confirm a DPA or DSA
+      is in place before submitting an access request.
+    </p>
+
+    <h3 class="govuk-heading-m">An OpenAPI 3.x specification &mdash; producers</h3>
+
+    <p class="govuk-body">
+      Your API must have a valid OpenAPI specification hosted at the standard path in a public GitHub
+      repository under the HMCTS organisation.
+    </p>
+
+    <h3 class="govuk-heading-m">OAuth 2.0 capability &mdash; consumers</h3>
+
+    <p class="govuk-body">
+      All HMCTS APIs use OAuth 2.0 with JWT bearer tokens. Your system must support this before access
+      is granted.
+    </p>
+
+    <h3 class="govuk-heading-m">Data classification confirmed</h3>
+
+    <p class="govuk-body">
+      Both consumers and producers must understand and declare the data classification of the API
+      &mdash; Official or Official-Sensitive.
+    </p>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l" id="getting-help">6. Getting help</h2>
+
+    <ul class="govuk-list">
+      <li><a class="govuk-link" href="../../help/">Contact the marketplace team</a> with questions about onboarding</li>
+      <li><a class="govuk-link" href="../../get-started/consumer-guidance/">Consumer guidance</a> &mdash; using APIs responsibly</li>
+      <li><a class="govuk-link" href="../../publish/producer-standards/">Producer standards</a> &mdash; technical requirements and specification quality</li>
+      <li><a class="govuk-link" href="../../publish/data-governance/">Data governance standards</a> &mdash; legal and regulatory obligations for all participants</li>
+    </ul>
 
   </div>
 </div>
@@ -364,25 +568,25 @@ data-module="govuk-service-navigation"
         <ul class="govuk-footer__inline-list">
         
           <li class="govuk-footer__inline-list-item">
-            <a class="govuk-footer__link" href="../../../help/">
+            <a class="govuk-footer__link" href="../../help/">
               Contact the marketplace team
             </a>
           </li>
         
           <li class="govuk-footer__inline-list-item">
-            <a class="govuk-footer__link" href="../../../accessibility-statement/">
+            <a class="govuk-footer__link" href="../../accessibility-statement/">
               Accessibility statement
             </a>
           </li>
         
           <li class="govuk-footer__inline-list-item">
-            <a class="govuk-footer__link" href="../../../cookies/">
+            <a class="govuk-footer__link" href="../../cookies/">
               Cookies
             </a>
           </li>
         
           <li class="govuk-footer__inline-list-item">
-            <a class="govuk-footer__link" href="../../../privacy/">
+            <a class="govuk-footer__link" href="../../privacy/">
               Privacy notice
             </a>
           </li>
@@ -439,15 +643,15 @@ data-module="govuk-service-navigation"
   
 
   
-    <script type="module" src="../../../plugin-assets/govuk-frontend/dist/govuk/govuk-frontend.min.js"></script>
+    <script type="module" src="../../plugin-assets/govuk-frontend/dist/govuk/govuk-frontend.min.js"></script>
   
 
   
-    <script type="module" src="../../../plugin-assets/govuk-frontend/dist/govuk-prototype-kit/init.js"></script>
+    <script type="module" src="../../plugin-assets/govuk-frontend/dist/govuk-prototype-kit/init.js"></script>
   
 
   
-    <script type="module" src="../../../public/javascripts/application.js"></script>
+    <script type="module" src="../../public/javascripts/application.js"></script>
   
 
 

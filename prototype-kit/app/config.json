@@ -5,6 +5,5 @@
     "govuk-frontend": {
       "rebrand": true
     }
-  },
-  "ampCatalogueUrl": "https://hmcts.github.io/amp-catalog/"
+  }
 }

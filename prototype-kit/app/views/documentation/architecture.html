@@ -1,0 +1,57 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "HMCTS architecture" %}
+{% set section = "documentation" %}
+{% set breadcrumbs = [
+  { text: "Home", href: "/" },
+  { text: "Documentation", href: "/documentation" }
+] %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">HMCTS architecture</h1>
+
+    <p class="govuk-body-l">
+      Architecture is integral to the design and delivery of all products and services that we produce
+      and maintain for the justice system.
+    </p>
+
+    <p class="govuk-body">
+      All architects, and anyone involved in the architecture and design of products and services,
+      should follow the HMCTS architecture principles when designing digital solutions for the justice
+      system.
+    </p>
+
+    <h2 class="govuk-heading-l" id="in-this-section">In this section</h2>
+
+    <ul class="govuk-list">
+      <li>
+        <a class="govuk-link" href="/documentation/architecture-principles">HMCTS architecture principles</a>
+        &mdash; best practice when designing systems and services for HMCTS and the wider justice sector
+      </li>
+      <li>
+        <a class="govuk-link" href="/documentation/our-capabilities">Our capabilities</a>
+        &mdash; the categories we use to describe the business services we offer
+      </li>
+      <li>
+        <a class="govuk-link" href="/documentation/our-api-technologies">Our API technologies</a>
+        &mdash; the technologies used to build and publish HMCTS APIs
+      </li>
+    </ul>
+
+    <h2 class="govuk-heading-l" id="integration-patterns">Integration patterns</h2>
+
+    <p class="govuk-body">
+      Guidance for architects and engineers on choosing the right integration approach when publishing or
+      consuming an API is being moved into this service. In the meantime,
+      <a class="govuk-link" href="/help">contact the marketplace team</a> and they will point you at the
+      current version.
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

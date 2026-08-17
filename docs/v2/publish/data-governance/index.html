@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>
-  Submit an API for publication - HMCTS API Marketplace - GOV.UK
+  Data governance standards - HMCTS API Marketplace - GOV.UK
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#1d70b8">
@@ -264,517 +264,365 @@ data-module="govuk-service-navigation"
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <div data-error-summary="publish-submit" hidden></div>
+    <h1 class="govuk-heading-xl">Data governance standards</h1>
 
-    <h1 class="govuk-heading-xl">Submit an API for publication</h1>
-
-    <p class="govuk-body">
-      Check your API against the
-      <a class="govuk-link" href="../../publish/producer-standards/">producer standards</a> before you
-      start. You will be able to review your answers before submitting.
+    <p class="govuk-body-l">
+      Legal and regulatory obligations for all participants in the HMCTS API Marketplace.
     </p>
 
-    <form data-journey="publish-submit" data-next="check-answers/" novalidate>
-
-      <div data-required data-error="Enter the name of your API">
-        
-
-
-<div class="govuk-form-group">
-  <label class="govuk-label govuk-label--m" for="api-name">
-    API name
-  </label>
-
-  
-  
-  <div id="api-name-hint" class="govuk-hint">
-    The human-readable name, not the repository slug. For example, Court Schedule.
-  </div>
-
-
-  <input
-    
-        
-        
-      
-        
-      
-    
-        
-        
-      
-        
-      
-    
-        
-        
-      
-        
-      
-    
-        
-        
-      
-        
-      
-    
-        
-        
-      
-    
-        
-        
-    
-        
-        
-    
-        
-        
-      
-        
-      
-    
-        
-        
-      
-        
-      
-    
-        
-        
-    
-        
-        
-    
-        
-        
-    
-   class="govuk-input" id="api-name" name="api-name" type="text" aria-describedby="api-name-hint" autocomplete="off">
-
+    <div class="govuk-inset-text">
+  These standards apply to all consumers and producers. They are based on UK GDPR, the Data
+             Protection Act 2018 and the Government Security Classifications policy. Role-specific
+             obligations are noted throughout.
 </div>
 
-      </div>
 
-      <div data-required data-error="Enter the team that owns the API">
-        
+    <h2 class="govuk-heading-m" id="contents">Contents</h2>
+
+    <ol class="govuk-list govuk-list--number">
+      <li><a class="govuk-link" href="#legal-framework">Legal framework</a></li>
+      <li><a class="govuk-link" href="#classification">Data classification</a></li>
+      <li><a class="govuk-link" href="#dsa">Data sharing agreements</a></li>
+      <li><a class="govuk-link" href="#minimisation">Data minimisation and retention</a></li>
+      <li><a class="govuk-link" href="#access-control">Access control and authentication</a></li>
+      <li><a class="govuk-link" href="#audit">Audit and monitoring</a></li>
+      <li><a class="govuk-link" href="#breaches">Data breaches and incident management</a></li>
+      <li><a class="govuk-link" href="#transfers">Cross-border data transfers</a></li>
+      <li><a class="govuk-link" href="#accountability">Accountability and governance roles</a></li>
+      <li><a class="govuk-link" href="#decommissioning">Decommissioning and offboarding</a></li>
+    </ol>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l" id="legal-framework">1. Legal framework</h2>
+
+    <p class="govuk-body">All participants must comply with:</p>
+
+    <dl class="govuk-body">
+      <dt class="govuk-!-font-weight-bold">UK GDPR and the Data Protection Act 2018</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">Personal data must be processed lawfully with a documented legal basis. Producers must record this in the API specification. Consumers must not use data beyond the stated purpose.</dd>
+
+      <dt class="govuk-!-font-weight-bold">Government Security Classifications policy</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">Official-Sensitive data requires enhanced controls. All APIs must declare their classification in the marketplace.</dd>
+
+      <dt class="govuk-!-font-weight-bold">Computer Misuse Act 1990</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">Unauthorised access is a criminal offence. Credentials must not be shared or misused.</dd>
+
+      <dt class="govuk-!-font-weight-bold">Freedom of Information Act 2000</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">Some API-accessible data may be subject to FOI requests. All participants should be aware of their obligations.</dd>
+
+      <dt class="govuk-!-font-weight-bold">Public Records Act 1958</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">Court records may carry public record obligations. Producers must check these before exposing court data through an API.</dd>
+    </dl>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l" id="classification">2. Data classification</h2>
+
+    <p class="govuk-body">
+      Every API must declare a classification. Consumers must not downgrade data once received.
+    </p>
+
+    <table class="govuk-table">
+
+  <caption class="govuk-table__caption govuk-table__caption--m">Obligations by classification</caption>
 
 
-<div class="govuk-form-group">
-  <label class="govuk-label govuk-label--m" for="owning-team">
-    Owning team
-  </label>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+    
+      <th scope="col" class="govuk-table__header">Classification</th>
+    
+      <th scope="col" class="govuk-table__header">Eligible?</th>
+    
+      <th scope="col" class="govuk-table__header">Producer obligations</th>
+    
+      <th scope="col" class="govuk-table__header">Consumer obligations</th>
+    
+    </tr>
+  </thead>
+
+  <tbody class="govuk-table__body">
 
   
+    <tr class="govuk-table__row">
+    
+      
+      
+      <th scope="row" class="govuk-table__header">Official</th>
+      
+    
+      
+      
+      <td class="govuk-table__cell">Yes</td>
+      
+    
+      
+      
+      <td class="govuk-table__cell">Standard data protection controls. Declare in the OpenAPI spec.</td>
+      
+    
+      
+      
+      <td class="govuk-table__cell">Handle per your organisation&#39;s information security policy.</td>
+      
+    
+    </tr>
   
-  <div id="owning-team-hint" class="govuk-hint">
-    The team that builds and runs the API, and will answer access requests.
-  </div>
+
+  
+    <tr class="govuk-table__row">
+    
+      
+      
+      <th scope="row" class="govuk-table__header">Official-Sensitive</th>
+      
+    
+      
+      
+      <td class="govuk-table__cell">With conditions</td>
+      
+    
+      
+      
+      <td class="govuk-table__cell">Formal DSA required before any access is granted. Verify enhanced controls at the consumer.</td>
+      
+    
+      
+      
+      <td class="govuk-table__cell">Formal DSA required. Enhanced access controls and audit logging. Do not downgrade.</td>
+      
+    
+    </tr>
+  
+
+  
+    <tr class="govuk-table__row">
+    
+      
+      
+      <th scope="row" class="govuk-table__header">Secret / Top Secret</th>
+      
+    
+      
+      
+      <td class="govuk-table__cell">No</td>
+      
+    
+      
+      
+      <td class="govuk-table__cell">Not eligible for listing on the marketplace.</td>
+      
+    
+      
+      
+      <td class="govuk-table__cell">Not applicable.</td>
+      
+    
+    </tr>
+  
+
+  </tbody>
+</table>
 
 
-  <input
-    
-        
-        
-      
-        
-      
-    
-        
-        
-      
-        
-      
-    
-        
-        
-      
-        
-      
-    
-        
-        
-      
-        
-      
-    
-        
-        
-      
-    
-        
-        
-    
-        
-        
-    
-        
-        
-      
-        
-      
-    
-        
-        
-      
-        
-      
-    
-        
-        
-    
-        
-        
-    
-        
-        
-    
-   class="govuk-input" id="owning-team" name="owning-team" type="text" aria-describedby="owning-team-hint" autocomplete="organization">
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
+    <h2 class="govuk-heading-l" id="dsa">3. Data sharing agreements</h2>
+
+    <div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-visually-hidden">Warning</span>
+    No personal data API may be accessed without a signed DPA or DSA in place.
+  </strong>
 </div>
 
-      </div>
 
-      <div data-required data-error="Enter a team inbox email address">
-        
+    <h3 class="govuk-heading-m">Producers must</h3>
 
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Confirm a DPA or DSA is in place before approving access to any personal data API</li>
+      <li>Record the legal basis for the data sharing arrangement</li>
+      <li>Notify their DPO of any new data sharing arrangements</li>
+    </ul>
 
-<div class="govuk-form-group">
-  <label class="govuk-label govuk-label--m" for="contact-email">
-    Team contact email
-  </label>
+    <h3 class="govuk-heading-m">Consumers must</h3>
 
-  
-  
-  <div id="contact-email-hint" class="govuk-hint">
-    A team inbox that will still be monitored in six months - not a personal address.
-  </div>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Ensure their legal team has reviewed the arrangement before submitting a request</li>
+      <li>Not use data beyond the stated purposes</li>
+      <li>Report any change in use case to the API owner before proceeding</li>
+    </ul>
 
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-  <input
-    
-        
-        
-      
-        
-      
-    
-        
-        
-      
-        
-      
-    
-        
-        
-      
-        
-      
-    
-        
-        
-      
-        
-      
-    
-        
-        
-      
-        
-      
-    
-        
-        
-    
-        
-        
-    
-        
-        
-      
-        
-      
-    
-        
-        
-      
-        
-      
-    
-        
-        
-    
-        
-        
-    
-        
-        
-    
-   class="govuk-input" id="contact-email" name="contact-email" type="email" spellcheck="false" aria-describedby="contact-email-hint" autocomplete="email">
+    <h2 class="govuk-heading-l" id="minimisation">4. Data minimisation and retention</h2>
 
+    <h3 class="govuk-heading-m">Producers must</h3>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Expose only the minimum data fields necessary</li>
+      <li>Review exposed fields when a consumer&rsquo;s access is revoked</li>
+      <li>Not expose internal identifiers or debug data in responses</li>
+    </ul>
+
+    <h3 class="govuk-heading-m">Consumers must</h3>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Only request access to fields actually needed</li>
+      <li>Not cache responses beyond the time needed</li>
+      <li>Define a retention period and delete data when no longer required</li>
+    </ul>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l" id="access-control">5. Access control and authentication</h2>
+
+    <div class="govuk-inset-text">
+  OAuth 2.0 with JWT bearer tokens is mandatory for all marketplace APIs.
 </div>
 
-      </div>
 
-      <div data-required data-error="Enter the URL of your OpenAPI specification">
-        
+    <h3 class="govuk-heading-m">All participants</h3>
 
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Scope tokens to the minimum permissions required</li>
+      <li>Never share credentials between services, teams or individuals</li>
+      <li>Report and revoke compromised credentials immediately</li>
+    </ul>
 
-<div class="govuk-form-group">
-  <label class="govuk-label govuk-label--m" for="spec-url">
-    OpenAPI specification URL
-  </label>
+    <h3 class="govuk-heading-m">Consumers additionally</h3>
 
-  
-  
-  <div id="spec-url-hint" class="govuk-hint">
-    The raw GitHub URL of your openapi-spec.yml, on a public HMCTS repository.
-  </div>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Use separate credentials per consuming service</li>
+      <li>Never hard-code tokens in source code</li>
+      <li>Implement token rotation and expiry handling</li>
+    </ul>
 
+    <h3 class="govuk-heading-m">Producers additionally</h3>
 
-  <input
-    
-        
-        
-      
-        
-      
-    
-        
-        
-      
-        
-      
-    
-        
-        
-      
-        
-      
-    
-        
-        
-      
-        
-      
-    
-        
-        
-      
-        
-      
-    
-        
-        
-    
-        
-        
-    
-        
-        
-      
-        
-      
-    
-        
-        
-      
-        
-      
-    
-        
-        
-    
-        
-        
-    
-        
-        
-    
-   class="govuk-input" id="spec-url" name="spec-url" type="text" spellcheck="false" aria-describedby="spec-url-hint" autocomplete="off">
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Verify consumer identity before approving access</li>
+      <li>Be able to revoke access immediately</li>
+      <li>Maintain an audit log of access grants</li>
+    </ul>
 
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l" id="audit">6. Audit and monitoring</h2>
+
+    <h3 class="govuk-heading-m">Producers must</h3>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Log all API calls: timestamp, consumer ID, endpoint and response code</li>
+      <li>Retain logs for a minimum of 12 months</li>
+      <li>Make logs available to the marketplace or HMCTS security team on request</li>
+    </ul>
+
+    <h3 class="govuk-heading-m">Consumers must not</h3>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Attempt to circumvent rate limiting, access controls or monitoring</li>
+      <li>Use the API to enumerate or harvest data beyond the stated use case</li>
+    </ul>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l" id="breaches">7. Data breaches and incident management</h2>
+
+    <div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-visually-hidden">Warning</span>
+    Any suspected breach must be reported to the HMCTS DPO within 72 hours, under UK GDPR
+             Article 33.
+  </strong>
 </div>
 
-      </div>
 
-      <div data-required data-error="Select the highest data classification the API returns">
-        
+    <h3 class="govuk-heading-m">All participants</h3>
 
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Do not conceal or delay breach notification</li>
+      <li>Preserve logs and evidence for investigation</li>
+    </ul>
 
+    <h3 class="govuk-heading-m">Producers additionally</h3>
 
-<div class="govuk-form-group">
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Maintain an incident response plan covering API-related breaches</li>
+      <li>Notify affected consumers as part of incident response</li>
+    </ul>
 
-  <fieldset class="govuk-fieldset" aria-describedby="classification-hint">
-  
-  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-  
-    Highest data classification the API returns
-  
-  </legend>
-  
+    <h3 class="govuk-heading-m">Consumers additionally</h3>
 
-  <div id="classification-hint" class="govuk-hint">
-    Secret and Top Secret APIs cannot be listed in the marketplace.
-  </div>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Have a process to notify end users if personal data is compromised</li>
+    </ul>
 
+    <p class="govuk-body">
+      To report a breach, <a class="govuk-link" href="../../help/">contact the marketplace team</a>
+      immediately.
+    </p>
 
-  <div class="govuk-radios" data-module="govuk-radios">
-    
-    
-      
-  
-    
-    
-    
-    <div class="govuk-radios__item">
-      <input class="govuk-radios__input" id="classification" name="classification" type="radio" value="official">
-      <label class="govuk-label govuk-radios__label" for="classification">
-        Official
-      </label>
-      
-    </div>
-    
-  
-    
-      
-  
-    
-    
-    
-    <div class="govuk-radios__item">
-      <input class="govuk-radios__input" id="classification-2" name="classification" type="radio" value="official-sensitive" aria-describedby="classification-2-item-hint">
-      <label class="govuk-label govuk-radios__label" for="classification-2">
-        Official-Sensitive
-      </label>
-      
-      <div id="classification-2-item-hint" class="govuk-hint govuk-radios__hint">
-        A formal data sharing agreement will be required.
-      </div>
-      
-    </div>
-    
-  
-    
-      
-  
-    
-    
-    
-    <div class="govuk-radios__item">
-      <input class="govuk-radios__input" id="classification-3" name="classification" type="radio" value="secret" aria-describedby="classification-3-item-hint">
-      <label class="govuk-label govuk-radios__label" for="classification-3">
-        Secret or Top Secret
-      </label>
-      
-      <div id="classification-3-item-hint" class="govuk-hint govuk-radios__hint">
-        Not eligible for listing.
-      </div>
-      
-    </div>
-    
-  
-    
-    
-  </div>
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-</fieldset>
+    <h2 class="govuk-heading-l" id="transfers">8. Cross-border data transfers</h2>
 
-</div>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>API responses must not be routed through or stored outside the UK or EEA without prior written DPO approval</li>
+      <li>Cloud infrastructure processing API responses must be documented in your record of processing activities</li>
+      <li>Transfers to third countries must comply with UK GDPR Chapter V</li>
+    </ul>
 
-      </div>
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-      <div data-required data-error="You must confirm all three declarations">
-        
+    <h2 class="govuk-heading-l" id="accountability">9. Accountability and governance roles</h2>
 
+    <dl class="govuk-body">
+      <dt class="govuk-!-font-weight-bold">Data controller</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">HMCTS &mdash; responsible for the lawfulness of processing across the marketplace.</dd>
 
+      <dt class="govuk-!-font-weight-bold">Data processor</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">Consumer organisations processing personal data on behalf of HMCTS.</dd>
 
+      <dt class="govuk-!-font-weight-bold">API owner (producer)</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">Accountable for the accuracy, security and lawfulness of data exposed through their API.</dd>
 
-<div class="govuk-form-group">
+      <dt class="govuk-!-font-weight-bold">Marketplace team</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">Responsible for onboarding governance, standards enforcement and access audit.</dd>
 
-  <fieldset class="govuk-fieldset">
-  
-  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-  
-    Declarations
-  
-  </legend>
-  
+      <dt class="govuk-!-font-weight-bold">Data Protection Officer</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">Must be consulted on new data sharing arrangements, and notified of breaches within 72 hours.</dd>
+    </dl>
 
-  <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-    
-    
-      
-  
-  
-    
-    
-    
-    
-    
-    <div class="govuk-checkboxes__item">
-      <input class="govuk-checkboxes__input" id="declarations" name="declarations" type="checkbox" value="public-repo">
-      <label class="govuk-label govuk-checkboxes__label" for="declarations">
-        The API repository is public on GitHub under the HMCTS organisation
-      </label>
-      
-    </div>
-    
-  
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-    
-      
-  
-  
-    
-    
-    
-    
-    
-    <div class="govuk-checkboxes__item">
-      <input class="govuk-checkboxes__input" id="declarations-2" name="declarations" type="checkbox" value="spectral">
-      <label class="govuk-label govuk-checkboxes__label" for="declarations-2">
-        The specification passes the standard Spectral OAS3 ruleset with no errors
-      </label>
-      
-    </div>
-    
-  
+    <h2 class="govuk-heading-l" id="decommissioning">10. Decommissioning and offboarding</h2>
 
-    
-      
-  
-  
-    
-    
-    
-    
-    
-    <div class="govuk-checkboxes__item">
-      <input class="govuk-checkboxes__input" id="declarations-3" name="declarations" type="checkbox" value="external">
-      <label class="govuk-label govuk-checkboxes__label" for="declarations-3">
-        This is an external API, not an internal or developers-only API
-      </label>
-      
-    </div>
-    
-  
+    <h3 class="govuk-heading-m">Consumers must</h3>
 
-    
-    
-  </div>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Revoke credentials and notify the API owner when decommissioning</li>
+      <li>Delete all API-derived data, or return it to the data controller</li>
+      <li>Provide a data deletion certificate on request</li>
+    </ul>
 
-</fieldset>
+    <h3 class="govuk-heading-m">Producers must</h3>
 
-</div>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Give consumers at least 30 days&rsquo; notice before retiring an API</li>
+      <li>Ensure all consumers have migrated before retirement</li>
+      <li>Explicitly revoke all active credentials at retirement</li>
+    </ul>
 
-      </div>
+    <h2 class="govuk-heading-l" id="related">Role-specific guidance</h2>
 
-      
-<button type="submit" class="govuk-button" data-module="govuk-button">
-  Continue
-</button>
-
-
-    </form>
+    <ul class="govuk-list">
+      <li><a class="govuk-link" href="../../get-started/consumer-guidance/">Consumer guidance</a></li>
+      <li><a class="govuk-link" href="../../publish/producer-standards/">Producer standards</a></li>
+    </ul>
 
   </div>
 </div>

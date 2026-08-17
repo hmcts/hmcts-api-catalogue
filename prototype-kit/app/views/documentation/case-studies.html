@@ -1,0 +1,69 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "API platform case studies" %}
+{% set section = "documentation" %}
+{% set breadcrumbs = [
+  { text: "Home", href: "/" },
+  { text: "Documentation", href: "/documentation" }
+] %}
+
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">API platform case studies</h1>
+
+    <p class="govuk-body-l">
+      Examples of how teams have integrated their software with HMCTS APIs.
+    </p>
+
+    <h2 class="govuk-heading-l" id="manual-lookups">Reducing manual lookups in a case progression tool</h2>
+
+    <p class="govuk-body">
+      A regional court administration team integrated the Crime Prosecution Case Details API into their
+      internal case tracking tool, replacing a manual daily export process. Staff can now look up live
+      case status and hearing history directly, cutting a routine daily task from around 40 minutes to
+      under a minute.
+    </p>
+
+    <p class="govuk-body-s">
+      API used: Crime Prosecution Case Details API. Environment: production.
+    </p>
+
+    <h2 class="govuk-heading-l" id="daily-listings">Publishing daily listings to a public-facing service</h2>
+
+    <p class="govuk-body">
+      A digital service supporting self-represented litigants used the Court Listings and Scheduling API
+      to show upcoming hearing dates without needing court staff to re-key published cause lists. The
+      integration went from sandbox testing to production access in under three weeks.
+    </p>
+
+    <p class="govuk-body-s">
+      API used: Court Listings and Scheduling API. Environment: sandbox, then production.
+    </p>
+
+    <h2 class="govuk-heading-l" id="fee-calculation">Automating fee calculation in a case management system</h2>
+
+    <p class="govuk-body">
+      A tribunal case management team used the Fees and Financial Transactions API to calculate the
+      correct fee for a case type automatically at the point of submission, reducing fee-related rework
+      and manual reconciliation later in the process.
+    </p>
+
+    <p class="govuk-body-s">
+      API used: Fees and Financial Transactions API. Environment: production.
+    </p>
+
+    {{ govukInsetText({
+      html: 'These are illustrative examples. If your team has integrated with an HMCTS API and would
+             like to share your experience, <a class="govuk-link" href="/help">contact the marketplace
+             team</a>.'
+    }) }}
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Building justice sector software" %}
+{% set section = "get-started" %}
+{% set breadcrumbs = [
+  { text: "Home", href: "/" },
+  { text: "Get started", href: "/get-started" }
+] %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">Building justice sector software</h1>
+
+    <p class="govuk-body-l">
+      Understand the principles of designing justice sector software for different court and tribunal
+      settings.
+    </p>
+
+    <p class="govuk-body">
+      Software built for the justice system is used in a wide range of settings &mdash; from a judge on
+      the bench, to a caseworker processing an application, to a member of the public representing
+      themselves in a tribunal. Good design has to work for all of them.
+    </p>
+
+    <h2 class="govuk-heading-l" id="range-of-users">Design for a range of users and settings</h2>
+
+    <p class="govuk-body">
+      Consider who will actually use the service: legal professionals under time pressure in a hearing,
+      administrative staff processing high volumes of cases, and members of the public who may be using
+      a justice service for the first time and under significant personal stress.
+    </p>
+
+    <h2 class="govuk-heading-l" id="low-connectivity">Design for low connectivity and older hardware</h2>
+
+    <p class="govuk-body">
+      Many courts and tribunals operate with variable connectivity and a mix of older devices. Software
+      should degrade gracefully rather than fail outright when connectivity is poor.
+    </p>
+
+    <h2 class="govuk-heading-l" id="offline">Support offline and asynchronous processes</h2>
+
+    <p class="govuk-body">
+      Not every justice process happens in real time. Design for hearings, decisions and case updates
+      that may be recorded and synchronised later, rather than assuming constant live connectivity.
+    </p>
+
+    <h2 class="govuk-heading-l" id="sensitive-data">Handle sensitive data appropriately</h2>
+
+    <p class="govuk-body">
+      Case data often includes personal, and sometimes highly sensitive, information about members of
+      the public. Follow the
+      <a class="govuk-link" href="/publish/data-governance">data governance standards</a> and apply the
+      minimum data classification necessary for your use case.
+    </p>
+
+    <h2 class="govuk-heading-l" id="accessibility">Build for accessibility</h2>
+
+    <p class="govuk-body">
+      Justice services must be usable by people with a wide range of needs, including people with
+      disabilities, low digital literacy, or limited English proficiency. Meet WCAG accessibility
+      standards as a baseline, not an afterthought.
+    </p>
+
+    <h2 class="govuk-heading-l" id="reuse">Reuse HMCTS APIs rather than duplicating data</h2>
+
+    <p class="govuk-body">
+      Before building a new data store, check the
+      <a class="govuk-link" href="/api-catalogue">API catalogue</a> for an existing HMCTS API that
+      already holds the data you need.
+    </p>
+
+    <h2 class="govuk-heading-l" id="related">Related</h2>
+
+    <ul class="govuk-list">
+      <li><a class="govuk-link" href="/documentation/architecture">HMCTS architecture</a></li>
+      <li><a class="govuk-link" href="/documentation/architecture-principles">Architecture principles</a></li>
+      <li><a class="govuk-link" href="/documentation">Documentation, guides and tutorials</a></li>
+    </ul>
+
+  </div>
+</div>
+
+{% endblock %}

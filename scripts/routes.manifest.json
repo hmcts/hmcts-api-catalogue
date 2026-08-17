@@ -9,12 +9,64 @@
       "name": "API catalogue"
     },
     {
+      "path": "/get-started",
+      "name": "Getting started with our APIs"
+    },
+    {
+      "path": "/get-started/onboarding-guide",
+      "name": "Onboarding guide"
+    },
+    {
+      "path": "/get-started/consumer-guidance",
+      "name": "Consumer guidance"
+    },
+    {
+      "path": "/get-started/technology-introduction",
+      "name": "Introduction to justice sector technology"
+    },
+    {
+      "path": "/get-started/building-software",
+      "name": "Building justice sector software"
+    },
+    {
+      "path": "/get-started/glossary",
+      "name": "Glossary of developer terms"
+    },
+    {
+      "path": "/documentation",
+      "name": "Documentation, guides and tutorials"
+    },
+    {
+      "path": "/documentation/architecture",
+      "name": "HMCTS architecture"
+    },
+    {
+      "path": "/documentation/architecture-principles",
+      "name": "HMCTS architecture principles"
+    },
+    {
+      "path": "/documentation/our-capabilities",
+      "name": "Our capabilities"
+    },
+    {
+      "path": "/documentation/our-api-technologies",
+      "name": "Our API technologies"
+    },
+    {
+      "path": "/documentation/case-studies",
+      "name": "API platform case studies"
+    },
+    {
       "path": "/publish",
       "name": "Publish an API"
     },
     {
       "path": "/publish/producer-standards",
       "name": "API producer standards"
+    },
+    {
+      "path": "/publish/data-governance",
+      "name": "Data governance standards"
     },
     {
       "path": "/publish/submit",
@@ -31,6 +83,14 @@
     {
       "path": "/help",
       "name": "Help and support"
+    },
+    {
+      "path": "/help/community",
+      "name": "Developer community"
+    },
+    {
+      "path": "/help/resources",
+      "name": "A to Z of developer resources"
     },
     {
       "path": "/accessibility-statement",

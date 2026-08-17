@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>
-  Check your answers - HMCTS API Marketplace - GOV.UK
+  HMCTS architecture principles - HMCTS API Marketplace - GOV.UK
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#1d70b8">
@@ -11,7 +11,7 @@
     
   
   
-    <link href="../../../public/stylesheets/application.css" rel="stylesheet" type="text/css" />
+    <link href="../../public/stylesheets/application.css" rel="stylesheet" type="text/css" />
 
 
 
@@ -20,11 +20,11 @@
 
 
     
-      <link rel="icon" sizes="48x48" href="../../../plugin-assets/govuk-frontend/dist/govuk/assets/images/favicon.ico">
-      <link rel="icon" sizes="any" href="../../../plugin-assets/govuk-frontend/dist/govuk/assets/images/favicon.svg" type="image/svg+xml">
-      <link rel="mask-icon" href="../../../plugin-assets/govuk-frontend/dist/govuk/assets/images/govuk-icon-mask.svg" color="#1d70b8">
-      <link rel="apple-touch-icon" href="../../../plugin-assets/govuk-frontend/dist/govuk/assets/images/govuk-icon-180.png">
-      <link rel="manifest" href="../../../plugin-assets/govuk-frontend/dist/govuk/assets/manifest.json">
+      <link rel="icon" sizes="48x48" href="../../plugin-assets/govuk-frontend/dist/govuk/assets/images/favicon.ico">
+      <link rel="icon" sizes="any" href="../../plugin-assets/govuk-frontend/dist/govuk/assets/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="../../plugin-assets/govuk-frontend/dist/govuk/assets/images/govuk-icon-mask.svg" color="#1d70b8">
+      <link rel="apple-touch-icon" href="../../plugin-assets/govuk-frontend/dist/govuk/assets/images/govuk-icon-180.png">
+      <link rel="manifest" href="../../plugin-assets/govuk-frontend/dist/govuk/assets/manifest.json">
     
     
   </head>
@@ -107,7 +107,7 @@ data-module="govuk-service-navigation"
       
         <span class="govuk-service-navigation__service-name">
           
-            <a href="../../../" class="govuk-service-navigation__link">
+            <a href="../../" class="govuk-service-navigation__link">
               HMCTS API Marketplace
             </a>
           
@@ -133,7 +133,7 @@ data-module="govuk-service-navigation"
               
               <li class="govuk-service-navigation__item">
                 
-                  <a class="govuk-service-navigation__link" href="../../../api-catalogue/">
+                  <a class="govuk-service-navigation__link" href="../../api-catalogue/">
                     
                 
                 API catalogue
@@ -147,7 +147,7 @@ data-module="govuk-service-navigation"
               
               <li class="govuk-service-navigation__item">
                 
-                  <a class="govuk-service-navigation__link" href="../../../get-started/">
+                  <a class="govuk-service-navigation__link" href="../../get-started/">
                     
                 
                 Get started
@@ -159,27 +159,13 @@ data-module="govuk-service-navigation"
               
 
               
-              <li class="govuk-service-navigation__item">
-                
-                  <a class="govuk-service-navigation__link" href="../../../documentation/">
-                    
-                
-                Documentation
-              
-                  </a>
-                
-              </li>
-            
-              
-
-              
               <li class="govuk-service-navigation__item govuk-service-navigation__item--active">
                 
-                  <a class="govuk-service-navigation__link" href="../../../publish/" aria-current="true">
+                  <a class="govuk-service-navigation__link" href="../../documentation/" aria-current="true">
                     
                 
                 
-                  <strong class="govuk-service-navigation__active-fallback">Publish an API</strong>
+                  <strong class="govuk-service-navigation__active-fallback">Documentation</strong>
                 
               
                   </a>
@@ -191,7 +177,21 @@ data-module="govuk-service-navigation"
               
               <li class="govuk-service-navigation__item">
                 
-                  <a class="govuk-service-navigation__link" href="../../../help/">
+                  <a class="govuk-service-navigation__link" href="../../publish/">
+                    
+                
+                Publish an API
+              
+                  </a>
+                
+              </li>
+            
+              
+
+              
+              <li class="govuk-service-navigation__item">
+                
+                  <a class="govuk-service-navigation__link" href="../../help/">
                     
                 
                 Help and support
@@ -230,7 +230,7 @@ data-module="govuk-service-navigation"
       Beta
     </strong>
     <span class="govuk-phase-banner__text">
-      This is a new service. <a class="govuk-link" href="../../../help/">Help us improve it by giving feedback</a>.
+      This is a new service. <a class="govuk-link" href="../../help/">Help us improve it by giving feedback</a>.
     </span>
   </p>
 </div>
@@ -242,19 +242,19 @@ data-module="govuk-service-navigation"
 
   
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="../../../">Home</a>
+      <a class="govuk-breadcrumbs__link" href="../../">Home</a>
     </li>
   
 
   
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="../../../publish/">Publish an API</a>
+      <a class="govuk-breadcrumbs__link" href="../../documentation/">Documentation</a>
     </li>
   
 
   
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="../../../publish/submit/">Submit an API</a>
+      <a class="govuk-breadcrumbs__link" href="../../documentation/architecture/">HMCTS architecture</a>
     </li>
   
 
@@ -270,31 +270,89 @@ data-module="govuk-service-navigation"
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <h1 class="govuk-heading-xl">Check your answers before submitting</h1>
+    <h1 class="govuk-heading-xl">HMCTS architecture principles</h1>
 
-    <dl class="govuk-summary-list"
-        data-summary-for="publish-submit"
-        data-change-href="../"
-        data-empty-message="Your answers could not be read back. This happens when JavaScript is turned off, because there is no server to hold them.">
-    </dl>
+    <p class="govuk-body-l">
+      A guide to best practice when designing systems and services for HMCTS and the wider justice
+      sector.
+    </p>
+
+    <p class="govuk-body">
+      All architects, and anyone involved in designing or building a product or service for HMCTS,
+      should follow these principles.
+    </p>
+
+    <h2 class="govuk-heading-l" id="user-needs">Justice user needs come first</h2>
+
+    <p class="govuk-body">
+      Design around the people who rely on the justice system &mdash; the public, legal professionals,
+      and HMCTS staff &mdash; not around existing organisational structures or legacy systems.
+    </p>
+
+    <h2 class="govuk-heading-l" id="api-first">API-first</h2>
+
+    <p class="govuk-body">
+      Build services with a documented API from the outset, so capabilities can be reused across HMCTS
+      and the wider justice sector rather than duplicated.
+    </p>
+
+    <h2 class="govuk-heading-l" id="secure-by-design">Secure and proportionate by design</h2>
+
+    <p class="govuk-body">
+      Apply the minimum data classification and access controls necessary, in line with the
+      <a class="govuk-link" href="../../publish/data-governance/">data governance standards</a>, rather than
+      defaulting to the most restrictive option for every case.
+    </p>
+
+    <h2 class="govuk-heading-l" id="minimisation">Data minimisation</h2>
+
+    <p class="govuk-body">
+      Expose only the data fields a consumer needs for their use case. Avoid returning entire records
+      where a summary will do.
+    </p>
+
+    <h2 class="govuk-heading-l" id="reuse">Reuse before you build</h2>
+
+    <p class="govuk-body">
+      Check the <a class="govuk-link" href="../../api-catalogue/">API catalogue</a> and existing reference data
+      services before building new integrations or duplicating data that HMCTS already holds elsewhere.
+    </p>
+
+    <h2 class="govuk-heading-l" id="interoperable">Interoperable by default</h2>
+
+    <p class="govuk-body">
+      Use open standards &mdash; REST, OpenAPI, OAuth 2.0 &mdash; so systems inside and outside HMCTS can
+      integrate predictably, rather than proprietary formats.
+    </p>
+
+    <h2 class="govuk-heading-l" id="accessible">Accessible to all</h2>
+
+    <p class="govuk-body">
+      Digital services must meet WCAG accessibility standards, recognising that court and tribunal users
+      include people with a wide range of needs and circumstances.
+    </p>
+
+    <h2 class="govuk-heading-l" id="built-for-change">Built for change</h2>
+
+    <p class="govuk-body">
+      Design services so they can evolve &mdash; new case types, new courts, changing legislation &mdash;
+      without requiring a full rebuild each time.
+    </p>
 
     <div class="govuk-inset-text">
-  Your answers are held in this browser tab only. Nothing has been sent anywhere yet, and
-             nothing will be.
+  These principles are held internally by HMCTS DTS rather than published as a
+               cross-government document. Confirm the current wording with the architecture community
+               before quoting them in a governance paper.
 </div>
 
 
-    <form data-journey="publish-submit-confirm" data-next="../confirmation/" novalidate>
-      
-<button type="submit" class="govuk-button" data-module="govuk-button">
-  Accept and submit
-</button>
+    <h2 class="govuk-heading-l" id="related">Related</h2>
 
-    </form>
-
-    <p class="govuk-body">
-      <a class="govuk-link" href="../">Change your answers</a>
-    </p>
+    <ul class="govuk-list">
+      <li><a class="govuk-link" href="../../documentation/architecture/">HMCTS architecture</a></li>
+      <li><a class="govuk-link" href="../../documentation/our-capabilities/">Our capabilities</a></li>
+      <li><a class="govuk-link" href="../../publish/producer-standards/">Producer standards</a></li>
+    </ul>
 
   </div>
 </div>
@@ -351,25 +409,25 @@ data-module="govuk-service-navigation"
         <ul class="govuk-footer__inline-list">
         
           <li class="govuk-footer__inline-list-item">
-            <a class="govuk-footer__link" href="../../../help/">
+            <a class="govuk-footer__link" href="../../help/">
               Contact the marketplace team
             </a>
           </li>
         
           <li class="govuk-footer__inline-list-item">
-            <a class="govuk-footer__link" href="../../../accessibility-statement/">
+            <a class="govuk-footer__link" href="../../accessibility-statement/">
               Accessibility statement
             </a>
           </li>
         
           <li class="govuk-footer__inline-list-item">
-            <a class="govuk-footer__link" href="../../../cookies/">
+            <a class="govuk-footer__link" href="../../cookies/">
               Cookies
             </a>
           </li>
         
           <li class="govuk-footer__inline-list-item">
-            <a class="govuk-footer__link" href="../../../privacy/">
+            <a class="govuk-footer__link" href="../../privacy/">
               Privacy notice
             </a>
           </li>
@@ -426,15 +484,15 @@ data-module="govuk-service-navigation"
   
 
   
-    <script type="module" src="../../../plugin-assets/govuk-frontend/dist/govuk/govuk-frontend.min.js"></script>
+    <script type="module" src="../../plugin-assets/govuk-frontend/dist/govuk/govuk-frontend.min.js"></script>
   
 
   
-    <script type="module" src="../../../plugin-assets/govuk-frontend/dist/govuk-prototype-kit/init.js"></script>
+    <script type="module" src="../../plugin-assets/govuk-frontend/dist/govuk-prototype-kit/init.js"></script>
   
 
   
-    <script type="module" src="../../../public/javascripts/application.js"></script>
+    <script type="module" src="../../public/javascripts/application.js"></script>
   
 
 

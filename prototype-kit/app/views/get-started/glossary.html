@@ -1,0 +1,104 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Glossary of developer terms" %}
+{% set section = "get-started" %}
+{% set breadcrumbs = [
+  { text: "Home", href: "/" },
+  { text: "Get started", href: "/get-started" }
+] %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">Glossary of developer terms</h1>
+
+    <p class="govuk-body-l">
+      Look up terminology used across the HMCTS API Marketplace.
+    </p>
+
+    <dl class="govuk-body">
+
+      <dt class="govuk-!-font-weight-bold">API</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">
+        Application Programming Interface. A defined way for one piece of software to request data or
+        actions from another, without needing to know how that other system works internally.
+      </dd>
+
+      <dt class="govuk-!-font-weight-bold">OpenAPI specification</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">
+        A standard, machine-readable format for describing what an API does, its endpoints, and the data
+        it returns. Every HMCTS API on the marketplace publishes one.
+      </dd>
+
+      <dt class="govuk-!-font-weight-bold">OAuth 2.0</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">
+        The industry-standard framework HMCTS APIs use for authorisation. Your service proves who it is
+        and is issued a token, rather than using a shared password.
+      </dd>
+
+      <dt class="govuk-!-font-weight-bold">JWT bearer token</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">
+        JSON Web Token. A signed, time-limited credential issued after authentication, which your
+        service includes with each API request to prove it is authorised.
+      </dd>
+
+      <dt class="govuk-!-font-weight-bold">Sandbox</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">
+        A test environment that mimics production but contains no real case or personal data. Always
+        integrate and test here first.
+      </dd>
+
+      <dt class="govuk-!-font-weight-bold">Producer</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">
+        A team that owns and publishes an API on the marketplace.
+      </dd>
+
+      <dt class="govuk-!-font-weight-bold">Consumer</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">
+        A team that requests access to, and uses, an API published by a producer.
+      </dd>
+
+      <dt class="govuk-!-font-weight-bold">Data Sharing Agreement (DSA)</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">
+        A formal agreement between organisations setting out the legal basis and terms for sharing
+        personal data through an API.
+      </dd>
+
+      <dt class="govuk-!-font-weight-bold">Official and Official-Sensitive</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">
+        Data classifications under the Government Security Classifications policy. Official-Sensitive
+        APIs require a signed DSA and enhanced access controls before access is granted.
+      </dd>
+
+      <dt class="govuk-!-font-weight-bold">Rate limiting</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">
+        A control that caps how many requests a consumer can make in a given period, to protect the API
+        from overload.
+      </dd>
+
+      <dt class="govuk-!-font-weight-bold">Cause list</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">
+        The published list of hearings scheduled at a court or tribunal on a given day.
+      </dd>
+
+      <dt class="govuk-!-font-weight-bold">Case reference</dt>
+      <dd class="govuk-!-margin-left-0 govuk-!-margin-bottom-4">
+        The unique identifier assigned to a case, used to look up its details, hearings and outcomes
+        through an API.
+      </dd>
+
+    </dl>
+
+    <h2 class="govuk-heading-l" id="related">Related</h2>
+
+    <ul class="govuk-list">
+      <li><a class="govuk-link" href="/documentation">Documentation, guides and tutorials</a></li>
+      <li><a class="govuk-link" href="/get-started/onboarding-guide">Onboarding guide</a></li>
+    </ul>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Our capabilities" %}
+{% set section = "documentation" %}
+{% set breadcrumbs = [
+  { text: "Home", href: "/" },
+  { text: "Documentation", href: "/documentation" }
+] %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">Our capabilities</h1>
+
+    <p class="govuk-body-l">
+      Categories for the business services HMCTS provides across the justice system.
+    </p>
+
+    <p class="govuk-body">
+      Each API published on the marketplace sits within one of the following capabilities. Use these
+      categories, and the domain filter in the
+      <a class="govuk-link" href="/api-catalogue">API catalogue</a>, to find the right API for your
+      integration.
+    </p>
+
+    <h2 class="govuk-heading-l" id="case-administration">Case administration</h2>
+
+    <p class="govuk-body">
+      Creating, updating and retrieving the administrative record of a case &mdash; status, parties, and
+      case type &mdash; across crime, civil, family and tribunal jurisdictions.
+    </p>
+
+    <h2 class="govuk-heading-l" id="hearing-results">Hearing results</h2>
+
+    <p class="govuk-body">
+      Recording and retrieving the outcome of a hearing, including orders made and results recorded once
+      a hearing has concluded.
+    </p>
+
+    <h2 class="govuk-heading-l" id="scheduling">Scheduling and listing</h2>
+
+    <p class="govuk-body">
+      Publishing and retrieving court and tribunal listings &mdash; which cases are being heard, where,
+      and when.
+    </p>
+
+    <h2 class="govuk-heading-l" id="reference-data">Reference data</h2>
+
+    <p class="govuk-body">
+      Canonical, shared reference data used across HMCTS services &mdash; courts, venues, case types and
+      jurisdiction codes &mdash; so teams do not each maintain their own copy.
+    </p>
+
+    <h2 class="govuk-heading-l" id="financial">Financial</h2>
+
+    <p class="govuk-body">
+      Fee calculation and payment transaction data for court and tribunal fees.
+    </p>
+
+    <h2 class="govuk-heading-l" id="related">Related</h2>
+
+    <ul class="govuk-list">
+      <li><a class="govuk-link" href="/documentation/architecture">HMCTS architecture</a></li>
+      <li><a class="govuk-link" href="/documentation/architecture-principles">Architecture principles</a></li>
+      <li><a class="govuk-link" href="/api-catalogue">API catalogue</a></li>
+    </ul>
+
+  </div>
+</div>
+
+{% endblock %}

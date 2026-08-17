@@ -85,6 +85,18 @@ const mutations = [
     html: (h) => h.replace('data-next="check-answers/"', 'data-next=""')
   },
   {
+    // This is the bug that shipped: a govuk-button with an undefined href
+    // silently renders as <button>, which is valid HTML and not a broken link,
+    // so no other gate noticed the catalogue link had vanished.
+    gate: 'structure',
+    what: 'a govuk-button rendered dead, outside a form',
+    target: 'api-catalogue/index.html',
+    html: (h) => h.replace(
+      /<a href="https:\/\/hmcts\.github\.io\/amp-catalog\/"([^>]*class="govuk-button[^>]*)>/,
+      '<button type="submit"$1>'
+    )
+  },
+  {
     gate: 'html',
     what: 'malformed markup (unclosed element)',
     html: (h) => h.replace('</main>', '<div class="govuk-body"></main>')

@@ -1,0 +1,104 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "HMCTS architecture principles" %}
+{% set section = "documentation" %}
+{% set breadcrumbs = [
+  { text: "Home", href: "/" },
+  { text: "Documentation", href: "/documentation" },
+  { text: "HMCTS architecture", href: "/documentation/architecture" }
+] %}
+
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">HMCTS architecture principles</h1>
+
+    <p class="govuk-body-l">
+      A guide to best practice when designing systems and services for HMCTS and the wider justice
+      sector.
+    </p>
+
+    <p class="govuk-body">
+      All architects, and anyone involved in designing or building a product or service for HMCTS,
+      should follow these principles.
+    </p>
+
+    <h2 class="govuk-heading-l" id="user-needs">Justice user needs come first</h2>
+
+    <p class="govuk-body">
+      Design around the people who rely on the justice system &mdash; the public, legal professionals,
+      and HMCTS staff &mdash; not around existing organisational structures or legacy systems.
+    </p>
+
+    <h2 class="govuk-heading-l" id="api-first">API-first</h2>
+
+    <p class="govuk-body">
+      Build services with a documented API from the outset, so capabilities can be reused across HMCTS
+      and the wider justice sector rather than duplicated.
+    </p>
+
+    <h2 class="govuk-heading-l" id="secure-by-design">Secure and proportionate by design</h2>
+
+    <p class="govuk-body">
+      Apply the minimum data classification and access controls necessary, in line with the
+      <a class="govuk-link" href="/publish/data-governance">data governance standards</a>, rather than
+      defaulting to the most restrictive option for every case.
+    </p>
+
+    <h2 class="govuk-heading-l" id="minimisation">Data minimisation</h2>
+
+    <p class="govuk-body">
+      Expose only the data fields a consumer needs for their use case. Avoid returning entire records
+      where a summary will do.
+    </p>
+
+    <h2 class="govuk-heading-l" id="reuse">Reuse before you build</h2>
+
+    <p class="govuk-body">
+      Check the <a class="govuk-link" href="/api-catalogue">API catalogue</a> and existing reference data
+      services before building new integrations or duplicating data that HMCTS already holds elsewhere.
+    </p>
+
+    <h2 class="govuk-heading-l" id="interoperable">Interoperable by default</h2>
+
+    <p class="govuk-body">
+      Use open standards &mdash; REST, OpenAPI, OAuth 2.0 &mdash; so systems inside and outside HMCTS can
+      integrate predictably, rather than proprietary formats.
+    </p>
+
+    <h2 class="govuk-heading-l" id="accessible">Accessible to all</h2>
+
+    <p class="govuk-body">
+      Digital services must meet WCAG accessibility standards, recognising that court and tribunal users
+      include people with a wide range of needs and circumstances.
+    </p>
+
+    <h2 class="govuk-heading-l" id="built-for-change">Built for change</h2>
+
+    <p class="govuk-body">
+      Design services so they can evolve &mdash; new case types, new courts, changing legislation &mdash;
+      without requiring a full rebuild each time.
+    </p>
+
+    {{ govukInsetText({
+      html: 'These principles are held internally by HMCTS DTS rather than published as a
+             cross-government document. Confirm the current wording with the architecture community
+             before quoting them in a governance paper.'
+    }) }}
+
+    <h2 class="govuk-heading-l" id="related">Related</h2>
+
+    <ul class="govuk-list">
+      <li><a class="govuk-link" href="/documentation/architecture">HMCTS architecture</a></li>
+      <li><a class="govuk-link" href="/documentation/our-capabilities">Our capabilities</a></li>
+      <li><a class="govuk-link" href="/publish/producer-standards">Producer standards</a></li>
+    </ul>
+
+  </div>
+</div>
+
+{% endblock %}

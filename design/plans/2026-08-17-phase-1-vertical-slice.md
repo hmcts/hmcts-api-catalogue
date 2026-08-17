@@ -28,6 +28,65 @@ Everything below was checked against the real packages rather than assumed. Do n
 
 **Audit:** [`design/audit/2026-08-17-govuk-conformance-audit.md`](../audit/2026-08-17-govuk-conformance-audit.md)
 
+## Deviations found during execution
+
+Recorded as they were discovered, so the plan stays true to what actually works.
+
+### Task 1 (done)
+
+- **The base layout is `app/views/layouts/main.html`**, not `layouts/_generic.njk`. The Kit generates
+  `main.html` and its templates extend it; following that convention was the point of choosing the Kit.
+- **Do not override `pageTitle`.** The Kit's `govuk-branded.njk` already builds
+  `{{ pageName }} - {{ serviceName }} - GOV.UK`. Pages set `pageName`; `serviceName` comes from
+  `app/config.json`. This produces the required title format exactly.
+- **The blocks to override are `govukServiceNavigation`, `beforeContent` and `govukFooter`** — these are
+  govuk-frontend 6's own template block names. `useServiceNavigation` in `app/config.json` passes only
+  the service name and URL, never navigation items, so the items must come from a block override.
+- **`app/config.json` carries `plugins.govuk-frontend.rebrand: true`** — the current GOV.UK brand. Keep it.
+- **Two things the framework gives for free**, so no task needs to build them:
+  - the GOV.UK footer emits the OGL logo and Crown copyright, closing audit
+    [L-4](../audit/2026-08-17-govuk-conformance-audit.md#l-4--low--footer-conflates-code-licence-with-content-licence)
+  - `govuk-frontend`'s `headIcons` block emits the full favicon set, closing half of
+    [H-4](../audit/2026-08-17-govuk-conformance-audit.md#h-4--low--no-favicon-no-404-page)
+- **The Kit prompts interactively if its port is busy** ("Change to an available port? (Y/n)") and dies
+  when stdin is closed. **Always set `PORT` explicitly.** `npm run kit` uses 3100. Anything automated
+  that leaves the port to chance will hang or fail confusingly — this cost a wasted verification cycle,
+  because a stale Kit from an earlier test held 3000 and served its stock homepage instead of ours.
+- `@govuk-prototype-kit/common-templates` 3.0.0 emits Sass deprecation warnings against govuk-frontend
+  6.4.0 (`govuk-text-colour`). Cosmetic, upstream, not ours to fix.
+- **`common-templates` ships the canonical GDS page archetypes** — `question.html`,
+  `check-answers.html`, `confirmation.html`, `content.html`, `mainstream-guide.html`, `start.html`,
+  `task-list.html` — under
+  `prototype-kit/node_modules/@govuk-prototype-kit/common-templates/templates/`. Tasks 6–9 should start
+  from these rather than hand-writing markup.
+
+### Task 2 (correction — read before starting)
+
+**The export script in Task 2 step 3 is wrong about assets and must be changed.** It copies
+`prototype-kit/public`, which does not exist as a source of truth. The rendered page actually
+references three asset roots, all served by the Kit over HTTP, some of them virtual:
+
+```
+/public/stylesheets/application.css
+/public/javascripts/application.js
+/plugin-assets/govuk-frontend/dist/govuk/govuk-frontend.min.js
+/plugin-assets/govuk-frontend/dist/govuk/assets/images/…      (favicons)
+/plugin-assets/govuk-frontend/dist/govuk/assets/manifest.json
+/plugin-assets/govuk-frontend/dist/govuk-prototype-kit/init.js
+/plugin-assets/govuk-prototype-kit/lib/assets/javascripts/kit.js
+/plugin-assets/govuk-prototype-kit/lib/assets/javascripts/auto-store-data.js
+```
+
+So the export must **fetch every asset URL it finds in the exported HTML** (plus the fonts and images
+those assets reference in turn) rather than copying a directory. Fetch-and-follow, seeded from the
+asset URLs discovered in the HTML, is the correct approach and also guarantees the output contains
+exactly what the pages ask for.
+
+`auto-store-data.js` and `kit.js` are Kit development helpers. Decide explicitly whether they belong in
+a published static export — `kit.js` drives the "Manage your prototype" tooling and probably does not.
+
+---
+
 ## Global Constraints
 
 Every task's requirements implicitly include these.

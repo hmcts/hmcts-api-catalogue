@@ -1,0 +1,13 @@
+{
+  "extends": ["html-validate:recommended"],
+  "rules": {
+    "no-inline-style": "error",
+
+    "prefer-native-element": ["error", { "exclude": ["button"] }],
+
+    "void-style": "off",
+    "no-trailing-whitespace": "off",
+    "require-sri": "off",
+    "long-title": "off"
+  }
+}

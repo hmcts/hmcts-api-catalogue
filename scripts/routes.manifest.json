@@ -1,5 +1,32 @@
 {
   "routes": [
-    { "path": "/", "name": "Home" }
+    {
+      "path": "/",
+      "name": "Home"
+    },
+    {
+      "path": "/api-catalogue",
+      "name": "API catalogue"
+    },
+    {
+      "path": "/publish",
+      "name": "Publish an API"
+    },
+    {
+      "path": "/help",
+      "name": "Help and support"
+    },
+    {
+      "path": "/accessibility-statement",
+      "name": "Accessibility statement"
+    },
+    {
+      "path": "/cookies",
+      "name": "Cookies"
+    },
+    {
+      "path": "/privacy",
+      "name": "Privacy notice"
+    }
   ]
 }

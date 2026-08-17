@@ -1,0 +1,112 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Accessibility statement" %}
+{% set breadcrumbs = [{ text: "Home", href: "/" }] %}
+
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">Accessibility statement for the HMCTS API Marketplace</h1>
+
+    <p class="govuk-body">
+      This statement applies to the HMCTS API Marketplace. It does not cover the AMp API catalogue,
+      which is a separate service with its own accessibility statement.
+    </p>
+
+    <p class="govuk-body">
+      This service is run by HMCTS Digital and Technology Solutions. We want as many people as
+      possible to be able to use it. That means you should be able to:
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>change colours, contrast levels and fonts</li>
+      <li>zoom in up to 400% without the text spilling off the screen</li>
+      <li>navigate the whole service using just a keyboard</li>
+      <li>navigate the whole service using speech recognition software</li>
+      <li>listen to the service using a screen reader</li>
+    </ul>
+
+    <p class="govuk-body">
+      We have also tried to make the language as plain as possible, which is not always easy for a
+      service about APIs.
+    </p>
+
+    <h2 class="govuk-heading-l" id="how-accessible">How accessible this service is</h2>
+
+    {{ govukInsetText({
+      html: '<strong>NEEDS SIGN-OFF &mdash; accessibility lead.</strong> This service has not yet been
+             formally assessed against WCAG 2.2 AA, so no compliance claim is made here. An automated
+             axe check runs against every page on every change, but automated testing catches only
+             part of the picture. Do not replace this paragraph with a compliance statement until an
+             audit has actually been carried out &mdash; a statement claiming an untested conformance
+             level is worse than one that admits the gap.'
+    }) }}
+
+    <p class="govuk-body">
+      This service is in beta and under active development. We know of no accessibility problems in it
+      at the time of writing, but it has not been independently tested.
+    </p>
+
+    <h2 class="govuk-heading-l" id="feedback">Feedback and contact information</h2>
+
+    <p class="govuk-body">
+      If you need information on this service in a different format like accessible PDF, large print,
+      easy read, audio recording or braille, or you find any accessibility problem not listed on this
+      page, <a class="govuk-link" href="/help">contact the marketplace team</a>.
+    </p>
+
+    <p class="govuk-body">
+      We&rsquo;ll consider your request and get back to you.
+    </p>
+
+    <h2 class="govuk-heading-l" id="enforcement">Enforcement procedure</h2>
+
+    <p class="govuk-body">
+      The Equality and Human Rights Commission is responsible for enforcing the Public Sector Bodies
+      (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018. If you are not happy
+      with how we respond to your complaint, contact the Equality Advisory and Support Service, or the
+      Equality Commission for Northern Ireland if you live in Northern Ireland.
+    </p>
+
+    {{ govukInsetText({
+      html: '<strong>NEEDS SIGN-OFF.</strong> Confirm this paragraph against the current GOV.UK model
+             accessibility statement wording before publication &mdash; the model text is the version
+             that should appear here.'
+    }) }}
+
+    <h2 class="govuk-heading-l" id="technical-information">Technical information about this service&rsquo;s accessibility</h2>
+
+    <p class="govuk-body">
+      HMCTS is committed to making this service accessible, in accordance with the Public Sector
+      Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.
+    </p>
+
+    <h2 class="govuk-heading-l" id="compliance-status">Compliance status</h2>
+
+    {{ govukInsetText({
+      html: '<strong>NEEDS SIGN-OFF &mdash; accessibility lead.</strong> The compliance status
+             (fully, partially, or not compliant with WCAG 2.2 AA) cannot be stated until an audit has
+             been completed, and must not be guessed.'
+    }) }}
+
+    <h2 class="govuk-heading-l" id="preparation">Preparation of this statement</h2>
+
+    {{ govukInsetText({
+      html: '<strong>NEEDS SIGN-OFF.</strong> Three facts are required and must be real: the date this
+             statement was prepared, the date the service was last tested, and who carried out the
+             testing and how.'
+    }) }}
+
+    <p class="govuk-body">
+      This service was built on the GOV.UK Design System, and every page is checked automatically
+      against WCAG 2.1 AA using axe on every change. That is a floor, not an audit.
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

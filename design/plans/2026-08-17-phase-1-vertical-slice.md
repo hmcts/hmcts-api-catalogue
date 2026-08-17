@@ -60,6 +60,38 @@ Recorded as they were discovered, so the plan stays true to what actually works.
   `prototype-kit/node_modules/@govuk-prototype-kit/common-templates/templates/`. Tasks 6–9 should start
   from these rather than hand-writing markup.
 
+### Tasks 2 and 3 (done) — what actually happened
+
+- **The export's asset handling was rewritten** as fetch-and-follow, per the correction below. It
+  picked up the four GDS Transport font files from inside the compiled CSS without their being named
+  anywhere, which is the behaviour that makes it trustworthy.
+- **Production mode is unusable for export.** Both `npm start` and `npm run serve` force an HTTPS
+  redirect (302). The export runs against `dev` and strips the two Kit tooling scripts explicitly.
+- **`gate:links` passed while checking nothing.** Its first implementation used
+  `linksToSkip: ['^https?://']` to skip external hosts. linkinator serves the local path over its own
+  HTTP server, so *every* internal link matched and was skipped — it reported "0 internal links
+  checked" and exited 0 with seven known-broken links on the page. Now skips by hostname instead.
+  This is the single best argument for the mutation harness in this plan.
+- **The accessibility gate drives a real Chrome.** Puppeteer's bundled Chromium download is blocked in
+  this environment. `.puppeteerrc.cjs` sets `skipDownload: true` and `check-a11y.mjs` resolves a browser
+  from `CHROME_PATH` then well-known macOS and Linux paths. Note `.npmrc` is *not* the mechanism — npm
+  rejects `puppeteer_skip_download` as an unknown config key.
+- **Four `html-validate:recommended` rules were relaxed**, because they fight GOV.UK Frontend rather
+  than catching defects. Reasons are recorded in `scripts/README.md`. The important one:
+  `prefer-native-element` is *narrowed* with `exclude: ["button"]`, not switched off, because GOV.UK's
+  start button is deliberately `<a role="button">` — so the rule still catches `<div role="button">` in
+  our own markup.
+- **Six pages were pulled forward** from Tasks 5, 6 and 7: the three legal pages plus `/api-catalogue`,
+  `/publish` and `/help`. This was a real dependency the plan missed — the shared layout links to all
+  of them from *every* page, so a green link gate is impossible without them.
+- **`/help/contact` was dropped** for now and the phase banner and footer repoint at `/help`, which
+  carries the contact route. Building a stub form page purely to satisfy the link gate would have been
+  the wrong trade.
+- **The AMp catalogue URL lives in `prototype-kit/app/config.json`** as `ampCatalogueUrl`, so the
+  swap-in of the final URL is a one-line change. Kit config values are available to templates.
+- **The mutation harness has 12 mutations, not 8**, and works on a throwaway copy so `docs/v2` is
+  never touched. All 12 are caught.
+
 ### Task 2 (correction — read before starting)
 
 **The export script in Task 2 step 3 is wrong about assets and must be changed.** It copies

@@ -42,7 +42,7 @@
 {% block beforeContent %}
   {{ govukPhaseBanner({
     tag: { text: "Beta" },
-    html: 'This is a new service. <a class="govuk-link" href="/help/contact">Help us improve it by giving feedback</a>.'
+    html: 'This is a new service. <a class="govuk-link" href="/help">Help us improve it by giving feedback</a>.'
   }) }}
 
   {% if breadcrumbs %}
@@ -55,7 +55,7 @@
     meta: {
       visuallyHiddenTitle: "Support and legal",
       items: [
-        { href: "/help/contact", text: "Contact the marketplace team" },
+        { href: "/help", text: "Contact the marketplace team" },
         { href: "/accessibility-statement", text: "Accessibility statement" },
         { href: "/cookies", text: "Cookies" },
         { href: "/privacy", text: "Privacy notice" }

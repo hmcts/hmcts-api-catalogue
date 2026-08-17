@@ -1,0 +1,46 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Publish an API" %}
+{% set section = "publish" %}
+{% set breadcrumbs = [{ text: "Home", href: "/" }] %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">Publish an API</h1>
+
+    <p class="govuk-body-l">
+      List your team&rsquo;s API in the marketplace so other teams can find it, understand what it
+      does, and request access.
+    </p>
+
+    <p class="govuk-body">
+      The marketplace doesn&rsquo;t own or run any of the APIs it lists &mdash; your team keeps that.
+      What it does is make your API discoverable, documented in plain English, and reachable through
+      a consistent access request process.
+    </p>
+
+    <h2 class="govuk-heading-m">What you will need</h2>
+
+    <p class="govuk-body">Before your API can be listed, you will need:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>a published OpenAPI specification, reachable at a stable URL</li>
+      <li>a named owning team and a contact address that will still work in six months</li>
+      <li>a data classification for everything the API returns</li>
+      <li>a plain-English description of what the API is for</li>
+    </ul>
+
+    <h2 class="govuk-heading-m">Get help</h2>
+
+    <p class="govuk-body">
+      If you&rsquo;re not sure whether your API is ready, or you want to talk through the process
+      first, <a class="govuk-link" href="/help">contact the marketplace team</a>.
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

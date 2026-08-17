@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>
-  Home - HMCTS API Marketplace - GOV.UK
+  Help and support - HMCTS API Marketplace - GOV.UK
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#1d70b8">
@@ -11,7 +11,7 @@
     
   
   
-    <link href="public/stylesheets/application.css" rel="stylesheet" type="text/css" />
+    <link href="../public/stylesheets/application.css" rel="stylesheet" type="text/css" />
 
 
 
@@ -20,11 +20,11 @@
 
 
     
-      <link rel="icon" sizes="48x48" href="plugin-assets/govuk-frontend/dist/govuk/assets/images/favicon.ico">
-      <link rel="icon" sizes="any" href="plugin-assets/govuk-frontend/dist/govuk/assets/images/favicon.svg" type="image/svg+xml">
-      <link rel="mask-icon" href="plugin-assets/govuk-frontend/dist/govuk/assets/images/govuk-icon-mask.svg" color="#1d70b8">
-      <link rel="apple-touch-icon" href="plugin-assets/govuk-frontend/dist/govuk/assets/images/govuk-icon-180.png">
-      <link rel="manifest" href="plugin-assets/govuk-frontend/dist/govuk/assets/manifest.json">
+      <link rel="icon" sizes="48x48" href="../plugin-assets/govuk-frontend/dist/govuk/assets/images/favicon.ico">
+      <link rel="icon" sizes="any" href="../plugin-assets/govuk-frontend/dist/govuk/assets/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="../plugin-assets/govuk-frontend/dist/govuk/assets/images/govuk-icon-mask.svg" color="#1d70b8">
+      <link rel="apple-touch-icon" href="../plugin-assets/govuk-frontend/dist/govuk/assets/images/govuk-icon-180.png">
+      <link rel="manifest" href="../plugin-assets/govuk-frontend/dist/govuk/assets/manifest.json">
     
     
   </head>
@@ -107,7 +107,7 @@ data-module="govuk-service-navigation"
       
         <span class="govuk-service-navigation__service-name">
           
-            <a href="" class="govuk-service-navigation__link">
+            <a href="../" class="govuk-service-navigation__link">
               HMCTS API Marketplace
             </a>
           
@@ -133,7 +133,7 @@ data-module="govuk-service-navigation"
               
               <li class="govuk-service-navigation__item">
                 
-                  <a class="govuk-service-navigation__link" href="api-catalogue/">
+                  <a class="govuk-service-navigation__link" href="../api-catalogue/">
                     
                 
                 API catalogue
@@ -147,7 +147,7 @@ data-module="govuk-service-navigation"
               
               <li class="govuk-service-navigation__item">
                 
-                  <a class="govuk-service-navigation__link" href="publish/">
+                  <a class="govuk-service-navigation__link" href="../publish/">
                     
                 
                 Publish an API
@@ -159,12 +159,14 @@ data-module="govuk-service-navigation"
               
 
               
-              <li class="govuk-service-navigation__item">
+              <li class="govuk-service-navigation__item govuk-service-navigation__item--active">
                 
-                  <a class="govuk-service-navigation__link" href="help/">
+                  <a class="govuk-service-navigation__link" href="../help/" aria-current="true">
                     
                 
-                Help and support
+                
+                  <strong class="govuk-service-navigation__active-fallback">Help and support</strong>
+                
               
                   </a>
                 
@@ -200,11 +202,24 @@ data-module="govuk-service-navigation"
       Beta
     </strong>
     <span class="govuk-phase-banner__text">
-      This is a new service. <a class="govuk-link" href="help/">Help us improve it by giving feedback</a>.
+      This is a new service. <a class="govuk-link" href="../help/">Help us improve it by giving feedback</a>.
     </span>
   </p>
 </div>
 
+
+  
+    <nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+  <ol class="govuk-breadcrumbs__list">
+
+  
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../">Home</a>
+    </li>
+  
+
+  </ol>
+</nav>
 
   
 
@@ -214,18 +229,54 @@ data-module="govuk-service-navigation"
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl">HMCTS API Marketplace</h1>
-    <p class="govuk-body-l">Discover, request and integrate the APIs powering justice sector software.</p>
 
-    
-  
+    <h1 class="govuk-heading-xl">Help and support</h1>
 
-<a href="api-catalogue/" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
-  Browse the API catalogue
-  <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-    <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"/>
-  </svg>
-</a>
+    <p class="govuk-body-l">
+      Get help at any point in your integration, from working out which API you need to going live.
+    </p>
+
+    <div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-visually-hidden">Warning</span>
+    This is a prototype. Forms on this site do not submit anything and no one receives
+             what you type. Use the email address below if you need a real reply.
+  </strong>
+</div>
+
+
+    <h2 class="govuk-heading-m">Contact the marketplace team</h2>
+
+    <p class="govuk-body">
+      Email
+      <a class="govuk-link" href="mailto:Nagashankar.Ponnaganti@HMCTS.NET">Nagashankar.Ponnaganti@HMCTS.NET</a>
+      with questions about onboarding, an API listing, a data governance issue, or general feedback
+      on this service.
+    </p>
+
+    <p class="govuk-body">Tell us as much as you can:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>the name of the API, if you know it</li>
+      <li>your team and organisation</li>
+      <li>what you are trying to build, and what is blocking you</li>
+    </ul>
+
+    <h2 class="govuk-heading-m">Before you get in touch</h2>
+
+    <ul class="govuk-list">
+      <li><a class="govuk-link" href="../api-catalogue/">Browse the API catalogue</a> to check whether the API you need already exists</li>
+      <li><a class="govuk-link" href="../publish/">Read how to publish an API</a> if you are listing one</li>
+    </ul>
+
+    <h2 class="govuk-heading-m">Give feedback on this service</h2>
+
+    <p class="govuk-body">
+      This service is in beta and we are still building it. If something is confusing, broken, or
+      missing, telling us is genuinely useful &mdash; email the address above with
+      &ldquo;feedback&rdquo; in the subject line.
+    </p>
 
   </div>
 </div>
@@ -282,25 +333,25 @@ data-module="govuk-service-navigation"
         <ul class="govuk-footer__inline-list">
         
           <li class="govuk-footer__inline-list-item">
-            <a class="govuk-footer__link" href="help/">
+            <a class="govuk-footer__link" href="../help/">
               Contact the marketplace team
             </a>
           </li>
         
           <li class="govuk-footer__inline-list-item">
-            <a class="govuk-footer__link" href="accessibility-statement/">
+            <a class="govuk-footer__link" href="../accessibility-statement/">
               Accessibility statement
             </a>
           </li>
         
           <li class="govuk-footer__inline-list-item">
-            <a class="govuk-footer__link" href="cookies/">
+            <a class="govuk-footer__link" href="../cookies/">
               Cookies
             </a>
           </li>
         
           <li class="govuk-footer__inline-list-item">
-            <a class="govuk-footer__link" href="privacy/">
+            <a class="govuk-footer__link" href="../privacy/">
               Privacy notice
             </a>
           </li>
@@ -357,15 +408,15 @@ data-module="govuk-service-navigation"
   
 
   
-    <script type="module" src="plugin-assets/govuk-frontend/dist/govuk/govuk-frontend.min.js"></script>
+    <script type="module" src="../plugin-assets/govuk-frontend/dist/govuk/govuk-frontend.min.js"></script>
   
 
   
-    <script type="module" src="plugin-assets/govuk-frontend/dist/govuk-prototype-kit/init.js"></script>
+    <script type="module" src="../plugin-assets/govuk-frontend/dist/govuk-prototype-kit/init.js"></script>
   
 
   
-    <script type="module" src="public/javascripts/application.js"></script>
+    <script type="module" src="../public/javascripts/application.js"></script>
   
 
 

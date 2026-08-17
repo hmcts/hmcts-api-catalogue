@@ -7,17 +7,12 @@
 
 import { readdir, access, readFile } from 'node:fs/promises'
 import { join, relative, sep } from 'node:path'
+import { loadRoutes, outputRelFor } from './routes.mjs'
 
 const OUT = process.env.EXPORT_OUT ?? 'docs/v2'
-const { routes } = JSON.parse(await readFile('scripts/routes.manifest.json', 'utf8'))
+const routes = await loadRoutes()
 const { redirects } = JSON.parse(await readFile('scripts/redirects.json', 'utf8'))
 const problems = []
-
-function outputRelFor (route) {
-  if (route === '/') return 'index.html'
-  if (route === '/404') return '404.html'
-  return `${route.replace(/^\/|\/$/g, '')}/index.html`
-}
 
 const expected = new Set(routes.map(({ path }) => outputRelFor(path)))
 

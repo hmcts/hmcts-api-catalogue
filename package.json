@@ -11,9 +11,10 @@
     "gate:html": "html-validate \"docs/v2/**/*.html\"",
     "gate:links": "node scripts/check-links.mjs",
     "gate:a11y": "node scripts/check-a11y.mjs",
-    "gates": "npm run gate:manifest && npm run gate:structure && npm run gate:html && npm run gate:links && npm run gate:a11y && npm run gate:reflow",
+    "gates": "npm run gate:manifest && npm run gate:translations && npm run gate:structure && npm run gate:html && npm run gate:links && npm run gate:a11y && npm run gate:reflow",
     "verify-gates": "node scripts/verify-gates.mjs",
-    "gate:reflow": "node scripts/check-reflow.mjs"
+    "gate:reflow": "node scripts/check-reflow.mjs",
+    "gate:translations": "node scripts/check-translations.mjs"
   },
   "devDependencies": {
     "html-validate": "^11.7.0",

@@ -78,3 +78,18 @@ dl.govuk-body {
 .govuk-link {
   overflow-wrap: break-word;
 }
+
+// Language toggle
+//
+// Not a core Design System component - HMRC and others each maintain their own -
+// so this is the common government shape: right-aligned above the content, the
+// current language as plain text and the other as a link.
+.app-language-toggle {
+  @include govuk-font($size: 16);
+  margin-top: govuk-spacing(2);
+  text-align: right;
+
+  span {
+    margin-left: govuk-spacing(1);
+  }
+}

@@ -20,6 +20,7 @@
 
 import { mkdir, writeFile, readFile, rm } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
+import { loadRoutes, outputRelFor, linkRelFor } from './routes.mjs'
 
 const BASE = process.env.EXPORT_BASE_URL ?? 'http://localhost:3100'
 const OUT = process.env.EXPORT_OUT ?? 'docs/v2'
@@ -37,22 +38,8 @@ const STRIP_SCRIPTS = [
 
 const TEXT_EXTENSIONS = ['.css', '.js', '.mjs', '.json', '.svg', '.webmanifest']
 
-const { routes } = JSON.parse(await readFile('scripts/routes.manifest.json', 'utf8'))
+const routes = await loadRoutes()
 const { redirects } = JSON.parse(await readFile('scripts/redirects.json', 'utf8'))
-
-// Route -> path of its output file, relative to OUT.
-function outputRelFor (route) {
-  if (route === '/') return 'index.html'
-  if (route === '/404') return '404.html'
-  return `${route.replace(/^\/|\/$/g, '')}/index.html`
-}
-
-// Route -> how other pages should link to it, relative to OUT.
-function linkRelFor (route) {
-  if (route === '/') return ''
-  if (route === '/404') return '404.html'
-  return `${route.replace(/^\/|\/$/g, '')}/`
-}
 
 // A file at "a/b/c.html" needs "../../" to reach OUT.
 function prefixFor (relPath) {

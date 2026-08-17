@@ -7510,3 +7510,28 @@ dl.govuk-body dd {
 .govuk-link {
   overflow-wrap: break-word;
 }
+
+.app-language-toggle {
+  font-family: "GDS Transport", arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.25;
+  margin-top: 10px;
+  text-align: right;
+}
+@media print {
+  .app-language-toggle {
+    font-family: sans-serif;
+  }
+}
+@media print {
+  .app-language-toggle {
+    font-size: 14pt;
+    line-height: 1.2;
+  }
+}
+.app-language-toggle span {
+  margin-left: 5px;
+}

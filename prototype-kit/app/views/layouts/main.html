@@ -2,22 +2,29 @@
   Base layout for every page in the HMCTS API Marketplace.
 
   Extends the Prototype Kit's GOV.UK-branded layout, which in turn extends
-  govuk-frontend's own page template. We override three of that template's
+  govuk-frontend's own page template. We override four of that template's
   blocks:
 
+    pageTitle               so the title is localised too
     govukServiceNavigation  to supply our navigation items (the Kit's
                             useServiceNavigation config only passes the
                             service name, not the items)
-    beforeContent           for the beta phase banner and breadcrumbs
-    govukFooter             for the legal and contact links
+    beforeContent           language toggle, beta phase banner, breadcrumbs
+    govukFooter             the legal and contact links
 
   Pages set `pageName` and the base layout builds
-  "<pageName> - HMCTS API Marketplace - GOV.UK" for us. Do not override
-  pageTitle in individual pages.
+  "<pageName> - <service name> - GOV.UK". Do not override pageTitle in
+  individual pages.
 
   Pages set `section` to highlight the current item in the service navigation.
   Pages set `breadcrumbs` to a govukBreadcrumbs items array, or leave it unset
   for pages with no position in the hierarchy (such as the 404).
+
+  Bilingual: `t`, `locale`, `isWelsh`, `otherLocale` and `currentPath` all come
+  from app/routes.js. Templates never need to know which language they are
+  rendering - they call t() and let the locale files decide. Hardcoded English
+  hrefs are rewritten to /cy/... for Welsh pages in routes.js, so a new page is
+  bilingual without its author doing anything.
 #}
 
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
@@ -26,26 +33,67 @@
 {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
 {% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
 {% from "govuk/components/footer/macro.njk" import govukFooter %}
+{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+{% block pageTitle %}
+  {% if pageName %}{{ pageName }} - {% endif %}{{ t("service.name") }} - GOV.UK
+{% endblock %}
 
 {% block govukServiceNavigation %}
   {{ govukServiceNavigation({
-    serviceName: serviceName,
+    serviceName: t("service.name"),
     serviceUrl: "/",
     navigation: [
-      { href: "/api-catalogue", text: "API catalogue", active: section == "catalogue" },
-      { href: "/get-started", text: "Get started", active: section == "get-started" },
-      { href: "/documentation", text: "Documentation", active: section == "documentation" },
-      { href: "/publish", text: "Publish an API", active: section == "publish" },
-      { href: "/help", text: "Help and support", active: section == "help" }
+      { href: "/api-catalogue", text: t("nav.catalogue"), active: section == "catalogue" },
+      { href: "/get-started", text: t("nav.getStarted"), active: section == "get-started" },
+      { href: "/documentation", text: t("nav.documentation"), active: section == "documentation" },
+      { href: "/publish", text: t("nav.publish"), active: section == "publish" },
+      { href: "/help", text: t("nav.help"), active: section == "help" }
     ]
   }) }}
 {% endblock %}
 
 {% block beforeContent %}
+
+  {#
+    Language toggle. Not a core Design System component - HMRC and others each
+    have their own - so this is the common government shape: the other language
+    named in its own language, carrying its own lang attribute so a screen reader
+    pronounces "Cymraeg" in Welsh rather than reading it as English.
+
+    rel="alternate" is what stops routes.js rewriting this link into the language
+    it is trying to leave.
+  #}
+  {% if not hideLanguageToggle %}
+  <nav class="app-language-toggle" aria-label="{{ t('language.switchLabel') }}">
+    {% if isWelsh %}
+      <span lang="cy">{{ t("language.toWelsh") }}</span>
+      <span aria-hidden="true">|</span>
+      <a class="govuk-link" lang="en" hreflang="en" rel="alternate" href="/{{ currentPath }}">{{ t("language.toEnglish") }}</a>
+    {% else %}
+      <span lang="en">{{ t("language.toEnglish") }}</span>
+      <span aria-hidden="true">|</span>
+      <a class="govuk-link" lang="cy" hreflang="cy" rel="alternate" href="/cy/{{ currentPath }}">{{ t("language.toWelsh") }}</a>
+    {% endif %}
+  </nav>
+  {% endif %}
+
   {{ govukPhaseBanner({
-    tag: { text: "Beta" },
-    html: 'This is a new service. <a class="govuk-link" href="/help">Help us improve it by giving feedback</a>.'
+    tag: { text: t("phase.tag") },
+    html: t("phase.text") + ' <a class="govuk-link" href="/help">' + t("phase.feedbackLink") + '</a>.'
   }) }}
+
+  {#
+    On a Welsh page, say plainly that translation is in progress rather than
+    letting English content look like a bug. Removing this banner is the signal
+    that translation is finished.
+  #}
+  {% if isWelsh %}
+    {{ govukNotificationBanner({
+      titleText: t("language.noticeTitle"),
+      text: t("language.noticeBody")
+    }) }}
+  {% endif %}
 
   {% if breadcrumbs %}
     {{ govukBreadcrumbs({ items: breadcrumbs }) }}
@@ -55,13 +103,13 @@
 {% block govukFooter %}
   {{ govukFooter({
     meta: {
-      visuallyHiddenTitle: "Support and legal",
+      visuallyHiddenTitle: t("footer.visuallyHiddenTitle"),
       items: [
-        { href: "/help", text: "Contact the marketplace team" },
-        { href: "/accessibility-statement", text: "Accessibility statement" },
-        { href: "/cookies", text: "Cookies" },
-        { href: "/privacy", text: "Privacy notice" },
-        { href: "https://www.gov.uk/hmcts", text: "HMCTS on GOV.UK" }
+        { href: "/help", text: t("footer.contact") },
+        { href: "/accessibility-statement", text: t("footer.accessibility") },
+        { href: "/cookies", text: t("footer.cookies") },
+        { href: "/privacy", text: t("footer.privacy") },
+        { href: "https://www.gov.uk/hmcts", text: t("footer.hmcts") }
       ]
     }
   }) }}

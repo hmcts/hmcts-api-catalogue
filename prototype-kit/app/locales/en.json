@@ -1,0 +1,62 @@
+{
+  "_comment": "English source strings. Every key here must exist in cy.json, with null meaning 'not yet translated'. scripts/check-translations.mjs enforces that and reports coverage.",
+  "service": {
+    "name": "HMCTS API Marketplace"
+  },
+  "nav": {
+    "catalogue": "API catalogue",
+    "getStarted": "Get started",
+    "documentation": "Documentation",
+    "publish": "Publish an API",
+    "help": "Help and support"
+  },
+  "phase": {
+    "tag": "Beta",
+    "text": "This is a new service.",
+    "feedbackLink": "Help us improve it by giving feedback"
+  },
+  "footer": {
+    "visuallyHiddenTitle": "Support and legal",
+    "contact": "Contact the marketplace team",
+    "accessibility": "Accessibility statement",
+    "cookies": "Cookies",
+    "privacy": "Privacy notice",
+    "hmcts": "HMCTS on GOV.UK"
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "getStarted": "Get started",
+    "documentation": "Documentation",
+    "publish": "Publish an API",
+    "help": "Help and support",
+    "architecture": "HMCTS architecture",
+    "submit": "Submit an API"
+  },
+  "language": {
+    "toWelsh": "Cymraeg",
+    "toEnglish": "English",
+    "switchLabel": "Language",
+    "noticeTitle": "Welsh translation in progress",
+    "noticeBody": "This service is being translated. Content that has not been translated yet is shown in English."
+  },
+  "home": {
+    "title": "Home",
+    "heading": "HMCTS API Marketplace",
+    "lede": "Discover, request and integrate the APIs powering justice sector software.",
+    "startButton": "Get started",
+    "catalogueHeading": "API and integration catalogue",
+    "catalogueBody": "An A to Z list of HMCTS APIs and other integrations, with plain-English descriptions of what each one returns.",
+    "getStartedHeading": "Getting started with our APIs",
+    "getStartedBody": "A step-by-step introduction to what our APIs can do and how your team can get connected.",
+    "documentationHeading": "Documentation, guides and tutorials",
+    "documentationBody": "Learn about APIs and the standards we use, and how to make the most of our developer resources.",
+    "helpHeading": "Help and support building software",
+    "helpBody": "Get help at any point in your project, to make sure your integration with our APIs goes smoothly.",
+    "architectureHeading": "Our architecture",
+    "architectureBody": "Architecture is integral to the design and delivery of all products and services that we produce and maintain for the justice system.",
+    "onboardingHeading": "Onboarding to APIs and services",
+    "onboardingBody": "Find out how to get assured for an API or service before your software goes live.",
+    "publishHeading": "Publish an API",
+    "publishBody": "If your team owns an API, list it in the marketplace so other teams can find it, understand it, and request access."
+  }
+}

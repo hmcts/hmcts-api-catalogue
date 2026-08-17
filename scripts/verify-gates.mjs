@@ -17,8 +17,9 @@ const SOURCE = process.env.EXPORT_OUT ?? 'docs/v2'
 const WORK = '.gate-verify'
 const COPY = join(WORK, 'v2')
 
-// Page used for HTML-level mutations. Any exported page would do; a section
-// page keeps it away from the special-cased index.
+// Default page for HTML-level mutations. Any exported page would do; a section
+// page keeps it away from the special-cased index. Individual mutations can
+// override it with `target` when they need to break a specific relationship.
 const TARGET = 'publish/index.html'
 
 const gates = {
@@ -75,6 +76,15 @@ const mutations = [
     html: (h) => h.replace('</main>', '<a href="../does-not-exist/">Gone</a></main>')
   },
   {
+    // producer-standards has two inbound links, so removing one does not orphan
+    // it. check-answers has exactly one - the data-next edge from the form -
+    // so cutting that orphans both it and confirmation.
+    gate: 'links',
+    what: 'a page left unreachable from the homepage',
+    target: 'publish/submit/index.html',
+    html: (h) => h.replace('data-next="check-answers/"', 'data-next=""')
+  },
+  {
     gate: 'html',
     what: 'malformed markup (unclosed element)',
     html: (h) => h.replace('</main>', '<div class="govuk-body"></main>')
@@ -117,7 +127,7 @@ for (const mutation of mutations) {
   await cp(join(WORK, 'pristine'), COPY, { recursive: true })
 
   if (mutation.html) {
-    const file = join(COPY, TARGET)
+    const file = join(COPY, mutation.target ?? TARGET)
     const before = await readFile(file, 'utf8')
     const after = mutation.html(before)
     if (after === before) {

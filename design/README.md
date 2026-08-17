@@ -13,6 +13,7 @@ a page on the service.
 |---|---|
 | [`audit/2026-08-17-govuk-conformance-audit.md`](audit/2026-08-17-govuk-conformance-audit.md) | Conformance audit of the current 28-page site against the GOV.UK Design System, Service Standard, WCAG 2.2 AA and the accessibility, cookie and data-protection regulations. 5 Critical, 8 High, 7 Medium, 6 Low. Every count is reproducible. |
 | [`specs/2026-08-17-govuk-conformant-site-design.md`](specs/2026-08-17-govuk-conformant-site-design.md) | Design for the GOV.UK-conformant rebuild: architecture, information architecture, page and journey inventory, component mapping, verification gates, sequencing. |
+| [`slice-review/2026-08-17-phase-1-slice-review.md`](slice-review/2026-08-17-phase-1-slice-review.md) | **The Phase 1 approval gate.** What was built, the verbatim gate and mutation-test output, the journey driven in a browser, which audit findings are closed, and what building it proved the plan had wrong. |
 | [`plans/2026-08-17-phase-1-vertical-slice.md`](plans/2026-08-17-phase-1-vertical-slice.md) | Task-by-task implementation plan for Phase 1 — Kit scaffold, mutation-tested export and gates, the three legal pages, and the five-page vertical slice that the approval gate is decided from. Dependency versions in it were verified against the real packages. |
 
 ## Architecture decision records

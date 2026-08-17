@@ -1,0 +1,92 @@
+name: Site build and gates
+
+on:
+  pull_request:
+    paths:
+      - 'prototype-kit/**'
+      - 'scripts/**'
+      - 'docs/v2/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.htmlvalidate.json'
+      - '.puppeteerrc.cjs'
+      - '.github/workflows/site.yml'
+  workflow_dispatch:
+
+jobs:
+  build-and-gate:
+    runs-on: ubuntu-latest
+
+    env:
+      # The accessibility gate drives a real Chrome rather than a bundled
+      # Chromium (see .puppeteerrc.cjs). ubuntu-latest ships one here.
+      CHROME_PATH: /usr/bin/google-chrome
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install build tooling
+        run: npm ci
+
+      - name: Install the Prototype Kit
+        working-directory: prototype-kit
+        run: npm ci
+
+      - name: Assert the top-level govuk-frontend is 6.x or newer
+        working-directory: prototype-kit
+        run: |
+          v=$(node -p "require('govuk-frontend/package.json').version")
+          case "$v" in
+            6.*|7.*) echo "govuk-frontend $v OK" ;;
+            *) echo "Expected govuk-frontend 6.x or newer at top level, got $v"; exit 1 ;;
+          esac
+
+      - name: Confirm Chrome is available to the accessibility gate
+        run: |
+          test -x "$CHROME_PATH" || { echo "No Chrome at $CHROME_PATH"; exit 1; }
+          "$CHROME_PATH" --version
+
+      # PORT is pinned deliberately: the Kit prompts interactively when its port
+      # is busy and dies on closed stdin, which would hang this job.
+      - name: Start the Prototype Kit
+        working-directory: prototype-kit
+        run: PORT=3100 npm run dev &
+
+      - name: Wait for the Kit
+        run: npx wait-on http://localhost:3100 --timeout 120000
+
+      - name: Export the site
+        run: npm run export
+
+      # docs/v2 is committed output. If it differs from a fresh export, the
+      # generated site has drifted from the Kit source it claims to come from.
+      - name: Fail if the committed export is stale
+        run: |
+          if ! git diff --quiet docs/v2; then
+            echo "::error::docs/v2 differs from a fresh export. Run 'npm run export' and commit the result."
+            git diff --stat docs/v2
+            git diff docs/v2 | head -100
+            exit 1
+          fi
+          echo "Committed export matches a fresh build."
+
+      # Before trusting the gates, prove they still fail when they should.
+      - name: Verify the gates
+        run: npm run verify-gates
+
+      - name: Run the gates
+        run: npm run gates
+
+      - name: Guard the live site
+        run: |
+          if ! git diff --quiet --exit-code origin/${{ github.base_ref }} -- docs --':(exclude)docs/v2'; then
+            echo "::error::This change touches docs/ outside docs/v2. The live site must stay untouched until promotion."
+            git diff --stat origin/${{ github.base_ref }} -- docs ':(exclude)docs/v2'
+            exit 1
+          fi
+          echo "No changes to the live site."

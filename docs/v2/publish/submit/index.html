@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>
-  Publish an API - HMCTS API Marketplace - GOV.UK
+  Submit an API for publication - HMCTS API Marketplace - GOV.UK
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#1d70b8">
@@ -11,7 +11,7 @@
     
   
   
-    <link href="../public/stylesheets/application.css" rel="stylesheet" type="text/css" />
+    <link href="../../public/stylesheets/application.css" rel="stylesheet" type="text/css" />
 
 
 
@@ -20,11 +20,11 @@
 
 
     
-      <link rel="icon" sizes="48x48" href="../plugin-assets/govuk-frontend/dist/govuk/assets/images/favicon.ico">
-      <link rel="icon" sizes="any" href="../plugin-assets/govuk-frontend/dist/govuk/assets/images/favicon.svg" type="image/svg+xml">
-      <link rel="mask-icon" href="../plugin-assets/govuk-frontend/dist/govuk/assets/images/govuk-icon-mask.svg" color="#1d70b8">
-      <link rel="apple-touch-icon" href="../plugin-assets/govuk-frontend/dist/govuk/assets/images/govuk-icon-180.png">
-      <link rel="manifest" href="../plugin-assets/govuk-frontend/dist/govuk/assets/manifest.json">
+      <link rel="icon" sizes="48x48" href="../../plugin-assets/govuk-frontend/dist/govuk/assets/images/favicon.ico">
+      <link rel="icon" sizes="any" href="../../plugin-assets/govuk-frontend/dist/govuk/assets/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="../../plugin-assets/govuk-frontend/dist/govuk/assets/images/govuk-icon-mask.svg" color="#1d70b8">
+      <link rel="apple-touch-icon" href="../../plugin-assets/govuk-frontend/dist/govuk/assets/images/govuk-icon-180.png">
+      <link rel="manifest" href="../../plugin-assets/govuk-frontend/dist/govuk/assets/manifest.json">
     
     
   </head>
@@ -107,7 +107,7 @@ data-module="govuk-service-navigation"
       
         <span class="govuk-service-navigation__service-name">
           
-            <a href="../" class="govuk-service-navigation__link">
+            <a href="../../" class="govuk-service-navigation__link">
               HMCTS API Marketplace
             </a>
           
@@ -133,7 +133,7 @@ data-module="govuk-service-navigation"
               
               <li class="govuk-service-navigation__item">
                 
-                  <a class="govuk-service-navigation__link" href="../api-catalogue/">
+                  <a class="govuk-service-navigation__link" href="../../api-catalogue/">
                     
                 
                 API catalogue
@@ -147,7 +147,7 @@ data-module="govuk-service-navigation"
               
               <li class="govuk-service-navigation__item govuk-service-navigation__item--active">
                 
-                  <a class="govuk-service-navigation__link" href="../publish/" aria-current="true">
+                  <a class="govuk-service-navigation__link" href="../../publish/" aria-current="true">
                     
                 
                 
@@ -163,7 +163,7 @@ data-module="govuk-service-navigation"
               
               <li class="govuk-service-navigation__item">
                 
-                  <a class="govuk-service-navigation__link" href="../help/">
+                  <a class="govuk-service-navigation__link" href="../../help/">
                     
                 
                 Help and support
@@ -202,7 +202,7 @@ data-module="govuk-service-navigation"
       Beta
     </strong>
     <span class="govuk-phase-banner__text">
-      This is a new service. <a class="govuk-link" href="../help/">Help us improve it by giving feedback</a>.
+      This is a new service. <a class="govuk-link" href="../../help/">Help us improve it by giving feedback</a>.
     </span>
   </p>
 </div>
@@ -214,7 +214,13 @@ data-module="govuk-service-navigation"
 
   
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="../">Home</a>
+      <a class="govuk-breadcrumbs__link" href="../../">Home</a>
+    </li>
+  
+
+  
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../../publish/">Publish an API</a>
     </li>
   
 
@@ -230,49 +236,517 @@ data-module="govuk-service-navigation"
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <h1 class="govuk-heading-xl">Publish an API</h1>
+    <div data-error-summary="publish-submit" hidden></div>
 
-    <p class="govuk-body-l">
-      List your team&rsquo;s API in the marketplace so other teams can find it, understand what it
-      does, and request access.
-    </p>
+    <h1 class="govuk-heading-xl">Submit an API for publication</h1>
 
     <p class="govuk-body">
-      The marketplace doesn&rsquo;t own or run any of the APIs it lists &mdash; your team keeps that.
-      What it does is make your API discoverable, documented in plain English, and reachable through
-      a consistent access request process.
+      Check your API against the
+      <a class="govuk-link" href="../../publish/producer-standards/">producer standards</a> before you
+      start. You will be able to review your answers before submitting.
     </p>
 
-    <h2 class="govuk-heading-m">In this section</h2>
+    <form data-journey="publish-submit" data-next="check-answers/" novalidate>
 
-    <ul class="govuk-list">
-      <li>
-        <a class="govuk-link" href="../publish/producer-standards/">API producer standards</a>
-        &mdash; what your API must meet before it can be listed
-      </li>
-      <li>
-        <a class="govuk-link" href="../publish/submit/">Submit an API for publication</a>
-        &mdash; the publication request form
-      </li>
-    </ul>
+      <div data-required data-error="Enter the name of your API">
+        
 
-    <h2 class="govuk-heading-m">What you will need</h2>
 
-    <p class="govuk-body">Before your API can be listed, you will need:</p>
+<div class="govuk-form-group">
+  <label class="govuk-label govuk-label--m" for="api-name">
+    API name
+  </label>
 
-    <ul class="govuk-list govuk-list--bullet">
-      <li>a published OpenAPI specification, reachable at a stable URL</li>
-      <li>a named owning team and a contact address that will still work in six months</li>
-      <li>a data classification for everything the API returns</li>
-      <li>a plain-English description of what the API is for</li>
-    </ul>
+  
+  
+  <div id="api-name-hint" class="govuk-hint">
+    The human-readable name, not the repository slug. For example, Court Schedule.
+  </div>
 
-    <h2 class="govuk-heading-m">Get help</h2>
 
-    <p class="govuk-body">
-      If you&rsquo;re not sure whether your API is ready, or you want to talk through the process
-      first, <a class="govuk-link" href="../help/">contact the marketplace team</a>.
-    </p>
+  <input
+    
+        
+        
+      
+        
+      
+    
+        
+        
+      
+        
+      
+    
+        
+        
+      
+        
+      
+    
+        
+        
+      
+        
+      
+    
+        
+        
+      
+    
+        
+        
+    
+        
+        
+    
+        
+        
+      
+        
+      
+    
+        
+        
+      
+        
+      
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+   class="govuk-input" id="api-name" name="api-name" type="text" aria-describedby="api-name-hint" autocomplete="off">
+
+</div>
+
+      </div>
+
+      <div data-required data-error="Enter the team that owns the API">
+        
+
+
+<div class="govuk-form-group">
+  <label class="govuk-label govuk-label--m" for="owning-team">
+    Owning team
+  </label>
+
+  
+  
+  <div id="owning-team-hint" class="govuk-hint">
+    The team that builds and runs the API, and will answer access requests.
+  </div>
+
+
+  <input
+    
+        
+        
+      
+        
+      
+    
+        
+        
+      
+        
+      
+    
+        
+        
+      
+        
+      
+    
+        
+        
+      
+        
+      
+    
+        
+        
+      
+    
+        
+        
+    
+        
+        
+    
+        
+        
+      
+        
+      
+    
+        
+        
+      
+        
+      
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+   class="govuk-input" id="owning-team" name="owning-team" type="text" aria-describedby="owning-team-hint" autocomplete="organization">
+
+</div>
+
+      </div>
+
+      <div data-required data-error="Enter a team inbox email address">
+        
+
+
+<div class="govuk-form-group">
+  <label class="govuk-label govuk-label--m" for="contact-email">
+    Team contact email
+  </label>
+
+  
+  
+  <div id="contact-email-hint" class="govuk-hint">
+    A team inbox that will still be monitored in six months - not a personal address.
+  </div>
+
+
+  <input
+    
+        
+        
+      
+        
+      
+    
+        
+        
+      
+        
+      
+    
+        
+        
+      
+        
+      
+    
+        
+        
+      
+        
+      
+    
+        
+        
+      
+        
+      
+    
+        
+        
+    
+        
+        
+    
+        
+        
+      
+        
+      
+    
+        
+        
+      
+        
+      
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+   class="govuk-input" id="contact-email" name="contact-email" type="email" spellcheck="false" aria-describedby="contact-email-hint" autocomplete="email">
+
+</div>
+
+      </div>
+
+      <div data-required data-error="Enter the URL of your OpenAPI specification">
+        
+
+
+<div class="govuk-form-group">
+  <label class="govuk-label govuk-label--m" for="spec-url">
+    OpenAPI specification URL
+  </label>
+
+  
+  
+  <div id="spec-url-hint" class="govuk-hint">
+    The raw GitHub URL of your openapi-spec.yml, on a public HMCTS repository.
+  </div>
+
+
+  <input
+    
+        
+        
+      
+        
+      
+    
+        
+        
+      
+        
+      
+    
+        
+        
+      
+        
+      
+    
+        
+        
+      
+        
+      
+    
+        
+        
+      
+        
+      
+    
+        
+        
+    
+        
+        
+    
+        
+        
+      
+        
+      
+    
+        
+        
+      
+        
+      
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+   class="govuk-input" id="spec-url" name="spec-url" type="text" spellcheck="false" aria-describedby="spec-url-hint" autocomplete="off">
+
+</div>
+
+      </div>
+
+      <div data-required data-error="Select the highest data classification the API returns">
+        
+
+
+
+<div class="govuk-form-group">
+
+  <fieldset class="govuk-fieldset" aria-describedby="classification-hint">
+  
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+  
+    Highest data classification the API returns
+  
+  </legend>
+  
+
+  <div id="classification-hint" class="govuk-hint">
+    Secret and Top Secret APIs cannot be listed in the marketplace.
+  </div>
+
+
+  <div class="govuk-radios" data-module="govuk-radios">
+    
+    
+      
+  
+    
+    
+    
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="classification" name="classification" type="radio" value="official">
+      <label class="govuk-label govuk-radios__label" for="classification">
+        Official
+      </label>
+      
+    </div>
+    
+  
+    
+      
+  
+    
+    
+    
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="classification-2" name="classification" type="radio" value="official-sensitive" aria-describedby="classification-2-item-hint">
+      <label class="govuk-label govuk-radios__label" for="classification-2">
+        Official-Sensitive
+      </label>
+      
+      <div id="classification-2-item-hint" class="govuk-hint govuk-radios__hint">
+        A formal data sharing agreement will be required.
+      </div>
+      
+    </div>
+    
+  
+    
+      
+  
+    
+    
+    
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="classification-3" name="classification" type="radio" value="secret" aria-describedby="classification-3-item-hint">
+      <label class="govuk-label govuk-radios__label" for="classification-3">
+        Secret or Top Secret
+      </label>
+      
+      <div id="classification-3-item-hint" class="govuk-hint govuk-radios__hint">
+        Not eligible for listing.
+      </div>
+      
+    </div>
+    
+  
+    
+    
+  </div>
+
+</fieldset>
+
+</div>
+
+      </div>
+
+      <div data-required data-error="You must confirm all three declarations">
+        
+
+
+
+
+<div class="govuk-form-group">
+
+  <fieldset class="govuk-fieldset">
+  
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+  
+    Declarations
+  
+  </legend>
+  
+
+  <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+    
+    
+      
+  
+  
+    
+    
+    
+    
+    
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="declarations" name="declarations" type="checkbox" value="public-repo">
+      <label class="govuk-label govuk-checkboxes__label" for="declarations">
+        The API repository is public on GitHub under the HMCTS organisation
+      </label>
+      
+    </div>
+    
+  
+
+    
+      
+  
+  
+    
+    
+    
+    
+    
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="declarations-2" name="declarations" type="checkbox" value="spectral">
+      <label class="govuk-label govuk-checkboxes__label" for="declarations-2">
+        The specification passes the standard Spectral OAS3 ruleset with no errors
+      </label>
+      
+    </div>
+    
+  
+
+    
+      
+  
+  
+    
+    
+    
+    
+    
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="declarations-3" name="declarations" type="checkbox" value="external">
+      <label class="govuk-label govuk-checkboxes__label" for="declarations-3">
+        This is an external API, not an internal or developers-only API
+      </label>
+      
+    </div>
+    
+  
+
+    
+    
+  </div>
+
+</fieldset>
+
+</div>
+
+      </div>
+
+      
+<button type="submit" class="govuk-button" data-module="govuk-button">
+  Continue
+</button>
+
+
+    </form>
 
   </div>
 </div>
@@ -329,25 +803,25 @@ data-module="govuk-service-navigation"
         <ul class="govuk-footer__inline-list">
         
           <li class="govuk-footer__inline-list-item">
-            <a class="govuk-footer__link" href="../help/">
+            <a class="govuk-footer__link" href="../../help/">
               Contact the marketplace team
             </a>
           </li>
         
           <li class="govuk-footer__inline-list-item">
-            <a class="govuk-footer__link" href="../accessibility-statement/">
+            <a class="govuk-footer__link" href="../../accessibility-statement/">
               Accessibility statement
             </a>
           </li>
         
           <li class="govuk-footer__inline-list-item">
-            <a class="govuk-footer__link" href="../cookies/">
+            <a class="govuk-footer__link" href="../../cookies/">
               Cookies
             </a>
           </li>
         
           <li class="govuk-footer__inline-list-item">
-            <a class="govuk-footer__link" href="../privacy/">
+            <a class="govuk-footer__link" href="../../privacy/">
               Privacy notice
             </a>
           </li>
@@ -404,15 +878,15 @@ data-module="govuk-service-navigation"
   
 
   
-    <script type="module" src="../plugin-assets/govuk-frontend/dist/govuk/govuk-frontend.min.js"></script>
+    <script type="module" src="../../plugin-assets/govuk-frontend/dist/govuk/govuk-frontend.min.js"></script>
   
 
   
-    <script type="module" src="../plugin-assets/govuk-frontend/dist/govuk-prototype-kit/init.js"></script>
+    <script type="module" src="../../plugin-assets/govuk-frontend/dist/govuk-prototype-kit/init.js"></script>
   
 
   
-    <script type="module" src="../public/javascripts/application.js"></script>
+    <script type="module" src="../../public/javascripts/application.js"></script>
   
 
 

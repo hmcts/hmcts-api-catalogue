@@ -1,0 +1,9 @@
+{
+  "serviceName": "HMCTS API Marketplace",
+  "useServiceNavigation": true,
+  "plugins": {
+    "govuk-frontend": {
+      "rebrand": true
+    }
+  }
+}

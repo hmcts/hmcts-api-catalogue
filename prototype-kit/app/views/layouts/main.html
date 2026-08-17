@@ -1,0 +1,65 @@
+{#
+  Base layout for every page in the HMCTS API Marketplace.
+
+  Extends the Prototype Kit's GOV.UK-branded layout, which in turn extends
+  govuk-frontend's own page template. We override three of that template's
+  blocks:
+
+    govukServiceNavigation  to supply our navigation items (the Kit's
+                            useServiceNavigation config only passes the
+                            service name, not the items)
+    beforeContent           for the beta phase banner and breadcrumbs
+    govukFooter             for the legal and contact links
+
+  Pages set `pageName` and the base layout builds
+  "<pageName> - HMCTS API Marketplace - GOV.UK" for us. Do not override
+  pageTitle in individual pages.
+
+  Pages set `section` to highlight the current item in the service navigation.
+  Pages set `breadcrumbs` to a govukBreadcrumbs items array, or leave it unset
+  for pages with no position in the hierarchy (such as the 404).
+#}
+
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+{% from "govuk/components/footer/macro.njk" import govukFooter %}
+
+{% block govukServiceNavigation %}
+  {{ govukServiceNavigation({
+    serviceName: serviceName,
+    serviceUrl: "/",
+    navigation: [
+      { href: "/api-catalogue", text: "API catalogue", active: section == "catalogue" },
+      { href: "/publish", text: "Publish an API", active: section == "publish" },
+      { href: "/help", text: "Help and support", active: section == "help" }
+    ]
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: { text: "Beta" },
+    html: 'This is a new service. <a class="govuk-link" href="/help/contact">Help us improve it by giving feedback</a>.'
+  }) }}
+
+  {% if breadcrumbs %}
+    {{ govukBreadcrumbs({ items: breadcrumbs }) }}
+  {% endif %}
+{% endblock %}
+
+{% block govukFooter %}
+  {{ govukFooter({
+    meta: {
+      visuallyHiddenTitle: "Support and legal",
+      items: [
+        { href: "/help/contact", text: "Contact the marketplace team" },
+        { href: "/accessibility-statement", text: "Accessibility statement" },
+        { href: "/cookies", text: "Cookies" },
+        { href: "/privacy", text: "Privacy notice" }
+      ]
+    }
+  }) }}
+{% endblock %}

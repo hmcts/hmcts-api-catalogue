@@ -1,0 +1,22 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Home" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">HMCTS API Marketplace</h1>
+    <p class="govuk-body-l">Discover, request and integrate the APIs powering justice sector software.</p>
+
+    {{ govukButton({
+      text: "Browse the API catalogue",
+      href: "/api-catalogue",
+      isStartButton: true
+    }) }}
+  </div>
+</div>
+
+{% endblock %}

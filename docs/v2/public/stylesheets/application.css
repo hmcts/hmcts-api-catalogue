@@ -7482,3 +7482,19 @@ p + .govuk-heading-s,
 .js-enabled #govuk-prototype-kit-error-stack.js-hidden {
   display: none;
 }
+
+code {
+  font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", menlo, consolas, monospace;
+  font-size: 0.875em;
+  background-color: #f3f3f3;
+  padding: 0 5px;
+  overflow-wrap: break-word;
+}
+
+dl.govuk-body dt {
+  font-weight: 700;
+}
+dl.govuk-body dd {
+  margin-left: 0;
+  margin-bottom: 20px;
+}

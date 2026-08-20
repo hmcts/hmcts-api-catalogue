@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "v2-static",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8010", "--directory", "docs/v2"],
+      "port": 8010
+    },
+    {
+      "name": "v2-kit",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "kit"],
+      "port": 3100
+    }
+  ]
+}

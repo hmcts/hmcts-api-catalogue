@@ -69,7 +69,8 @@
   // ------------------------------------------------------------- collection
 
   // Walks the form in document order and returns [{name, label, value}].
-  // Radio and checkbox groups collapse to one row each.
+  // Radio and checkbox groups collapse to one row each; a select's value is
+  // its chosen option's visible text, not the option value attribute.
   function collectAnswers (form) {
     var answers = []
     var seenGroups = {}
@@ -91,6 +92,16 @@
           name: control.name,
           label: labelFor(control),
           value: chosen.join(', ')
+        })
+        return
+      }
+
+      if (control.tagName === 'SELECT') {
+        var selected = control.options[control.selectedIndex]
+        answers.push({
+          name: control.name,
+          label: labelFor(control),
+          value: selected ? selected.textContent.trim() : ''
         })
         return
       }

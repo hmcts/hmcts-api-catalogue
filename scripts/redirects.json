@@ -120,9 +120,9 @@
     },
     {
       "from": "request-api.html",
-      "to": "/api-catalogue",
+      "to": "/get-started/request-api",
       "kind": "superseded",
-      "because": "The access request journey has not been rebuilt yet. Start from the catalogue."
+      "because": "The access request journey has been rebuilt as a GOV.UK-styled form."
     },
     {
       "from": "request-new-api.html",

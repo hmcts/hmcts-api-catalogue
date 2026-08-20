@@ -1,4 +1,4 @@
-# HMCTS API Marketplace 
+# HMCTS API Marketplace
 
 > **"We don't build APIs — we connect you to them."**
 >

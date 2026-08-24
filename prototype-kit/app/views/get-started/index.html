@@ -5,7 +5,6 @@
 {% set breadcrumbs = [{ text: "Home", href: "/" }] %}
 
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
-{% from "govuk/components/tag/macro.njk" import govukTag %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
 {% block content %}
@@ -59,22 +58,16 @@
       production credentials once approved.
     </p>
 
-    {{ govukInsetText({
-      html: 'Developer accounts are not yet part of this prototype. Fill in the
-             <a class="govuk-link" href="/get-started/request-api">Request API access</a>
-             form and the marketplace team will be in touch.'
-    }) }}
+    <p class="govuk-body">
+      Fill in the <a class="govuk-link" href="/get-started/request-api">Request API access</a> form
+      and the marketplace team will be in touch.
+    </p>
 
     <h3 class="govuk-heading-m">3. Confirm your use case</h3>
 
     <p class="govuk-body">
-      {{ govukTag({ text: "Required for personal data APIs", classes: "govuk-tag--yellow" }) }}
-    </p>
-
-    <p class="govuk-body">
-      For APIs that return personal data, confirm you have a valid use case and, where required, a
-      Data Sharing Agreement (DSA) or Data Processing Agreement (DPA) in place. Do this before you go
-      too far with development &mdash; do not request access speculatively.
+      For all APIs, confirm you have a valid use case and have submitted a Request to Data Access Panel
+      (DAP) before proceeding with next steps.
     </p>
 
     <h3 class="govuk-heading-m">4. Design and build your software</h3>
@@ -95,12 +88,8 @@
     <h3 class="govuk-heading-m">6. Get your access approved</h3>
 
     <p class="govuk-body">
-      {{ govukTag({ text: "2 working days", classes: "govuk-tag--blue" }) }}
-    </p>
-
-    <p class="govuk-body">
       Submit an access request describing your use case, expected call volume and environment. The API
-      owner reviews requests within 2 working days.
+      owner reviews requests and will inform on the outcome.
     </p>
 
     <h3 class="govuk-heading-m">7. Put your software live</h3>

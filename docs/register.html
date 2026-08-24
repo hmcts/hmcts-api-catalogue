@@ -257,9 +257,7 @@ form.hidden-after-submit { display: none; }
 <script src="assets/scripts.js"></script>
 
 <script>
-  // Change this to wherever the auth-server is actually running/deployed.
-  // See auth-server/README.md for local setup and deployment options.
-  const API_BASE = "https://hmcts-api-marketplace-auth.onrender.com";
+  const API_BASE = "https://hmcts-api-marketplace-auth-vu5d.onrender.com";
 
   const form = document.getElementById('register-form');
   const errorBox = document.getElementById('register-error');
@@ -298,7 +296,6 @@ form.hidden-after-submit { display: none; }
     try {
       const res = await fetch(API_BASE + '/api/register', {
         method: 'POST',
-        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           firstName, lastName, email, organisation,
@@ -313,13 +310,13 @@ form.hidden-after-submit { display: none; }
         return;
       }
 
+      window.HmctsAuth.setToken(data.token);
       successText.textContent = 'Welcome, ' + data.user.firstName + ' — your account has been created.';
       form.style.display = 'none';
       confirmation.classList.add('show');
       window.location.href = 'account.html';
     } catch (err) {
-      errorText.textContent =
-        'Could not reach the registration server at ' + API_BASE + '. Is auth-server running? See auth-server/README.md.';
+      errorText.textContent = 'Could not reach the registration server. Please try again in a moment.';
       errorBox.classList.add('show');
     }
   });

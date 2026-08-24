@@ -15,15 +15,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Generic tabs (API detail page)
   document.querySelectorAll('[data-tabs]').forEach(function (group) {
-    var buttons = group.querySelectorAll('.detail-tabs button');
-    var panels = group.querySelectorAll('.tab-panel');
+    var buttons = group.querySelectorAll('button');
+    var panels = document.querySelectorAll('.tab-panel');
     buttons.forEach(function (btn) {
       btn.addEventListener('click', function () {
         buttons.forEach(function (b) { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
         panels.forEach(function (p) { p.classList.remove('active'); });
         btn.classList.add('active');
         btn.setAttribute('aria-selected', 'true');
-        var target = group.querySelector('#' + btn.getAttribute('data-target'));
+        var target = document.getElementById(btn.getAttribute('data-target'));
         if (target) target.classList.add('active');
       });
     });

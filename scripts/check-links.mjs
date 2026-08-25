@@ -24,8 +24,19 @@ const LOCAL_HOSTS = new Set(['localhost', '127.0.0.1', '[::1]'])
 
 // Reachable by URL, never by link: the 404 page, and every redirect stub - the
 // whole point of a stub is that an old external link or bookmark lands on it.
+//
+// The API catalogue detail page is reachable too, just not by a static <a>
+// this crawler can see. Its links are built by client-side JS once the live
+// amp-catalog feed loads (see design/adr/0005-in-repo-api-catalogue.md) - one
+// shared route for every API, deliberately, rather than a manifest entry per
+// live API that would go stale the moment the feed changes.
 const { redirects } = JSON.parse(await readFile('scripts/redirects.json', 'utf8'))
-const ALLOW_UNREACHABLE = new Set(['404.html', ...redirects.map((r) => r.from)])
+const ALLOW_UNREACHABLE = new Set([
+  '404.html',
+  ...redirects.map((r) => r.from),
+  'api-catalogue/detail/index.html',
+  'cy/api-catalogue/detail/index.html'
+])
 
 // --- part 1: broken links --------------------------------------------------
 

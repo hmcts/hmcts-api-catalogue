@@ -960,6 +960,14 @@ data-module="govuk-service-navigation"
 
     
   
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!window.GOVUKPrototypeKit && window.GOVUKFrontend) {
+        window.GOVUKFrontend.initAll()
+      }
+    })
+  </script>
+
 
   </body>
 </html>

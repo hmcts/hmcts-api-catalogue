@@ -18,6 +18,22 @@
       "name": "API catalogue"
     },
     {
+      "path": "/api-catalogue/detail",
+      "name": "API details"
+    },
+    {
+      "path": "/api-catalogue/request-new-api",
+      "name": "Request a new API"
+    },
+    {
+      "path": "/api-catalogue/request-new-api/check-answers",
+      "name": "Check your answers"
+    },
+    {
+      "path": "/api-catalogue/request-new-api/confirmation",
+      "name": "Request submitted"
+    },
+    {
       "path": "/get-started",
       "name": "Getting started with our APIs"
     },

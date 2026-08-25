@@ -1,0 +1,70 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "API catalogue" %}
+{% set section = "catalogue" %}
+{% set breadcrumbs = [
+  { text: "Home", href: "/" },
+  { text: "API catalogue", href: "/api-catalogue" }
+] %}
+
+{% from "govuk/components/tabs/macro.njk" import govukTabs %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  {#
+    Full width, not the usual two-thirds: five tab labels plus GOV.UK's
+    default tab spacing come to about 640px, which is wider than a
+    two-thirds column at common viewport sizes - "Try it out" wraps onto
+    its own line. The content itself (tables, endpoint lists, code) reads
+    fine wider; this isn't the prose-heavy case two-thirds exists for.
+  #}
+  <div class="govuk-grid-column-full">
+
+    <h1 class="govuk-heading-xl" id="apiTitle">API details</h1>
+
+    <div data-catalogue-detail>
+      <p class="govuk-body">Loading&hellip;</p>
+    </div>
+
+    <div data-catalogue-tabs hidden>
+      {{ govukTabs({
+        items: [
+          {
+            label: "Overview",
+            id: "tab-overview",
+            panel: { html: '<div id="apiOverview"><p class="govuk-body">Loading&hellip;</p></div>' }
+          },
+          {
+            label: "Endpoints",
+            id: "tab-endpoints",
+            panel: { html: '<div id="apiEndpoints"><p class="govuk-body">Loading&hellip;</p></div>' }
+          },
+          {
+            label: "Data model",
+            id: "tab-datamodel",
+            panel: { html: '<div id="apiDataModel"><p class="govuk-body">Loading&hellip;</p></div>' }
+          },
+          {
+            label: "Changelog",
+            id: "tab-changelog",
+            panel: { html: '<div id="apiChangelog"><p class="govuk-body">Loading&hellip;</p></div>' }
+          },
+          {
+            label: "Try it out",
+            id: "tab-tryit",
+            panel: { html: '<div id="apiTryIt"><p class="govuk-body">Loading&hellip;</p></div>' }
+          }
+        ]
+      }) }}
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js" integrity="sha384-+pxiN6T7yvpryuJmE1gM9PX7yQit15auDb+ZwwvJOd/4be2Cie5/IuVXgQb/S9du" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="/public/javascripts/api-catalogue.js"></script>
+{% endblock %}

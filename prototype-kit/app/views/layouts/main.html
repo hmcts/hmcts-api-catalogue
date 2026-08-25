@@ -114,3 +114,22 @@
     }
   }) }}
 {% endblock %}
+
+{#
+  The Kit only calls GOVUKFrontend.initAll() itself when window.GOVUKPrototypeKit
+  exists - a dev-server-only global that the static export does not carry over.
+  Every interactive GOV.UK component (tabs, accordions, character count, and so
+  on) would otherwise do nothing once actually shipped. Call it ourselves, but
+  only when the Kit hasn't already, so this never double-initialises in
+  development.
+#}
+{% block scripts %}
+  {{ super() }}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!window.GOVUKPrototypeKit && window.GOVUKFrontend) {
+        window.GOVUKFrontend.initAll()
+      }
+    })
+  </script>
+{% endblock %}

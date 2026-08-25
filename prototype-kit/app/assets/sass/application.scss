@@ -79,6 +79,63 @@ dl.govuk-body {
   overflow-wrap: break-word;
 }
 
+// Single-line catalogue tags
+//
+// govuk-tag caps itself at a 160px max-width with overflow-wrap: break-word,
+// so a single very long unbroken word cannot overflow its box. The API
+// catalogue's platform/domain/status tags are short phrases, not a single
+// long word - "Scheduling and listing" wraps onto two lines inside the pill
+// even though the page has plenty of room either side of it. Removing the
+// cap here does not reopen the problem it exists for, because these tags
+// are never one unbreakable string.
+.app-tag--nowrap {
+  max-width: none;
+  white-space: nowrap;
+}
+
+// A-Z catalogue navigation
+//
+// The Design System has no jump-to-letter pattern. A row of 26 single-letter
+// links needs to wrap tidily at narrow widths and make clear which letters
+// currently have nothing under them - GOV.UK and NHS.UK both grey those out
+// rather than hiding them, so the alphabet does not visibly reflow as the
+// catalogue grows.
+.app-az-nav {
+  margin-bottom: govuk-spacing(6);
+
+  &__list {
+    @include govuk-font($size: 19);
+    display: flex;
+    flex-wrap: wrap;
+    gap: govuk-spacing(1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__link {
+    display: inline-block;
+    min-width: govuk-spacing(6);
+    padding: govuk-spacing(1);
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid govuk-colour("mid-grey");
+
+    &:not(#{&}--disabled) {
+      &:hover {
+        background-color: govuk-colour("light-grey");
+      }
+    }
+
+    // mid-grey text fails WCAG AA contrast against white (caught by the
+    // accessibility gate) - dark-grey is the same "muted, not gone" register
+    // GOV.UK already uses for hint text, and passes.
+    &--disabled {
+      color: govuk-colour("dark-grey");
+    }
+  }
+}
+
 // Language toggle
 //
 // Not a core Design System component - HMRC and others each maintain their own -

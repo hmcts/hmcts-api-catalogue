@@ -127,8 +127,11 @@ dl.govuk-body {
       }
     }
 
+    // mid-grey text fails WCAG AA contrast against white (caught by the
+    // accessibility gate) - dark-grey is the same "muted, not gone" register
+    // GOV.UK already uses for hint text, and passes.
     &--disabled {
-      color: govuk-colour("mid-grey");
+      color: govuk-colour("dark-grey");
     }
   }
 }

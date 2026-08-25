@@ -24,6 +24,7 @@ a page on the service.
 | [0002](adr/0002-prototype-kit-with-static-export.md) | Accepted | GOV.UK Prototype Kit, exported to static HTML for GitHub Pages, driven by an explicit route manifest |
 | [0003](adr/0003-authentication-and-identity.md) | Accepted | No authentication backend — the unsanctioned `onrender.com` dependency is removed and the flows are faked client-side until a sanctioned identity solution exists |
 | [0004](adr/0004-hosting-until-the-service-gov-uk-move.md) | Accepted for beta | Stay on GitHub Pages for now; move for the gov.uk destination, because Pages cannot set security response headers |
+| [0005](adr/0005-in-repo-api-catalogue.md) | Accepted | Bring the API catalogue listing and detail pages back in-repo, reading live from amp-catalog rather than a checked-in dataset |
 
 ## Conventions
 

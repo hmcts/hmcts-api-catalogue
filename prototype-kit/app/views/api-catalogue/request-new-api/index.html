@@ -1,0 +1,163 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Request a new API" %}
+{% set section = "catalogue" %}
+{% set breadcrumbs = [
+  { text: "Home", href: "/" },
+  { text: "API catalogue", href: "/api-catalogue" }
+] %}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div data-error-summary="request-new-api" hidden></div>
+
+    <h1 class="govuk-heading-xl">Request a new API</h1>
+
+    <p class="govuk-body">
+      Can&rsquo;t find the API you need in the <a class="govuk-link" href="/api-catalogue">catalogue</a>?
+      Tell us what data or capability you&rsquo;re looking for. This is a request for discovery, not a
+      guarantee that an API will be built.
+    </p>
+
+    <form data-journey="request-new-api" data-next="check-answers/" novalidate>
+
+      <h2 class="govuk-heading-l">Your details</h2>
+
+      <div data-required data-error="Enter your full name">
+        {{ govukInput({
+          label: { text: "Full name", classes: "govuk-label--m" },
+          id: "full-name",
+          name: "full-name",
+          autocomplete: "name"
+        }) }}
+      </div>
+
+      <div data-required data-error="Enter your organisation">
+        {{ govukInput({
+          label: { text: "Organisation", classes: "govuk-label--m" },
+          id: "organisation",
+          name: "organisation",
+          autocomplete: "organization"
+        }) }}
+      </div>
+
+      <div data-required data-error="Enter your work email address">
+        {{ govukInput({
+          label: { text: "Work email address", classes: "govuk-label--m" },
+          id: "email",
+          name: "email",
+          type: "email",
+          autocomplete: "email",
+          spellcheck: false
+        }) }}
+      </div>
+
+      <div data-required data-error="Enter your job title">
+        {{ govukInput({
+          label: { text: "Job title", classes: "govuk-label--m" },
+          hint: { text: "For example, Product Manager or Business Analyst." },
+          id: "job-title",
+          name: "job-title",
+          autocomplete: "organization-title"
+        }) }}
+      </div>
+
+      {{ govukInput({
+        label: { text: "Phone number (optional)", classes: "govuk-label--m" },
+        hint: { text: "In case we need to follow up on your request." },
+        id: "phone",
+        name: "phone",
+        type: "tel",
+        autocomplete: "tel"
+      }) }}
+
+      <h2 class="govuk-heading-l">API details</h2>
+
+      <div data-required data-error="Describe the data or capability you need">
+        {{ govukTextarea({
+          id: "need",
+          name: "need",
+          label: {
+            text: "What data or capability do you need?",
+            classes: "govuk-label--m"
+          },
+          hint: { text: "Describe the data you need, what it would be used for, and the problem it would solve." }
+        }) }}
+      </div>
+
+      <div data-required data-error="Select which justice domain this relates to">
+        {{ govukSelect({
+          id: "domain",
+          name: "domain",
+          label: { text: "Which justice domain does this relate to?", classes: "govuk-label--m" },
+          items: [
+            { value: "", text: "Choose a domain" },
+            { value: "case-administration", text: "Case administration" },
+            { value: "hearing-results", text: "Hearing results" },
+            { value: "scheduling-and-listing", text: "Scheduling and listing" },
+            { value: "reference-data", text: "Reference data" },
+            { value: "financial", text: "Financial" },
+            { value: "not-sure", text: "Not sure" }
+          ]
+        }) }}
+      </div>
+
+      <div data-required data-error="Select how urgent this is">
+        {{ govukRadios({
+          name: "urgency",
+          fieldset: {
+            legend: { text: "How urgent is this?", classes: "govuk-fieldset__legend--m" }
+          },
+          items: [
+            { value: "critical", text: "Critical", hint: { text: "Blocking a live service" } },
+            { value: "high", text: "High", hint: { text: "Needed within 3 months" } },
+            { value: "medium", text: "Medium", hint: { text: "Needed within 6 months" } },
+            { value: "low", text: "Low", hint: { text: "Future planning" } }
+          ]
+        }) }}
+      </div>
+
+      {{ govukTextarea({
+        id: "existing",
+        name: "existing",
+        label: {
+          text: "Is there an existing system that holds this data? (optional)",
+          classes: "govuk-label--m"
+        },
+        hint: { text: "If you know of an HMCTS system with this data, tell us here." }
+      }) }}
+
+      <h2 class="govuk-heading-l">Declaration</h2>
+
+      <div data-required data-error="You must confirm all three declarations">
+        {{ govukCheckboxes({
+          name: "declarations",
+          fieldset: {
+            legend: { text: "Declarations", classes: "govuk-visually-hidden" }
+          },
+          items: [
+            { value: "no-existing-api", text: "I confirm there is no existing HMCTS API that meets this need, to the best of my knowledge" },
+            { value: "discovery-only", text: "I understand this is a request for discovery and does not guarantee an API will be built" },
+            { value: "governance", text: "I have read and accept the Data Governance Standards", hint: { html: 'See the <a class="govuk-link" href="/publish/data-governance">Data Governance Standards</a>.' } }
+          ]
+        }) }}
+      </div>
+
+      {{ govukButton({ text: "Continue" }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

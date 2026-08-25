@@ -294,41 +294,124 @@ data-module="govuk-service-navigation"
     <h1 class="govuk-heading-xl">API catalogue</h1>
 
     <p class="govuk-body-l">
-      Browse the full list of published HMCTS APIs, search by name, and read the endpoint
-      documentation for each one.
-    </p>
-
-    <p class="govuk-body">
-      The catalogue is generated directly from each API&rsquo;s OpenAPI specification, so it stays in
-      step with the API itself rather than being maintained by hand.
+      Browse the APIs published by HMCTS teams, search by name or description, and open one to read
+      its endpoints, data model and change history.
     </p>
 
     
+
+
+<div class="govuk-form-group">
+  <label class="govuk-label govuk-label--m" for="catalogue-search">
+    Search the catalogue
+  </label>
+
   
-
-<a href="https://hmcts.github.io/amp-catalog/" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
-  Browse the live catalogue
-  <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-    <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"/>
-  </svg>
-</a>
+  
+  <div id="catalogue-search-hint" class="govuk-hint">
+    Search by API name, description, platform, domain or team. Leave this empty to browse alphabetically.
+  </div>
 
 
-    <div class="govuk-inset-text">
-  The catalogue is a separate service at hmcts.github.io/amp-catalog, so it looks a little
-             different from this site. Use your browser&#39;s back button to return here.
+  <input
+    
+        
+        
+      
+        
+      
+    
+        
+        
+      
+        
+      
+    
+        
+        
+      
+        
+      
+    
+        
+        
+      
+        
+      
+    
+        
+        
+      
+    
+        
+        
+    
+        
+        
+    
+        
+        
+      
+        
+      
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+   class="govuk-input" id="catalogue-search" name="catalogue-search" type="search" aria-describedby="catalogue-search-hint"
+    
+        
+        
+      
+        
+      
+    
+   data-catalogue-search="true">
+
 </div>
 
+
+    <p class="govuk-body" data-catalogue-count aria-live="polite"></p>
+
+  </div>
+</div>
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full" data-catalogue-az></div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div data-catalogue-list>
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-visually-hidden">Warning</span>
+          This page needs JavaScript to load the catalogue live. If it stays like this, browse it
+          directly at <a class="govuk-link" href="https://hmcts.github.io/amp-catalog/">hmcts.github.io/amp-catalog</a>.
+        </strong>
+      </div>
+    </div>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
     <h2 class="govuk-heading-m">Can&rsquo;t find what you need?</h2>
 
     <p class="govuk-body">
-      If the data or capability you need isn&rsquo;t listed, tell us. We record what people are
-      looking for and use it to decide which APIs to prioritise.
-    </p>
-
-    <p class="govuk-body">
-      <a class="govuk-link" href="../../cy/help/">Get help and contact the marketplace team</a>
+      If the data or capability you need isn&rsquo;t listed,
+      <a class="govuk-link" href="../../cy/api-catalogue/request-new-api/">Request a new API</a>. We record
+      what people are looking for and use it to decide which APIs to prioritise.
     </p>
 
   </div>
@@ -481,7 +564,17 @@ data-module="govuk-service-navigation"
 
 
     
+  <script src="../../public/javascripts/api-catalogue.js"></script>
+
   
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!window.GOVUKPrototypeKit && window.GOVUKFrontend) {
+        window.GOVUKFrontend.initAll()
+      }
+    })
+  </script>
+
 
   </body>
 </html>

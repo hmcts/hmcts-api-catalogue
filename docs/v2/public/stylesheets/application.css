@@ -7511,6 +7511,54 @@ dl.govuk-body dd {
   overflow-wrap: break-word;
 }
 
+.app-tag--nowrap {
+  max-width: none;
+  white-space: nowrap;
+}
+
+.app-az-nav {
+  margin-bottom: 30px;
+}
+.app-az-nav__list {
+  font-family: "GDS Transport", arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 1.1875rem;
+  line-height: 1.3157894737;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@media print {
+  .app-az-nav__list {
+    font-family: sans-serif;
+  }
+}
+@media print {
+  .app-az-nav__list {
+    font-size: 14pt;
+    line-height: 1.15;
+  }
+}
+.app-az-nav__link {
+  display: inline-block;
+  min-width: 30px;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid #cecece;
+}
+.app-az-nav__link:not(.app-az-nav__link--disabled):hover {
+  background-color: #f3f3f3;
+}
+.app-az-nav__link--disabled {
+  color: #cecece;
+}
+
 .app-language-toggle {
   font-family: "GDS Transport", arial, sans-serif;
   -webkit-font-smoothing: antialiased;

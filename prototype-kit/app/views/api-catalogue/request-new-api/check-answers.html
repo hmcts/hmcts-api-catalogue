@@ -1,0 +1,43 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Check your answers" %}
+{% set section = "catalogue" %}
+{% set breadcrumbs = [
+  { text: "Home", href: "/" },
+  { text: "API catalogue", href: "/api-catalogue" },
+  { text: "Request a new API", href: "/api-catalogue/request-new-api" }
+] %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">Check your answers before submitting</h1>
+
+    <dl class="govuk-summary-list"
+        data-summary-for="request-new-api"
+        data-change-href="../"
+        data-empty-message="Your answers could not be read back. This happens when JavaScript is turned off, because there is no server to hold them.">
+    </dl>
+
+    {{ govukInsetText({
+      text: "Your answers are held in this browser tab only. Nothing has been sent anywhere yet, and
+             nothing will be."
+    }) }}
+
+    <form data-journey="request-new-api-confirm" data-next="../confirmation/" novalidate>
+      {{ govukButton({ text: "Accept and submit" }) }}
+    </form>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="../">Change your answers</a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

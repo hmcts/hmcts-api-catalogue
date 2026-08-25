@@ -4,8 +4,7 @@
 {% set section = "catalogue" %}
 {% set breadcrumbs = [{ text: "Home", href: "/" }] %}
 
-{% from "govuk/components/button/macro.njk" import govukButton %}
-{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
 
 {% block content %}
 
@@ -15,38 +14,63 @@
     <h1 class="govuk-heading-xl">API catalogue</h1>
 
     <p class="govuk-body-l">
-      Browse the full list of published HMCTS APIs, search by name, and read the endpoint
-      documentation for each one.
+      Browse the APIs published by HMCTS teams, search by name or description, and open one to read
+      its endpoints, data model and change history.
     </p>
 
-    <p class="govuk-body">
-      The catalogue is generated directly from each API&rsquo;s OpenAPI specification, so it stays in
-      step with the API itself rather than being maintained by hand.
-    </p>
-
-    {{ govukButton({
-      text: "Browse the live catalogue",
-      href: ampCatalogueUrl,
-      isStartButton: true
+    {{ govukInput({
+      label: { text: "Search the catalogue", classes: "govuk-label--m" },
+      hint: { text: "Search by API name, description, platform, domain or team. Leave this empty to browse alphabetically." },
+      id: "catalogue-search",
+      name: "catalogue-search",
+      type: "search",
+      attributes: { "data-catalogue-search": "true" }
     }) }}
 
-    {{ govukInsetText({
-      text: "The catalogue is a separate service at hmcts.github.io/amp-catalog, so it looks a little
-             different from this site. Use your browser's back button to return here."
-    }) }}
+    <p class="govuk-body" data-catalogue-count aria-live="polite"></p>
+
+  </div>
+</div>
+
+{#
+  Full width, not two-thirds: 26 single-letter links need real horizontal
+  room to sit on one or two rows rather than wrapping down the two-thirds
+  column the surrounding prose uses. Only shown while browsing (no search
+  term) - see initListing() in api-catalogue.js.
+#}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full" data-catalogue-az></div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div data-catalogue-list>
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-visually-hidden">Warning</span>
+          This page needs JavaScript to load the catalogue live. If it stays like this, browse it
+          directly at <a class="govuk-link" href="https://hmcts.github.io/amp-catalog/">hmcts.github.io/amp-catalog</a>.
+        </strong>
+      </div>
+    </div>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
     <h2 class="govuk-heading-m">Can&rsquo;t find what you need?</h2>
 
     <p class="govuk-body">
-      If the data or capability you need isn&rsquo;t listed, tell us. We record what people are
-      looking for and use it to decide which APIs to prioritise.
-    </p>
-
-    <p class="govuk-body">
-      <a class="govuk-link" href="/help">Get help and contact the marketplace team</a>
+      If the data or capability you need isn&rsquo;t listed,
+      <a class="govuk-link" href="/api-catalogue/request-new-api">Request a new API</a>. We record
+      what people are looking for and use it to decide which APIs to prioritise.
     </p>
 
   </div>
 </div>
 
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/api-catalogue.js"></script>
 {% endblock %}

@@ -114,9 +114,9 @@
     },
     {
       "from": "api-detail.html",
-      "to": "/api-catalogue",
+      "to": "/api-catalogue/detail",
       "kind": "superseded",
-      "because": "Per-API detail pages now live in the API catalogue at hmcts.github.io/amp-catalog, which is a separate service."
+      "because": "Per-API detail pages have been rebuilt, reading live from the AMP catalogue - see ADR 0005."
     },
     {
       "from": "request-api.html",
@@ -126,9 +126,9 @@
     },
     {
       "from": "request-new-api.html",
-      "to": "/help",
+      "to": "/api-catalogue/request-new-api",
       "kind": "superseded",
-      "because": "The request-a-new-API journey has not been rebuilt yet. Tell the marketplace team instead."
+      "because": "The request-a-new-API journey has been rebuilt as a GOV.UK-styled form."
     },
     {
       "from": "sign-in.html",

@@ -118,12 +118,15 @@ const mutations = [
   {
     // This is the bug that shipped: a govuk-button with an undefined href
     // silently renders as <button>, which is valid HTML and not a broken link,
-    // so no other gate noticed the catalogue link had vanished.
+    // so no other gate noticed the link had vanished. Originally targeted the
+    // api-catalogue signpost button - that page was rebuilt into a real
+    // listing (see ADR 0005) and no longer has a govukButton-as-link at all,
+    // so this retargets to another still-live example of the same pattern.
     gate: 'structure',
     what: 'a govuk-button rendered dead, outside a form',
-    target: 'api-catalogue/index.html',
+    target: 'get-started/index.html',
     html: (h) => h.replace(
-      /<a href="https:\/\/hmcts\.github\.io\/amp-catalog\/"([^>]*class="govuk-button[^>]*)>/,
+      /<a href="\.\.\/api-catalogue\/"([^>]*class="govuk-button[^>]*)>/,
       '<button type="submit"$1>'
     )
   },

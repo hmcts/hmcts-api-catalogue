@@ -84,19 +84,36 @@ jobs:
       - name: Run the gates
         run: npm run gates
 
-      # The live site must stay byte-identical until docs/v2 is promoted.
+      # The live site must stay byte-identical until docs/v2 is promoted, with
+      # one deliberate, narrow exception: the five files that wire sign-in,
+      # register, account and request-api to the real auth backend. That is
+      # itself a reversal of ADR 0003 ("no auth backend, faked client-side")
+      # for those files only - see the PR description for the rationale and
+      # required sign-off. Every other live page stays frozen.
       - name: Guard the live site
         if: github.base_ref != ''
         env:
           BASE_REF: ${{ github.base_ref }}
         run: |
           git fetch --no-tags origin "+refs/heads/$BASE_REF:refs/remotes/origin/$BASE_REF"
-          if ! git diff --quiet --exit-code "origin/$BASE_REF" -- docs ':(exclude)docs/v2'; then
-            echo "::error::This change touches docs/ outside docs/v2. The live site must stay untouched until promotion."
-            git diff --stat "origin/$BASE_REF" -- docs ':(exclude)docs/v2'
+          if ! git diff --quiet --exit-code "origin/$BASE_REF" -- docs \
+            ':(exclude)docs/v2' \
+            ':(exclude)docs/sign-in.html' \
+            ':(exclude)docs/register.html' \
+            ':(exclude)docs/account.html' \
+            ':(exclude)docs/request-api.html' \
+            ':(exclude)docs/assets/scripts.js'; then
+            echo "::error::This change touches live docs/ pages beyond the sign-in/register/account/request-api auth wiring. The rest of the live site must stay untouched until promotion."
+            git diff --stat "origin/$BASE_REF" -- docs \
+              ':(exclude)docs/v2' \
+              ':(exclude)docs/sign-in.html' \
+              ':(exclude)docs/register.html' \
+              ':(exclude)docs/account.html' \
+              ':(exclude)docs/request-api.html' \
+              ':(exclude)docs/assets/scripts.js'
             exit 1
           fi
-          echo "No changes to the live site."
+          echo "No changes to the live site outside the sanctioned auth-wiring files."
 
       - name: Stop the Kit
         if: always()

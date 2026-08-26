@@ -83,12 +83,18 @@
 </section>
 
 <script>
-  const API_BASE = "https://hmcts-api-marketplace-auth.onrender.com";
+  const API_BASE = "https://hmcts-api-marketplace-auth-vu5d.onrender.com";
 
   (async function () {
+    const token = window.HmctsAuth.getToken();
+    if (!token) {
+      window.location.href = 'sign-in.html';
+      return;
+    }
     try {
-      const res = await fetch(API_BASE + '/api/me', { credentials: 'include' });
+      const res = await fetch(API_BASE + '/api/me', { headers: { Authorization: 'Bearer ' + token } });
       if (!res.ok) {
+        window.HmctsAuth.clearToken();
         window.location.href = 'sign-in.html';
         return;
       }
@@ -103,8 +109,9 @@
   document.getElementById('sign-out-link').addEventListener('click', async function (e) {
     e.preventDefault();
     try {
-      await fetch(API_BASE + '/api/logout', { method: 'POST', credentials: 'include' });
+      await fetch(API_BASE + '/api/logout', { method: 'POST' });
     } catch (err) {}
+    window.HmctsAuth.clearToken();
     window.location.href = 'sign-in.html';
   });
 </script>

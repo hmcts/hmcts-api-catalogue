@@ -1,17 +1,5 @@
 // HMCTS API Marketplace — shared behaviour
 
-// The auth server issues a JWT bearer token rather than a cookie, since the
-// site (GitHub Pages) and the API (Render) are different origins and
-// cross-site cookies can't be relied on. Every page that needs to know
-// "am I signed in" or call an authenticated endpoint stores/reads that
-// token here, under one shared key, instead of duplicating the logic.
-var HMCTS_TOKEN_KEY = 'hmcts_marketplace_token';
-window.HmctsAuth = {
-  getToken: function () { return localStorage.getItem(HMCTS_TOKEN_KEY); },
-  setToken: function (token) { localStorage.setItem(HMCTS_TOKEN_KEY, token); },
-  clearToken: function () { localStorage.removeItem(HMCTS_TOKEN_KEY); },
-};
-
 document.addEventListener('DOMContentLoaded', function () {
 
   // Mobile nav toggle
@@ -138,35 +126,32 @@ document.addEventListener('DOMContentLoaded', function () {
   // their own logic) so being signed in is visible no matter where you are.
   var navAuthLink = document.getElementById('nav-auth-link');
   if (navAuthLink) {
-    var AUTH_API_BASE = 'https://hmcts-api-marketplace-auth-vu5d.onrender.com';
-    var token = window.HmctsAuth.getToken();
-    if (token) {
-      fetch(AUTH_API_BASE + '/api/me', { headers: { Authorization: 'Bearer ' + token } })
-        .then(function (res) { return res.ok ? res.json() : null; })
-        .then(function (data) {
-          if (!data) { window.HmctsAuth.clearToken(); return; } // token expired/invalid - leave the link as "Sign in"
+    var AUTH_API_BASE = 'https://hmcts-api-marketplace-auth.onrender.com';
+    fetch(AUTH_API_BASE + '/api/me', { credentials: 'include' })
+      .then(function (res) { return res.ok ? res.json() : null; })
+      .then(function (data) {
+        if (!data) return; // not signed in - leave the link as "Sign in"
 
-          navAuthLink.textContent = 'My account (' + data.user.firstName + ')';
-          navAuthLink.setAttribute('href', 'account.html');
+        navAuthLink.textContent = 'My account (' + data.user.firstName + ')';
+        navAuthLink.setAttribute('href', 'account.html');
 
-          var signOutLi = document.createElement('li');
-          var signOutLink = document.createElement('a');
-          signOutLink.href = '#';
-          signOutLink.textContent = 'Sign out';
-          signOutLink.addEventListener('click', function (e) {
-            e.preventDefault();
-            fetch(AUTH_API_BASE + '/api/logout', { method: 'POST' }).catch(function () {});
-            window.HmctsAuth.clearToken();
-            window.location.reload();
-          });
-          signOutLi.appendChild(signOutLink);
-          navAuthLink.closest('li').insertAdjacentElement('afterend', signOutLi);
-        })
-        .catch(function () {
-          // Auth server unreachable (e.g. still waking up on Render's free tier) -
-          // fail quietly and just leave the link as "Sign in".
+        var signOutLi = document.createElement('li');
+        var signOutLink = document.createElement('a');
+        signOutLink.href = '#';
+        signOutLink.textContent = 'Sign out';
+        signOutLink.addEventListener('click', function (e) {
+          e.preventDefault();
+          fetch(AUTH_API_BASE + '/api/logout', { method: 'POST', credentials: 'include' })
+            .catch(function () {})
+            .then(function () { window.location.reload(); });
         });
-    }
+        signOutLi.appendChild(signOutLink);
+        navAuthLink.closest('li').insertAdjacentElement('afterend', signOutLi);
+      })
+      .catch(function () {
+        // Auth server unreachable (e.g. still waking up on Render's free tier) -
+        // fail quietly and just leave the link as "Sign in".
+      });
   }
 
 });

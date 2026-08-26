@@ -123,7 +123,9 @@
 <script src="assets/scripts.js"></script>
 
 <script>
-  const API_BASE = "https://hmcts-api-marketplace-auth-vu5d.onrender.com";
+  // Change this to wherever the auth-server is actually running/deployed.
+  // See auth-server/README.md for local setup and deployment options.
+  const API_BASE = "https://hmcts-api-marketplace-auth.onrender.com";
 
   const form = document.getElementById('signin-form');
   const errorBox = document.getElementById('signin-error');
@@ -147,6 +149,7 @@
     try {
       const res = await fetch(API_BASE + '/api/login', {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
@@ -158,13 +161,13 @@
         return;
       }
 
-      window.HmctsAuth.setToken(data.token);
       successText.textContent = 'Signed in as ' + data.user.firstName + ' ' + data.user.lastName + '.';
       form.style.display = 'none';
       confirmation.classList.add('show');
       window.location.href = 'account.html';
     } catch (err) {
-      errorText.textContent = 'Could not reach the sign-in server. Please try again in a moment.';
+      errorText.textContent =
+        'Could not reach the sign-in server at ' + API_BASE + '. Is auth-server running? See auth-server/README.md.';
       errorBox.classList.add('show');
     }
   });

@@ -1,17 +1,12 @@
 name: Site build and gates
 
 on:
+  # Deliberately unfiltered. The ruleset on main requires the build-and-gate
+  # check, and a paths filter does not skip a job -- it never creates it, so a
+  # PR outside the filter waits forever for a check that never arrives. It also
+  # meant the live-site guard below never ran on the doc-only PRs it exists to
+  # catch.
   pull_request:
-    paths:
-      - 'prototype-kit/**'
-      - 'scripts/**'
-      - 'prototype-kit/app/locales/**'
-      - 'docs/v2/**'
-      - 'package.json'
-      - 'package-lock.json'
-      - '.htmlvalidate.json'
-      - '.puppeteerrc.cjs'
-      - '.github/workflows/site.yml'
   workflow_dispatch:
 
 jobs:

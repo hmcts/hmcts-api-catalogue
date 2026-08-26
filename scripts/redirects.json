@@ -104,8 +104,8 @@
     },
     {
       "from": "community.html",
-      "to": "/help/community",
-      "kind": "moved"
+      "to": "/help",
+      "kind": "superseded"
     },
     {
       "from": "resources-a-z.html",

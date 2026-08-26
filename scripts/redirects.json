@@ -132,21 +132,18 @@
     },
     {
       "from": "sign-in.html",
-      "to": "/help",
-      "kind": "superseded",
-      "because": "Developer accounts are not part of this service yet - see ADR 0003."
+      "to": "/sign-in",
+      "kind": "moved"
     },
     {
       "from": "register.html",
-      "to": "/help",
-      "kind": "superseded",
-      "because": "Developer accounts are not part of this service yet - see ADR 0003."
+      "to": "/register",
+      "kind": "moved"
     },
     {
       "from": "account.html",
-      "to": "/help",
-      "kind": "superseded",
-      "because": "Developer accounts are not part of this service yet - see ADR 0003."
+      "to": "/account",
+      "kind": "moved"
     },
     {
       "from": "my-applications.html",

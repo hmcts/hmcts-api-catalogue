@@ -1,0 +1,108 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = t("breadcrumb.register") %}
+{% set section = "account" %}
+{% set breadcrumbs = [
+  { text: "Home", href: "/" },
+  { text: "Sign in", href: "/sign-in" }
+] %}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-error-summary" data-module="govuk-error-summary" id="register-error-summary" hidden tabindex="-1">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">There is a problem</h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li><a href="#reg-first-name" id="register-error-link">Fill in all required fields</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h1 class="govuk-heading-xl">Create a developer account</h1>
+
+    <p class="govuk-body">
+      You need to provide your details to create an account. For more information on why we collect
+      your information, see our <a class="govuk-link" href="/privacy">privacy notice</a>.
+    </p>
+
+    <form id="register-form" novalidate>
+
+      {{ govukInput({
+        label: { text: "First name", classes: "govuk-label--m" },
+        id: "reg-first-name",
+        name: "first-name",
+        autocomplete: "given-name"
+      }) }}
+
+      {{ govukInput({
+        label: { text: "Last name", classes: "govuk-label--m" },
+        id: "reg-last-name",
+        name: "last-name",
+        autocomplete: "family-name"
+      }) }}
+
+      {{ govukInput({
+        label: { text: "Email address", classes: "govuk-label--m" },
+        id: "reg-email",
+        name: "email",
+        type: "email",
+        autocomplete: "email",
+        spellcheck: false
+      }) }}
+
+      {{ govukInput({
+        label: { text: "Organisation or team", classes: "govuk-label--m" },
+        hint: { text: "For example, HMCTS DTS or Ministry of Justice Digital." },
+        id: "reg-organisation",
+        name: "organisation",
+        autocomplete: "organization"
+      }) }}
+
+      {{ govukRadios({
+        name: "role",
+        fieldset: {
+          legend: { text: "I am registering as", classes: "govuk-fieldset__legend--m" }
+        },
+        idPrefix: "reg-role",
+        items: [
+          { value: "consumer", text: "Consumer", hint: { text: "Find and use existing APIs" } },
+          { value: "producer", text: "Producer", hint: { text: "List and manage my APIs" } }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-l">Create your password</h2>
+
+      {{ govukInput({
+        label: { text: "Password", classes: "govuk-label--m" },
+        hint: { text: "Your password must be at least 12 characters long." },
+        id: "reg-password",
+        name: "password",
+        type: "password",
+        autocomplete: "new-password"
+      }) }}
+
+      {{ govukInput({
+        label: { text: "Confirm your password", classes: "govuk-label--m" },
+        id: "reg-password-confirm",
+        name: "password-confirm",
+        type: "password",
+        autocomplete: "new-password"
+      }) }}
+
+      {{ govukButton({ text: "Create account", attributes: { id: "register-submit" } }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

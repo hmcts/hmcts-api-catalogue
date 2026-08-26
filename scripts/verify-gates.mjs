@@ -188,7 +188,7 @@ const mutations = [
     // moved somewhere else.
     gate: 'structure',
     what: 'a superseded stub pretending the content moved',
-    target: 'sign-in.html',
+    target: 'my-applications.html',
     html: (h) => h.replace('This page no longer exists in its old form.', 'This page has a new address.')
   },
   {

@@ -1,0 +1,42 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = t("breadcrumb.account") %}
+{% set section = "account" %}
+{% set breadcrumbs = [
+  { text: "Home", href: "/" }
+] %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">Your account</h1>
+
+    <p class="govuk-body" id="account-loading">Loading your account details&hellip;</p>
+
+    <dl class="govuk-summary-list" id="account-details" hidden>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Name</dt>
+        <dd class="govuk-summary-list__value" id="account-name"></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Email address</dt>
+        <dd class="govuk-summary-list__value" id="account-email"></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Account type</dt>
+        <dd class="govuk-summary-list__value" id="account-role"></dd>
+      </div>
+    </dl>
+
+    <form id="signout-form" hidden>
+      {{ govukButton({ text: "Sign out", classes: "govuk-button--secondary" }) }}
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

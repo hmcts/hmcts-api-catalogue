@@ -18,6 +18,19 @@
       href: "/get-started",
       isStartButton: true
     }) }}
+
+    <div class="govuk-button-group">
+      {{ govukButton({
+        text: t("home.signInButton"),
+        href: "/sign-in"
+      }) }}
+
+      {{ govukButton({
+        text: t("home.registerButton"),
+        href: "/register",
+        classes: "govuk-button--secondary"
+      }) }}
+    </div>
   </div>
 </div>
 

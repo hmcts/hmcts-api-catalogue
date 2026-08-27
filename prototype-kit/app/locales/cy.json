@@ -47,6 +47,8 @@
     "heading": null,
     "lede": null,
     "startButton": null,
+    "signInButton": null,
+    "registerButton": null,
     "catalogueHeading": null,
     "catalogueBody": null,
     "getStartedHeading": null,

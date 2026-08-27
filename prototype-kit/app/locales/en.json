@@ -48,6 +48,8 @@
     "heading": "HMCTS API Marketplace",
     "lede": "Discover, request and integrate the APIs powering justice sector software.",
     "startButton": "Get started",
+    "signInButton": "Sign in to developer account",
+    "registerButton": "Create account",
     "catalogueHeading": "API and integration catalogue",
     "catalogueBody": "An A to Z list of HMCTS APIs and other integrations, with plain-English descriptions of what each one returns.",
     "getStartedHeading": "Getting started with our APIs",

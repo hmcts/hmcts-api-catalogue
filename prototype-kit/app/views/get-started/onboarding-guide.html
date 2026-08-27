@@ -7,7 +7,6 @@
   { text: "Get started", href: "/get-started" }
 ] %}
 
-{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 {% from "govuk/components/tag/macro.njk" import govukTag %}
 
@@ -100,7 +99,7 @@
     <h3 class="govuk-heading-m">Step 3: Arrange a Data Sharing Agreement</h3>
 
     <p class="govuk-body">
-      {{ govukTag({ text: "Required for personal data APIs", classes: "govuk-tag--yellow" }) }}
+      {{ govukTag({ text: "Required for personal data APIs", classes: "govuk-tag--yellow app-tag--nowrap" }) }}
     </p>
 
     <p class="govuk-body">
@@ -111,24 +110,27 @@
     <h3 class="govuk-heading-m">Step 4: Submit your access request</h3>
 
     <p class="govuk-body">
-      Describe your use case, expected call volume and environment, and complete the declarations.
-    </p>
-
-    {{ govukInsetText({
-      html: 'The access request form is not yet part of this prototype.
-             <a class="govuk-link" href="/help">Contact the marketplace team</a> and they will take you
-             through it.'
-    }) }}
-
-    <h3 class="govuk-heading-m">Step 5: API owner review</h3>
-
-    <p class="govuk-body">
-      {{ govukTag({ text: "2 working days", classes: "govuk-tag--blue" }) }}
+      <a class="govuk-link" href="/sign-in">Sign in</a> to your developer account, or
+      <a class="govuk-link" href="/register">create one</a> if
+      you do not have one yet.
     </p>
 
     <p class="govuk-body">
-      The API owner reviews your request within 2 working days. You may be contacted for further
-      information. If approved, credentials are issued via a secure channel.
+      Once signed in, submit an access request describing your use case, expected call volume and
+      environment, and complete the declarations.
+    </p>
+
+    <h3 class="govuk-heading-m">Step 5: Data Access Panel and API owner review</h3>
+
+    <p class="govuk-body">
+      Your request is sent to the HMCTS Data Access Panel for review and approval. This is currently
+      an offline process, so look out for emails requesting clarification, or confirming approval or
+      rejection.
+    </p>
+
+    <p class="govuk-body">
+      Once the Data Access Panel has approved your request, the API owner reviews it and issues you
+      with credentials for the relevant environments.
     </p>
 
     <h3 class="govuk-heading-m">Step 6: Integrate and go live</h3>
@@ -178,27 +180,29 @@
     <h3 class="govuk-heading-m">Step 4: Submit via the publish an API form</h3>
 
     <p class="govuk-body">
-      Provide your API name, GitHub repository, domain, data classification and a plain-English
-      description for consumers. Complete the declaration and
-      <a class="govuk-link" href="/publish/submit">submit for review</a>.
+      <a class="govuk-link" href="/sign-in">Sign in</a> to your developer account, or
+      <a class="govuk-link" href="/register">create one</a> if
+      you do not have one yet.
+    </p>
+
+    <p class="govuk-body">
+      Once signed in, provide your API name, GitHub repository, domain, data classification and a
+      plain-English description for consumers. Complete the declaration and submit the Publish an API
+      form for review.
     </p>
 
     <h3 class="govuk-heading-m">Step 5: Marketplace team review</h3>
 
     <p class="govuk-body">
-      {{ govukTag({ text: "2 working days", classes: "govuk-tag--blue" }) }}
-    </p>
-
-    <p class="govuk-body">
-      The marketplace team reviews your submission within 2 working days. Once approved, your API
-      appears in the catalogue and stays in sync with your OpenAPI specification.
+      The marketplace team reviews your submission. Once approved, your API appears in the catalogue
+      and stays in sync with your OpenAPI specification.
     </p>
 
     <h3 class="govuk-heading-m">Step 6: Manage incoming access requests</h3>
 
     <p class="govuk-body">
-      Once live, consumers can submit access requests. You are responsible for reviewing them within 2
-      working days, notifying consumers of breaking changes, and keeping your specification up to date.
+      Once live, consumers can submit access requests. You are responsible for reviewing them,
+      notifying consumers of breaking changes, and keeping your specification up to date.
     </p>
 
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">

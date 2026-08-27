@@ -120,9 +120,9 @@
     },
     {
       "from": "request-api.html",
-      "to": "/get-started/request-api",
+      "to": "/account",
       "kind": "superseded",
-      "because": "The access request journey has been rebuilt as a GOV.UK-styled form."
+      "because": "The standalone access request form was removed - access requests will be handled through the developer portal instead. Not yet built there."
     },
     {
       "from": "request-new-api.html",

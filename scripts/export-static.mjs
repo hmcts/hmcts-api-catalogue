@@ -74,6 +74,11 @@ function stripDevScripts (html) {
 // Rewrites every root-absolute href/src. Assets get queued for download;
 // declared routes point at their output location; anything else is recorded so
 // the export can report links to pages that are not in the manifest.
+//
+// A route lookup ignores any ?query or #fragment - "/get-started/onboarding-
+// guide#producer-onboarding" targets the same route as the bare path, just at
+// a specific point on the page. The suffix is carried over untouched onto the
+// rewritten href, after the path is resolved.
 function rewriteHtml (html, prefix, sourceRoute) {
   return html.replace(/\b(href|src)="(\/[^"]*)"/g, (whole, attr, absPath) => {
     if (absPath.startsWith('//')) return whole
@@ -83,15 +88,17 @@ function rewriteHtml (html, prefix, sourceRoute) {
       return `${attr}="${prefix}${absPath.slice(1)}"`
     }
 
-    const bare = absPath.replace(/\/$/, '') || '/'
+    const [, pathPart, suffix = ''] = absPath.match(/^([^?#]*)([?#].*)?$/)
+
+    const bare = pathPart.replace(/\/$/, '') || '/'
     if (routeTargets.has(bare)) {
-      return `${attr}="${prefix}${routeTargets.get(bare)}"`
+      return `${attr}="${prefix}${routeTargets.get(bare)}${suffix}"`
     }
 
     if (!unknownLinks.has(absPath)) unknownLinks.set(absPath, new Set())
     unknownLinks.get(absPath).add(sourceRoute)
-    const guess = absPath.replace(/^\//, '').replace(/\/?$/, '/')
-    return `${attr}="${prefix}${guess}"`
+    const guess = pathPart.replace(/^\//, '').replace(/\/?$/, '/')
+    return `${attr}="${prefix}${guess}${suffix}"`
   })
 }
 

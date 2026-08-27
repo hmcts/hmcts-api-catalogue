@@ -80,6 +80,26 @@
     if (button.dataset.originalText) button.textContent = button.dataset.originalText
   }
 
+  // Where to send a user once they have signed in. Only a plain site-relative
+  // route (letters, digits, hyphens, slashes) is accepted, never a full URL or
+  // anything with ".." - this value comes straight off the query string, and
+  // siteUrl() would otherwise turn an attacker-supplied absolute URL into a
+  // real redirect off the site.
+  function nextRoute () {
+    var match = window.location.search.match(/[?&]next=([^&]+)/)
+    var next = match && decodeURIComponent(match[1])
+    return next && /^[\w-]+(\/[\w-]+)*\/?$/.test(next) ? next : 'account/'
+  }
+
+  // ---- site-wide: send signed-out visitors to sign in first ---------------
+  // A page marks itself with a hidden data-requires-auth element carrying the
+  // route to return to once signed in - see get-started/request-api/*.
+  var authGate = document.querySelector('[data-requires-auth]')
+  if (authGate && !getToken()) {
+    var returnTo = authGate.getAttribute('data-requires-auth')
+    window.location.href = siteUrl('sign-in/') + '?next=' + encodeURIComponent(returnTo)
+  }
+
   // ---- site-wide: reflect signed-in state in the service navigation -------
   var navAuthLink = document.getElementById('nav-auth-link')
   if (navAuthLink) {
@@ -126,7 +146,7 @@
           return
         }
         setToken(result.data.token)
-        window.location.href = siteUrl('account/')
+        window.location.href = siteUrl(nextRoute())
       }).catch(function () {
         clearButtonBusy(button)
         showFormError('signin-error-summary', 'signin-error-link', 'signin-email', 'Could not reach the sign-in service. Try again in a moment.')

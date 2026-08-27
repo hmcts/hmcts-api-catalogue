@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>
-  Request a new API - HMCTS API Marketplace - GOV.UK
+  Request API access - HMCTS API Marketplace - GOV.UK
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#1d70b8">
@@ -131,14 +131,12 @@ data-module="govuk-service-navigation"
               
 
               
-              <li class="govuk-service-navigation__item govuk-service-navigation__item--active">
+              <li class="govuk-service-navigation__item">
                 
-                  <a class="govuk-service-navigation__link" href="../../api-catalogue/" aria-current="true">
+                  <a class="govuk-service-navigation__link" href="../../api-catalogue/">
                     
                 
-                
-                  <strong class="govuk-service-navigation__active-fallback">API catalogue</strong>
-                
+                API catalogue
               
                   </a>
                 
@@ -147,12 +145,14 @@ data-module="govuk-service-navigation"
               
 
               
-              <li class="govuk-service-navigation__item">
+              <li class="govuk-service-navigation__item govuk-service-navigation__item--active">
                 
-                  <a class="govuk-service-navigation__link" href="../../get-started/">
+                  <a class="govuk-service-navigation__link" href="../../get-started/" aria-current="true">
                     
                 
-                Get started
+                
+                  <strong class="govuk-service-navigation__active-fallback">Get started</strong>
+                
               
                   </a>
                 
@@ -252,7 +252,7 @@ data-module="govuk-service-navigation"
     
       <span lang="en">English</span>
       <span aria-hidden="true">|</span>
-      <a class="govuk-link" lang="cy" hreflang="cy" rel="alternate" href="../../cy/api-catalogue/request-new-api/">Cymraeg</a>
+      <a class="govuk-link" lang="cy" hreflang="cy" rel="alternate" href="../../cy/get-started/request-api/">Cymraeg</a>
     
   </nav>
   
@@ -285,7 +285,7 @@ data-module="govuk-service-navigation"
 
   
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="../../api-catalogue/">API catalogue</a>
+      <a class="govuk-breadcrumbs__link" href="../../get-started/">Get started</a>
     </li>
   
 
@@ -302,19 +302,17 @@ data-module="govuk-service-navigation"
   <div class="govuk-grid-column-two-thirds">
 
     
-    <div data-requires-auth="api-catalogue/request-new-api/" hidden></div>
+    <div data-requires-auth="get-started/request-api/" hidden></div>
 
-    <div data-error-summary="request-new-api" hidden></div>
+    <div data-error-summary="request-api" hidden></div>
 
-    <h1 class="govuk-heading-xl">Request a new API</h1>
+    <h1 class="govuk-heading-xl">Request API access</h1>
 
     <p class="govuk-body">
-      Can&rsquo;t find the API you need in the <a class="govuk-link" href="../../api-catalogue/">catalogue</a>?
-      Tell us what data or capability you&rsquo;re looking for. This is a request for discovery, not a
-      guarantee that an API will be built.
+      Tell us about your use case and the API you need. The API owner reviews every request.
     </p>
 
-    <form data-journey="request-new-api" data-next="check-answers/" novalidate>
+    <form data-journey="request-api" data-next="check-answers/" novalidate>
 
       <h2 class="govuk-heading-l">Your details</h2>
 
@@ -397,6 +395,12 @@ data-module="govuk-service-navigation"
     Organisation
   </label>
 
+  
+  
+  <div id="organisation-hint" class="govuk-hint">
+    For example, HMCTS DTS or Ministry of Justice Digital.
+  </div>
+
 
   <input
     
@@ -436,6 +440,9 @@ data-module="govuk-service-navigation"
     
         
         
+      
+        
+      
     
         
         
@@ -452,7 +459,7 @@ data-module="govuk-service-navigation"
         
         
     
-   class="govuk-input" id="organisation" name="organisation" type="text" autocomplete="organization">
+   class="govuk-input" id="organisation" name="organisation" type="text" aria-describedby="organisation-hint" autocomplete="organization">
 
 </div>
 
@@ -542,7 +549,7 @@ data-module="govuk-service-navigation"
   
   
   <div id="job-title-hint" class="govuk-hint">
-    For example, Product Manager or Business Analyst.
+    For example, Senior Developer or Technical Architect.
   </div>
 
 
@@ -620,7 +627,7 @@ data-module="govuk-service-navigation"
   
   
   <div id="phone-hint" class="govuk-hint">
-    In case we need to follow up on your request.
+    In case we need to contact you urgently about your request.
   </div>
 
 
@@ -688,68 +695,51 @@ data-module="govuk-service-navigation"
 
       <h2 class="govuk-heading-l">API details</h2>
 
-      <div data-required data-error="Describe the data or capability you need">
+      <div data-required data-error="Select the API you need access to">
         
 
 
 <div class="govuk-form-group">
-  <label class="govuk-label govuk-label--m" for="need">
-    What data or capability do you need?
+  <label class="govuk-label govuk-label--m" for="api-name">
+    Which API do you need access to?
   </label>
 
   
   
-  <div id="need-hint" class="govuk-hint">
-    Describe the data you need, what it would be used for, and the problem it would solve.
+  <div id="api-name-hint" class="govuk-hint">
+    Select from the API catalogue.
   </div>
 
 
 
-  <textarea class="govuk-textarea" id="need" name="need" rows="5" aria-describedby="need-hint"></textarea>
-
-</div>
-
-      </div>
-
-      <div data-required data-error="Select which justice domain this relates to">
-        
-
-
-<div class="govuk-form-group">
-  <label class="govuk-label govuk-label--m" for="domain">
-    Which justice domain does this relate to?
-  </label>
-
-
-
-  <select class="govuk-select" id="domain" name="domain">
+  <select class="govuk-select" id="api-name" name="api-name" aria-describedby="api-name-hint">
   
     
-    <option value="">Choose a domain</option>
+    <option value="">Choose an API</option>
     
   
     
-    <option value="case-administration">Case administration</option>
+    <option value="crime-prosecution-case-details">Crime Prosecution Case Details API</option>
     
   
     
-    <option value="hearing-results">Hearing results</option>
+    <option value="hearing-results">Hearing Results API</option>
     
   
     
-    <option value="scheduling-and-listing">Scheduling and listing</option>
+    <option value="court-listings-and-scheduling">Court Listings and Scheduling API</option>
     
   
     
-    <option value="reference-data">Reference data</option>
+    <option value="court-and-tribunal-reference-data">Court and Tribunal Reference Data API</option>
     
   
     
-    <option value="financial">Financial</option>
+    <option value="fees-and-financial-transactions">Fees and Financial Transactions API</option>
     
   
     
-    <option value="not-sure">Not sure</option>
+    <option value="tribunal-case-administration">Tribunal Case Administration API</option>
     
   
   </select>
@@ -758,7 +748,7 @@ data-module="govuk-service-navigation"
 
       </div>
 
-      <div data-required data-error="Select how urgent this is">
+      <div data-required data-error="Select the environment you need">
         
 
 
@@ -769,7 +759,7 @@ data-module="govuk-service-navigation"
   
   <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
   
-    How urgent is this?
+    Environment
   
   </legend>
   
@@ -783,14 +773,10 @@ data-module="govuk-service-navigation"
     
     
     <div class="govuk-radios__item">
-      <input class="govuk-radios__input" id="urgency" name="urgency" type="radio" value="critical" aria-describedby="urgency-item-hint">
-      <label class="govuk-label govuk-radios__label" for="urgency">
-        Critical
+      <input class="govuk-radios__input" id="environment" name="environment" type="radio" value="sandbox">
+      <label class="govuk-label govuk-radios__label" for="environment">
+        Sandbox (development and testing)
       </label>
-      
-      <div id="urgency-item-hint" class="govuk-hint govuk-radios__hint">
-        Blocking a live service
-      </div>
       
     </div>
     
@@ -802,14 +788,10 @@ data-module="govuk-service-navigation"
     
     
     <div class="govuk-radios__item">
-      <input class="govuk-radios__input" id="urgency-2" name="urgency" type="radio" value="high" aria-describedby="urgency-2-item-hint">
-      <label class="govuk-label govuk-radios__label" for="urgency-2">
-        High
+      <input class="govuk-radios__input" id="environment-2" name="environment" type="radio" value="production">
+      <label class="govuk-label govuk-radios__label" for="environment-2">
+        Production
       </label>
-      
-      <div id="urgency-2-item-hint" class="govuk-hint govuk-radios__hint">
-        Needed within 3 months
-      </div>
       
     </div>
     
@@ -821,18 +803,42 @@ data-module="govuk-service-navigation"
     
     
     <div class="govuk-radios__item">
-      <input class="govuk-radios__input" id="urgency-3" name="urgency" type="radio" value="medium" aria-describedby="urgency-3-item-hint">
-      <label class="govuk-label govuk-radios__label" for="urgency-3">
-        Medium
+      <input class="govuk-radios__input" id="environment-3" name="environment" type="radio" value="both">
+      <label class="govuk-label govuk-radios__label" for="environment-3">
+        Both sandbox and production
       </label>
-      
-      <div id="urgency-3-item-hint" class="govuk-hint govuk-radios__hint">
-        Needed within 6 months
-      </div>
       
     </div>
     
   
+    
+    
+  </div>
+
+</fieldset>
+
+</div>
+
+      </div>
+
+      <div data-required data-error="Select the expected call volume">
+        
+
+
+
+<div class="govuk-form-group">
+
+  <fieldset class="govuk-fieldset">
+  
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+  
+    Expected call volume
+  
+  </legend>
+  
+
+  <div class="govuk-radios" data-module="govuk-radios">
+    
     
       
   
@@ -840,13 +846,51 @@ data-module="govuk-service-navigation"
     
     
     <div class="govuk-radios__item">
-      <input class="govuk-radios__input" id="urgency-4" name="urgency" type="radio" value="low" aria-describedby="urgency-4-item-hint">
-      <label class="govuk-label govuk-radios__label" for="urgency-4">
+      <input class="govuk-radios__input" id="call-volume" name="call-volume" type="radio" value="low" aria-describedby="call-volume-item-hint">
+      <label class="govuk-label govuk-radios__label" for="call-volume">
         Low
       </label>
       
-      <div id="urgency-4-item-hint" class="govuk-hint govuk-radios__hint">
-        Future planning
+      <div id="call-volume-item-hint" class="govuk-hint govuk-radios__hint">
+        Under 1,000 calls per day
+      </div>
+      
+    </div>
+    
+  
+    
+      
+  
+    
+    
+    
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="call-volume-2" name="call-volume" type="radio" value="medium" aria-describedby="call-volume-2-item-hint">
+      <label class="govuk-label govuk-radios__label" for="call-volume-2">
+        Medium
+      </label>
+      
+      <div id="call-volume-2-item-hint" class="govuk-hint govuk-radios__hint">
+        1,000 to 100,000 calls per day
+      </div>
+      
+    </div>
+    
+  
+    
+      
+  
+    
+    
+    
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="call-volume-3" name="call-volume" type="radio" value="high" aria-describedby="call-volume-3-item-hint">
+      <label class="govuk-label govuk-radios__label" for="call-volume-3">
+        High
+      </label>
+      
+      <div id="call-volume-3-item-hint" class="govuk-hint govuk-radios__hint">
+        Over 100,000 calls per day
       </div>
       
     </div>
@@ -862,30 +906,92 @@ data-module="govuk-service-navigation"
 
       </div>
 
-      
+      <h2 class="govuk-heading-l">Your use case</h2>
+
+      <div data-required data-error="Describe what you are building and why you need this API">
+        
 
 
 <div class="govuk-form-group">
-  <label class="govuk-label govuk-label--m" for="existing">
-    Is there an existing system that holds this data? (optional)
+  <label class="govuk-label govuk-label--m" for="use-case">
+    Describe what you are building and why you need this API
   </label>
 
   
   
-  <div id="existing-hint" class="govuk-hint">
-    If you know of an HMCTS system with this data, tell us here.
+  <div id="use-case-hint" class="govuk-hint">
+    Include what data you need, how it will be used, and any relevant project name.
   </div>
 
 
 
-  <textarea class="govuk-textarea" id="existing" name="existing" rows="5" aria-describedby="existing-hint"></textarea>
+  <textarea class="govuk-textarea" id="use-case" name="use-case" rows="5" aria-describedby="use-case-hint"></textarea>
 
 </div>
 
+      </div>
+
+      <div data-required data-error="Select whether your system can implement OAuth 2.0 with JWT bearer tokens">
+        
+
+
+
+<div class="govuk-form-group">
+
+  <fieldset class="govuk-fieldset">
+  
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+  
+    Can your system implement OAuth 2.0 with JWT bearer tokens?
+  
+  </legend>
+  
+
+  <div class="govuk-radios" data-module="govuk-radios">
+    
+    
+      
+  
+    
+    
+    
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="oauth" name="oauth" type="radio" value="yes">
+      <label class="govuk-label govuk-radios__label" for="oauth">
+        Yes
+      </label>
+      
+    </div>
+    
+  
+    
+      
+  
+    
+    
+    
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="oauth-2" name="oauth" type="radio" value="no">
+      <label class="govuk-label govuk-radios__label" for="oauth-2">
+        No - I need guidance
+      </label>
+      
+    </div>
+    
+  
+    
+    
+  </div>
+
+</fieldset>
+
+</div>
+
+      </div>
 
       <h2 class="govuk-heading-l">Declaration</h2>
 
-      <div data-required data-error="You must confirm all three declarations">
+      <div data-required data-error="You must confirm all four declarations">
         
 
 
@@ -914,9 +1020,9 @@ data-module="govuk-service-navigation"
     
     
     <div class="govuk-checkboxes__item">
-      <input class="govuk-checkboxes__input" id="declarations" name="declarations" type="checkbox" value="no-existing-api">
+      <input class="govuk-checkboxes__input" id="declarations" name="declarations" type="checkbox" value="in-scope">
       <label class="govuk-label govuk-checkboxes__label" for="declarations">
-        I confirm there is no existing HMCTS API that meets this need, to the best of my knowledge
+        I confirm my use case is within the intended scope of this API and I am not requesting access speculatively
       </label>
       
     </div>
@@ -933,9 +1039,9 @@ data-module="govuk-service-navigation"
     
     
     <div class="govuk-checkboxes__item">
-      <input class="govuk-checkboxes__input" id="declarations-2" name="declarations" type="checkbox" value="discovery-only">
+      <input class="govuk-checkboxes__input" id="declarations-2" name="declarations" type="checkbox" value="oauth-ready">
       <label class="govuk-label govuk-checkboxes__label" for="declarations-2">
-        I understand this is a request for discovery and does not guarantee an API will be built
+        My system can implement OAuth 2.0 with JWT bearer tokens, or I have said I need guidance
       </label>
       
     </div>
@@ -952,12 +1058,31 @@ data-module="govuk-service-navigation"
     
     
     <div class="govuk-checkboxes__item">
-      <input class="govuk-checkboxes__input" id="declarations-3" name="declarations" type="checkbox" value="governance" aria-describedby="declarations-3-item-hint">
+      <input class="govuk-checkboxes__input" id="declarations-3" name="declarations" type="checkbox" value="dsa-dpa">
       <label class="govuk-label govuk-checkboxes__label" for="declarations-3">
+        A Data Sharing Agreement or Data Processing Agreement is in place or being arranged for APIs containing personal data
+      </label>
+      
+    </div>
+    
+  
+
+    
+      
+  
+  
+    
+    
+    
+    
+    
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="declarations-4" name="declarations" type="checkbox" value="governance" aria-describedby="declarations-4-item-hint">
+      <label class="govuk-label govuk-checkboxes__label" for="declarations-4">
         I have read and accept the Data Governance Standards
       </label>
       
-      <div id="declarations-3-item-hint" class="govuk-hint govuk-checkboxes__hint">
+      <div id="declarations-4-item-hint" class="govuk-hint govuk-checkboxes__hint">
         See the <a class="govuk-link" href="../../publish/data-governance/">Data Governance Standards</a>.
       </div>
       

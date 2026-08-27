@@ -1,11 +1,11 @@
 {% extends "layouts/main.html" %}
 
 {% set pageName = "Check your answers" %}
-{% set section = "publish" %}
+{% set section = "get-started" %}
 {% set breadcrumbs = [
   { text: "Home", href: "/" },
-  { text: "Publish an API", href: "/publish" },
-  { text: "Submit an API", href: "/publish/submit" }
+  { text: "Get started", href: "/get-started" },
+  { text: "Request API access", href: "/get-started/request-api" }
 ] %}
 
 {% from "govuk/components/button/macro.njk" import govukButton %}
@@ -16,12 +16,12 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <div data-requires-auth="publish/submit/" hidden></div>
+    <div data-requires-auth="get-started/request-api/" hidden></div>
 
     <h1 class="govuk-heading-xl">Check your answers before submitting</h1>
 
     <dl class="govuk-summary-list"
-        data-summary-for="publish-submit"
+        data-summary-for="request-api"
         data-change-href="../"
         data-empty-message="Your answers could not be read back. This happens when JavaScript is turned off, because there is no server to hold them.">
     </dl>
@@ -31,7 +31,7 @@
              nothing will be."
     }) }}
 
-    <form data-journey="publish-submit-confirm" data-next="../confirmation/" novalidate>
+    <form data-journey="request-api-confirm" data-next="../confirmation/" novalidate>
       {{ govukButton({ text: "Accept and submit" }) }}
     </form>
 

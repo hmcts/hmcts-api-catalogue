@@ -145,12 +145,14 @@ data-module="govuk-service-navigation"
               
 
               
-              <li class="govuk-service-navigation__item">
+              <li class="govuk-service-navigation__item govuk-service-navigation__item--active">
                 
-                  <a class="govuk-service-navigation__link" href="../../../../cy/get-started/">
+                  <a class="govuk-service-navigation__link" href="../../../../cy/get-started/" aria-current="true">
                     
                 
-                Get started
+                
+                  <strong class="govuk-service-navigation__active-fallback">Get started</strong>
+                
               
                   </a>
                 
@@ -173,14 +175,12 @@ data-module="govuk-service-navigation"
               
 
               
-              <li class="govuk-service-navigation__item govuk-service-navigation__item--active">
+              <li class="govuk-service-navigation__item">
                 
-                  <a class="govuk-service-navigation__link" href="../../../../cy/publish/" aria-current="true">
+                  <a class="govuk-service-navigation__link" href="../../../../cy/publish/">
                     
                 
-                
-                  <strong class="govuk-service-navigation__active-fallback">Publish an API</strong>
-                
+                Publish an API
               
                   </a>
                 
@@ -252,7 +252,7 @@ data-module="govuk-service-navigation"
     
       <span lang="cy">Cymraeg</span>
       <span aria-hidden="true">|</span>
-      <a class="govuk-link" lang="en" hreflang="en" rel="alternate" href="../../../../publish/submit/check-answers/">English</a>
+      <a class="govuk-link" lang="en" hreflang="en" rel="alternate" href="../../../../get-started/request-api/check-answers/">English</a>
     
   </nav>
   
@@ -303,13 +303,13 @@ data-module="govuk-service-navigation"
 
   
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="../../../../cy/publish/">Publish an API</a>
+      <a class="govuk-breadcrumbs__link" href="../../../../cy/get-started/">Get started</a>
     </li>
   
 
   
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="../../../../cy/publish/submit/">Submit an API</a>
+      <a class="govuk-breadcrumbs__link" href="../../../../cy/get-started/request-api/">Request API access</a>
     </li>
   
 
@@ -325,12 +325,12 @@ data-module="govuk-service-navigation"
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <div data-requires-auth="publish/submit/" hidden></div>
+    <div data-requires-auth="get-started/request-api/" hidden></div>
 
     <h1 class="govuk-heading-xl">Check your answers before submitting</h1>
 
     <dl class="govuk-summary-list"
-        data-summary-for="publish-submit"
+        data-summary-for="request-api"
         data-change-href="../"
         data-empty-message="Your answers could not be read back. This happens when JavaScript is turned off, because there is no server to hold them.">
     </dl>
@@ -341,7 +341,7 @@ data-module="govuk-service-navigation"
 </div>
 
 
-    <form data-journey="publish-submit-confirm" data-next="../confirmation/" novalidate>
+    <form data-journey="request-api-confirm" data-next="../confirmation/" novalidate>
       
 <button type="submit" class="govuk-button" data-module="govuk-button">
   Accept and submit

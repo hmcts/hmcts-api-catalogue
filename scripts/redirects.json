@@ -120,9 +120,8 @@
     },
     {
       "from": "request-api.html",
-      "to": "/account",
-      "kind": "superseded",
-      "because": "The standalone access request form was removed - access requests will be handled through the developer portal instead. Not yet built there."
+      "to": "/get-started/request-api",
+      "kind": "moved"
     },
     {
       "from": "request-new-api.html",

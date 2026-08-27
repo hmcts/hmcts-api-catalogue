@@ -58,6 +58,18 @@
       "name": "Glossary of developer terms"
     },
     {
+      "path": "/get-started/request-api",
+      "name": "Request API access"
+    },
+    {
+      "path": "/get-started/request-api/check-answers",
+      "name": "Check your answers"
+    },
+    {
+      "path": "/get-started/request-api/confirmation",
+      "name": "Request submitted"
+    },
+    {
       "path": "/documentation",
       "name": "Documentation, guides and tutorials"
     },

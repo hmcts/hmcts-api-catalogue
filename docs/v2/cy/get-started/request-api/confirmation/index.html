@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>
-  Check your answers - HMCTS API Marketplace - GOV.UK
+  Request submitted - HMCTS API Marketplace - GOV.UK
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#1d70b8">
@@ -145,12 +145,14 @@ data-module="govuk-service-navigation"
               
 
               
-              <li class="govuk-service-navigation__item">
+              <li class="govuk-service-navigation__item govuk-service-navigation__item--active">
                 
-                  <a class="govuk-service-navigation__link" href="../../../../cy/get-started/">
+                  <a class="govuk-service-navigation__link" href="../../../../cy/get-started/" aria-current="true">
                     
                 
-                Get started
+                
+                  <strong class="govuk-service-navigation__active-fallback">Get started</strong>
+                
               
                   </a>
                 
@@ -173,14 +175,12 @@ data-module="govuk-service-navigation"
               
 
               
-              <li class="govuk-service-navigation__item govuk-service-navigation__item--active">
+              <li class="govuk-service-navigation__item">
                 
-                  <a class="govuk-service-navigation__link" href="../../../../cy/publish/" aria-current="true">
+                  <a class="govuk-service-navigation__link" href="../../../../cy/publish/">
                     
                 
-                
-                  <strong class="govuk-service-navigation__active-fallback">Publish an API</strong>
-                
+                Publish an API
               
                   </a>
                 
@@ -252,7 +252,7 @@ data-module="govuk-service-navigation"
     
       <span lang="cy">Cymraeg</span>
       <span aria-hidden="true">|</span>
-      <a class="govuk-link" lang="en" hreflang="en" rel="alternate" href="../../../../publish/submit/check-answers/">English</a>
+      <a class="govuk-link" lang="en" hreflang="en" rel="alternate" href="../../../../get-started/request-api/confirmation/">English</a>
     
   </nav>
   
@@ -303,13 +303,7 @@ data-module="govuk-service-navigation"
 
   
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="../../../../cy/publish/">Publish an API</a>
-    </li>
-  
-
-  
-    <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="../../../../cy/publish/submit/">Submit an API</a>
+      <a class="govuk-breadcrumbs__link" href="../../../../cy/get-started/">Get started</a>
     </li>
   
 
@@ -325,32 +319,50 @@ data-module="govuk-service-navigation"
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <div data-requires-auth="publish/submit/" hidden></div>
+    <div data-requires-auth="get-started/request-api/" hidden></div>
 
-    <h1 class="govuk-heading-xl">Check your answers before submitting</h1>
-
-    <dl class="govuk-summary-list"
-        data-summary-for="publish-submit"
-        data-change-href="../"
-        data-empty-message="Your answers could not be read back. This happens when JavaScript is turned off, because there is no server to hold them.">
-    </dl>
-
-    <div class="govuk-inset-text">
-  Your answers are held in this browser tab only. Nothing has been sent anywhere yet, and
-             nothing will be.
+    <div class="govuk-panel govuk-panel--confirmation">
+  <h1 class="govuk-panel__title">
+    Request submitted
+  </h1>
+  
+  <div class="govuk-panel__body">
+    This is a prototype<br>Nothing was submitted
+  </div>
+  
+  
 </div>
 
 
-    <form data-journey="publish-submit-confirm" data-next="../confirmation/" novalidate>
-      
-<button type="submit" class="govuk-button" data-module="govuk-button">
-  Accept and submit
-</button>
+    <div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-visually-hidden">Warning</span>
+    Nothing was submitted and nothing was stored. No one has received this information, and
+             no one will act on it.
+  </strong>
+</div>
 
-    </form>
+
+    <h2 class="govuk-heading-m">What this page would normally tell you</h2>
 
     <p class="govuk-body">
-      <a class="govuk-link" href="../">Change your answers</a>
+      In the live service this page would give you a reference number and confirm that the API owner
+      will review your request.
+    </p>
+
+    <h2 class="govuk-heading-m">If you need API access for real</h2>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="../../../../cy/help/">Contact the marketplace team</a> and tell them which API you
+      need and why. They will set up sandbox access with you directly.
+    </p>
+
+    <h2 class="govuk-heading-m">Before you go</h2>
+
+    <p class="govuk-body">
+      This service is in beta. If anything in this journey was confusing or looked wrong,
+      <a class="govuk-link" href="../../../../cy/help/">telling us</a> is the most useful thing you can do next.
     </p>
 
   </div>

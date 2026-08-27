@@ -46,21 +46,29 @@ const ALLOW_UNREACHABLE = new Set([
 
 // --- part 1: broken links --------------------------------------------------
 //
-// concurrency: 1 is deliberate. linkinator shares one in-flight promise
-// across pages that reference the same URL (its own source calls this out),
-// and every route here is checked from ~92 separate entry points at once -
-// exactly the shape that would expose a scheduling-dependent bug in that
-// sharing. Seen once in CI (never locally, on identical exported HTML,
-// across a clean npm ci and a from-scratch Kit restart): two links reported
-// against pages that do not contain them, for a route nothing in the export
-// links to. Serial execution trades crawl speed - immaterial at this size -
-// for a run whose result cannot depend on request interleaving.
+// recurse: false is deliberate. With recursion on, linkinator was given all
+// ~92 pages as entry points AND followed every link it found from each of
+// them - 92 overlapping crawl frontiers converging on shared URLs (every
+// page links towards its own homepage, for one). linkinator's own source
+// notes it shares one in-flight completion promise across pages that
+// reference the same URL, to avoid re-checking duplicates. In CI (never
+// locally, on byte-identical exported HTML, across a clean npm ci, a from-
+// scratch Kit restart, real Node 20+, and linkinator's own CLI run directly)
+// that produced a `parent` on the returned LinkResult that did not match the
+// page actually containing the link: a route removed from the whole export
+// (get-started/request-api/) reported as broken and blamed on
+// account/index.html, which has no such link - confirmed by dumping the raw
+// LinkResults from the failing CI run itself. Recursion was never load-
+// bearing: every page is already an explicit entry point via the glob below,
+// and part 2 independently verifies the link *graph* is fully connected.
+// With recursion off, each entry is checked only for its own declared links
+// - no cross-page frontier for linkinator to share promises across, so a
+// link's parent can only ever be the page linkinator was told to check.
 const checker = new LinkChecker()
 const result = await checker.check({
   path: '**/*.html',
   serverRoot: OUT,
-  recurse: true,
-  concurrency: 1,
+  recurse: false,
   linksToSkip: async (link) => {
     try {
       return !LOCAL_HOSTS.has(new URL(link).hostname)
@@ -72,15 +80,6 @@ const result = await checker.check({
 
 const broken = result.links.filter((link) => link.state === 'BROKEN')
 const checked = result.links.filter((link) => link.state !== 'SKIPPED').length
-
-// TEMPORARY diagnostic - remove once the CI-only "request-api" false
-// positive is understood. Dumps every LinkResult mentioning account or
-// request-api, and total link count, unfiltered.
-console.error('DEBUG total links:', result.links.length)
-console.error('DEBUG matching entries:', JSON.stringify(
-  result.links.filter((l) => /account|request-api/.test(l.url) || /account|request-api/.test(l.parent ?? '')),
-  null, 2
-))
 
 if (broken.length) {
   const lines = broken.map((link) => `${link.url}  <- ${link.parent ?? 'unknown'}`)

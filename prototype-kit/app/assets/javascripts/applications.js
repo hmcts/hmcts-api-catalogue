@@ -243,6 +243,9 @@ document.addEventListener('DOMContentLoaded', function () {
           '</div>'
       }).join('') || '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Active API keys</dt><dd class="govuk-summary-list__value">None</dd></div>'
 
+      document.getElementById('detail-public-key-url').textContent = app.publicKeyUrl || 'Not set yet'
+      document.getElementById('detail-callback-url').textContent = app.callbackUrl || 'Not set yet'
+
       var attrsBody = document.getElementById('attrs-table-body')
       var attrsHint = document.getElementById('attrs-empty-hint')
       var attrEntries = Object.keys(app.customAttributes || {})
@@ -294,6 +297,24 @@ document.addEventListener('DOMContentLoaded', function () {
           loadDetail()
         })
     })
+
+    function editUrlField (linkId, fieldLabel, bodyKey) {
+      document.getElementById(linkId).addEventListener('click', function (event) {
+        event.preventDefault()
+        var value = window.prompt('Enter the ' + fieldLabel + ':')
+        if (value === null) return
+        var body = {}
+        body[bodyKey] = value.trim()
+        Auth.authedFetch('/api/applications/' + encodeURIComponent(appId), {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        }).then(function () { loadDetail() })
+      })
+    }
+
+    editUrlField('edit-public-key-url', 'public key URL', 'publicKeyUrl')
+    editUrlField('edit-callback-url', 'callback URL', 'callbackUrl')
 
     document.getElementById('add-attr-form').addEventListener('submit', function (event) {
       event.preventDefault()

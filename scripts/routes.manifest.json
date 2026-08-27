@@ -138,6 +138,26 @@
       "name": "Your account"
     },
     {
+      "path": "/account/applications",
+      "name": "My applications and teams"
+    },
+    {
+      "path": "/account/applications/new",
+      "name": "Add new application"
+    },
+    {
+      "path": "/account/applications/new/check-answers",
+      "name": "Check your answers before creating your application"
+    },
+    {
+      "path": "/account/applications/new/confirmation",
+      "name": "Application created"
+    },
+    {
+      "path": "/account/applications/detail",
+      "name": "Application detail"
+    },
+    {
       "path": "/accessibility-statement",
       "name": "Accessibility statement"
     },

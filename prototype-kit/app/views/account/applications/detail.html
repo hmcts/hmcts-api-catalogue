@@ -1,0 +1,119 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Application detail" %}
+{% set section = "account" %}
+{% set breadcrumbs = [
+  { text: "Home", href: "/" },
+  { text: "Your account", href: "/account" },
+  { text: "My applications and teams", href: "/account/applications" }
+] %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <p class="govuk-body" id="detail-loading">Loading&hellip;</p>
+
+    <div id="detail-content" hidden>
+
+      <span class="govuk-caption-l">Application</span>
+      <h1 class="govuk-heading-l" id="detail-name">Application detail</h1>
+
+      <h2 class="govuk-heading-m">Basic details</h2>
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Application name</dt>
+          <dd class="govuk-summary-list__value" id="detail-name-value"></dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Description</dt>
+          <dd class="govuk-summary-list__value" id="detail-description"></dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Owner</dt>
+          <dd class="govuk-summary-list__value" id="detail-owner"></dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Date created</dt>
+          <dd class="govuk-summary-list__value" id="detail-created"></dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Application ID</dt>
+          <dd class="govuk-summary-list__value" id="detail-id"></dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Environment</dt>
+          <dd class="govuk-summary-list__value" id="detail-environment"></dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m">Security details</h2>
+      <dl class="govuk-summary-list" id="detail-keys-list"></dl>
+      <form id="rotate-key-form">
+        {{ govukButton({ text: "Issue a new API key", classes: "govuk-button--secondary" }) }}
+      </form>
+      <p class="govuk-body" id="new-key-notice" hidden></p>
+
+      <h2 class="govuk-heading-m">Custom attributes</h2>
+      <table class="govuk-table" id="attrs-table">
+        <tbody class="govuk-table__body" id="attrs-table-body"></tbody>
+      </table>
+      <p class="govuk-body" id="attrs-empty-hint">No custom attributes.</p>
+
+      <form id="add-attr-form" class="govuk-!-margin-bottom-6">
+        <div class="govuk-form-group govuk-!-display-inline-block govuk-!-margin-right-2">
+          <label class="govuk-label" for="attr-key">Name</label>
+          <input class="govuk-input govuk-input--width-10" id="attr-key" name="attr-key" type="text">
+        </div>
+        <div class="govuk-form-group govuk-!-display-inline-block govuk-!-margin-right-2">
+          <label class="govuk-label" for="attr-value">Value</label>
+          <input class="govuk-input govuk-input--width-10" id="attr-value" name="attr-value" type="text">
+        </div>
+        {{ govukButton({ text: "Add custom attribute", classes: "govuk-button--secondary", attributes: { id: "add-attr-submit" } }) }}
+      </form>
+
+      <h2 class="govuk-heading-m">Connected APIs</h2>
+      <table class="govuk-table" id="apis-table">
+        <tbody class="govuk-table__body" id="apis-table-body"></tbody>
+      </table>
+      <p class="govuk-body" id="apis-empty-hint">No connected APIs.</p>
+
+      <form id="add-api-form" class="govuk-!-margin-bottom-6">
+        <div class="govuk-form-group govuk-!-display-inline-block govuk-!-margin-right-2">
+          <label class="govuk-label" for="api-select">API</label>
+          <select class="govuk-select" id="api-select" name="api-select">
+            <option value="crime-prosecution-case-details">Crime Prosecution Case Details API</option>
+            <option value="hearing-results">Hearing Results API</option>
+            <option value="court-listings-and-scheduling">Court Listings and Scheduling API</option>
+            <option value="court-and-tribunal-reference-data">Court and Tribunal Reference Data API</option>
+            <option value="fees-and-financial-transactions">Fees and Financial Transactions API</option>
+            <option value="tribunal-case-administration">Tribunal Case Administration API</option>
+          </select>
+        </div>
+        {{ govukButton({ text: "Add API", classes: "govuk-button--secondary", attributes: { id: "add-api-submit" } }) }}
+      </form>
+
+      <p class="govuk-body"><a class="govuk-link" href="../">&larr; Back to my applications</a></p>
+
+    </div>
+
+    <div class="govuk-error-summary" data-module="govuk-error-summary" id="detail-error-summary" hidden tabindex="-1">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">There is a problem</h2>
+        <div class="govuk-error-summary__body">
+          <p id="detail-error-text">Something went wrong. Please try again.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/applications.js"></script>
+{% endblock %}

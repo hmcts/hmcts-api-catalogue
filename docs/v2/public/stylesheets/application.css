@@ -7583,3 +7583,28 @@ dl.govuk-body dd {
 .app-language-toggle span {
   margin-left: 5px;
 }
+
+.app-key-display {
+  font-family: "GDS Transport", arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 1.1875rem;
+  line-height: 1.3157894737;
+  padding: 15px;
+  background-color: #f3f3f3;
+  border: 1px solid #cecece;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+@media print {
+  .app-key-display {
+    font-family: sans-serif;
+  }
+}
+@media print {
+  .app-key-display {
+    font-size: 14pt;
+    line-height: 1.15;
+  }
+}

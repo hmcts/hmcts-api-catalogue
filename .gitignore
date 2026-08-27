@@ -10,7 +10,13 @@ __pycache__/
 .Python
 build/
 develop-eggs/
-dist/
+# NOT dist/ - this generic Python template's bare "dist/" pattern matches at
+# any depth, which was silently excluding docs/v2/plugin-assets/govuk-
+# frontend/dist/** from every commit: GOV.UK Frontend's own JS bundle,
+# fonts, and images. That broke every JS-driven component (tabs among them)
+# on the deployed site, with no local signal - the export always re-fetches
+# these from the running Kit, so they were present on disk and never showed
+# as missing until a real deploy was clicked through.
 downloads/
 eggs/
 .eggs/

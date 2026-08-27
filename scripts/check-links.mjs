@@ -45,12 +45,22 @@ const ALLOW_UNREACHABLE = new Set([
 ])
 
 // --- part 1: broken links --------------------------------------------------
-
+//
+// concurrency: 1 is deliberate. linkinator shares one in-flight promise
+// across pages that reference the same URL (its own source calls this out),
+// and every route here is checked from ~92 separate entry points at once -
+// exactly the shape that would expose a scheduling-dependent bug in that
+// sharing. Seen once in CI (never locally, on identical exported HTML,
+// across a clean npm ci and a from-scratch Kit restart): two links reported
+// against pages that do not contain them, for a route nothing in the export
+// links to. Serial execution trades crawl speed - immaterial at this size -
+// for a run whose result cannot depend on request interleaving.
 const checker = new LinkChecker()
 const result = await checker.check({
   path: '**/*.html',
   serverRoot: OUT,
   recurse: true,
+  concurrency: 1,
   linksToSkip: async (link) => {
     try {
       return !LOCAL_HOSTS.has(new URL(link).hostname)

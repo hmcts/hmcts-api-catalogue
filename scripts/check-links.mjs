@@ -28,11 +28,12 @@ const { redirects } = JSON.parse(await readFile('scripts/redirects.json', 'utf8'
 // only becomes an "/account" link via client-side JS, once a token is present
 // (see app/assets/javascripts/auth.js) - there is no static <a href="/account">
 // anywhere for a signed-out crawler to find.
-// The whole account/applications/** and account/requests/** trees hang off
-// account/index.html - since that page is itself only reachable by client-
-// side JS (above), the crawler never visits it and so never discovers its
-// outbound links either, even though account/index.html does link to both
-// for real.
+// The whole account/applications/** tree hangs off account/index.html -
+// since that page is itself only reachable by client-side JS (above), the
+// crawler never visits it and so never discovers its outbound links either,
+// even though account/index.html does link to it for real. My requests used
+// to be its own page with the same problem, but now lives as a tab on
+// account/index.html itself, so it needs no entry of its own here.
 //
 // The three request confirmation pages are a different shape of the same
 // problem: check-answers no longer advances to them via a static data-next
@@ -57,8 +58,6 @@ const ALLOW_UNREACHABLE = new Set([
   'cy/account/applications/new/confirmation/index.html',
   'account/applications/detail/index.html',
   'cy/account/applications/detail/index.html',
-  'account/requests/index.html',
-  'cy/account/requests/index.html',
   'get-started/request-api/confirmation/index.html',
   'cy/get-started/request-api/confirmation/index.html',
   'publish/submit/confirmation/index.html',

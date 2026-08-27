@@ -48,7 +48,8 @@
       { href: "/get-started", text: t("nav.getStarted"), active: section == "get-started" },
       { href: "/documentation", text: t("nav.documentation"), active: section == "documentation" },
       { href: "/publish", text: t("nav.publish"), active: section == "publish" },
-      { href: "/help", text: t("nav.help"), active: section == "help" }
+      { href: "/help", text: t("nav.help"), active: section == "help" },
+      { href: "/sign-in", text: t("nav.signIn"), active: section == "account", attributes: { id: "nav-auth-link" } }
     ]
   }) }}
 {% endblock %}
@@ -132,4 +133,10 @@
       }
     })
   </script>
+  {#
+    Site-wide: rewrites #nav-auth-link from "Sign in" to the signed-in user's
+    name once a token is present, on every page, not just the auth pages
+    themselves. See app/assets/javascripts/auth.js.
+  #}
+  <script src="/public/javascripts/auth.js"></script>
 {% endblock %}

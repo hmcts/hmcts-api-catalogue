@@ -73,6 +73,15 @@ const result = await checker.check({
 const broken = result.links.filter((link) => link.state === 'BROKEN')
 const checked = result.links.filter((link) => link.state !== 'SKIPPED').length
 
+// TEMPORARY diagnostic - remove once the CI-only "request-api" false
+// positive is understood. Dumps every LinkResult mentioning account or
+// request-api, and total link count, unfiltered.
+console.error('DEBUG total links:', result.links.length)
+console.error('DEBUG matching entries:', JSON.stringify(
+  result.links.filter((l) => /account|request-api/.test(l.url) || /account|request-api/.test(l.parent ?? '')),
+  null, 2
+))
+
 if (broken.length) {
   const lines = broken.map((link) => `${link.url}  <- ${link.parent ?? 'unknown'}`)
   console.error(`Link gate FAILED - ${broken.length} broken link(s):\n  ` + lines.join('\n  '))

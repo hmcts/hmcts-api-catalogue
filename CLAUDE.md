@@ -10,10 +10,16 @@ is `hmcts/hmcts-api-marketplace` and the public site is served from GitHub Pages
 `https://hmcts.github.io/hmcts-api-marketplace/`.
 
 The live site is not currently backend-free: sign-in, registration and account pages call an auth API
-at `https://hmcts-api-marketplace-auth.onrender.com`. **That dependency was never sanctioned and is
-being removed.** Do not extend it, do not add endpoints to it, and do not build anything new against
-it. Authentication is to be faked client-side until a sanctioned identity solution exists — see
+at `https://hmcts-api-marketplace-auth.onrender.com`. **That dependency was never sanctioned.** On the
+live site, do not extend it, do not add endpoints to it, and do not build anything new against it —
+authentication there is to be faked client-side until a sanctioned identity solution exists. See
 [`design/adr/0003-authentication-and-identity.md`](design/adr/0003-authentication-and-identity.md).
+
+v2 has taken the opposite path: it deliberately reverses ADR 0003 for a specific, named, growing set of
+functionality against that same backend — sign-in/register/account, My applications and teams, and now
+My requests — each added as an explicit, documented exception rather than a blanket reopening of the
+rule. Treat that list as the extent of it; don't add a new backend call without the same explicit
+call-out.
 
 ## Three lines of work — know which one you're in
 
@@ -118,8 +124,14 @@ anything in it is served publicly.
   vanishing.
 - **The live `docs/*.html` site is frozen** until v2 is promoted — CI blocks PRs that touch it. Only
   fix something there if it's actively blocking promotion.
-- The four content forms (`contact`, `publish-api`, `request-api`, `request-new-api`) **claim to submit
-  and submit nothing**, on both the live site and v2. Do not add copy that implies a real submission.
+- On the live site, all four content forms (`contact`, `publish-api`, `request-api`,
+  `request-new-api`) **claim to submit and submit nothing** — don't add copy there that implies a real
+  submission. In v2, `contact` is still a no-op, but `publish-api`, `request-api` and `request-new-api`
+  really do submit: they POST to `/api/requests` on the same auth backend as sign-in (see
+  `prototype-kit/app/assets/javascripts/requests.js`), and a signed-in user's own submissions show up
+  on `/account/requests`. This is a second exception to the unsanctioned-backend rule above, alongside
+  sign-in/register/account and My applications — extending that same already-live backend, not a new
+  one.
 - On the live site, "Accessibility statement", "Cookies" and "Privacy notice" are `href="#"` on all 28
   pages — the first two are legally required. v2 has real pages for all three
   (`accessibility-statement/`, `cookies/`, `privacy/`); keep them in sync with legal requirements as

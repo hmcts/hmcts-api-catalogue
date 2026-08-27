@@ -9,7 +9,6 @@
 ] %}
 
 {% from "govuk/components/button/macro.njk" import govukButton %}
-{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
 {% block content %}
 
@@ -17,6 +16,17 @@
   <div class="govuk-grid-column-two-thirds">
 
     <div data-requires-auth="api-catalogue/request-new-api/" hidden></div>
+
+    <div class="govuk-error-summary" data-module="govuk-error-summary" id="request-error-summary" hidden tabindex="-1">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">There is a problem</h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li><a href="#request-submit" id="request-error-link">Something went wrong with your submission. Please try again.</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
     <h1 class="govuk-heading-xl">Check your answers before submitting</h1>
 
@@ -26,13 +36,8 @@
         data-empty-message="Your answers could not be read back. This happens when JavaScript is turned off, because there is no server to hold them.">
     </dl>
 
-    {{ govukInsetText({
-      text: "Your answers are held in this browser tab only. Nothing has been sent anywhere yet, and
-             nothing will be."
-    }) }}
-
-    <form data-journey="request-new-api-confirm" data-next="../confirmation/" novalidate>
-      {{ govukButton({ text: "Accept and submit" }) }}
+    <form id="new-api-submit-form">
+      {{ govukButton({ text: "Accept and submit", attributes: { id: "request-submit" } }) }}
     </form>
 
     <p class="govuk-body">
@@ -42,4 +47,8 @@
   </div>
 </div>
 
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/requests.js"></script>
 {% endblock %}

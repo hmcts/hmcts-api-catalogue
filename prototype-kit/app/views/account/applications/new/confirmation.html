@@ -1,0 +1,47 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Application created" %}
+{% set section = "account" %}
+{% set breadcrumbs = [
+  { text: "Home", href: "/" },
+  { text: "Your account", href: "/account" },
+  { text: "My applications and teams", href: "/account/applications" }
+] %}
+
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukPanel({
+      titleText: "Application created",
+      html: "Application name<br><strong id=\"confirmation-app-name\"></strong>"
+    }) }}
+
+    {{ govukWarningText({
+      text: "Copy your API key now. You will not be able to see it again.",
+      iconFallbackText: "Warning"
+    }) }}
+
+    <p class="govuk-body">Your API key</p>
+    <pre class="app-key-display" id="confirmation-api-key"></pre>
+
+    <p class="govuk-body" id="confirmation-fallback" hidden>
+      Your application was created, but this page was opened directly rather than reached from creating an
+      application, so there is no key to show here. <a class="govuk-link" href="../../">Go to my applications</a>
+      to find it.
+    </p>
+
+    <p class="govuk-body"><a class="govuk-link" id="confirmation-detail-link" href="../../detail/">View application details</a></p>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/applications.js"></script>
+{% endblock %}

@@ -147,9 +147,8 @@
     },
     {
       "from": "my-applications.html",
-      "to": "/help",
-      "kind": "superseded",
-      "because": "Application and credential management is not part of this service yet - see ADR 0003."
+      "to": "/account/applications",
+      "kind": "moved"
     }
   ]
 }

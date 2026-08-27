@@ -1,0 +1,51 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Check your answers before creating your application" %}
+{% set section = "account" %}
+{% set breadcrumbs = [
+  { text: "Home", href: "/" },
+  { text: "Your account", href: "/account" },
+  { text: "My applications and teams", href: "/account/applications" }
+] %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <a class="govuk-back-link" href="../">Go back</a>
+
+    <div class="govuk-error-summary" data-module="govuk-error-summary" id="create-app-error-summary" hidden tabindex="-1">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">There is a problem</h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li><a href="#create-app-submit" id="create-app-error-link">Something went wrong. Please try again.</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h1 class="govuk-heading-l">Check your answers before creating your application</h1>
+
+    <dl class="govuk-summary-list"
+        data-summary-for="new-application"
+        data-change-href="../"
+        data-empty-message="Your answers could not be read back. Go back and fill in the form again.">
+    </dl>
+
+    <form id="create-app-form">
+      {{ govukButton({ text: "Create application", attributes: { id: "create-app-submit" } }) }}
+      <p class="govuk-body"><a class="govuk-link" href="../../">Cancel</a></p>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/applications.js"></script>
+{% endblock %}

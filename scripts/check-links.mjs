@@ -35,13 +35,27 @@ const { redirects } = JSON.parse(await readFile('scripts/redirects.json', 'utf8'
 // only becomes an "/account" link via client-side JS, once a token is present
 // (see app/assets/javascripts/auth.js) - there is no static <a href="/account">
 // anywhere for a signed-out crawler to find.
+// The whole account/applications/** tree hangs off account/index.html - since
+// that page is itself only reachable by client-side JS (above), the crawler
+// never visits it and so never discovers its outbound links either, even
+// though account/index.html does link to account/applications/ for real.
 const ALLOW_UNREACHABLE = new Set([
   '404.html',
   ...redirects.map((r) => r.from),
   'api-catalogue/detail/index.html',
   'cy/api-catalogue/detail/index.html',
   'account/index.html',
-  'cy/account/index.html'
+  'cy/account/index.html',
+  'account/applications/index.html',
+  'cy/account/applications/index.html',
+  'account/applications/new/index.html',
+  'cy/account/applications/new/index.html',
+  'account/applications/new/check-answers/index.html',
+  'cy/account/applications/new/check-answers/index.html',
+  'account/applications/new/confirmation/index.html',
+  'cy/account/applications/new/confirmation/index.html',
+  'account/applications/detail/index.html',
+  'cy/account/applications/detail/index.html'
 ])
 
 // --- part 1: broken links --------------------------------------------------

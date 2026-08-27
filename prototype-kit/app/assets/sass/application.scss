@@ -150,3 +150,15 @@ dl.govuk-body {
     margin-left: govuk-spacing(1);
   }
 }
+
+// One-time API key display (account/applications/new/confirmation). A raw
+// key is a single unbroken token much wider than the two-thirds column -
+// wrap it and let it break, rather than pushing the page sideways.
+.app-key-display {
+  @include govuk-font($size: 19);
+  padding: govuk-spacing(3);
+  background-color: govuk-colour("light-grey");
+  border: 1px solid govuk-colour("mid-grey");
+  white-space: pre-wrap;
+  word-break: break-all;
+}

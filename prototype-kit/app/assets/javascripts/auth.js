@@ -42,8 +42,6 @@
     try { window.localStorage.removeItem(TOKEN_KEY) } catch (e) { /* as above */ }
   }
 
-  window.HmctsAuth = { getToken: getToken, setToken: setToken, clearToken: clearToken, apiBase: API_BASE }
-
   function authedFetch (path, options) {
     options = options || {}
     var headers = options.headers || {}
@@ -51,6 +49,15 @@
     if (token) headers.Authorization = 'Bearer ' + token
     options.headers = headers
     return window.fetch(API_BASE + path, options)
+  }
+
+  window.HmctsAuth = {
+    getToken: getToken,
+    setToken: setToken,
+    clearToken: clearToken,
+    apiBase: API_BASE,
+    siteUrl: siteUrl,
+    authedFetch: authedFetch
   }
 
   function showFormError (summaryId, linkId, target, message) {

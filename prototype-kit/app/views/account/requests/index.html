@@ -1,0 +1,43 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "My requests" %}
+{% set section = "account" %}
+{% set breadcrumbs = [
+  { text: "Home", href: "/" },
+  { text: "Your account", href: "/account" }
+] %}
+
+{% block content %}
+
+<h1 class="govuk-heading-xl">My requests</h1>
+
+<p class="govuk-body">
+  Everything you have submitted through Request API access, Publish an API or Request a new API.
+</p>
+
+<p class="govuk-body" id="requests-loading">Loading your requests&hellip;</p>
+
+<table class="govuk-table" id="requests-table" hidden>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Reference</th>
+      <th scope="col" class="govuk-table__header">Type</th>
+      <th scope="col" class="govuk-table__header">Submitted</th>
+      <th scope="col" class="govuk-table__header">Status</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body" id="requests-table-body"></tbody>
+</table>
+
+<p class="govuk-body" id="requests-empty-hint" hidden>
+  You have not submitted any requests yet. Start from
+  <a class="govuk-link" href="/get-started/request-api">Request API access</a>,
+  <a class="govuk-link" href="/publish/submit">Submit an API for publication</a> or
+  <a class="govuk-link" href="/api-catalogue/request-new-api">Request a new API</a>.
+</p>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/requests.js"></script>
+{% endblock %}

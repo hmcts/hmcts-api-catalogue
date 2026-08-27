@@ -28,10 +28,18 @@ const { redirects } = JSON.parse(await readFile('scripts/redirects.json', 'utf8'
 // only becomes an "/account" link via client-side JS, once a token is present
 // (see app/assets/javascripts/auth.js) - there is no static <a href="/account">
 // anywhere for a signed-out crawler to find.
-// The whole account/applications/** tree hangs off account/index.html - since
-// that page is itself only reachable by client-side JS (above), the crawler
-// never visits it and so never discovers its outbound links either, even
-// though account/index.html does link to account/applications/ for real.
+// The whole account/applications/** and account/requests/** trees hang off
+// account/index.html - since that page is itself only reachable by client-
+// side JS (above), the crawler never visits it and so never discovers its
+// outbound links either, even though account/index.html does link to both
+// for real.
+//
+// The three request confirmation pages are a different shape of the same
+// problem: check-answers no longer advances to them via a static data-next
+// attribute (see requests.js) because advancing is now conditional on a real
+// POST to /api/requests succeeding, not an unconditional next step - so
+// there is no declarative edge for this crawler to follow either, only a
+// client-side redirect once the request has actually been created.
 const ALLOW_UNREACHABLE = new Set([
   '404.html',
   ...redirects.map((r) => r.from),
@@ -48,7 +56,15 @@ const ALLOW_UNREACHABLE = new Set([
   'account/applications/new/confirmation/index.html',
   'cy/account/applications/new/confirmation/index.html',
   'account/applications/detail/index.html',
-  'cy/account/applications/detail/index.html'
+  'cy/account/applications/detail/index.html',
+  'account/requests/index.html',
+  'cy/account/requests/index.html',
+  'get-started/request-api/confirmation/index.html',
+  'cy/get-started/request-api/confirmation/index.html',
+  'publish/submit/confirmation/index.html',
+  'cy/publish/submit/confirmation/index.html',
+  'api-catalogue/request-new-api/confirmation/index.html',
+  'cy/api-catalogue/request-new-api/confirmation/index.html'
 ])
 
 // Every file in the export, any type, relative to OUT - so an href/src to a

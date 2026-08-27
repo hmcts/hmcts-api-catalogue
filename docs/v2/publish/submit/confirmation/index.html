@@ -309,35 +309,24 @@ data-module="govuk-service-navigation"
   </h1>
   
   <div class="govuk-panel__body">
-    This is a prototype<br>Nothing was submitted
+    Reference number<br><strong id="confirmation-reference"></strong>
   </div>
   
   
 </div>
 
 
-    <div class="govuk-warning-text">
-  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-  <strong class="govuk-warning-text__text">
-    <span class="govuk-visually-hidden">Warning</span>
-    Nothing was submitted and nothing was stored. No one has received this information, and
-             no one will act on it.
-  </strong>
-</div>
-
-
-    <h2 class="govuk-heading-m">What this page would normally tell you</h2>
-
-    <p class="govuk-body">
-      In the live service this page would give you a reference number, confirm the email address the
-      acknowledgement had gone to, and tell you that the marketplace team reviews submissions.
+    <p class="govuk-body" id="confirmation-fallback" hidden>
+      Your submission was received, but this page was opened directly rather than reached from
+      submitting it, so there is no reference number to show here.
+      <a class="govuk-link" href="../../../account/requests/">View my requests</a> to find it.
     </p>
 
-    <h2 class="govuk-heading-m">If you need to publish an API for real</h2>
+    <h2 class="govuk-heading-m">What happens next</h2>
 
     <p class="govuk-body">
-      <a class="govuk-link" href="../../../help/">Contact the marketplace team</a> and tell them what you are
-      trying to list. They can take you through it directly.
+      The marketplace team reviews your submission. You can track its status on
+      <a class="govuk-link" href="../../../account/requests/">my requests</a>.
     </p>
 
     <h2 class="govuk-heading-m">Before you go</h2>
@@ -497,6 +486,8 @@ data-module="govuk-service-navigation"
 
 
     
+  <script src="../../../public/javascripts/requests.js"></script>
+
   
   <script>
     document.addEventListener('DOMContentLoaded', function () {

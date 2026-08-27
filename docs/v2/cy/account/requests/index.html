@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" class="govuk-template">
+<html lang="cy" class="govuk-template">
   <head>
     <meta charset="utf-8">
     <title>
-  Check your answers - HMCTS API Marketplace - GOV.UK
+  My requests - HMCTS API Marketplace - GOV.UK
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#1d70b8">
@@ -107,7 +107,7 @@ data-module="govuk-service-navigation"
       
         <span class="govuk-service-navigation__service-name">
           
-            <a href="../../../" class="govuk-service-navigation__link">
+            <a href="../../../cy/" class="govuk-service-navigation__link">
               HMCTS API Marketplace
             </a>
           
@@ -133,7 +133,7 @@ data-module="govuk-service-navigation"
               
               <li class="govuk-service-navigation__item">
                 
-                  <a class="govuk-service-navigation__link" href="../../../api-catalogue/">
+                  <a class="govuk-service-navigation__link" href="../../../cy/api-catalogue/">
                     
                 
                 API catalogue
@@ -145,14 +145,12 @@ data-module="govuk-service-navigation"
               
 
               
-              <li class="govuk-service-navigation__item govuk-service-navigation__item--active">
+              <li class="govuk-service-navigation__item">
                 
-                  <a class="govuk-service-navigation__link" href="../../../get-started/" aria-current="true">
+                  <a class="govuk-service-navigation__link" href="../../../cy/get-started/">
                     
                 
-                
-                  <strong class="govuk-service-navigation__active-fallback">Get started</strong>
-                
+                Get started
               
                   </a>
                 
@@ -163,7 +161,7 @@ data-module="govuk-service-navigation"
               
               <li class="govuk-service-navigation__item">
                 
-                  <a class="govuk-service-navigation__link" href="../../../documentation/">
+                  <a class="govuk-service-navigation__link" href="../../../cy/documentation/">
                     
                 
                 Documentation
@@ -177,7 +175,7 @@ data-module="govuk-service-navigation"
               
               <li class="govuk-service-navigation__item">
                 
-                  <a class="govuk-service-navigation__link" href="../../../publish/">
+                  <a class="govuk-service-navigation__link" href="../../../cy/publish/">
                     
                 
                 Publish an API
@@ -191,7 +189,7 @@ data-module="govuk-service-navigation"
               
               <li class="govuk-service-navigation__item">
                 
-                  <a class="govuk-service-navigation__link" href="../../../help/">
+                  <a class="govuk-service-navigation__link" href="../../../cy/help/">
                     
                 
                 Help and support
@@ -203,9 +201,9 @@ data-module="govuk-service-navigation"
               
 
               
-              <li class="govuk-service-navigation__item">
+              <li class="govuk-service-navigation__item govuk-service-navigation__item--active">
                 
-                  <a class="govuk-service-navigation__link" href="../../../sign-in/"
+                  <a class="govuk-service-navigation__link" href="../../../cy/sign-in/" aria-current="true"
     
         
         
@@ -216,7 +214,9 @@ data-module="govuk-service-navigation"
    id="nav-auth-link">
                     
                 
-                Sign in
+                
+                  <strong class="govuk-service-navigation__active-fallback">Sign in</strong>
+                
               
                   </a>
                 
@@ -250,9 +250,9 @@ data-module="govuk-service-navigation"
   
   <nav class="app-language-toggle" aria-label="Language">
     
-      <span lang="en">English</span>
+      <span lang="cy">Cymraeg</span>
       <span aria-hidden="true">|</span>
-      <a class="govuk-link" lang="cy" hreflang="cy" rel="alternate" href="../../../cy/get-started/request-api/check-answers/">Cymraeg</a>
+      <a class="govuk-link" lang="en" hreflang="en" rel="alternate" href="../../../account/requests/">English</a>
     
   </nav>
   
@@ -264,13 +264,31 @@ data-module="govuk-service-navigation"
       Beta
     </strong>
     <span class="govuk-phase-banner__text">
-      This is a new service. <a class="govuk-link" href="../../../help/">Help us improve it by giving feedback</a>.
+      This is a new service. <a class="govuk-link" href="../../../cy/help/">Help us improve it by giving feedback</a>.
     </span>
   </p>
 </div>
 
 
   
+  
+    
+
+  <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+  <div class="govuk-notification-banner__header">
+    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+      Welsh translation in progress
+    </h2>
+  </div>
+  <div class="govuk-notification-banner__content">
+  
+    <p class="govuk-notification-banner__heading">
+      This service is being translated. Content that has not been translated yet is shown in English.
+    </p>
+  
+  </div>
+</div>
+
   
 
   
@@ -279,19 +297,13 @@ data-module="govuk-service-navigation"
 
   
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="../../../">Home</a>
+      <a class="govuk-breadcrumbs__link" href="../../../cy/">Home</a>
     </li>
   
 
   
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="../../../get-started/">Get started</a>
-    </li>
-  
-
-  
-    <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="../../../get-started/request-api/">Request API access</a>
+      <a class="govuk-breadcrumbs__link" href="../../../cy/account/">Your account</a>
     </li>
   
 
@@ -304,52 +316,32 @@ data-module="govuk-service-navigation"
         <main class="govuk-main-wrapper" id="main-content">
           
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+<h1 class="govuk-heading-xl">My requests</h1>
 
-    <div data-requires-auth="get-started/request-api/" hidden></div>
+<p class="govuk-body">
+  Everything you have submitted through Request API access, Publish an API or Request a new API.
+</p>
 
-    <div class="govuk-error-summary" data-module="govuk-error-summary" id="request-error-summary" hidden tabindex="-1">
-      <div role="alert">
-        <h2 class="govuk-error-summary__title">There is a problem</h2>
-        <div class="govuk-error-summary__body">
-          <ul class="govuk-list govuk-error-summary__list">
-            <li><a href="#request-submit" id="request-error-link">Something went wrong with your submission. Please try again.</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+<p class="govuk-body" id="requests-loading">Loading your requests&hellip;</p>
 
-    <h1 class="govuk-heading-xl">Check your answers before submitting</h1>
+<table class="govuk-table" id="requests-table" hidden>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Reference</th>
+      <th scope="col" class="govuk-table__header">Type</th>
+      <th scope="col" class="govuk-table__header">Submitted</th>
+      <th scope="col" class="govuk-table__header">Status</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body" id="requests-table-body"></tbody>
+</table>
 
-    <dl class="govuk-summary-list"
-        data-summary-for="request-api"
-        data-change-href="../"
-        data-empty-message="Your answers could not be read back. This happens when JavaScript is turned off, because there is no server to hold them.">
-    </dl>
-
-    <form id="access-request-submit-form">
-      
-<button type="submit" class="govuk-button" data-module="govuk-button"
-    
-        
-        
-      
-        
-      
-    
-   id="request-submit">
-  Accept and submit
-</button>
-
-    </form>
-
-    <p class="govuk-body">
-      <a class="govuk-link" href="../">Change your answers</a>
-    </p>
-
-  </div>
-</div>
+<p class="govuk-body" id="requests-empty-hint" hidden>
+  You have not submitted any requests yet. Start from
+  <a class="govuk-link" href="../../../cy/get-started/request-api/">Request API access</a>,
+  <a class="govuk-link" href="../../../cy/publish/submit/">Submit an API for publication</a> or
+  <a class="govuk-link" href="../../../cy/api-catalogue/request-new-api/">Request a new API</a>.
+</p>
 
 
         </main>
@@ -403,25 +395,25 @@ data-module="govuk-service-navigation"
         <ul class="govuk-footer__inline-list">
         
           <li class="govuk-footer__inline-list-item">
-            <a class="govuk-footer__link" href="../../../help/">
+            <a class="govuk-footer__link" href="../../../cy/help/">
               Contact the marketplace team
             </a>
           </li>
         
           <li class="govuk-footer__inline-list-item">
-            <a class="govuk-footer__link" href="../../../accessibility-statement/">
+            <a class="govuk-footer__link" href="../../../cy/accessibility-statement/">
               Accessibility statement
             </a>
           </li>
         
           <li class="govuk-footer__inline-list-item">
-            <a class="govuk-footer__link" href="../../../cookies/">
+            <a class="govuk-footer__link" href="../../../cy/cookies/">
               Cookies
             </a>
           </li>
         
           <li class="govuk-footer__inline-list-item">
-            <a class="govuk-footer__link" href="../../../privacy/">
+            <a class="govuk-footer__link" href="../../../cy/privacy/">
               Privacy notice
             </a>
           </li>

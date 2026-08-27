@@ -15,6 +15,23 @@
   var API_BASE = 'https://hmcts-api-marketplace-auth-vu5d.onrender.com'
   var TOKEN_KEY = 'hmctsMarketplaceToken'
 
+  // The site is served from a subdirectory on GitHub Pages
+  // (hmcts.github.io/hmcts-api-marketplace/v2/) but from the domain root in
+  // local dev (localhost:3100). A hardcoded "/account" resolves against the
+  // domain root either way, which is wrong on Pages. Deriving the site's base
+  // from where this very script was loaded from works in both places, the
+  // same way export-static.mjs depth-corrects href/src in the exported HTML -
+  // this covers the cases that rewrite (HTML only) does not reach.
+  var SITE_BASE = (function () {
+    var script = document.currentScript
+    if (!script || !script.src) return '/'
+    return script.src.replace(/public\/javascripts\/auth\.js(?:[?#].*)?$/, '')
+  })()
+
+  function siteUrl (route) {
+    return SITE_BASE + route.replace(/^\//, '')
+  }
+
   function getToken () {
     try { return window.localStorage.getItem(TOKEN_KEY) } catch (e) { return null }
   }
@@ -72,7 +89,7 @@
         if (!res.ok) { clearToken(); return }
         return res.json().then(function (data) {
           navAuthLink.textContent = data.user.firstName
-          navAuthLink.setAttribute('href', '/account')
+          navAuthLink.setAttribute('href', siteUrl('account/'))
         })
       }).catch(function () { /* nav still shows "Sign in" - fine */ })
     }
@@ -109,7 +126,7 @@
           return
         }
         setToken(result.data.token)
-        window.location.href = '/account'
+        window.location.href = siteUrl('account/')
       }).catch(function () {
         clearButtonBusy(button)
         showFormError('signin-error-summary', 'signin-error-link', 'signin-email', 'Could not reach the sign-in service. Try again in a moment.')
@@ -168,7 +185,7 @@
           return
         }
         setToken(result.data.token)
-        window.location.href = '/account'
+        window.location.href = siteUrl('account/')
       }).catch(function () {
         clearButtonBusy(button)
         showFormError('register-error-summary', 'register-error-link', 'reg-email', 'Could not reach the registration service. Try again in a moment.')
@@ -181,12 +198,12 @@
   if (accountDetails) {
     var accountToken = getToken()
     if (!accountToken) {
-      window.location.href = '/sign-in'
+      window.location.href = siteUrl('sign-in/')
     } else {
       authedFetch('/api/me').then(function (res) {
         if (!res.ok) {
           clearToken()
-          window.location.href = '/sign-in'
+          window.location.href = siteUrl('sign-in/')
           return
         }
         return res.json().then(function (data) {
@@ -213,7 +230,7 @@
         event.preventDefault()
         authedFetch('/api/logout', { method: 'POST' }).catch(function () { /* clear the local token regardless */ })
         clearToken()
-        window.location.href = '/sign-in'
+        window.location.href = siteUrl('sign-in/')
       })
     }
   }

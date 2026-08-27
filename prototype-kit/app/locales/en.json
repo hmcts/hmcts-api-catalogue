@@ -8,7 +8,8 @@
     "getStarted": "Get started",
     "documentation": "Documentation",
     "publish": "Publish an API",
-    "help": "Help and support"
+    "help": "Help and support",
+    "signIn": "Sign in"
   },
   "phase": {
     "tag": "Beta",
@@ -30,7 +31,10 @@
     "publish": "Publish an API",
     "help": "Help and support",
     "architecture": "HMCTS architecture",
-    "submit": "Submit an API"
+    "submit": "Submit an API",
+    "signIn": "Sign in",
+    "register": "Create a developer account",
+    "account": "Your account"
   },
   "language": {
     "toWelsh": "Cymraeg",

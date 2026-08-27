@@ -31,11 +31,17 @@ const LOCAL_HOSTS = new Set(['localhost', '127.0.0.1', '[::1]'])
 // shared route for every API, deliberately, rather than a manifest entry per
 // live API that would go stale the moment the feed changes.
 const { redirects } = JSON.parse(await readFile('scripts/redirects.json', 'utf8'))
+// /account is the same shape again: the service navigation's "Sign in" link
+// only becomes an "/account" link via client-side JS, once a token is present
+// (see app/assets/javascripts/auth.js) - there is no static <a href="/account">
+// anywhere for a signed-out crawler to find.
 const ALLOW_UNREACHABLE = new Set([
   '404.html',
   ...redirects.map((r) => r.from),
   'api-catalogue/detail/index.html',
-  'cy/api-catalogue/detail/index.html'
+  'cy/api-catalogue/detail/index.html',
+  'account/index.html',
+  'cy/account/index.html'
 ])
 
 // --- part 1: broken links --------------------------------------------------

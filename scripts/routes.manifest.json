@@ -126,6 +126,18 @@
       "name": "A to Z of developer resources"
     },
     {
+      "path": "/sign-in",
+      "name": "Sign in"
+    },
+    {
+      "path": "/register",
+      "name": "Create a developer account"
+    },
+    {
+      "path": "/account",
+      "name": "Your account"
+    },
+    {
       "path": "/accessibility-statement",
       "name": "Accessibility statement"
     },

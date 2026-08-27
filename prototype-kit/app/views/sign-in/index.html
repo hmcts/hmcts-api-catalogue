@@ -1,0 +1,64 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = t("breadcrumb.signIn") %}
+{% set section = "account" %}
+{% set breadcrumbs = [
+  { text: "Home", href: "/" }
+] %}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-error-summary" data-module="govuk-error-summary" id="signin-error-summary" hidden tabindex="-1">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">There is a problem</h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li><a href="#signin-email" id="signin-error-link">Enter your email address and password</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h1 class="govuk-heading-xl">Sign in</h1>
+
+    <p class="govuk-body">
+      If you do not already have an account, <a class="govuk-link" href="/register">create a developer account</a>.
+    </p>
+
+    <form id="signin-form" novalidate>
+
+      <div class="govuk-form-group" id="signin-email-group">
+        {{ govukInput({
+          label: { text: "Email address", classes: "govuk-label--m" },
+          id: "signin-email",
+          name: "email",
+          type: "email",
+          autocomplete: "email",
+          spellcheck: false
+        }) }}
+      </div>
+
+      <div class="govuk-form-group" id="signin-password-group">
+        {{ govukInput({
+          label: { text: "Password", classes: "govuk-label--m" },
+          id: "signin-password",
+          name: "password",
+          type: "password",
+          autocomplete: "current-password"
+        }) }}
+      </div>
+
+      {{ govukButton({ text: "Sign in", attributes: { id: "signin-submit" } }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

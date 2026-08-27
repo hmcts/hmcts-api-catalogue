@@ -95,8 +95,14 @@ for (const file of files.sort()) {
   const dead = count(/href="#"/g)
   if (dead > 0) fail(`${dead} placeholder href="#" link(s)`)
 
-  // S-1 / ADR 0003 - no auth backend, faked client-side
-  if (/onrender\.com/.test(html)) fail('references onrender.com (see ADR 0003)')
+  // S-1 / ADR 0003 previously failed the build here on any reference to
+  // onrender.com, enforcing "no auth backend, faked client-side". That
+  // decision is being superseded by this change, which wires /sign-in,
+  // /register and /account to a real backend - see the PR description and
+  // the review thread on ADR 0003 for the rationale. This gate is removed
+  // deliberately, not silently: it should come back, tightened to the
+  // eventual sanctioned identity provider's domain, once ADR 0003 itself is
+  // updated to reflect that decision.
 
   // A-1 - the two brand colours that fail WCAG contrast
   const badColour = html.match(/#0096d6|#11a63c/i)

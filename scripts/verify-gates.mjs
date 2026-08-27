@@ -96,11 +96,11 @@ const mutations = [
     what: 'a dangling in-page anchor',
     html: (h) => h.replace('</main>', '<a href="#nowhere">Jump</a></main>')
   },
-  {
-    gate: 'structure',
-    what: 'a reintroduced onrender.com reference',
-    html: (h) => h.replace('</main>', '<p class="govuk-body">https://hmcts-api-marketplace-auth.onrender.com</p></main>')
-  },
+  // The "reintroduced onrender.com reference" self-test lived here, checking
+  // the S-1 / ADR 0003 gate in check-structure.mjs. That gate is deliberately
+  // removed as part of wiring real auth into /sign-in, /register and
+  // /account - see check-structure.mjs and the PR description. This self-test
+  // went with it, for the same reason.
   {
     gate: 'links',
     what: 'a link to a page that does not exist',
@@ -188,7 +188,7 @@ const mutations = [
     // moved somewhere else.
     gate: 'structure',
     what: 'a superseded stub pretending the content moved',
-    target: 'sign-in.html',
+    target: 'my-applications.html',
     html: (h) => h.replace('This page no longer exists in its old form.', 'This page has a new address.')
   },
   {

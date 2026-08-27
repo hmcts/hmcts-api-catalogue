@@ -19,6 +19,12 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
+    {#
+      Signed-out visitors are sent to sign in first and back here afterwards -
+      see the data-requires-auth handling in app/assets/javascripts/auth.js.
+    #}
+    <div data-requires-auth="api-catalogue/request-new-api/" hidden></div>
+
     <div data-error-summary="request-new-api" hidden></div>
 
     <h1 class="govuk-heading-xl">Request a new API</h1>

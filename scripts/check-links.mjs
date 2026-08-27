@@ -1,26 +1,19 @@
 // Link integrity gate, in two parts.
 //
-// 1. No broken internal links. Every exported page is an entry point, not just
-//    whatever is reachable from the homepage - otherwise an unreachable page's
-//    broken links go unchecked.
+// 1. No broken internal links. Checked directly against every exported page,
+//    not just whatever is reachable from the homepage - otherwise an
+//    unreachable page's broken links go unchecked.
 //
 // 2. No unreachable pages. Every route must be reachable by following links
 //    from the homepage. This is audit finding H-3 as a gate: the current site
 //    carries an orphan page (api-detail.html, zero inbound links) precisely
 //    because nothing ever checked.
-//
-// Note on linksToSkip: linkinator serves the local path over its own HTTP
-// server, so internal links arrive as http://localhost:<port>/... A naive
-// '^https?://' pattern therefore skips *everything* and the gate passes while
-// checking nothing. Skip by host instead.
 
 import { readdir, readFile } from 'node:fs/promises'
 import { join, relative, sep, posix } from 'node:path'
-import { LinkChecker } from 'linkinator'
 import { loadManifest } from './routes.mjs'
 
 const OUT = process.env.EXPORT_OUT ?? 'docs/v2'
-const LOCAL_HOSTS = new Set(['localhost', '127.0.0.1', '[::1]'])
 
 // Reachable by URL, never by link: the 404 page, and every redirect stub - the
 // whole point of a stub is that an old external link or bookmark lands on it.
@@ -58,45 +51,24 @@ const ALLOW_UNREACHABLE = new Set([
   'cy/account/applications/detail/index.html'
 ])
 
-// --- part 1: broken links --------------------------------------------------
-
-const checker = new LinkChecker()
-const result = await checker.check({
-  path: '**/*.html',
-  serverRoot: OUT,
-  recurse: true,
-  linksToSkip: async (link) => {
-    try {
-      return !LOCAL_HOSTS.has(new URL(link).hostname)
-    } catch {
-      return false
-    }
-  }
-})
-
-const broken = result.links.filter((link) => link.state === 'BROKEN')
-const checked = result.links.filter((link) => link.state !== 'SKIPPED').length
-
-if (broken.length) {
-  const lines = broken.map((link) => `${link.url}  <- ${link.parent ?? 'unknown'}`)
-  console.error(`Link gate FAILED - ${broken.length} broken link(s):\n  ` + lines.join('\n  '))
-  process.exit(1)
-}
-
-// --- part 2: reachability --------------------------------------------------
-
-const pages = []
+// Every file in the export, any type, relative to OUT - so an href/src to a
+// missing asset (css, js, image) is just as much a broken link as one to a
+// missing page.
+const allFiles = new Set()
 for (const entry of await readdir(OUT, { recursive: true, withFileTypes: true })) {
-  if (entry.isFile() && entry.name.endsWith('.html')) {
+  if (entry.isFile()) {
     const abs = join(entry.parentPath ?? entry.path, entry.name)
-    pages.push(relative(OUT, abs).split(sep).join('/'))
+    allFiles.add(relative(OUT, abs).split(sep).join('/'))
   }
 }
 
-// Resolve an href found in `fromPage` to the page file it targets, or null if
-// it is external, an anchor, or an asset.
+const pages = [...allFiles].filter((f) => f.endsWith('.html'))
+
+// Resolve an href/src found in `fromPage` to the file it targets, relative to
+// OUT, or null if it is external, an anchor, or otherwise not ours to check.
 function resolveTarget (fromPage, href) {
-  if (/^(https?:)?\/\//.test(href) || href.startsWith('#') || href.startsWith('mailto:')) return null
+  if (/^([a-z][a-z0-9+.-]*:)?\/\//i.test(href)) return null
+  if (href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return null
 
   const [pathPart] = href.split(/[?#]/)
   if (!pathPart) return null
@@ -107,9 +79,47 @@ function resolveTarget (fromPage, href) {
   if (resolved.endsWith('/') || resolved === '' || resolved === '.') {
     return posix.join(resolved === '.' ? '' : resolved, 'index.html')
   }
-  if (resolved.endsWith('.html')) return resolved
-  return null
+  return resolved
 }
+
+// --- part 1: broken links --------------------------------------------------
+//
+// Checked directly against the filesystem, not via a linkinator crawl.
+// linkinator's own linksToSkip skipped every non-local host, so a crawl was
+// never actually verifying external links here - its only real job was
+// confirming an internal href/src resolves to a file that exists, which this
+// does directly and unambiguously. That directness turned out to matter: a
+// linkinator crawl of this exact output reproducibly reported a link to
+// get-started/request-api/ (a route removed from the whole export) against
+// account/index.html - a page confirmed, byte for byte, not to contain it, in
+// both a from-scratch local export and the exact files CI itself had just
+// written to disk moments earlier (its own "is the committed export stale"
+// check passed on the same run). The false positive survived recurse: true,
+// recurse: false and concurrency: 1 alike, so it lives somewhere inside
+// linkinator's own crawl/caching, not in anything this script controls about
+// how the crawl is shaped. Resolving hrefs against the real filesystem
+// sidesteps that entirely.
+const HREF_OR_SRC = /\b(?:href|src)="([^"]+)"/g
+
+const broken = []
+let checked = 0
+for (const page of pages) {
+  const html = await readFile(join(OUT, page), 'utf8')
+  for (const match of html.matchAll(HREF_OR_SRC)) {
+    const target = resolveTarget(page, match[1])
+    if (!target) continue
+    checked++
+    if (!allFiles.has(target)) broken.push({ url: target, parent: page })
+  }
+}
+
+if (broken.length) {
+  const lines = broken.map((link) => `${link.url}  <- ${link.parent}`)
+  console.error(`Link gate FAILED - ${broken.length} broken link(s):\n  ` + lines.join('\n  '))
+  process.exit(1)
+}
+
+// --- part 2: reachability --------------------------------------------------
 
 // Edges come from two places. Plain links are href. Journey steps advance by
 // form submission, where the next step is declared in data-next - so that is a

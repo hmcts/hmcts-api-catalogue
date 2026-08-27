@@ -121,8 +121,7 @@
     {
       "from": "request-api.html",
       "to": "/get-started/request-api",
-      "kind": "superseded",
-      "because": "The access request journey has been rebuilt as a GOV.UK-styled form."
+      "kind": "moved"
     },
     {
       "from": "request-new-api.html",

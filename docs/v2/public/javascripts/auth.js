@@ -115,8 +115,30 @@
       authedFetch('/api/me').then(function (res) {
         if (!res.ok) { clearToken(); return }
         return res.json().then(function (data) {
-          navAuthLink.textContent = data.user.firstName
+          // Visible text is just the first name, but the link's accessible
+          // name needs to say what it goes to - a bare name read out of
+          // context tells a screen reader user nothing, the same reasoning
+          // already applied to "Change" links elsewhere (applications.js,
+          // api-catalogue.js). Built with DOM nodes rather than innerHTML so
+          // firstName - user-supplied at registration - never needs escaping.
+          navAuthLink.textContent = ''
+          navAuthLink.appendChild(document.createTextNode(data.user.firstName))
+          var accountHint = document.createElement('span')
+          accountHint.className = 'govuk-visually-hidden'
+          accountHint.textContent = ' account'
+          navAuthLink.appendChild(accountHint)
           navAuthLink.setAttribute('href', siteUrl('account/'))
+
+          // Homepage only: once we know someone is signed in, the sign-in/
+          // register prompt there is not just redundant but actively
+          // confusing next to their name in the header - swap it for a way
+          // into the account they already have.
+          var homeAuthPrompt = document.getElementById('home-auth-prompt')
+          var homeAccountPrompt = document.getElementById('home-account-prompt')
+          if (homeAuthPrompt && homeAccountPrompt) {
+            homeAuthPrompt.hidden = true
+            homeAccountPrompt.hidden = false
+          }
         })
       }).catch(function () { /* nav still shows "Sign in" - fine */ })
     }

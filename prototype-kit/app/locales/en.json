@@ -50,6 +50,7 @@
     "startButton": "Get started",
     "signInButton": "Sign in to developer account",
     "registerButton": "Create account",
+    "accountButton": "Go to your account",
     "catalogueHeading": "API and integration catalogue",
     "catalogueBody": "An A to Z list of HMCTS APIs and other integrations, with plain-English descriptions of what each one returns.",
     "getStartedHeading": "Getting started with our APIs",

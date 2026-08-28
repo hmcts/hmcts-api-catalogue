@@ -19,17 +19,41 @@
       isStartButton: true
     }) }}
 
-    <div class="govuk-button-group">
-      {{ govukButton({
-        text: t("home.signInButton"),
-        href: "/sign-in"
-      }) }}
+    {#
+      Signed out and signed in are mutually exclusive, so both render on the
+      server and auth.js toggles which is hidden - the same signed-in check
+      it already runs to update the header's account link, extended to this
+      page. If that check never resolves (JS disabled, the request fails),
+      the page fails safe to the signed-out prompt rather than showing
+      nothing.
 
-      {{ govukButton({
-        text: t("home.registerButton"),
-        href: "/register",
-        classes: "govuk-button--secondary"
-      }) }}
+      hidden goes on a plain wrapping div, not directly on
+      .govuk-button-group: that class sets display: flex, which beats the
+      browser's default [hidden] { display: none } on specificity, so hidden
+      alone does nothing on an element govuk-frontend already styles.
+    #}
+    <div id="home-auth-prompt">
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: t("home.signInButton"),
+          href: "/sign-in"
+        }) }}
+
+        {{ govukButton({
+          text: t("home.registerButton"),
+          href: "/register",
+          classes: "govuk-button--secondary"
+        }) }}
+      </div>
+    </div>
+
+    <div id="home-account-prompt" hidden>
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: t("home.accountButton"),
+          href: "/account"
+        }) }}
+      </div>
     </div>
   </div>
 </div>

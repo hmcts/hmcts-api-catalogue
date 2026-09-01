@@ -134,9 +134,9 @@
     })
   </script>
   {#
-    Site-wide: rewrites #nav-auth-link from "Sign in" to the signed-in user's
-    name once a token is present, on every page, not just the auth pages
-    themselves. See app/assets/javascripts/auth.js.
+    Site-wide: rewrites #nav-auth-link from "Sign in" to "Your account" once
+    a token is present, on every page, not just the auth pages themselves.
+    See app/assets/javascripts/auth.js.
   #}
   <script src="/public/javascripts/auth.js"></script>
 {% endblock %}

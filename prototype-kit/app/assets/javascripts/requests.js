@@ -178,4 +178,24 @@ document.addEventListener('DOMContentLoaded', function () {
       document.getElementById('requests-loading').textContent = 'Could not load your requests. Try again in a moment.'
     })
   }
+
+  // ---- request-api form: populate the API dropdown from the live catalogue -
+  //
+  // Reads the same feed the API catalogue itself lists (catalogue-data.js),
+  // so this always offers exactly the APIs actually published, with no
+  // separately-maintained list to fall out of step with the real catalogue.
+  // No visible error state for now if the feed cannot be reached - the field
+  // just stays at "Choose an API" and the required-field check on submit
+  // catches it the same way it would if someone left it alone anyway.
+  var apiNameSelect = document.getElementById('api-name')
+  if (apiNameSelect && window.HmctsCatalogue) {
+    window.HmctsCatalogue.fetchCatalogue().then(function (apis) {
+      apis.forEach(function (api) {
+        var option = document.createElement('option')
+        option.value = api.name
+        option.textContent = api.title
+        apiNameSelect.appendChild(option)
+      })
+    }).catch(function () {})
+  }
 })

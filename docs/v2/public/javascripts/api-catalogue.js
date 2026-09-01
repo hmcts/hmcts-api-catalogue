@@ -57,6 +57,13 @@
     return window.location.pathname.replace(/\/?detail\/?$/, '/')
   }
 
+  // Same reasoning as catalogueUrl/detailUrl above: built from the site root
+  // rather than hardcoded, so it still resolves once the site is served from
+  // a subpath (as it is on GitHub Pages) rather than the origin root.
+  function requestApiUrl () {
+    return catalogueUrl().replace(/api-catalogue\/$/, '') + 'get-started/request-api'
+  }
+
   // ------------------------------------------------------------------ data
   //
   // fetchCatalogue itself - along with domain/platform inference and repo
@@ -208,7 +215,7 @@
       // this form relies on (see get-started/request-api/index.html and
       // app/assets/javascripts/auth.js) - this is a plain link needing no
       // gating logic of its own.
-      '<a class="govuk-button" href="/get-started/request-api">Request API access</a>'
+      '<a class="govuk-button" href="' + requestApiUrl() + '">Request API access</a>'
   }
 
   // The catalogue feed only gives a one-line description. The spec's own

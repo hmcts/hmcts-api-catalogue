@@ -13,12 +13,6 @@
       {{ t("home.lede") }}
     </p>
 
-    {{ govukButton({
-      text: t("home.startButton"),
-      href: "/get-started",
-      isStartButton: true
-    }) }}
-
     {#
       Signed out and signed in are mutually exclusive, so both render on the
       server and auth.js toggles which is hidden - the same signed-in check

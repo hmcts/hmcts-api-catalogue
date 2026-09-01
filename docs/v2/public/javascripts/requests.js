@@ -196,6 +196,17 @@ document.addEventListener('DOMContentLoaded', function () {
         option.textContent = api.title
         apiNameSelect.appendChild(option)
       })
+
+      // Set by the Request API access button on an API's own detail page
+      // (api-catalogue.js) - single-use, so a stale value left over from
+      // browsing a different API earlier never resurfaces on some later,
+      // unrelated visit to this form.
+      var preselect = null
+      try { preselect = window.sessionStorage.getItem('requestApiPreselect') } catch (e) { /* private browsing, etc. */ }
+      if (preselect) {
+        try { window.sessionStorage.removeItem('requestApiPreselect') } catch (e) {}
+        apiNameSelect.value = preselect
+      }
     }).catch(function () {})
   }
 })

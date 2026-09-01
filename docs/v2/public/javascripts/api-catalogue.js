@@ -215,7 +215,7 @@
       // this form relies on (see get-started/request-api/index.html and
       // app/assets/javascripts/auth.js) - this is a plain link needing no
       // gating logic of its own.
-      '<a class="govuk-button" href="' + requestApiUrl() + '">Request API access</a>'
+      '<a class="govuk-button" id="requestApiAccess" href="' + requestApiUrl() + '">Request API access</a>'
   }
 
   // The catalogue feed only gives a one-line description. The spec's own
@@ -407,6 +407,17 @@
 
         var overviewPanel = document.getElementById('apiOverview')
         if (overviewPanel) overviewPanel.innerHTML = renderOverview(api)
+
+        // Remembers which API they came here for, so the request form (once
+        // they land on it - straight away, or via a sign-in detour first,
+        // both of which sessionStorage survives) can preselect it rather
+        // than making them find it again in the dropdown.
+        var requestApiLink = document.getElementById('requestApiAccess')
+        if (requestApiLink) {
+          requestApiLink.addEventListener('click', function () {
+            try { window.sessionStorage.setItem('requestApiPreselect', api.name) } catch (e) { /* private browsing, etc. */ }
+          })
+        }
 
         var tryItPanel = document.getElementById('apiTryIt')
         if (tryItPanel) tryItPanel.innerHTML = renderTryIt(api)

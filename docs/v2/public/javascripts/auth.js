@@ -98,6 +98,16 @@
     return next && /^[\w-]+(\/[\w-]+)*\/?$/.test(next) ? next : 'account/'
   }
 
+  // ---- sign-in page: carry the "return to" destination through to register -
+  // A signed-out visitor sent here by a data-requires-auth redirect (e.g.
+  // from Request API access) should still get taken back to that page after
+  // registering, the same as after signing in - not dropped on their new
+  // account page instead, regardless of which of the two they choose here.
+  var registerLink = document.getElementById('register-link')
+  if (registerLink) {
+    registerLink.setAttribute('href', registerLink.getAttribute('href') + '?next=' + encodeURIComponent(nextRoute()))
+  }
+
   // ---- site-wide: send signed-out visitors to sign in first ---------------
   // A page marks itself with a hidden data-requires-auth element carrying the
   // route to return to once signed in - see get-started/request-api/*.
@@ -114,10 +124,19 @@
     if (token) {
       authedFetch('/api/me').then(function (res) {
         if (!res.ok) { clearToken(); return }
-        return res.json().then(function (data) {
-          navAuthLink.textContent = data.user.firstName
-          navAuthLink.setAttribute('href', siteUrl('account/'))
-        })
+        navAuthLink.textContent = 'Your account'
+        navAuthLink.setAttribute('href', siteUrl('account/'))
+
+        // Homepage only: once we know someone is signed in, the sign-in/
+        // register prompt there is not just redundant but actively
+        // confusing next to "Your account" in the header - swap it for a way
+        // into the account they already have.
+        var homeAuthPrompt = document.getElementById('home-auth-prompt')
+        var homeAccountPrompt = document.getElementById('home-account-prompt')
+        if (homeAuthPrompt && homeAccountPrompt) {
+          homeAuthPrompt.hidden = true
+          homeAccountPrompt.hidden = false
+        }
       }).catch(function () { /* nav still shows "Sign in" - fine */ })
     }
   }
@@ -212,7 +231,7 @@
           return
         }
         setToken(result.data.token)
-        window.location.href = siteUrl('account/')
+        window.location.href = siteUrl(nextRoute())
       }).catch(function () {
         clearButtonBusy(button)
         showFormError('register-error-summary', 'register-error-link', 'reg-email', 'Could not reach the registration service. Try again in a moment.')

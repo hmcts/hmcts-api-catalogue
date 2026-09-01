@@ -88,6 +88,12 @@
 
       <h2 class="govuk-heading-l">API details</h2>
 
+      {#
+        Options are added by requests.js, reading the same live catalogue
+        feed the API catalogue itself lists - so this always offers exactly
+        the APIs actually published, with no separately-maintained list to
+        fall out of step.
+      #}
       <div data-required data-error="Select the API you need access to">
         {{ govukSelect({
           id: "api-name",
@@ -95,13 +101,7 @@
           label: { text: "Which API do you need access to?", classes: "govuk-label--m" },
           hint: { text: "Select from the API catalogue." },
           items: [
-            { value: "", text: "Choose an API" },
-            { value: "crime-prosecution-case-details", text: "Crime Prosecution Case Details API" },
-            { value: "hearing-results", text: "Hearing Results API" },
-            { value: "court-listings-and-scheduling", text: "Court Listings and Scheduling API" },
-            { value: "court-and-tribunal-reference-data", text: "Court and Tribunal Reference Data API" },
-            { value: "fees-and-financial-transactions", text: "Fees and Financial Transactions API" },
-            { value: "tribunal-case-administration", text: "Tribunal Case Administration API" }
+            { value: "", text: "Choose an API" }
           ]
         }) }}
       </div>
@@ -188,4 +188,9 @@
   </div>
 </div>
 
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/catalogue-data.js"></script>
+  <script src="/public/javascripts/requests.js"></script>
 {% endblock %}

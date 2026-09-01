@@ -1,25 +1,27 @@
-/* global window, document, fetch, jsyaml */
+/* global window, document, jsyaml */
 
 //
 // The API catalogue: a listing page and one shared detail page, both reading
 // live data at runtime rather than from anything checked into this repo. See
 // design/adr/0005-in-repo-api-catalogue.md for why.
 //
-// Two data sources, both external and both allowed to fail:
+// Fetching and shaping the feed itself lives in catalogue-data.js, shared
+// with the Request API access form's dropdown - both need the same live
+// list of what actually exists, not two copies that can drift apart.
 //
-//   https://hmcts.github.io/amp-catalog/apis.json         name, title, description, team
+// The other data source, an API's own OpenAPI spec, stays here: nothing
+// outside the catalogue pages needs it.
+//
 //   https://raw.githubusercontent.com/hmcts/<name>/...    that API's own OpenAPI spec
 //
-// Neither failure is treated as exceptional - a repo without a spec at the
+// Its failure is not treated as exceptional - a repo without a spec at the
 // guessed path is normal, not a bug, and the UI says so rather than breaking.
 //
 
 (function () {
   'use strict'
 
-  var CATALOGUE_URL = 'https://hmcts.github.io/amp-catalog/apis.json'
-  var GITHUB_ORG = 'hmcts'
-  var SPEC_PATH = '/main/src/main/resources/openapi/openapi-spec.yml'
+  var fetchCatalogue = window.HmctsCatalogue.fetchCatalogue
 
   function escapeHtml (value) {
     return String(value)
@@ -55,90 +57,17 @@
     return window.location.pathname.replace(/\/?detail\/?$/, '/')
   }
 
+  // Same reasoning as catalogueUrl/detailUrl above: built from the site root
+  // rather than hardcoded, so it still resolves once the site is served from
+  // a subpath (as it is on GitHub Pages) rather than the origin root.
+  function requestApiUrl () {
+    return catalogueUrl().replace(/api-catalogue\/$/, '') + 'get-started/request-api'
+  }
+
   // ------------------------------------------------------------------ data
-
-  function deriveLinks (name) {
-    return {
-      repoUrl: 'https://github.com/' + GITHUB_ORG + '/' + name,
-      docsUrl: 'https://hmcts.github.io/' + name + '/',
-      specUrl: 'https://raw.githubusercontent.com/' + GITHUB_ORG + '/' + name + '/' + SPEC_PATH.replace(/^\//, '')
-    }
-  }
-
-  // The catalogue feed carries no domain, classification or status fields -
-  // just name, title, description and team (see ADR 0005). Two tags are
-  // shown anyway, each honest about what it actually is:
   //
-  //   Domain  - a topic guessed from the repo name, for browsing only. Not
-  //             an authoritative classification, and styled as a neutral
-  //             grey tag rather than anything that reads as official.
-  //   Status  - always "Published". Not a lifecycle claim (we have no signal
-  //             for Alpha/Beta/Live) - just the one true thing this page can
-  //             say about anything it successfully fetched: it is in the
-  //             live catalogue right now.
-  //
-  // Ordered, first match wins. Checked against every API in the feed at the
-  // time this was written; a name that matches nothing falls back to
-  // "Other" rather than a wrong guess.
-  var DOMAIN_RULES = [
-    [/^api-cp-ai-/, 'AI'],
-    [/^api-cp-refdata-/, 'Reference data'],
-    [/prosecution-case|results-pcr|caseadmin|defendant/, 'Case administration'],
-    [/scheduling|listing|court-list/, 'Scheduling and listing'],
-    [/hearing/, 'Hearings']
-  ]
-
-  function inferDomain (name) {
-    for (var i = 0; i < DOMAIN_RULES.length; i++) {
-      if (DOMAIN_RULES[i][0].test(name)) return DOMAIN_RULES[i][1]
-    }
-    return 'Other'
-  }
-
-  // Which case management platform an API's data comes from - Common
-  // Platform (crime) today, everything else "Other" until a repo actually
-  // shows up with a different prefix. Every API in the feed at the time
-  // this was written is api-cp-*, so this is a confirmed read of that
-  // prefix, not a guess - but there is no real example of a CFT (or any
-  // other) API yet to check a second prefix against, so one is not invented
-  // here. Extend PLATFORM_RULES, the same shape as DOMAIN_RULES, once one
-  // exists.
-  var PLATFORM_RULES = [
-    [/^api-cp-/, 'Common Platform']
-  ]
-
-  function inferPlatform (name) {
-    for (var i = 0; i < PLATFORM_RULES.length; i++) {
-      if (PLATFORM_RULES[i][0].test(name)) return PLATFORM_RULES[i][1]
-    }
-    return 'Other'
-  }
-
-  function fetchCatalogue () {
-    return fetch(CATALOGUE_URL)
-      .then(function (res) {
-        if (!res.ok) throw new Error('HTTP ' + res.status)
-        return res.json()
-      })
-      .then(function (data) {
-        var apis = (data && data.apis) || []
-        return apis.map(function (api) {
-          var links = deriveLinks(api.name)
-          return {
-            name: api.name,
-            title: api.title || api.name,
-            description: api.description || '',
-            team: api.team || '',
-            domain: inferDomain(api.name),
-            platform: inferPlatform(api.name),
-            status: 'Published',
-            repoUrl: links.repoUrl,
-            docsUrl: links.docsUrl,
-            specUrl: links.specUrl
-          }
-        }).sort(function (a, b) { return a.title.localeCompare(b.title) })
-      })
-  }
+  // fetchCatalogue itself - along with domain/platform inference and repo
+  // link derivation - lives in catalogue-data.js, loaded before this file.
 
   // -------------------------------------------------------- listing page
 
@@ -276,7 +205,17 @@
           '<dd class="govuk-summary-list__value">' + r[1] + '</dd>' +
         '</div>'
       }).join('') +
-      '</dl>'
+      '</dl>' +
+      // The one default (green) button on this page - the Design System is
+      // explicit that a page should have at most one, and requesting access
+      // is the more consequential next step for a consumer than opening
+      // documentation, so that button (Try it out tab) is secondary instead.
+      // Signed-out visitors are sent to sign in first and back here
+      // afterwards, the same data-requires-auth handling every other link to
+      // this form relies on (see get-started/request-api/index.html and
+      // app/assets/javascripts/auth.js) - this is a plain link needing no
+      // gating logic of its own.
+      '<a class="govuk-button" id="requestApiAccess" href="' + requestApiUrl() + '">Request API access</a>'
   }
 
   // The catalogue feed only gives a one-line description. The spec's own
@@ -384,7 +323,10 @@
   function renderTryIt (api) {
     return '<p class="govuk-body">Interactive documentation for this API, including request and response ' +
       'examples, is hosted with the API itself.</p>' +
-      '<a class="govuk-button" href="' + api.docsUrl + '">Open API documentation</a>'
+      // Secondary, not the default green button - requesting access
+      // (Overview tab) is the more consequential action on this page, and
+      // the Design System asks for at most one default button per page.
+      '<a class="govuk-button govuk-button--secondary" href="' + api.docsUrl + '">Open API documentation</a>'
   }
 
   function specUnavailable (api, detail) {
@@ -465,6 +407,17 @@
 
         var overviewPanel = document.getElementById('apiOverview')
         if (overviewPanel) overviewPanel.innerHTML = renderOverview(api)
+
+        // Remembers which API they came here for, so the request form (once
+        // they land on it - straight away, or via a sign-in detour first,
+        // both of which sessionStorage survives) can preselect it rather
+        // than making them find it again in the dropdown.
+        var requestApiLink = document.getElementById('requestApiAccess')
+        if (requestApiLink) {
+          requestApiLink.addEventListener('click', function () {
+            try { window.sessionStorage.setItem('requestApiPreselect', api.name) } catch (e) { /* private browsing, etc. */ }
+          })
+        }
 
         var tryItPanel = document.getElementById('apiTryIt')
         if (tryItPanel) tryItPanel.innerHTML = renderTryIt(api)

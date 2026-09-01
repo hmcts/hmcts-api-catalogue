@@ -292,73 +292,126 @@ data-module="govuk-service-navigation"
         <main class="govuk-main-wrapper" id="main-content">
           
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+<h1 class="govuk-heading-xl">Your account</h1>
 
-    <h1 class="govuk-heading-xl">Your account</h1>
+<div class="govuk-tabs" data-module="govuk-tabs">
+  <h2 class="govuk-tabs__title">
+    Contents
+  </h2>
 
-    <p class="govuk-body" id="account-loading">Loading your account details&hellip;</p>
-
-    <dl class="govuk-summary-list" id="account-details" hidden>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">Name</dt>
-        <dd class="govuk-summary-list__value" id="account-name"></dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">Email address</dt>
-        <dd class="govuk-summary-list__value" id="account-email"></dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">Account type</dt>
-        <dd class="govuk-summary-list__value" id="account-role"></dd>
-      </div>
-    </dl>
-
-    <form id="signout-form" hidden>
+  <ul class="govuk-tabs__list">
+    
+          <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+      <a class="govuk-tabs__tab" href="#tab-account">
+        Your account
+      </a>
+    </li>
       
+    
+          <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#tab-requests">
+        My requests
+      </a>
+    </li>
+      
+    
+  </ul>
+  
+      <div class="govuk-tabs__panel" id="tab-account">
+  
+    <p class="govuk-body" id="account-loading">Loading your account details&hellip;</p>
+    
+              <dl class="govuk-summary-list" id="account-details" hidden>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">Name</dt>
+                  <dd class="govuk-summary-list__value" id="account-name"></dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">Email address</dt>
+                  <dd class="govuk-summary-list__value" id="account-email"></dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">Account type</dt>
+                  <dd class="govuk-summary-list__value" id="account-role"></dd>
+                </div>
+              </dl>
+    
+              <form id="signout-form" hidden>
+                <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">Sign out</button>
+              </form>
+    
+              <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+    
+              <h2 class="govuk-heading-l">What you can do next</h2>
+    
+              <div class="govuk-grid-row">
+                <div class="govuk-grid-column-one-third">
+                  <h3 class="govuk-heading-m">Introduction</h3>
+                  <ul class="govuk-list">
+                    <li><a class="govuk-link" href="../get-started/">Get started with our APIs</a></li>
+                    <li><a class="govuk-link" href="../api-catalogue/">API catalogue</a></li>
+                    <li><a class="govuk-link" href="../api-catalogue/request-new-api/">Request a new API</a></li>
+                  </ul>
+                </div>
+    
+                <div class="govuk-grid-column-one-third">
+                  <h3 class="govuk-heading-m">Access and onboarding</h3>
+                  <ul class="govuk-list">
+                    <li><a class="govuk-link" href="../account/applications/">Environment access</a></li>
+                    <li><a class="govuk-link" href="../get-started/onboarding-guide/">Onboarding guide</a></li>
+                    <li><a class="govuk-link" href="../get-started/request-api/">Request API access</a></li>
+                    <li><a class="govuk-link" href="../publish/">Publish an API</a></li>
+                  </ul>
+                </div>
+    
+                <div class="govuk-grid-column-one-third">
+                  <h3 class="govuk-heading-m">Support</h3>
+                  <ul class="govuk-list">
+                    <li><a class="govuk-link" href="../help/">Help and support</a></li>
+                    <li><a class="govuk-link" href="../help/resources/">A to Z of developer resources</a></li>
+                  </ul>
+                </div>
+              </div>
+  
+  </div>
+    
+  
+      <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="tab-requests">
+  
+    <h2 class="govuk-heading-l">My requests</h2>
+    
+              <p class="govuk-body">
+                Everything you have submitted through Request API access, Publish an API or Request a new
+                API.
+              </p>
+    
+              <p class="govuk-body" id="requests-loading">Loading your requests&hellip;</p>
+    
+              <table class="govuk-table" id="requests-table" hidden>
+                <thead class="govuk-table__head">
+                  <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Reference</th>
+                    <th scope="col" class="govuk-table__header">Type</th>
+                    <th scope="col" class="govuk-table__header">Submitted</th>
+                    <th scope="col" class="govuk-table__header">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="govuk-table__body" id="requests-table-body"></tbody>
+              </table>
+    
+              <p class="govuk-body" id="requests-empty-hint" hidden>
+                You have not submitted any requests yet. Start from
+                <a class="govuk-link" href="../get-started/request-api/">Request API access</a>,
+                <a class="govuk-link" href="../publish/submit/">Submit an API for publication</a> or
+                <a class="govuk-link" href="../api-catalogue/request-new-api/">Request a new API</a>.
+              </p>
+  
+  </div>
+    
   
 
-<button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-  Sign out
-</button>
-
-    </form>
-
-  </div>
 </div>
 
-<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-
-<h2 class="govuk-heading-l">What you can do next</h2>
-
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-one-third">
-    <h3 class="govuk-heading-m">Introduction</h3>
-    <ul class="govuk-list">
-      <li><a class="govuk-link" href="../get-started/">Get started with our APIs</a></li>
-      <li><a class="govuk-link" href="../api-catalogue/">API catalogue</a></li>
-      <li><a class="govuk-link" href="../api-catalogue/request-new-api/">Request a new API</a></li>
-    </ul>
-  </div>
-
-  <div class="govuk-grid-column-one-third">
-    <h3 class="govuk-heading-m">Access and onboarding</h3>
-    <ul class="govuk-list">
-      <li><a class="govuk-link" href="../account/applications/">Environment access</a></li>
-      <li><a class="govuk-link" href="../get-started/onboarding-guide/">Onboarding guide</a></li>
-      <li><a class="govuk-link" href="../get-started/request-api/">Request API access</a></li>
-      <li><a class="govuk-link" href="../publish/">Publish an API</a></li>
-    </ul>
-  </div>
-
-  <div class="govuk-grid-column-one-third">
-    <h3 class="govuk-heading-m">Support</h3>
-    <ul class="govuk-list">
-      <li><a class="govuk-link" href="../help/">Help and support</a></li>
-      <li><a class="govuk-link" href="../help/resources/">A to Z of developer resources</a></li>
-    </ul>
-  </div>
-</div>
 
 
         </main>
@@ -507,6 +560,8 @@ data-module="govuk-service-navigation"
 
 
     
+  <script src="../public/javascripts/requests.js"></script>
+
   
   <script>
     document.addEventListener('DOMContentLoaded', function () {

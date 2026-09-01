@@ -8,7 +8,6 @@
 ] %}
 
 {% from "govuk/components/panel/macro.njk" import govukPanel %}
-{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 
 {% block content %}
 
@@ -19,27 +18,20 @@
 
     {{ govukPanel({
       titleText: "Request submitted",
-      html: "This is a prototype<br>Nothing was submitted"
+      html: "Reference number<br><strong id=\"confirmation-reference\"></strong>"
     }) }}
 
-    {{ govukWarningText({
-      text: "Nothing was submitted and nothing was stored. No one has received this information, and
-             no one will act on it.",
-      iconFallbackText: "Warning"
-    }) }}
-
-    <h2 class="govuk-heading-m">What this page would normally tell you</h2>
-
-    <p class="govuk-body">
-      In the live service this page would give you a reference number and confirm that the API owner
-      will review your request.
+    <p class="govuk-body" id="confirmation-fallback" hidden>
+      Your request was submitted, but this page was opened directly rather than reached from submitting
+      a request, so there is no reference number to show here.
+      <a class="govuk-link" href="/account#tab-requests">View my requests</a> to find it.
     </p>
 
-    <h2 class="govuk-heading-m">If you need API access for real</h2>
+    <h2 class="govuk-heading-m">What happens next</h2>
 
     <p class="govuk-body">
-      <a class="govuk-link" href="/help">Contact the marketplace team</a> and tell them which API you
-      need and why. They will set up sandbox access with you directly.
+      The API owner will review your request. You can track its status on
+      <a class="govuk-link" href="/account#tab-requests">your requests list</a>.
     </p>
 
     <h2 class="govuk-heading-m">Before you go</h2>
@@ -52,4 +44,8 @@
   </div>
 </div>
 
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/requests.js"></script>
 {% endblock %}

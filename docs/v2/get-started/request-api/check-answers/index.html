@@ -309,6 +309,17 @@ data-module="govuk-service-navigation"
 
     <div data-requires-auth="get-started/request-api/" hidden></div>
 
+    <div class="govuk-error-summary" data-module="govuk-error-summary" id="request-error-summary" hidden tabindex="-1">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">There is a problem</h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li><a href="#request-submit" id="request-error-link">Something went wrong with your submission. Please try again.</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
     <h1 class="govuk-heading-xl">Check your answers before submitting</h1>
 
     <dl class="govuk-summary-list"
@@ -317,15 +328,17 @@ data-module="govuk-service-navigation"
         data-empty-message="Your answers could not be read back. This happens when JavaScript is turned off, because there is no server to hold them.">
     </dl>
 
-    <div class="govuk-inset-text">
-  Your answers are held in this browser tab only. Nothing has been sent anywhere yet, and
-             nothing will be.
-</div>
-
-
-    <form data-journey="request-api-confirm" data-next="../confirmation/" novalidate>
+    <form id="access-request-submit-form">
       
-<button type="submit" class="govuk-button" data-module="govuk-button">
+<button type="submit" class="govuk-button" data-module="govuk-button"
+    
+        
+        
+      
+        
+      
+    
+   id="request-submit">
   Accept and submit
 </button>
 
@@ -485,6 +498,8 @@ data-module="govuk-service-navigation"
 
 
     
+  <script src="../../../public/javascripts/requests.js"></script>
+
   
   <script>
     document.addEventListener('DOMContentLoaded', function () {
